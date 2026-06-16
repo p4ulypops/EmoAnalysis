@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Transcript Viewer Template</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;padding:0}
+    header{padding:12px;background:#f6f7f9;border-bottom:1px solid #e2e4e8;display:flex;gap:12px;align-items:center}
+    #controls{display:flex;gap:12px;align-items:center}
+    #transcript{height:70vh;overflow:auto;padding:16px}
+    .seg{padding:8px;border-bottom:1px solid #eee}
+    .timestamp{color:#666;margin-right:8px;cursor:pointer}
+    .word{padding:0 2px}
+    .highlight-word{background:yellow}
+    .highlight-sentence{background:#ffdca6}
+    .highlight-section{background:#c6f6d5}
+    .note{color:#666;font-size:0.9rem;margin-left:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <div id="controls">
+      <button id="play">Play</button>
+      <button id="pause">Pause</button>
+      <label><input type="checkbox" id="hlWord" checked /> Highlight Word</label>
+      <label><input type="checkbox" id="hlSentence" checked /> Highlight Sentence</label>
+      <label><input type="checkbox" id="hlSection" checked /> Highlight Section</label>
+    </div>
+    <div style="margin-left:auto;color:#444">Viewer template — place `segments.json`, `transcript.md`, and `audio.*` next to this file.</div>
+  </header>
+
+  <div id="transcript">Loading...</div>
+
+  <audio id="audio" controls style="width:100%"></audio>
+
+  <script>
+    // Template viewer: tries to load `segments.json` and `transcript.md` from same folder.
+    // If fetch fails (common when opened via file://), it falls back to an embedded sample.
+
+    const transcriptEl = document.getElementById('transcript');
+    const audioEl = document.getElementById('audio');
+
+    async function tryFetchText(path){
+      try{
+        const r = await fetch(path);
+        if(!r.ok) throw new Error('not ok');
+        return await r.text();
+      }catch(e){ return null; }
+    }
+
+    async function tryFetchJSON(path){
+      try{
+        const r = await fetch(path);
+        if(!r.ok) throw new Error('not ok');
+        return await r.json();
+      }catch(e){ return null; }
+    }
+
+    async function findAudio(){
+      const candidates = ['audio.m4a','audio.mp3','audio.wav','./audio.m4a','../Test Files/Magic Talk.m4a'];
+      for(const c of candidates){
+        const ok = await tryFetchText(c);
+        if(ok !== null){ return c; }
+      }
+      return null;
+    }
+
+    // Minimal sample fallback
+    const sampleTranscript = `
+[00:00] Hello. This is a sample transcript line.
+[00:04] It demonstrates how the viewer maps segments to audio time.
+`;
+
+    (async ()=>{
+      const segmentsJSON = await tryFetchJSON('./segments.json');
+      const transcriptMD = await tryFetchText('./transcript.md') || await tryFetchText('./transcript.txt') || await tryFetchText('./transcript') || sampleTranscript;
+      const audioPath = await findAudio();
+      if(audioPath) audioEl.src = audioPath; else audioEl.src = '';
+
+      // Prefer structured segments.json; otherwise parse transcript.md for [MM:SS] markers
+      let segments = [];
+      if(segmentsJSON && Array.isArray(segmentsJSON)){
+        // Expect segmentsJSON array with {start, text, words?}
+        segments = segmentsJSON.map(s=>({start: s.start || 0, text: s.text || s.content || s.transcript || s.raw || '', words: s.words || (s.text||'').split(/\s+/).filter(Boolean)}));
+      } else {
+        // Parse transcriptMD
+        const lines = transcriptMD.split(/\n/);
+        const timeRE = /^\s*\[(\d{2}):(\d{2})(?:\.\d+)?\]/;
+        let cur=null;
+        for(const l of lines){
+          const m = l.match(timeRE);
+          if(m){
+            const mm=parseInt(m[1],10), ss=parseInt(m[2],10);
+            const t = mm*60 + ss;
+            if(cur) segments.push(cur);
+            cur = {start: t, raw: l.replace(timeRE,'').trim(), lines:[]};
+          } else if(cur){ cur.lines.push(l); }
+        }
+        if(cur) segments.push(cur);
+        segments.forEach(s=>{ s.text = [s.raw].concat(s.lines).join('\n').trim(); s.words = s.text.split(/\s+/).filter(Boolean); s.sentences = s.text.split(/(?<=[.?!])\s+/); });
+      }
+
+      if(segments.length===0) segments = [{start:0,text:transcriptMD,words:transcriptMD.split(/\s+/).filter(Boolean),sentences:transcriptMD.split(/(?<=[.?!])\s+/)}];
+
+      renderSegments(segments);
+    })();
+
+    function renderSegments(segments){
+      transcriptEl.innerHTML = '';
+      segments.forEach((s, idx)=>{
+        const d = document.createElement('div'); d.className='seg'; d.dataset.start = s.start;
+        const ts = document.createElement('span'); ts.className='timestamp'; ts.textContent = `[${String(Math.floor(s.start/60)).padStart(2,'0')}:${String(s.start%60).padStart(2,'0')}]`;
+        ts.onclick = ()=>{ if(audioEl.src) { audioEl.currentTime = s.start; audioEl.play(); } };
+        d.appendChild(ts);
+        s.words.forEach((w,i)=>{
+          const sp = document.createElement('span'); sp.className='word'; sp.textContent = w+' ';
+          sp.dataset.i = i; sp.dataset.seg = idx; d.appendChild(sp);
+        });
+        transcriptEl.appendChild(d);
+      });
+
+      // wire controls
+      document.getElementById('play').onclick = ()=>audioEl.play();
+      document.getElementById('pause').onclick = ()=>audioEl.pause();
+      audioEl.ontimeupdate = ()=> onTimeUpdate(segments);
+    }
+
+    function clearHighlights(){
+      document.querySelectorAll('.highlight-word').forEach(e=>e.classList.remove('highlight-word'));
+      document.querySelectorAll('.highlight-sentence').forEach(e=>e.classList.remove('highlight-sentence'));
+      document.querySelectorAll('.highlight-section').forEach(e=>e.classList.remove('highlight-section'));
+    }
+
+    function onTimeUpdate(segments){
+      const t = audioEl.currentTime || 0;
+      let curIdx = -1;
+      for(let i=0;i<segments.length;i++){
+        if(segments[i].start <= t) curIdx = i; else break;
+      }
+      if(curIdx<0) return;
+      const seg = segments[curIdx];
+      const segEl = document.querySelector(`.seg[data-start='${seg.start}']`);
+      const nextStart = (segments[curIdx+1] && segments[curIdx+1].start) || (seg.start+Math.max(1, Math.min(5, seg.words.length*0.5)));
+      const dur = Math.max(0.1, nextStart - seg.start);
+      const elapsed = t - seg.start;
+      const frac = Math.max(0, Math.min(1, elapsed/dur));
+      const wIdx = Math.floor(frac * seg.words.length);
+
+      clearHighlights();
+      if(document.getElementById('hlSection').checked){ if(segEl) segEl.classList.add('highlight-section'); }
+      if(document.getElementById('hlSentence').checked){
+        const sents = seg.sentences || [seg.text];
+        let acc=0, sentIdx=0, found=false;
+        for(let i=0;i<sents.length;i++){
+          const count = sents[i].split(/\s+/).filter(Boolean).length;
+          if(wIdx >= acc && wIdx < acc+count){ sentIdx=i; found=true; break; }
+          acc += count;
+        }
+        if(!found) sentIdx = sents.length-1;
+        const beforeWords = sents.slice(0,sentIdx).join(' ').split(/\s+/).filter(Boolean).length;
+        const sentWordCount = sents[sentIdx].split(/\s+/).filter(Boolean).length;
+        for(let wi=beforeWords; wi< beforeWords+sentWordCount; wi++){
+          const el = document.querySelector(`.word[data-seg='${curIdx}'][data-i='${wi-beforeWords}']`);
+          if(el) el.classList.add('highlight-sentence');
+        }
+      }
+      if(document.getElementById('hlWord').checked){
+        const wordEls = Array.from(document.querySelectorAll(`.seg[data-start='${seg.start}'] .word`));
+        const el = wordEls[Math.min(wordEls.length-1, Math.max(0, wIdx))];
+        if(el) el.classList.add('highlight-word');
+      }
+    }
+  </script>
+</body>
+</html>

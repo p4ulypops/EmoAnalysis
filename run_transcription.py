@@ -1129,7 +1129,7 @@ def main():
                         meta_json = outputs.get("meta.json", "{}")
                         transcript_text = transcript_md.replace("</script>", "</scr" + "ipt>")
 
-                        viewer_html = f"""<!doctype html>
+                        viewer_html = """<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -1164,13 +1164,13 @@ def main():
     <audio id="audio" controls style="width:0;height:0;opacity:0;position:fixed;left:-9999px;" src="{audio_path.name}"></audio>
 
     <script>
-        const segments = {segments_json};
-        const emotions = {emotions_json};
-        const things = {things_json};
-        const glossary = {glossary_json};
-        const noteworthy = {noteworthy_json};
-        const meta = {meta_json};
-        const transcript = `{transcript_text}`;
+        const segments = {SEGMENTS_JSON_PLACEHOLDER};
+        const emotions = {EMOTIONS_JSON_PLACEHOLDER};
+        const things = {THINGS_JSON_PLACEHOLDER};
+        const glossary = {GLOSSARY_JSON_PLACEHOLDER};
+        const noteworthy = {NOTEWORTHY_JSON_PLACEHOLDER};
+        const meta = {META_JSON_PLACEHOLDER};
+        const transcript = `{TRANSCRIPT_PLACEHOLDER}`;
 
         const audio = document.getElementById('audio');
         const playBtn = document.getElementById('play');
@@ -1257,6 +1257,18 @@ def main():
 </body>
 </html>
 """
+
+                        # Replace placeholders safely (avoid Python f-string conflicts with JS braces)
+                        viewer_html = viewer_html.replace('{SEGMENTS_JSON_PLACEHOLDER}', segments_json)
+                        viewer_html = viewer_html.replace('{EMOTIONS_JSON_PLACEHOLDER}', emotions_json)
+                        viewer_html = viewer_html.replace('{THINGS_JSON_PLACEHOLDER}', things_json)
+                        viewer_html = viewer_html.replace('{GLOSSARY_JSON_PLACEHOLDER}', glossary_json)
+                        viewer_html = viewer_html.replace('{NOTEWORTHY_JSON_PLACEHOLDER}', noteworthy_json)
+                        viewer_html = viewer_html.replace('{META_JSON_PLACEHOLDER}', meta_json)
+                        # transcript_text may contain backticks or closing script tags; it was pre-escaped earlier
+                        viewer_html = viewer_html.replace('{TRANSCRIPT_PLACEHOLDER}', transcript_text)
+                        # audio src
+                        viewer_html = viewer_html.replace('{audio_path.name}', audio_path.name)
 
                         (out_folder / "viewer.html").write_text(viewer_html, encoding="utf-8")
                         print("  ✅ viewer.html")
