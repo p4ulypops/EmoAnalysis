@@ -1,0 +1,2 @@
+# Ignore test audio samples in Test Files without ignoring the folder itself
+/Test Files/*.m4a

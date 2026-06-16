@@ -45,6 +45,7 @@ import json
 import re
 import subprocess
 import sys
+import shutil
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -974,6 +975,12 @@ def main():
                         help="Match a known voice clip to a speaker label. "
                              "Repeatable: --match-voice clip1.m4a Pauly --match-voice clip2.m4a Mum. "
                              "Requires --diarise or --diarise-local.")
+    parser.add_argument("--subfolder-suffix", default="_subfile",
+                        help="Suffix to append to the audio filename for the output subfolder (default: _subfile)")
+    parser.add_argument("--no-copy-audio", dest="copy_audio", action="store_false",
+                        help="Do not copy the original audio file into the output folder")
+    parser.add_argument("--no-viewer", dest="generate_viewer", action="store_false",
+                        help="Do not generate the embedded HTML viewer in the output folder")
     args = parser.parse_args()
 
     # Load user config (config/ folder next to this script)
@@ -992,8 +999,8 @@ def main():
         args.diarise_local = True
 
     # Output folder
-    base_dir = Path(args.output_dir) if args.output_dir else Path.cwd()
-    out_folder = base_dir / audio_path.stem
+    base_dir = Path(args.output_dir) if args.output_dir else audio_path.parent
+    out_folder = base_dir / (audio_path.stem + str(args.subfolder_suffix))
     out_folder.mkdir(parents=True, exist_ok=True)
     print(f"\nOutput folder: {out_folder}\n")
 
@@ -1099,6 +1106,162 @@ def main():
     for filename, content in outputs.items():
         (out_folder / filename).write_text(content, encoding="utf-8")
         print(f"  ✅ {filename}")
+
+        # Copy audio into output folder by default (optional)
+        try:
+                if args.copy_audio:
+                        dest_audio = out_folder / audio_path.name
+                        if not dest_audio.exists():
+                                shutil.copy2(audio_path, dest_audio)
+                                print(f"  ✅ copied audio: {dest_audio.name}")
+        except Exception as e:
+                print(f"  ⚠️ could not copy audio: {e}")
+
+        # Generate a single-file HTML viewer that embeds the outputs and audio (optional)
+        if getattr(args, "generate_viewer", True):
+                try:
+                        # Prepare embedded JSON and transcript (escape closing script tags)
+                        segments_json = json.dumps(segments, ensure_ascii=False)
+                        emotions_json = outputs.get("emotions.json", "{}")
+                        things_json = outputs.get("things.json", "{}")
+                        glossary_json = outputs.get("glossary.json", "{}")
+                        noteworthy_json = outputs.get("noteworthy.json", "{}")
+                        meta_json = outputs.get("meta.json", "{}")
+                        transcript_text = transcript_md.replace("</script>", "</scr" + "ipt>")
+
+                        viewer_html = f"""<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Emotion Audio Viewer — {audio_path.name}</title>
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; height:100vh; display:flex; flex-direction:column; }
+        #top { padding:8px; display:flex; gap:8px; align-items:center; }
+        #timeline { height:120px; background:#111; color:#fff; position:relative; display:flex; align-items:center; padding:10px; }
+        #timeline .bar { position:relative; height:8px; background:#333; width:100%; border-radius:4px; }
+        .marker { position:absolute; top:6px; width:8px; height:8px; background:#ffcc00; border-radius:50%; transform:translateX(-50%); cursor:pointer; }
+        #controls { display:flex; gap:8px; align-items:center; }
+        #transcript { height:40vh; overflow:auto; border-top:1px solid #ddd; padding:12px; }
+        .segment { padding:6px 0; border-bottom:1px dashed #eee; }
+        .timestamp { color:#666; margin-right:8px; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <div id="controls">
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+            <label>Zoom: <input type="range" id="zoom" min="1" max="10" value="3" /></label>
+            <span id="time">00:00 / 00:00</span>
+        </div>
+    </div>
+    <div id="timeline">
+        <div class="bar" id="bar"></div>
+    </div>
+    <div id="transcript"></div>
+
+    <audio id="audio" controls style="width:0;height:0;opacity:0;position:fixed;left:-9999px;" src="{audio_path.name}"></audio>
+
+    <script>
+        const segments = {segments_json};
+        const emotions = {emotions_json};
+        const things = {things_json};
+        const glossary = {glossary_json};
+        const noteworthy = {noteworthy_json};
+        const meta = {meta_json};
+        const transcript = `{transcript_text}`;
+
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('play');
+        const pauseBtn = document.getElementById('pause');
+        const bar = document.getElementById('bar');
+        const timeline = document.getElementById('timeline');
+        const timeLabel = document.getElementById('time');
+        const zoom = document.getElementById('zoom');
+
+        // Render transcript
+        const tEl = document.getElementById('transcript');
+        segments.forEach(s => {
+            const d = document.createElement('div'); d.className='segment';
+            const ts = document.createElement('span'); ts.className='timestamp';
+            const mm = Math.floor(s.start/60).toString().padStart(2,'0');
+            const ss = Math.floor(s.start%60).toString().padStart(2,'0');
+            ts.textContent = `[${mm}:${ss}]`;
+            ts.onclick = () => { audio.currentTime = s.start; audio.play(); };
+            d.appendChild(ts);
+            const txt = document.createElement('span'); txt.textContent = ` {${s.get('speaker','')}} ${s.get('text','')}`;
+            d.appendChild(txt);
+            tEl.appendChild(d);
+        });
+
+        // Build markers using segments (start times)
+        function renderMarkers() {
+            bar.innerHTML='';
+            const dur = audio.duration || meta.duration_s || 0;
+            const scale = parseFloat(zoom.value);
+            segments.forEach(s => {
+                const el = document.createElement('div'); el.className='marker';
+                const pct = (s.start / dur) * 100;
+                el.style.left = pct + '%';
+                el.title = `${s.start.toFixed(1)}s`;
+                el.onclick = (e) => { e.stopPropagation(); audio.currentTime = s.start; audio.play(); };
+                bar.appendChild(el);
+            });
+            // noteworthy markers
+            try {
+                const items = (noteworthy.items) || [];
+                items.forEach(it => {
+                    if (it.time || it.start) {
+                        const t = it.time || it.start;
+                        const el = document.createElement('div'); el.className='marker'; el.style.background='#ff66cc';
+                        const pct = (t / dur) * 100;
+                        el.style.left = pct + '%';
+                        el.title = it.note || it.desc || 'noteworthy';
+                        el.onclick = (e) => { e.stopPropagation(); audio.currentTime = t; audio.play(); };
+                        bar.appendChild(el);
+                    }
+                });
+            } catch(e){}
+        }
+
+        playBtn.onclick = () => audio.play();
+        pauseBtn.onclick = () => audio.pause();
+        audio.ontimeupdate = () => {
+            const cur = audio.currentTime || 0;
+            const dur = audio.duration || meta.duration_s || 0;
+            const mm = Math.floor(cur/60).toString().padStart(2,'0');
+            const ss = Math.floor(cur%60).toString().padStart(2,'0');
+            const dmm = Math.floor(dur/60).toString().padStart(2,'0');
+            const dss = Math.floor(dur%60).toString().padStart(2,'0');
+            timeLabel.textContent = `${mm}:${ss} / ${dmm}:${dss}`;
+            // progress indicator
+            const pct = (cur / (dur || 1)) * 100;
+            bar.style.setProperty('--pos', pct + '%');
+        };
+
+        // scrubbing
+        bar.parentElement.onclick = (e) => {
+            const rect = bar.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const pct = x / rect.width;
+            const dur = audio.duration || meta.duration_s || 0;
+            audio.currentTime = pct * dur;
+        };
+
+        zoom.oninput = () => { renderMarkers(); };
+
+        audio.onloadedmetadata = () => { renderMarkers(); };
+
+    </script>
+</body>
+</html>
+"""
+
+                        (out_folder / "viewer.html").write_text(viewer_html, encoding="utf-8")
+                        print("  ✅ viewer.html")
+                except Exception as e:
+                        print(f"  ⚠️ could not generate viewer: {e}")
 
     print(f"\n✅ Done — {len(outputs)} files in:")
     print(f"   {out_folder}")
