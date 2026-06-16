@@ -1,0 +1,37 @@
+{
+  "audio_file": "Brain-fart :: Sunflowers.m4a",
+  "audio_path": "test audios/Brain-fart :: Sunflowers.m4a",
+  "duration_s": 320.0,
+  "duration_formatted": "05:20",
+  "transcription_timestamp": "2026-06-16T16:06:35Z",
+  "whisper_model": "base",
+  "language": "en",
+  "context_type": "general",
+  "schema_version": "Affective-Clinical-MD-v2.6",
+  "wispr_privacy_mode": true,
+  "diarization": {
+    "method": "none (Whisper turn heuristics only)",
+    "n_speakers_detected": 1,
+    "speaker_labels": [
+      "Speaker_01"
+    ],
+    "voice_matching": [],
+    "note": "Speaker labels are discovered automatically — names are not assumed. Use --match-voice to attach names to voice clusters."
+  },
+  "segment_count": 54,
+  "word_count": 729,
+  "hashtags": [
+    "#family",
+    "#general",
+    "#work"
+  ],
+  "output_folder": "test audios/Brain-fart :: Sunflowers_subfile",
+  "output_files": [
+    "transcript.md",
+    "emotions.json",
+    "things.json",
+    "meta.json",
+    "glossary.json",
+    "noteworthy.json"
+  ]
+}

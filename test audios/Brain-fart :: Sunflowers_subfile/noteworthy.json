@@ -1,0 +1,306 @@
+{
+  "items": [
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:01.04",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:03.11",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:05.28",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:07.35",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:11.31",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:13.95",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:18.47",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:20.57",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:23.54",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:27.71",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:29.90",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:32.71",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:34.91",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:38.14",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:42.84",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "00:17",
+      "duration_s": 2.06,
+      "certainty": 0.85,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "00:37",
+      "duration_s": 2.14,
+      "certainty": 0.85,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "01:12",
+      "duration_s": 2.04,
+      "certainty": 0.85,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "05:01",
+      "duration_s": 2.18,
+      "certainty": 0.85,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "05:16",
+      "duration_s": 2.18,
+      "certainty": 0.85,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Sozmum",
+      "certainty": 0.53,
+      "note": "Person name 'Sozmum' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Our",
+      "certainty": 0.53,
+      "note": "Person name 'Our' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Greek",
+      "certainty": 0.53,
+      "note": "Person name 'Greek' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "All",
+      "certainty": 0.53,
+      "note": "Person name 'All' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Nux",
+      "certainty": 0.53,
+      "note": "Person name 'Nux' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Ukrainian",
+      "certainty": 0.44,
+      "note": "Person name 'Ukrainian' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Games",
+      "certainty": 0.44,
+      "note": "Person name 'Games' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Yesterday",
+      "certainty": 0.44,
+      "note": "Person name 'Yesterday' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Hopefully",
+      "certainty": 0.44,
+      "note": "Person name 'Hopefully' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Sesame",
+      "certainty": 0.44,
+      "note": "Person name 'Sesame' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Street",
+      "certainty": 0.44,
+      "note": "Person name 'Street' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Some",
+      "certainty": 0.44,
+      "note": "Person name 'Some' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Although",
+      "certainty": 0.44,
+      "note": "Person name 'Although' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Sunflowers",
+      "certainty": 0.44,
+      "note": "Person name 'Sunflowers' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Okay",
+      "certainty": 0.44,
+      "note": "Person name 'Okay' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Hunger",
+      "certainty": 0.44,
+      "note": "Person name 'Hunger' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Taiwan",
+      "certainty": 0.44,
+      "note": "Person name 'Taiwan' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Have",
+      "certainty": 0.44,
+      "note": "Person name 'Have' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Bond",
+      "certainty": 0.44,
+      "note": "Person name 'Bond' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Seeing",
+      "certainty": 0.44,
+      "note": "Person name 'Seeing' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Socrates",
+      "certainty": 0.44,
+      "note": "Person name 'Socrates' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Anyway",
+      "certainty": 0.44,
+      "note": "Person name 'Anyway' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Cambridge",
+      "certainty": 0.44,
+      "note": "Person name 'Cambridge' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Helios",
+      "certainty": 0.44,
+      "note": "Person name 'Helios' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Rather",
+      "certainty": 0.44,
+      "note": "Person name 'Rather' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Unifing",
+      "certainty": 0.44,
+      "note": "Person name 'Unifing' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Can",
+      "certainty": 0.44,
+      "note": "Person name 'Can' low-confidence — verify"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "people": [
+    {
+      "name": "Sozmum",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Our",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Greek",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "All",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Nux",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Ukrainian",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Games",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Yesterday",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Hopefully",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sesame",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Street",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Some",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Although",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sunflowers",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Okay",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Hunger",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Taiwan",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Have",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Bond",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Seeing",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Socrates",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Anyway",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Cambridge",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Helios",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Rather",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Unifing",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Can",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    }
+  ],
+  "places": [
+    {
+      "place": "Street",
+      "certainty": 0.7,
+      "occurrences": 1
+    }
+  ],
+  "dates": [
+    {
+      "value": "this is",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "Yesterday",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this was",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "This Cambridge",
+      "type": "relative",
+      "certainty": 0.88
+    }
+  ],
+  "times": []
+}

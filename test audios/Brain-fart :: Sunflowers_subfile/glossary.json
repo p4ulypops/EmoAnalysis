@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "id": 1,
+      "term": "imagine",
+      "category": "medication",
+      "definition": "Possible medication — verify: dosage, purpose, side effects",
+      "certainty": 0.65,
+      "first_appears_at": "04:09"
+    },
+    {
+      "id": 2,
+      "term": "like a young",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 3,
+      "term": "like a multi",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "02:52"
+    },
+    {
+      "id": 4,
+      "term": "like a result",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    }
+  ]
+}
