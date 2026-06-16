@@ -1,0 +1,21 @@
+{
+  "_comment": "Custom emotion patterns. Each entry: [regex_pattern, emoji, label, intensity_1_to_10]. Appended to built-in patterns — first match wins per segment.",
+  "_examples": [
+    "Add a pattern for your specific context, e.g. care meetings, legal interviews, family conversations.",
+    "Regex is Python re syntax. Use \\\\b for word boundaries.",
+    "Intensity: 1=barely perceptible, 10=maximum"
+  ],
+  "patterns": [
+    ["\\b(devastated|heartbroken|shattered|destroyed)\\b",     "💔", "Heartbroken",      9],
+    ["\\b(overwhelmed|can't cope|too much|falling apart)\\b",  "🌊", "Overwhelmed",      8],
+    ["\\b(hopeless|pointless|what's the point|give up)\\b",    "🪦", "Hopeless",         8],
+    ["\\b(relieved|thank god|finally|at last)\\b",             "😮‍💨", "Relieved",       6],
+    ["\\b(suspicious|don't trust|something's wrong|odd)\\b",   "🤨", "Suspicious",       5],
+    ["\\b(proud|done well|achieved|accomplished)\\b",           "🫡", "Proud",            6],
+    ["\\b(guilty|my fault|blame myself|should have)\\b",       "😔", "Guilt",            7],
+    ["\\b(numb|nothing|don't feel|shut down|blank)\\b",        "🫥", "Dissociated/Numb", 3],
+    ["\\b(shame|embarrassed|humiliated|mortified)\\b",         "😳", "Shame",            7],
+    ["\\b(betrayed|let down|stabbed in the back)\\b",          "🗡️", "Betrayed",        9]
+  ],
+  "_note": "Entries here are ADDED to the defaults — you don't need to copy the built-in list."
+}

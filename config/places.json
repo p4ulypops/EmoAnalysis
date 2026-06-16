@@ -1,0 +1,30 @@
+{
+  "_comment": "Custom place names. Detected in speech and added to things.json under 'places'. Case-insensitive matching.",
+  "_examples": [
+    "Add your local hospitals, care homes, streets, councils, schools, clinics, offices.",
+    "These are matched as whole words — no regex needed, just the name."
+  ],
+  "locations": [
+    "Chase Farm",
+    "Barnet Hospital",
+    "Royal Free",
+    "North Middlesex",
+    "Whittington",
+    "UCLH",
+    "Great Ormond Street",
+    "Kings College",
+    "St Thomas",
+    "Meadowbrook",
+    "Finchley",
+    "Hendon",
+    "Golders Green",
+    "Whetstone",
+    "Edgware",
+    "Mill Hill",
+    "East Finchley",
+    "Highgate",
+    "Muswell Hill",
+    "Alexandra Palace"
+  ],
+  "_note": "These are ADDED to the built-in UK location list. You do not need to repeat defaults like 'Barnet', 'London', 'hospital', etc."
+}

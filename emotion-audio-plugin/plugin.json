@@ -1,0 +1,42 @@
+{
+  "name": "emotion-audio",
+  "displayName": "Emotion Audio Analyser",
+  "version": "1.0.0",
+  "description": "Analyse emotional response, prosody, and clinical/forensic markers from audio recordings. Outputs Affective-Clinical-MD v2.5 annotated transcripts (Jefferson + TEI + CHAT). Supports PTSD, ASD, ADHD, deception detection, and care advocacy contexts.",
+  "author": "Pauly Silver",
+  "license": "MIT",
+  "mcpServers": {
+    "emotion-audio": {
+      "command": "python",
+      "args": ["${pluginDir}/mcp/server.py"],
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}"
+      },
+      "setup": "${pluginDir}/mcp/install.sh"
+    }
+  },
+  "skills": [
+    "${pluginDir}/skills/emotion-audio-analyser"
+  ],
+  "requiredPermissions": [
+    "filesystem.read",
+    "audio.record",
+    "network.openai",
+    "network.elevenlabs"
+  ],
+  "tags": [
+    "audio",
+    "emotion",
+    "clinical",
+    "forensic",
+    "transcription",
+    "ptsd",
+    "asd",
+    "adhd",
+    "safeguarding",
+    "care-advocacy",
+    "jefferson",
+    "tei"
+  ]
+}

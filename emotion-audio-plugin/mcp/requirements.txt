@@ -1,0 +1,18 @@
+# Core MCP framework
+mcp>=1.0.0
+
+# Transcription
+openai>=1.30.0          # Whisper API + future models
+openai-whisper>=20231117 # Local Whisper (optional, heavy)
+elevenlabs>=1.0.0       # ElevenLabs STT + diarisation
+
+# Prosody / audio analysis (local, no API needed)
+librosa>=0.10.0
+soundfile>=0.12.0
+numpy>=1.24.0
+
+# Live recording
+sounddevice>=0.4.6
+
+# Utilities
+python-dotenv>=1.0.0    # Load OPENAI_API_KEY etc from .env

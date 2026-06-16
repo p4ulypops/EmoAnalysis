@@ -1,0 +1,171 @@
+{
+  "_comment": "Custom term lists for glossary detection. Terms are found in speech and added to glossary.json with [G:N] refs in transcript.md.",
+  "_categories": {
+    "medical":   "NHS conditions, medications, procedures, clinical roles",
+    "legal":     "UK law, rights, regulatory bodies, complaint processes",
+    "technical": "Tech/digital terms, apps, platforms, protocols",
+    "custom":    "Anything else — with definitions you provide (used directly in glossary.json)"
+  },
+
+  "medical": [
+    "PIP",
+    "ESA",
+    "DLA",
+    "UC",
+    "universal credit",
+    "pip assessment",
+    "WCA",
+    "work capability assessment",
+    "ATOS",
+    "Maximus",
+    "CAMHS",
+    "IAPT",
+    "talking therapies",
+    "cognitive behavioural therapy",
+    "CBT",
+    "DBT",
+    "EMDR",
+    "ketamine therapy",
+    "autism assessment",
+    "ADHD assessment",
+    "EHC plan",
+    "EHCP",
+    "SEN",
+    "SENCO",
+    "care coordinator",
+    "key worker",
+    "named nurse",
+    "section 2",
+    "section 3",
+    "CTO",
+    "community treatment order",
+    "depot injection",
+    "clozapine",
+    "olanzapine",
+    "quetiapine",
+    "risperidone",
+    "aripiprazole",
+    "sertraline",
+    "fluoxetine",
+    "venlafaxine",
+    "mirtazapine",
+    "diazepam",
+    "lorazepam",
+    "melatonin",
+    "methylphenidate",
+    "lisdexamfetamine",
+    "vyvanse",
+    "concerta",
+    "ritalin",
+    "modafinil"
+  ],
+
+  "legal": [
+    "care act",
+    "mental health act",
+    "mental capacity act",
+    "human rights act",
+    "equality act",
+    "public sector equality duty",
+    "reasonable adjustments",
+    "direct payments",
+    "personal budget",
+    "continuing healthcare",
+    "NHS CHC",
+    "best interests decision",
+    "deprivation of liberty",
+    "DOLS",
+    "COPDOL",
+    "court of protection",
+    "LPA",
+    "lasting power of attorney",
+    "appointee",
+    "deputy",
+    "advocacy",
+    "IMCA",
+    "IMHA",
+    "independent mental capacity advocate",
+    "CQC",
+    "CPS",
+    "IPSO",
+    "ICO",
+    "information commissioner",
+    "local government ombudsman",
+    "LGO",
+    "parliamentary ombudsman",
+    "PHSO",
+    "judicial review",
+    "pre-action protocol",
+    "letter before claim",
+    "McKenzie friend",
+    "litigant in person",
+    "without prejudice",
+    "subject access request",
+    "SAR",
+    "data subject"
+  ],
+
+  "technical": [
+    "LLM",
+    "GPT",
+    "Claude",
+    "Whisper",
+    "pyannote",
+    "Resemblyzer",
+    "MCP",
+    "plugin",
+    "diarization",
+    "embedding",
+    "transcript",
+    "API key",
+    "HuggingFace",
+    "token",
+    "model",
+    "inference"
+  ],
+
+  "custom": [
+    {
+      "term": "PIP",
+      "definition": "Personal Independence Payment — UK disability benefit replacing DLA for working-age adults. Assessed by Capita or Atos.",
+      "category": "benefit/legal"
+    },
+    {
+      "term": "ESA",
+      "definition": "Employment and Support Allowance — UK benefit for people unable to work due to illness or disability.",
+      "category": "benefit/legal"
+    },
+    {
+      "term": "UC",
+      "definition": "Universal Credit — UK means-tested benefit replacing multiple legacy benefits.",
+      "category": "benefit/legal"
+    },
+    {
+      "term": "EHCP",
+      "definition": "Education, Health and Care Plan — legal document for children/young people with SEN in England.",
+      "category": "legal/education"
+    },
+    {
+      "term": "CHC",
+      "definition": "NHS Continuing Healthcare — fully-funded NHS care package for adults with complex needs.",
+      "category": "medical/legal"
+    },
+    {
+      "term": "DOLS",
+      "definition": "Deprivation of Liberty Safeguards — legal protection for people who lack capacity and are in care/hospital.",
+      "category": "legal/medical"
+    },
+    {
+      "term": "EMDR",
+      "definition": "Eye Movement Desensitisation and Reprocessing — trauma-focused psychotherapy. NICE-recommended for PTSD.",
+      "category": "medical/therapy"
+    },
+    {
+      "term": "DBT",
+      "definition": "Dialectical Behaviour Therapy — skills-based therapy, often used for BPD, emotional dysregulation.",
+      "category": "medical/therapy"
+    }
+  ],
+
+  "_note": "Lists under 'medical', 'legal', 'technical' are plain strings — matched in speech, added to glossary with a generic definition. Entries under 'custom' include your own definitions and are used verbatim in glossary.json."
+}
