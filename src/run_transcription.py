@@ -202,18 +202,49 @@ def load_config(script_path: Path) -> None:
 
 
 AFFECT_HEURISTICS = [
-    (r'\b(sorry|apolog|forgive)\b',                            "😟", "Apologetic",   4),
-    (r'\b(help|please|desperate|begging|can you)\b',          "😨", "Anxious",       5),
-    (r'\b(no|never|won\'t|refuse|absolutely not)\b',          "😠", "Refusing",      6),
-    (r'\b(love|wonderful|amazing|great|fantastic|brilliant)\b',"🤩", "Positive",     7),
-    (r'\b(don\'t know|not sure|maybe|perhaps|i think)\b',     "🤔", "Uncertain",     4),
-    (r'\b(cry|crying|tears|upset|hurt|pain|suffering)\b',     "😢", "Distress",      7),
-    (r'\b(laugh|haha|funny|joke|joking|hilarious)\b',         "😄", "Amusement",     5),
-    (r'\b(tired|exhausted|can\'t|giving up|done|depleted)\b', "😴", "Depleted",      3),
-    (r'\b(angry|furious|rage|unacceptable|outrageous)\b',     "😡", "Furious",       9),
-    (r'\b(scared|terrified|afraid|fear|frightened)\b',        "😱", "Fearful",       8),
-    (r'\b(confused|lost|don\'t understand|what do you mean)\b',"😕","Confused",      4),
-    (r'\b(frustrated|stuck|blocked|can\'t get|won\'t let)\b', "😤", "Frustrated",    6),
+    # ── High arousal negative ──────────────────────────────────────────────────
+    (r'\b(angry|furious|rage|livid|unacceptable|outrageous|how dare)\b',         "😡", "Furious",       9),
+    (r'\b(scared|terrified|afraid|fear|frightened|panic|petrified)\b',           "😱", "Fearful",       8),
+    (r'\b(frustrated|stuck|blocked|can\'t get|won\'t let|fed up|sick of)\b',     "😤", "Frustrated",    6),
+    (r'\b(cry|crying|tears|sobbing|breaking down|wept|weeping)\b',               "😭", "Grief",         8),
+    (r'\b(upset|hurt|wounded|heartbroken|devastated|shattered|broken)\b',        "💔", "Heartbroken",   7),
+    (r'\b(betrayed|lied to|deceived|stabbed|let down|abandoned)\b',              "😔", "Betrayed",      7),
+    (r'\b(shock|shocked|disbelief|can\'t believe|jaw drop|stunned)\b',           "😲", "Shocked",       7),
+    (r'\b(embarrass|ashamed|humiliat|mortif|cringe|pathetic)\b',                 "😳", "Embarrassed",   5),
+    (r'\b(guilt|guilty|to blame|my fault|i should have|i failed)\b',             "😞", "Guilty",        5),
+    (r'\b(disgust|revolting|disgusting|nauseating|sick)\b',                      "🤢", "Disgusted",     6),
+    # ── High arousal positive ──────────────────────────────────────────────────
+    (r'\b(love|adore|wonderful|amazing|fantastic|brilliant|incredible)\b',       "🤩", "Elated",        8),
+    (r'\b(laugh|haha|funny|hilarious|joke|cracking up|chuckl)\b',                "😂", "Amused",        6),
+    (r'\b(excit|thrilled|can\'t wait|pumped|buzzing|over the moon)\b',           "🎉", "Excited",       8),
+    (r'\b(proud|achievement|managed|succeeded|pulled it off|nailed)\b',          "🥹", "Proud",         7),
+    (r'\b(grateful|thankful|blessed|appreciate|means a lot|so kind)\b',          "🙏", "Grateful",      6),
+    (r'\b(hopeful|optimistic|looking forward|positive about|believe in)\b',      "🌟", "Hopeful",       6),
+    (r'\b(surprise|surpris|wow|oh my god|oh wow|no way|really\?)\b',             "😮", "Surprised",     6),
+    # ── Low arousal negative ───────────────────────────────────────────────────
+    (r'\b(sad|saddened|unfortunate|it\'s a shame|what a shame|pity)\b',          "😢", "Sad",           5),
+    (r'\b(worried|anxious|nervous|on edge|tense|dreading|apprehensive)\b',       "😟", "Anxious",       5),
+    (r'\b(tired|exhausted|burnt out|drained|depleted|giving up|done with)\b',    "😔", "Depleted",      3),
+    (r'\b(lonely|alone|isolated|no one|nobody|by myself|left out)\b',            "🫂", "Lonely",        4),
+    (r'\b(helpless|powerless|hopeless|no point|what\'s the point|can\'t win)\b', "😞", "Hopeless",      3),
+    (r'\b(pain|suffering|agony|unbearable|torture|hell)\b',                      "😣", "Pained",        7),
+    (r'\b(sorry|apolog|forgive me|I shouldn\'t have|my mistake)\b',              "😟", "Apologetic",    4),
+    (r'\b(miss|missedI miss|i miss|wish you were|gone and i)\b',                 "🥺", "Longing",       5),
+    # ── Low arousal positive ───────────────────────────────────────────────────
+    (r'\b(calm|peace|peaceful|serene|settled|at ease|content)\b',                "😌", "Peaceful",      4),
+    (r'\b(happy|happily|glad|pleased|delighted|lovely|nice)\b',                  "😊", "Happy",         6),
+    (r'\b(reliev|thank god|finally|at last|phew|luckily|turned out)\b',          "😅", "Relieved",      5),
+    (r'\b(nostalgic|remember when|back then|used to|those days|childhood)\b',    "🥲", "Nostalgic",     4),
+    (r'\b(curious|fascinated|interesting|wonder|intrigued|tells us)\b',          "🤔", "Curious",       5),
+    (r'\b(reflective|thinking about|realise|realised|realized|it struck me)\b',  "💭", "Reflective",    4),
+    (r'\b(gentle|soft|tender|warm|touching|moved|touch\w* by)\b',                "🥰", "Warm",          5),
+    # ── Cognitive / speech states ─────────────────────────────────────────────
+    (r'\b(confused|don\'t understand|lost me|what do you mean|makes no sense)\b',"😕", "Confused",      4),
+    (r'\b(don\'t know|not sure|maybe|perhaps|could be|might be|unsure)\b',       "🤷", "Uncertain",     3),
+    (r'\b(no|never|won\'t|refuse|absolutely not|not going to|I won\'t)\b',       "🙅", "Refusing",      6),
+    (r'\b(help|please|desperate|need you|i need|can you|would you)\b',           "🙏", "Pleading",      5),
+    (r'\b(sarcas|ironically|yeah right|oh sure|of course not|as if)\b',          "😏", "Sarcastic",     5),
+    (r'\b(proud|incredible|i did it|we did it|we made it|success)\b',            "💪", "Empowered",     7),
 ]
 
 
@@ -2240,9 +2271,15 @@ def main():
         print(f"    Cost: ${cost['cost_usd']:.2f} (local Whisper is free)")
         print()
 
-    # Output folder
+    # Output folder — version if it already exists
     base_dir = Path(args.output_dir) if args.output_dir else audio_path.parent
-    out_folder = base_dir / (audio_path.stem + str(args.subfolder_suffix))
+    base_name = audio_path.stem + str(args.subfolder_suffix)
+    out_folder = base_dir / base_name
+    if out_folder.exists():
+        n = 1
+        while (base_dir / f"{base_name}[{n}]").exists():
+            n += 1
+        out_folder = base_dir / f"{base_name}[{n}]"
     out_folder.mkdir(parents=True, exist_ok=True)
     print(f"\nOutput folder: {out_folder}\n")
 
@@ -2438,78 +2475,720 @@ def main():
             viewer_html = """<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Emotion Audio Viewer — {audio_name}</title>
-    <style>
-        body {{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; height:100vh; display:flex; flex-direction:column; }}
-        #top {{ padding:8px; display:flex; gap:8px; align-items:center; background:#1a1a2e; color:#fff; }}
-        #timeline {{ height:120px; background:#111; color:#fff; position:relative; display:flex; align-items:center; padding:10px; }}
-        #timeline .bar {{ position:relative; height:8px; background:#333; width:100%; border-radius:4px; }}
-        .marker {{ position:absolute; top:6px; width:8px; height:8px; background:#ffcc00; border-radius:50%; transform:translateX(-50%); cursor:pointer; }}
-        #controls {{ display:flex; gap:8px; align-items:center; }}
-        #transcript {{ height:50vh; overflow:auto; border-top:1px solid #ddd; padding:12px; }}
-        .segment {{ padding:6px 0; border-bottom:1px dashed #eee; }}
-        .timestamp {{ color:#666; margin-right:8px; cursor:pointer; }}
-        .deception {{ background:#ffe0e0; padding:2px 4px; border-radius:3px; }}
-        .veracity {{ background:#e0ffe0; padding:2px 4px; border-radius:3px; }}
-    </style>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>🎙️ {audio_name}</title>
+<style>
+:root {
+  --bg:#0f0f1a; --bg2:#1a1a2e; --bg3:#252542; --border:#2d2d55;
+  --text:#e0e0f0; --muted:#7a7aa0; --accent:#7a9ecf;
+  --green:#4caf82; --red:#e05555; --yellow:#f0c040; --purple:#b07aff; --orange:#f08040;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+/* Header */
+#hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 16px;flex-shrink:0}
+#title-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+#title-text{font-size:1.05em;font-weight:700}
+#title-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:0.82em}
+.htag{background:var(--bg3);color:var(--accent);padding:1px 8px;border-radius:10px;font-size:0.8em}
+/* TLDR */
+#tldr{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.85em}
+#tldr.hidden{display:none}
+#tldr-head{font-weight:600;color:var(--accent);margin-bottom:5px;font-size:0.82em;text-transform:uppercase;letter-spacing:.05em}
+#tldr-stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.tstat .lbl{color:var(--muted)}
+.tstat .val{font-weight:600}
+#tldr-ents{color:var(--muted);font-size:0.9em;line-height:1.7}
+/* Controls */
+#ctrl{background:var(--bg2);border-bottom:1px solid var(--border);padding:6px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0}
+button.pb{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:4px 12px;cursor:pointer;font-size:0.88em}
+button.pb:hover{background:var(--accent);color:#fff}
+#tdisp{color:var(--muted);font-size:0.85em;font-variant-numeric:tabular-nums;min-width:90px}
+.toggles{display:flex;gap:5px;flex-wrap:wrap;margin-left:auto}
+button.tog{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:3px 9px;cursor:pointer;font-size:0.78em;color:var(--muted);white-space:nowrap}
+button.tog.on{border-color:var(--accent);color:var(--text);background:rgba(122,158,207,.12)}
+/* Timeline */
+#tl{height:80px;background:#06060f;border-bottom:1px solid var(--border);position:relative;flex-shrink:0;overflow:hidden}
+#tlsvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#tlbar{position:absolute;left:16px;right:16px;bottom:14px;height:0;/* anchor for markers */}
+.tlm{position:absolute;transform:translateX(-50%);cursor:pointer;line-height:1;user-select:none;transition:transform .15s ease, filter .15s;bottom:2px}
+.tlm:hover{transform:translateX(-50%) translateY(-8px) scale(1.15);filter:brightness(1.3) drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.tlm.xdec{filter:drop-shadow(0 0 4px var(--red))}
+.tlm.xclin{filter:drop-shadow(0 0 4px var(--purple))}
+#tlph{position:absolute;top:0;bottom:0;width:2px;background:rgba(122,158,207,.8);pointer-events:none;transition:left .15s linear;left:16px}
+/* Transcript */
+#tx{flex:1;overflow-y:auto;padding:10px 16px}
+#tx::-webkit-scrollbar{width:5px}
+#tx::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.seg{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.seg.playing{background:rgba(122,158,207,.09);border-left:3px solid var(--accent);padding-left:8px;margin-left:-3px;border-radius:0 6px 6px 0}
+.seg.nav-hi{outline:2px solid var(--accent);border-radius:6px;outline-offset:2px}
+.w{display:inline}
+.w.word-on{background:rgba(122,158,207,.45);border-radius:2px;outline:1px solid rgba(122,158,207,.6)}
+#btm{background:var(--bg2);border-top:1px solid var(--border);padding:6px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.btab{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:3px 10px;cursor:pointer;font-size:0.78em;color:var(--muted);white-space:nowrap}
+.btab.on{border-color:var(--accent);color:var(--text);background:rgba(122,158,207,.12)}
+.btab .bc{font-weight:700;margin-left:4px}
+#bnav{display:flex;align-items:center;gap:5px;margin-left:auto}
+#bnav button{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 10px;cursor:pointer;color:var(--text);font-size:.85em}
+#bnav button:hover{background:var(--accent);color:#fff}
+#bnav button:disabled{opacity:.3;cursor:default}
+#bpos{color:var(--muted);font-size:.8em;font-variant-numeric:tabular-nums;min-width:44px;text-align:center}
+.seg-row{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.ts{color:var(--accent);font-size:0.8em;font-variant-numeric:tabular-nums;cursor:pointer;font-weight:500;flex-shrink:0}
+.ts:hover{color:#fff}
+.semo{font-size:.95em;cursor:pointer;flex-shrink:0}
+.spktag{background:rgba(122,158,207,.14);color:var(--accent);font-size:0.75em;font-weight:600;padding:1px 6px;border-radius:10px;flex-shrink:0}
+.stxt{color:var(--text);line-height:1.65;flex:1;min-width:0}
+.abtn{background:none;border:none;color:var(--muted);font-size:0.72em;cursor:pointer;padding:0 3px;flex-shrink:0;opacity:.55}
+.abtn:hover{opacity:1;color:var(--accent)}
+.bdec{color:var(--red);font-size:.8em;flex-shrink:0}
+.bclin{color:var(--purple);font-size:.8em;flex-shrink:0}
+/* Analysis drawer */
+.adr{display:none;margin:5px 0 3px 28px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.adr.open{display:block}
+.atabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto}
+.atab{padding:5px 11px;font-size:0.78em;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
+.atab.on{color:var(--text);border-bottom-color:var(--accent)}
+.apnl{padding:9px 11px;display:none;font-size:0.83em}
+.apnl.on{display:block}
+.emo-big{font-size:1.7em}
+.ibar{height:5px;background:var(--border);border-radius:3px;width:100px;overflow:hidden;display:inline-block;vertical-align:middle}
+.ifill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),var(--yellow),var(--red))}
+.mi{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9em}
+.mi:last-child{border-bottom:none}
+.mtype{color:var(--muted);font-size:.82em}
+.mnone{color:var(--muted);font-style:italic}
+/* Entity marks */
+mark.ep{background:rgba(240,192,64,.18);color:var(--yellow);padding:0 2px;border-radius:2px;border-bottom:1px dotted rgba(240,192,64,.5)}
+mark.epl{background:rgba(76,175,130,.18);color:var(--green);padding:0 2px;border-radius:2px;border-bottom:1px dotted rgba(76,175,130,.5)}
+/* Indicator word highlights */
+.w-dec{background:rgba(224,85,85,.25);border-radius:2px;border-bottom:1px solid rgba(224,85,85,.6)}
+.w-ver{background:rgba(76,175,130,.2);border-radius:2px;border-bottom:1px solid rgba(76,175,130,.5)}
+/* Body-level hide flags */
+body.hide-dec .bdec{display:none}
+body.hide-clin .bclin{display:none}
+/* Timeline overlay toggles */
+#tl-overlays{position:absolute;top:4px;right:8px;display:flex;gap:4px;z-index:10}
+.ovbtn{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:2px 7px;font-size:0.72em;cursor:pointer;color:rgba(255,255,255,.6)}
+.ovbtn.on{border-color:var(--accent);color:#fff}
+/* Tension glow on high-intensity markers */
+#tl.ov-tension .tlm[data-hi]{filter:drop-shadow(0 0 6px var(--red)) drop-shadow(0 0 12px rgba(224,85,85,.6))}
+#tl.ov-tension .tlm[data-hi].xdec{filter:drop-shadow(0 0 8px var(--red))}
+/* Deception pins */
+.tlov-dec{position:absolute;top:0;bottom:14px;width:1px;background:var(--red);opacity:0;pointer-events:none;transition:opacity .15s}
+.tlov-dec::after{content:'⚠';position:absolute;top:2px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--red);line-height:1}
+#tl.ov-dec .tlov-dec{opacity:.85;pointer-events:auto}
+/* People labels */
+.tlov-ppl{position:absolute;bottom:4px;background:rgba(240,192,64,.18);color:var(--yellow);border:1px solid rgba(240,192,64,.4);border-radius:3px;padding:0 4px;font-size:9px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;transform:translateX(-50%);line-height:1.6}
+#tl.ov-ppl .tlov-ppl{opacity:1;pointer-events:auto}
+/* Noteworthy event dots */
+.tl-event{position:absolute;width:6px;height:6px;background:var(--yellow);border-radius:50%;transform:translateX(-50%);cursor:pointer;opacity:0;transition:opacity .15s;bottom:8px}
+#tl.ov-dec .tl-event{opacity:1}
+/* Granularity slider */
+#tl-gran-wrap{display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.5)}
+#tl-gran{width:60px;height:3px;accent-color:var(--accent)}
+</style>
 </head>
 <body>
-    <div id="top">
-        <div id="controls">
-            <button id="play">Play</button>
-            <button id="pause">Pause</button>
-            <label>Zoom: <input type="range" id="zoom" min="1" max="10" value="3" /></label>
-            <span id="time">00:00 / 00:00</span>
-        </div>
+<div id="hdr">
+  <div id="title-row"><span>🎙️</span><span id="title-text"></span><div id="title-meta"></div></div>
+  <div id="tldr"><div id="tldr-head">📋 Summary</div><div id="tldr-stats"></div><div id="tldr-ents"></div></div>
+</div>
+<div id="ctrl">
+  <button class="pb" id="play">▶ Play</button>
+  <button class="pb" id="pause">⏸ Pause</button>
+  <span id="tdisp">00:00 / 00:00</span>
+  <label style="color:var(--muted);font-size:.82em;display:flex;gap:5px;align-items:center">🔍<input type="range" id="zoom" min="1" max="10" value="3" /></label>
+</div>
+<div id="tl">
+  <svg id="tlsvg" preserveAspectRatio="none"></svg>
+  <div id="tlbar"></div>
+  <div id="tlph"></div>
+  <div id="tl-overlays">
+    <button class="ovbtn" data-ov="tension" title="Highlight high-intensity segments (>=7)">TENSION</button>
+    <button class="ovbtn" data-ov="dec"     title="Show deception marker pins">DECEPTION</button>
+    <button class="ovbtn" data-ov="ppl"     title="Show named-person labels">PEOPLE</button>
+    <div id="tl-gran-wrap"><span>GRAN</span><input type="range" id="tl-gran" min="1" max="100" value="100"><span id="tl-gran-val">100%</span></div>
+  </div>
+</div>
+<div id="tx"></div>
+<div id="btm">
+  <div id="btm-tabs"></div>
+  <div id="togs"></div>
+  <div id="bnav">
+    <button id="bnav-p" disabled>←</button>
+    <span id="bpos">—</span>
+    <button id="bnav-n" disabled>→</button>
+  </div>
+</div>
+<audio id="aud" src="{audio_name}" style="display:none"></audio>
+<script>
+const segments   = {SEGMENTS_JSON_PLACEHOLDER};
+const emotions   = {EMOTIONS_JSON_PLACEHOLDER};
+const noteworthy = {NOTEWORTHY_JSON_PLACEHOLDER};
+const meta       = {META_JSON_PLACEHOLDER};
+const things     = {THINGS_JSON_PLACEHOLDER};
+
+const aud = document.getElementById('aud');
+aud.onerror = () => console.warn('Audio not found — playback unavailable (file:// path or missing audio)');
+const state = { tldr:true, dec:true, ver:true, clin:true, jeff:true, names:true, nums:true };
+
+// Build emotion lookup by start time
+const emoMap = {};
+(emotions.segments||[]).forEach(e => { emoMap[e.start_s] = e; });
+
+// Entity lists — filter low-confidence and common false-positives
+const SKIP = /^(All|Our|But|The|And|She|He|It|We|They|You|I|My|His|Her|Its|Their|This|That)$/i;
+const people = (things.people||[]).filter(p => p.certainty > 0.6 && p.name && p.name.length > 2 && !SKIP.test(p.name));
+const places  = (things.places||[]).filter(p => p.certainty > 0.5 && p.name && p.name.length > 2);
+
+function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function hilite(text) {
+  let s = escH(text);
+  places.forEach(p => { s = s.split(p.name).join('<mark class="epl" title="Place: ' + escH(p.name) + '">' + escH(p.name) + '</mark>'); });
+  people.forEach(p => { s = s.split(p.name).join('<mark class="ep" title="Person: ' + escH(p.name) + '">' + escH(p.name) + '</mark>'); });
+  return s;
+}
+// Highlight entities within pre-built word-span HTML (no nested regex escaping)
+function hiliteWords(html, words) {
+  const eMap = {};
+  places.forEach(p => { if (p.name) eMap[p.name.trim()] = {cls:'epl', kind:'Place'}; });
+  people.forEach(p => { if (p.name) eMap[p.name.trim()] = {cls:'ep',  kind:'Person'}; });
+  return html.replace(/<span class="w" data-s="([^"]+)" data-e="([^"]+)">([^<]*)<\/span>/g,
+    (m, ds, de, word) => {
+      const clean = word.trim();
+      const ent = eMap[clean];
+      if (!ent) return m;
+      return `<span class="w" data-s="${ds}" data-e="${de}"><mark class="${ent.cls}" title="${ent.kind}: ${escH(clean)}">${escH(clean)}</mark></span>`;
+    }
+  );
+}
+
+function applyPrivacy(html) {
+  if (!state.names) html = html.replace(/<mark class="ep"[^>]*>([^<]+)<\\/mark>/g, '<mark class="ep">[NAME]</mark>');
+  if (!state.nums)  html = html.replace(/\\b\\d+(\\.\\d+)?\\b/g, '[NUM]');
+  return html;
+}
+
+// ── Header ─────────────────────────────────────────────────────────────────
+function renderHeader() {
+  const rawName = meta.audio_file || '{audio_name}';
+  const name = rawName.replace(/\\.[^.]+$/, '');
+  document.getElementById('title-text').textContent = name;
+  document.title = '🎙️ ' + name;
+  const meta2 = document.getElementById('title-meta');
+  if (meta.duration_formatted) meta2.insertAdjacentHTML('beforeend', '<span>' + escH(meta.duration_formatted) + '</span>');
+  if (meta.whisper_model) meta2.insertAdjacentHTML('beforeend', '<span>Whisper ' + escH(meta.whisper_model) + '</span>');
+  (meta.hashtags||[]).forEach(h => meta2.insertAdjacentHTML('beforeend', '<span class="htag">' + escH(h) + '</span>'));
+}
+
+// ── TLDR ───────────────────────────────────────────────────────────────────
+function renderTldr() {
+  const segs = emotions.segments || [];
+  const cnts = {}; let nDec=0, nVer=0, nClin=0;
+  segs.forEach(e => {
+    cnts[e.affect_label] = (cnts[e.affect_label]||0) + 1;
+    nDec  += (e.deception_markers||[]).length;
+    nVer  += (e.veracity_markers||[]).length;
+    nClin += (e.clinical_markers||[]).length;
+  });
+  const topE = Object.entries(cnts).sort((a,b)=>b[1]-a[1])[0];
+  const stats = document.getElementById('tldr-stats');
+  const items = [
+    topE ? `<span class="tstat"><span class="val">${escH(topE[0])}</span> <span class="lbl">dominant tone</span></span>` : '',
+    `<span class="tstat"><span class="val">${meta.segment_count||segs.length}</span> <span class="lbl">segments</span></span>`,
+    nDec  ? `<span class="tstat"><span class="val" style="color:var(--red)">⚠ ${nDec}</span> <span class="lbl">deception</span></span>` : '',
+    nVer  ? `<span class="tstat"><span class="val" style="color:var(--green)">✓ ${nVer}</span> <span class="lbl">veracity</span></span>` : '',
+    nClin ? `<span class="tstat"><span class="val" style="color:var(--purple)">◈ ${nClin}</span> <span class="lbl">clinical</span></span>` : '',
+  ].filter(Boolean);
+  stats.innerHTML = items.join('');
+  const entsEl = document.getElementById('tldr-ents');
+  const pm = people.slice(0,8).map(p => '<mark class="ep">' + escH(p.name) + '</mark>');
+  const plm = places.slice(0,6).map(p => '<mark class="epl">' + escH(p.name) + '</mark>');
+  const all = [...pm,...plm];
+  if (all.length) entsEl.innerHTML = 'Mentions: ' + all.join(' ');
+}
+
+// ── Toggles ────────────────────────────────────────────────────────────────
+const TOGS = [
+  {k:'tldr',  lbl:'📋 TLDR',      fn: v => document.getElementById('tldr').classList.toggle('hidden',!v)},
+  {k:'dec',   lbl:'⚠ Deception',  fn: v => document.body.classList.toggle('hide-dec',!v)},
+  {k:'ver',   lbl:'✓ Veracity',   fn: v => {}},
+  {k:'clin',  lbl:'◈ Clinical',   fn: v => document.body.classList.toggle('hide-clin',!v)},
+  {k:'jeff',  lbl:'~ Jefferson',  fn: v => {}},
+  {k:'names', lbl:'👤 Names',     fn: v => rerenderTexts()},
+  {k:'nums',  lbl:'🔢 Numbers',   fn: v => rerenderTexts()},
+];
+function renderToggles() {
+  const wrap = document.getElementById('togs');
+  TOGS.forEach(t => {
+    const b = document.createElement('button');
+    b.className = 'tog on'; b.dataset.k = t.k;
+    b.innerHTML = '✅ ' + t.lbl;
+    b.onclick = () => {
+      state[t.k] = !state[t.k];
+      b.className = 'tog ' + (state[t.k] ? 'on' : '');
+      b.innerHTML = (state[t.k] ? '✅ ' : '🚫 ') + t.lbl;
+      t.fn(state[t.k]);
+    };
+    wrap.appendChild(b);
+  });
+}
+
+// ── Timeline waveform + emoji markers ─────────────────────────────────────
+function renderTimeline() {
+  const tl  = document.getElementById('tl');
+  const svg = document.getElementById('tlsvg');
+  const bar = document.getElementById('tlbar');
+  // Clear previous markers and overlay elements
+  bar.querySelectorAll('.tlm').forEach(el => el.remove());
+  tl.querySelectorAll('.tlov-dec,.tlov-ppl,.tl-event').forEach(el => el.remove());
+
+  const dur  = aud.duration || meta.duration_s || 1;
+  const segs = emotions.segments || [];
+  const W = tl.offsetWidth || 800;
+  const H = tl.offsetHeight || 80;
+  const PAD = 16;
+  const bw  = W - PAD * 2;
+  const MID = H * 0.55;  // baseline sits slightly below centre
+  const AMP = H * 0.38;  // max swing above/below baseline
+
+  // Build waveform: dark fill + per-segment colored stroke paths
+  if (segs.length > 1) {
+    const pts = segs.map(e => ({
+      x: PAD + (e.start_s / dur) * bw,
+      y: MID - ((e.intensity || 5) - 5) / 5 * AMP,
+      intensity: e.intensity || 5,
+    }));
+    pts.unshift({x: PAD,      y: MID, intensity: 5});
+    pts.push(   {x: PAD + bw, y: MID, intensity: 5});
+
+    // Full outline path for dark fill area
+    let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const cx = (pts[i].x + pts[i+1].x) / 2;
+      const cy = (pts[i].y + pts[i+1].y) / 2;
+      d += ` Q ${pts[i].x.toFixed(1)} ${pts[i].y.toFixed(1)} ${cx.toFixed(1)} ${cy.toFixed(1)}`;
+    }
+    d += ` L ${pts[pts.length-1].x.toFixed(1)} ${pts[pts.length-1].y.toFixed(1)}`;
+
+    // Per-segment colored stroke paths — color by local intensity
+    // ponytail: threshold coloring — green>=7, yellow 4-6, red<=3
+    let segPaths = '';
+    for (let i = 1; i < pts.length; i++) {
+      const inten = pts[i].intensity;
+      const col = inten >= 7 ? '#4caf82' : inten >= 4 ? '#f0c040' : '#e05555';
+      const px = pts[i-1], nx = pts[i];
+      const cx = (px.x + nx.x) / 2, cy = (px.y + nx.y) / 2;
+      const sd = `M ${px.x.toFixed(1)} ${px.y.toFixed(1)} Q ${px.x.toFixed(1)} ${px.y.toFixed(1)} ${cx.toFixed(1)} ${cy.toFixed(1)}`;
+      segPaths += `<path d="${sd}" fill="none" stroke="${col}" stroke-width="1.8" stroke-linecap="round"/>`;
+    }
+
+    const fillD = d + ` L ${PAD+bw} ${H} L ${PAD} ${H} Z`;
+    svg.innerHTML = `
+      <path d="${fillD}" fill="rgba(0,0,0,0.3)"/>
+      ${segPaths}
+      <line x1="${PAD}" y1="${MID.toFixed(1)}" x2="${PAD+bw}" y2="${MID.toFixed(1)}"
+            stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,6"/>
+    `;
+  }
+
+  // Granularity filter — sort by importance, keep top N%
+  const granEl = document.getElementById('tl-gran');
+  const gran = granEl ? parseInt(granEl.value, 10) : 100;
+
+  // ponytail: importance score — deception > clinical > hi-intensity > veracity > rest
+  function segImportance(e) {
+    if ((e.deception_markers||[]).length) return 4;
+    if ((e.clinical_markers||[]).length)  return 3;
+    if ((e.intensity||5) >= 7)            return 2;
+    if ((e.veracity_markers||[]).length)  return 1;
+    return 0;
+  }
+
+  let visSegs = segs.slice();
+  if (gran < 100) {
+    const scored = visSegs.map(e => ({e, s: segImportance(e) * 10 + (e.intensity||5)}));
+    scored.sort((a, b) => b.s - a.s);
+    const keep = Math.max(1, Math.ceil(scored.length * gran / 100));
+    const kept = new Set(scored.slice(0, keep).map(x => x.e));
+    visSegs = visSegs.filter(e => kept.has(e));
+  }
+
+  // Emoji markers — placed AT the waveform y position
+  visSegs.forEach(e => {
+    const x = PAD + (e.start_s / dur) * bw;
+    const y = MID - ((e.intensity||5) - 5) / 5 * AMP;
+    const pct = (x / W * 100).toFixed(2);
+    const bottom = (H - y - 8).toFixed(0);
+    const el = document.createElement('span'); el.className = 'tlm';
+    if ((e.deception_markers||[]).length) el.classList.add('xdec');
+    if ((e.clinical_markers||[]).length)  el.classList.add('xclin');
+    if ((e.intensity||5) >= 7) el.dataset.hi = '1';  // ponytail: tension flag
+    const sz = 10 + Math.round((e.intensity||5) * 0.8);
+    el.style.cssText = `font-size:${sz}px;left:${pct}%;bottom:${bottom}px`;
+    el.textContent = e.emoji || '💬';
+    el.title = `${e.timestamp} — ${e.affect_label||''} (${e.intensity||5}/10)`;
+    el.onclick = () => { aud.currentTime = e.start_s; aud.play(); };
+    bar.appendChild(el);
+  });
+
+  // Overlay: deception pins — one vertical line per segment with deception markers
+  segs.forEach(e => {
+    if (!(e.deception_markers||[]).length) return;
+    const pct = ((PAD + (e.start_s / dur) * bw) / W * 100).toFixed(2);
+    const pin = document.createElement('div'); pin.className = 'tlov-dec';
+    pin.style.left = pct + '%';
+    pin.title = `Deception markers @ ${e.timestamp}: ${(e.deception_markers||[]).join(', ')}`;
+    pin.onclick = () => { aud.currentTime = e.start_s; aud.play(); };
+    tl.appendChild(pin);
+  });
+
+  // Overlay: noteworthy event dots (certainty > 0.7, visible when DECEPTION overlay on)
+  const nwItems = (noteworthy && noteworthy.items) ? noteworthy.items : [];
+  nwItems.forEach(item => {
+    if ((item.certainty || 0) <= 0.7) return;
+    const t = item.start_s != null ? item.start_s : item.time_s;
+    if (t == null) return;
+    const pct = ((PAD + (t / dur) * bw) / W * 100).toFixed(2);
+    const dot = document.createElement('div'); dot.className = 'tl-event';
+    dot.style.left = pct + '%';
+    dot.title = (item.note || item.text || '').slice(0, 15);
+    dot.onclick = () => { aud.currentTime = t; aud.play(); };
+    tl.appendChild(dot);
+  });
+
+  // Overlay: people labels — first mention per person, matched by segment text
+  const seen = new Set();
+  segments.forEach(s => {
+    people.forEach(p => {
+      if (seen.has(p.name)) return;
+      if (!s.text || !s.text.includes(p.name)) return;
+      seen.add(p.name);
+      const pct = ((PAD + (s.start / dur) * bw) / W * 100).toFixed(2);
+      const lbl = document.createElement('div'); lbl.className = 'tlov-ppl';
+      lbl.style.left = pct + '%';
+      lbl.textContent = p.name;
+      lbl.title = `Person: ${p.name} first mentioned @ ${Math.floor(s.start/60)}:${String(Math.floor(s.start%60)).padStart(2,'0')}`;
+      lbl.onclick = () => { aud.currentTime = s.start; aud.play(); };
+      tl.appendChild(lbl);
+    });
+  });
+}
+aud.onloadedmetadata = () => renderTimeline();
+window.addEventListener('resize', () => { if (aud.duration) renderTimeline(); });
+
+// Granularity slider wiring
+const _granEl = document.getElementById('tl-gran');
+const _granVal = document.getElementById('tl-gran-val');
+if (_granEl) {
+  _granEl.addEventListener('input', () => {
+    if (_granVal) _granVal.textContent = _granEl.value + '%';
+    if (aud.duration || meta.duration_s) renderTimeline();
+  });
+}
+
+// Overlay toggle buttons
+document.querySelectorAll('.ovbtn').forEach(btn => {
+  btn.onclick = () => {
+    const ov = btn.dataset.ov;
+    const cls = 'ov-' + ov;
+    const tl = document.getElementById('tl');
+    const on = tl.classList.toggle(cls);
+    btn.classList.toggle('on', on);
+  };
+});
+
+// ── Word indicator coloring ────────────────────────────────────────────────
+// ponytail: heuristic word-match against marker types; no NLP, pattern lists only
+const DEC_WORDS = {
+  false_start:           /\b(I mean|actually|no wait|sorry)\b/gi,
+  spontaneous_correction:/\b(I mean|I meant|sorry|rather|or rather)\b/gi,
+  stalling_repetition:   null, // handled via repeated-word scan below
+  memory_disclaimer:     /\b(I think|I'm not sure|maybe|I don't remember|I don't recall)\b/gi,
+  defensive_language:    /\b(honestly|to be honest|I swear|believe me|truthfully)\b/gi,
+};
+const VER_WORDS = {
+  sensory_detail:        /\b(see|hear|feel|smell|touch|saw|heard|felt|smelled)\b/gi,
+  temporal_sequencing:   /\b(then|after|before|when|next|first|finally|while|during)\b/gi,
+  contextual_embedding:  /\b(at|in|near|inside|outside|there|here|beside|behind|across)\b/gi,
+  qualified_certainty:   /\b(definitely|certainly|I know|clearly|I'm certain|I'm sure)\b/gi,
+};
+
+function colorWords(segIdx, wordHtml) {
+  const emo = emoMap[segments[segIdx].start] || {};
+  const decMkrs = emo.deception_markers || [];
+  const verMkrs = emo.veracity_markers  || [];
+  if (!decMkrs.length && !verMkrs.length) return wordHtml;
+
+  // Build a plain-text version of the segment for repeated-word detection
+  const plainWords = (segments[segIdx].words || []).map(w => w.word.trim().toLowerCase());
+
+  // Collect word-level classes keyed by word text (lowercased)
+  const wCls = {}; // word_text_lc -> Set of classes
+
+  decMkrs.forEach(m => {
+    const pat = DEC_WORDS[m.type];
+    if (pat) {
+      pat.lastIndex = 0;
+      const segText = segments[segIdx].text || '';
+      let match;
+      while ((match = pat.exec(segText)) !== null) {
+        const wl = match[0].toLowerCase();
+        if (!wCls[wl]) wCls[wl] = new Set();
+        wCls[wl].add('w-dec');
+      }
+    } else if (m.type === 'stalling_repetition') {
+      // color words appearing 2+ times in this segment
+      const freq = {};
+      plainWords.forEach(w => { freq[w] = (freq[w]||0) + 1; });
+      Object.keys(freq).forEach(w => { if (freq[w] >= 2) { if (!wCls[w]) wCls[w]=new Set(); wCls[w].add('w-dec'); } });
+    }
+  });
+
+  verMkrs.forEach(m => {
+    const pat = VER_WORDS[m.type];
+    if (!pat) return;
+    pat.lastIndex = 0;
+    const segText = segments[segIdx].text || '';
+    let match;
+    while ((match = pat.exec(segText)) !== null) {
+      const wl = match[0].toLowerCase();
+      if (!wCls[wl]) wCls[wl] = new Set();
+      wCls[wl].add('w-ver');
+    }
+  });
+
+  if (!Object.keys(wCls).length) return wordHtml;
+
+  // Inject classes into existing word spans
+  return wordHtml.replace(/<span class="(w[^"]*)" data-s="([^"]+)" data-e="([^"]+)">([^<]*)<\/span>/g,
+    (m, cls, ds, de, word) => {
+      const extra = wCls[word.trim().toLowerCase()];
+      if (!extra || !extra.size) return m;
+      const newCls = cls + ' ' + [...extra].join(' ');
+      return `<span class="${newCls}" data-s="${ds}" data-e="${de}">${word}</span>`;
+    }
+  );
+}
+
+// ── Transcript ─────────────────────────────────────────────────────────────
+const segEls = [];
+function renderTranscript() {
+  const tx = document.getElementById('tx');
+  segments.forEach((s, i) => {
+    const emo = emoMap[s.start] || {};
+    const mm = Math.floor(s.start/60).toString().padStart(2,'0');
+    const ss2 = Math.floor(s.start%60).toString().padStart(2,'0');
+    const hasDec  = (emo.deception_markers||[]).length > 0;
+    const hasVer  = (emo.veracity_markers||[]).length > 0;
+    const hasClin = (emo.clinical_markers||[]).length > 0;
+    const hasJeff = (emo.jefferson_markers||[]).length > 0;
+    const hasAny  = hasDec || hasVer || hasClin || hasJeff;
+
+    const wrap = document.createElement('div'); wrap.className='seg'; wrap.dataset.i=i; wrap.dataset.st=s.start;
+
+    const row = document.createElement('div'); row.className='seg-row';
+
+    const tsEl = document.createElement('span'); tsEl.className='ts';
+    tsEl.textContent = `[${mm}:${ss2}]`;
+    tsEl.onclick = () => { aud.currentTime = s.start; aud.play(); };
+
+    const emoEl = document.createElement('span'); emoEl.className='semo';
+    emoEl.textContent = emo.emoji||'💬'; emoEl.title = emo.affect_label||'';
+    if (hasAny) emoEl.onclick = () => toggleDrawer(i);
+
+    row.appendChild(tsEl); row.appendChild(emoEl);
+    if (hasDec)  { const b=document.createElement('span'); b.className='bdec'; b.textContent='⚠'; b.title='Deception'; row.appendChild(b); }
+    if (hasClin) { const b=document.createElement('span'); b.className='bclin'; b.textContent='◈'; b.title='Clinical'; row.appendChild(b); }
+    if (s.speaker) { const sp=document.createElement('span'); sp.className='spktag'; sp.textContent=s.speaker; row.appendChild(sp); }
+
+    // Word spans for timing; fall back to plain text
+    const txtEl = document.createElement('span'); txtEl.className='stxt';
+    txtEl.dataset.raw = s.text||'';
+    if (s.words && s.words.length) {
+      const wordHtml = s.words.map(w =>
+        `<span class="w" data-s="${w.start}" data-e="${w.end}">${escH(w.word)}</span>`
+      ).join('');
+      txtEl.innerHTML = applyPrivacy(hiliteWords(colorWords(i, wordHtml), s.words));
+    } else {
+      txtEl.innerHTML = applyPrivacy(hilite(s.text||''));
+    }
+
+    row.appendChild(txtEl);
+    if (hasAny) {
+      const aBtn = document.createElement('button'); aBtn.className='abtn'; aBtn.textContent='▼'; aBtn.title='Analysis';
+      aBtn.onclick = () => toggleDrawer(i);
+      row.appendChild(aBtn);
+    }
+    wrap.appendChild(row);
+
+    const drawer = document.createElement('div'); drawer.className='adr'; drawer.id='adr'+i;
+    wrap.appendChild(drawer);
+    tx.appendChild(wrap);
+    segEls.push(wrap);
+  });
+}
+
+function buildDrawer(i) {
+  const emo = emoMap[segments[i].start] || {};
+  const tabs = [
+    {id:'emo',  lbl:'😊 Emotion'},
+    {id:'dec',  lbl:'⚠ Deception'},
+    {id:'ver',  lbl:'✓ Veracity'},
+    {id:'clin', lbl:'◈ Clinical'},
+    {id:'jeff', lbl:'〜 Jefferson'},
+  ];
+  const tabsH = tabs.map((t,idx) => `<div class="atab${idx===0?' on':''}" data-t="${t.id}">${t.lbl}</div>`).join('');
+  const pnls = [
+    buildEmoPanel(emo),
+    buildMkrPanel(emo.deception_markers||[], 'red'),
+    buildMkrPanel(emo.veracity_markers||[], 'green'),
+    buildMkrPanel(emo.clinical_markers||[], 'purple'),
+    buildMkrPanel(emo.jefferson_markers||[], 'orange'),
+  ];
+  const pnlsH = tabs.map((t,idx) => `<div class="apnl${idx===0?' on':''}" data-t="${t.id}">${pnls[idx]}</div>`).join('');
+  return `<div class="atabs">${tabsH}</div>${pnlsH}`;
+}
+
+function buildEmoPanel(emo) {
+  const pct = ((emo.intensity||5)/10*100).toFixed(0);
+  return `<div style="display:flex;gap:10px;align-items:center">
+    <span class="emo-big">${emo.emoji||'💬'}</span>
+    <div>
+      <div style="font-weight:600">${escH(emo.affect_label||'Unknown')}</div>
+      <div style="margin-top:4px;display:flex;align-items:center;gap:8px">
+        <span class="ibar"><span class="ifill" style="width:${pct}%"></span></span>
+        <span style="color:var(--muted);font-size:.82em">${emo.intensity||5}/10</span>
+      </div>
     </div>
-    <div id="timeline"><div class="bar" id="bar"></div></div>
-    <div id="transcript"></div>
-    <audio id="audio" controls style="width:0;height:0;opacity:0;position:fixed;left:-9999px;" src="{audio_name}"></audio>
-    <script>
-        const segments = {SEGMENTS_JSON_PLACEHOLDER};
-        const emotions = {EMOTIONS_JSON_PLACEHOLDER};
-        const noteworthy = {NOTEWORTHY_JSON_PLACEHOLDER};
-        const meta = {META_JSON_PLACEHOLDER};
-        const audio = document.getElementById('audio');
-        const bar = document.getElementById('bar');
-        const tEl = document.getElementById('transcript');
-        segments.forEach(s => {
-            const d = document.createElement('div'); d.className='segment';
-            const ts = document.createElement('span'); ts.className='timestamp';
-            const mm = Math.floor(s.start/60).toString().padStart(2,'0');
-            const ss = Math.floor(s.start%60).toString().padStart(2,'0');
-            ts.textContent = `[${mm}:${ss}]`;
-            ts.onclick = () => { audio.currentTime = s.start; audio.play(); };
-            d.appendChild(ts);
-            const txt = document.createElement('span'); txt.textContent = ` {${s.get('speaker','')}} ${s.get('text','')}`;
-            d.appendChild(txt);
-            tEl.appendChild(d);
-        });
-        document.getElementById('play').onclick = () => audio.play();
-        document.getElementById('pause').onclick = () => audio.pause();
-        audio.ontimeupdate = () => {
-            const cur = audio.currentTime||0, dur = audio.duration||meta.duration_s||0;
-            const mm = Math.floor(cur/60).toString().padStart(2,'0');
-            const ss = Math.floor(cur%60).toString().padStart(2,'0');
-            const dmm = Math.floor(dur/60).toString().padStart(2,'0');
-            const dss = Math.floor(dur%60).toString().padStart(2,'0');
-            document.getElementById('time').textContent = `${mm}:${ss} / ${dmm}:${dss}`;
-        };
-        function renderMarkers() {
-            bar.innerHTML='';
-            const dur = audio.duration || meta.duration_s || 0;
-            segments.forEach(s => {
-                const el = document.createElement('div'); el.className='marker';
-                el.style.left = (s.start / dur * 100) + '%';
-                el.title = `${s.start.toFixed(1)}s`;
-                el.onclick = (e) => { e.stopPropagation(); audio.currentTime = s.start; audio.play(); };
-                bar.appendChild(el);
-            });
-        }
-        audio.onloadedmetadata = () => { renderMarkers(); };
-    </script>
+  </div>
+  ${emo.certainty!==undefined?`<div style="color:var(--muted);font-size:.8em;margin-top:5px">Certainty: ${(emo.certainty*100).toFixed(0)}%</div>`:''}
+  ${(emo.pause_before_s||0)>1?`<div style="color:var(--muted);font-size:.8em;margin-top:3px">⏱ ${emo.pause_before_s.toFixed(1)}s pause before</div>`:''}`;
+}
+
+function buildMkrPanel(markers, col) {
+  if (!markers.length) return `<div class="mnone">None detected</div>`;
+  return markers.map(m => `<div class="mi">
+    <span style="color:var(--${col});font-size:.82em">${escH(m.symbol||m.type||'')}</span>
+    <span> ${escH(m.note||m.type||'')}</span>
+    ${m.certainty!==undefined?`<span style="color:var(--muted);font-size:.8em"> [${(m.certainty*100).toFixed(0)}%]</span>`:''}
+  </div>`).join('');
+}
+
+function toggleDrawer(i) {
+  const dr = document.getElementById('adr'+i);
+  if (!dr) return;
+  const opening = !dr.classList.contains('open');
+  dr.classList.toggle('open', opening);
+  if (opening && !dr.innerHTML) {
+    dr.innerHTML = buildDrawer(i);
+    dr.querySelectorAll('.atab').forEach(tab => {
+      tab.onclick = () => {
+        const p = tab.closest('.adr');
+        p.querySelectorAll('.atab').forEach(t => t.classList.remove('on'));
+        p.querySelectorAll('.apnl').forEach(t => t.classList.remove('on'));
+        tab.classList.add('on');
+        p.querySelector('.apnl[data-t="'+tab.dataset.t+'"]').classList.add('on');
+      };
+    });
+  }
+}
+
+function rerenderTexts() {
+  segments.forEach((s, i) => {
+    const el = segEls[i] && segEls[i].querySelector('.stxt');
+    if (!el) return;
+    if (s.words && s.words.length) {
+      const wh = s.words.map(w => `<span class="w" data-s="${w.start}" data-e="${w.end}">${escH(w.word)}</span>`).join('');
+      el.innerHTML = applyPrivacy(hiliteWords(colorWords(i, wh), s.words));
+    } else {
+      el.innerHTML = applyPrivacy(hilite(el.dataset.raw||''));
+    }
+  });
+}
+
+// ── Playback tracking ──────────────────────────────────────────────────────
+let curIdx = -1;
+aud.ontimeupdate = () => {
+  const cur = aud.currentTime||0, dur = aud.duration||meta.duration_s||1;
+  const f = t => [Math.floor(t/60),Math.floor(t%60)].map(n=>String(n).padStart(2,'0')).join(':');
+  document.getElementById('tdisp').textContent = f(cur) + ' / ' + f(dur);
+  const ph = document.getElementById('tlph');
+  if (ph) ph.style.left = (cur/dur*100).toFixed(2)+'%';
+  let ni = -1;
+  for (let i=0;i<segments.length;i++) { if(segments[i].start<=cur) ni=i; else break; }
+  if (ni !== curIdx) {
+    if (curIdx>=0&&segEls[curIdx]) segEls[curIdx].classList.remove('playing');
+    if (ni>=0&&segEls[ni]) { segEls[ni].classList.add('playing'); segEls[ni].scrollIntoView({behavior:'smooth',block:'nearest'}); }
+    curIdx = ni;
+  }
+  // Word highlight
+  if (curIdx >= 0 && segEls[curIdx]) {
+    segEls[curIdx].querySelectorAll('.w').forEach(w => {
+      w.classList.toggle('word-on', cur >= +w.dataset.s && cur < +w.dataset.e);
+    });
+  }
+};
+document.getElementById('play').onclick  = () => aud.play();
+document.getElementById('pause').onclick = () => aud.pause();
+
+// ── Bottom nav ─────────────────────────────────────────────────────────────
+const BTYPES = [
+  {id:'dec',  lbl:'⚠ Deception', key:'deception_markers',  col:'red'},
+  {id:'ver',  lbl:'✓ Veracity',  key:'veracity_markers',   col:'green'},
+  {id:'clin', lbl:'◈ Clinical',  key:'clinical_markers',   col:'purple'},
+  {id:'jeff', lbl:'〜 Jefferson', key:'jefferson_markers',  col:'orange'},
+];
+const bidx = {};
+BTYPES.forEach(t => {
+  bidx[t.id] = (emotions.segments||[]).reduce((acc, e, i) => {
+    if ((e[t.key]||[]).length) {
+      const si = segments.findIndex(s => Math.abs(s.start - e.start_s) < 0.1);
+      if (si >= 0) acc.push(si);
+    }
+    return acc;
+  }, []);
+});
+let btype = null, bpos = 0;
+function initBottomNav() {
+  const wrap = document.getElementById('btm-tabs');
+  BTYPES.forEach(t => {
+    if (!bidx[t.id].length) return;
+    const b = document.createElement('button'); b.className='btab'; b.dataset.t=t.id;
+    b.innerHTML = t.lbl + ' <span class="bc" style="color:var(--'+t.col+')">' + bidx[t.id].length + '</span>';
+    b.onclick = () => { btype=t.id; bpos=0; bSync(); };
+    wrap.appendChild(b);
+  });
+  document.getElementById('bnav-p').onclick = () => { bpos--; bSync(); };
+  document.getElementById('bnav-n').onclick = () => { bpos++; bSync(); };
+}
+function bSync() {
+  if (!btype) return;
+  const items = bidx[btype];
+  bpos = Math.max(0, Math.min(items.length-1, bpos));
+  document.querySelectorAll('.btab').forEach(b => b.classList.toggle('on', b.dataset.t===btype));
+  document.getElementById('bpos').textContent = `${bpos+1} / ${items.length}`;
+  document.getElementById('bnav-p').disabled = bpos === 0;
+  document.getElementById('bnav-n').disabled = bpos === items.length-1;
+  const si = items[bpos];
+  if (segEls[si]) {
+    segEls[si].scrollIntoView({behavior:'smooth', block:'center'});
+    segEls[si].classList.add('nav-hi');
+    setTimeout(() => segEls[si].classList.remove('nav-hi'), 900);
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+renderHeader();
+renderTldr();
+renderToggles();
+renderTranscript();
+initBottomNav();
+if (meta.duration_s) renderTimeline();
+</script>
 </body>
 </html>"""
 
@@ -2517,6 +3196,7 @@ def main():
             viewer_html = viewer_html.replace('{EMOTIONS_JSON_PLACEHOLDER}', emotions_json)
             viewer_html = viewer_html.replace('{NOTEWORTHY_JSON_PLACEHOLDER}', noteworthy_json)
             viewer_html = viewer_html.replace('{META_JSON_PLACEHOLDER}', meta_json)
+            viewer_html = viewer_html.replace('{THINGS_JSON_PLACEHOLDER}', things_json)
             viewer_html = viewer_html.replace('{audio_name}', audio_path.name)
 
             (out_folder / "viewer.html").write_text(viewer_html, encoding="utf-8")

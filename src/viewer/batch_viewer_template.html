@@ -72,7 +72,7 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(
 .emo-row{display:flex;align-items:center;gap:8px;font-size:13px}
 .emo-label{width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
 .emo-bar-wrap{flex:1;height:16px;background:var(--bg-card);border-radius:4px;overflow:hidden}
-.emo-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .3s}
+.emo-bar{height:100%;background:var(--accent);border-radius:4px;transform-origin:left;transition:transform .3s}
 .emo-count{width:30px;text-align:right;font-size:12px;color:var(--muted)}
 #transcript-text{font-family:'JetBrains Mono','Fira Code','Consolas',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;max-height:calc(100vh - 280px);overflow-y:auto}
 .ts-timestamp{color:var(--accent);cursor:pointer}.ts-timestamp:hover{text-decoration:underline}
@@ -122,6 +122,27 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(
 @keyframes spin{to{transform:rotate(360deg)}}
 #drop-zone{border:2px dashed var(--border);border-radius:12px;padding:40px;text-align:center;color:var(--muted);font-size:14px;margin:20px}
 #drop-zone.over{border-color:var(--accent);color:var(--accent)}
+/* ── Prev/Next nav ── */
+#nav-controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.nav-btn{background:var(--bg-card);border:1px solid var(--border);color:var(--text);border-radius:4px;width:26px;height:26px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .1s}
+.nav-btn:hover:not(:disabled){background:var(--bg-hover)}
+.nav-btn:disabled{opacity:.35;cursor:default}
+#nav-pos{font-size:12px;color:var(--muted);min-width:42px;text-align:center}
+/* ── Index overlay ── */
+#index-overlay{position:fixed;inset:0;background:rgba(1,4,9,.88);z-index:200;display:none;flex-direction:column;overflow:hidden}
+#index-overlay.open{display:flex}
+#index-header{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
+#index-header h2{font-size:14px;font-weight:600}
+#index-close{margin-left:auto;background:none;border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:3px 10px;cursor:pointer;font-size:12px}
+#index-close:hover{color:var(--text)}
+#index-grid{padding:16px 20px;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;flex:1}
+.idx-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px;cursor:pointer;transition:background .1s,border-color .1s}
+.idx-card:hover{background:var(--bg-hover);border-color:var(--accent)}
+.idx-card.active{border-color:var(--accent);background:var(--bg-active)}
+.idx-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.idx-dur{font-size:11px;color:var(--muted);margin-top:3px}
+.idx-emo{font-size:11px;color:var(--purple);margin-top:3px}
+.idx-badges{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -134,7 +155,23 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(
 <div id="topbar">
   <h1>🎧 Emotion Audio Analyser — Batch Viewer</h1>
   <div id="batch-pills"></div>
+  <div id="nav-controls">
+    <button class="nav-btn" id="nav-prev" title="Previous file (← or [)" disabled>‹</button>
+    <span id="nav-pos">— / —</span>
+    <button class="nav-btn" id="nav-next" title="Next file (→ or ])" disabled>›</button>
+    <button class="nav-btn" id="nav-index" title="File index (I)" style="width:auto;padding:0 8px;font-size:12px">Index</button>
+  </div>
   <div id="mode-badge" title="Click to reload from URL params">Live Mode</div>
+</div>
+
+<!-- Index overlay -->
+<div id="index-overlay">
+  <div id="index-header">
+    <h2>File Index</h2>
+    <span style="font-size:12px;color:var(--muted)">Click a card to jump · Esc to close</span>
+    <button id="index-close">✕ Close</button>
+  </div>
+  <div id="index-grid"></div>
 </div>
 <div id="layout">
   <aside id="sidebar">
@@ -353,6 +390,7 @@ function renderAll(){
   renderBatchSummary();
   renderSidebar();
   if(BATCH_DATA.files.length>0) selectFile(0);
+  updateNavControls();
 }
 
 function renderBatchSummary(){
@@ -396,6 +434,7 @@ function renderSidebar(){
 function selectFile(i){
   selectedIdx = i;
   renderSidebar();
+  updateNavControls();
   const f = (BATCH_DATA.files||[])[i];
   if(!f) return;
   renderOverview(f);
@@ -549,6 +588,93 @@ document.addEventListener('drop', e=>{
   const dir=items.find(i=>i.kind==='file' && i.webkitGetAsEntry&&i.webkitGetAsEntry()&&i.webkitGetAsEntry().isDirectory);
   if(dir){ const entry=dir.webkitGetAsEntry(); if(entry) alert(`Drag-and-drop of folders requires a local HTTP server.\nTry: ?dir=./${entry.name}`); }
 });
+
+// ── Prev/Next nav ──
+
+function updateNavControls(){
+  const n = (BATCH_DATA.files||[]).length;
+  const prevBtn = document.getElementById('nav-prev');
+  const nextBtn = document.getElementById('nav-next');
+  const pos     = document.getElementById('nav-pos');
+  if(!prevBtn) return;
+  prevBtn.disabled = n===0;
+  nextBtn.disabled = n===0;
+  pos.textContent  = n===0 ? '— / —' : `${selectedIdx+1} / ${n}`;
+}
+
+function navTo(i){
+  const n = (BATCH_DATA.files||[]).length;
+  if(!n) return;
+  // wrap around
+  selectFile(((i % n) + n) % n);
+  updateNavControls();
+  // scroll sidebar item into view
+  const items = document.querySelectorAll('.file-item');
+  if(items[selectedIdx]) items[selectedIdx].scrollIntoView({block:'nearest'});
+}
+
+document.getElementById('nav-prev').addEventListener('click', ()=>navTo(selectedIdx-1));
+document.getElementById('nav-next').addEventListener('click', ()=>navTo(selectedIdx+1));
+document.getElementById('nav-index').addEventListener('click', openIndex);
+
+// Keyboard navigation
+document.addEventListener('keydown', e=>{
+  // ignore when typing in an input/textarea
+  if(e.target.matches('input,textarea,select')) return;
+  if(e.key==='ArrowLeft'  || e.key==='[') navTo(selectedIdx-1);
+  if(e.key==='ArrowRight' || e.key===']') navTo(selectedIdx+1);
+  if(e.key==='i' || e.key==='I') toggleIndex();
+  if(e.key==='Escape') closeIndex();
+});
+
+// ── Index overlay ──
+
+function topEmotion(r){
+  const emo = r.emotion_dist||{};
+  const top = Object.entries(emo).sort((a,b)=>b[1]-a[1])[0];
+  return top ? top[0] : '';
+}
+
+function renderIndex(){
+  const files = BATCH_DATA.files||[];
+  const grid  = document.getElementById('index-grid');
+  grid.innerHTML = '';
+  files.forEach((f,i)=>{
+    const r = f.result||{};
+    const card = document.createElement('div');
+    card.className = 'idx-card' + (i===selectedIdx?' active':'');
+    card.innerHTML = `
+      <div class="idx-name" title="${esc(f.original_name||f.name)}">${esc(f.name)}</div>
+      <div class="idx-dur">${fmtDur(f.duration||0)}</div>
+      ${topEmotion(r)?`<div class="idx-emo">▶ ${esc(topEmotion(r))}</div>`:''}
+      <div class="idx-badges">
+        ${(r.deception_count||0)>0?`<span class="fi-badge d">⚠ ${r.deception_count}</span>`:''}
+        ${(r.clinical_count||0)>0?`<span class="fi-badge c">🏥 ${r.clinical_count}</span>`:''}
+        ${(r.freeze_count||0)>0?`<span class="fi-badge f">❄ ${r.freeze_count}</span>`:''}
+      </div>`;
+    card.onclick = ()=>{ navTo(i); closeIndex(); };
+    grid.appendChild(card);
+  });
+}
+
+function openIndex(){
+  renderIndex();
+  document.getElementById('index-overlay').classList.add('open');
+}
+function closeIndex(){
+  document.getElementById('index-overlay').classList.remove('open');
+}
+function toggleIndex(){
+  const ov = document.getElementById('index-overlay');
+  ov.classList.contains('open') ? closeIndex() : openIndex();
+}
+
+// Close on backdrop click (not on card click)
+document.getElementById('index-overlay').addEventListener('click', e=>{
+  if(e.target===document.getElementById('index-overlay')) closeIndex();
+});
+document.getElementById('index-close').addEventListener('click', closeIndex);
+
 
 // Init
 init();

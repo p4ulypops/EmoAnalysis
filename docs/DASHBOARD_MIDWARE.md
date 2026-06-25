@@ -55,9 +55,23 @@ The screen never scrolls. It uses ANSI cursor control to overwrite the same regi
 | Zone | Purpose | Refresh rate |
 |------|---------|-------------|
 | TOP | Title, all active toggles, overall progress bar, elapsed time | Every cycle |
-| MIDDLE-LEFT | List of all items with status icons, progress bars, selected item ▶ | Every cycle |
+| MIDDLE-LEFT | Item queue with status icons, progress bars, highlighted selected row | Every cycle |
 | MIDDLE-RIGHT | Detail cards for the selected item — switchable between N modes | Every cycle |
 | BOTTOM | Menu bar showing all keyboard shortcuts and their current state | Every cycle |
+
+### Queue status icons
+
+Each item in the queue displays one of five states:
+
+| Icon | State | When |
+|------|-------|------|
+| `⬚` hollow | Pending — not started | Before the user presses Enter |
+| `⏸` pause | Queued — waiting to run | After Enter; processing active but this item not yet started |
+| `▓` filled block | Running — in progress | Currently being processed |
+| `✓` tick | Done | Completed successfully |
+| `✗` cross | Failed | Errored — can be requeued |
+
+The selected row is highlighted with a cyan bold `►` prefix and bold item name. All other rows are unstyled. This makes the current selection immediately visible without a separate cursor line.
 
 ---
 
@@ -69,10 +83,12 @@ All shortcuts are single-key presses (no Enter needed). Arrow keys use escape se
 
 | Key | Action | Notes |
 |-----|--------|-------|
-| `↑` / `↓` | Navigate up/down the item list | Highlights item with ▶, updates right panel |
-| `←` / `→` | Previous/next item | Same as up/down but also sets the right panel to that item |
+| `↑` / `↓` | Navigate up/down the queue | Highlights row with `►` + bold name, updates right panel |
+| `Space` | Cycle card modes for selected item | Cycles right panel view (wraps last → first) |
 | `1`-`7` | Jump directly to card mode N | Instant switch, no cycling needed |
-| `F` | Cycle through all card modes | Wraps around from last to first |
+| `F` | Cycle through all card modes | Same as Space — useful when a key press feels more explicit |
+
+> **Note:** Left/right arrow keys are reserved for queue-only navigation. Do not bind them to card mode or other actions — they map to the same up/down queue navigation and are present only for ergonomic reach.
 
 ### Processing control
 
@@ -321,7 +337,13 @@ The dashboard uses these ANSI escape codes:
 
 ### Non-blocking keyboard input
 
-The dashboard uses `select()` on stdin with a 0-second timeout to read keypresses without blocking the render loop. Arrow keys are read as 3-byte escape sequences (`\x1b[A` = up, etc.).
+The dashboard uses `select()` on stdin with a 0-second timeout to read keypresses without blocking the render loop. Arrow keys are read as 3-byte escape sequences.
+
+**Terminal compatibility:** Different terminals send different escape sequences for arrow keys. Always handle both:
+- Normal cursor mode: `\x1b[A` (up), `\x1b[B` (down), `\x1b[C` (right), `\x1b[D` (left)
+- Application cursor mode: `\x1bOA`, `\x1bOB`, `\x1bOC`, `\x1bOD` (sent by Terminal.app and others)
+
+In the escape sequence reader, treat `ch2 == 'O'` identically to `ch2 == '['` — both lead to the same final character (`A`/`B`/`C`/`D`) and should map to the same actions.
 
 ### Raw terminal mode
 

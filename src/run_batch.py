@@ -260,7 +260,7 @@ def nonblocking_getchar():
                 # Try to read the rest of the sequence
                 if select.select([sys.stdin], [], [], 0.05)[0]:
                     ch2 = sys.stdin.read(1)
-                    if ch2 == '[':
+                    if ch2 in ('[', 'O'):
                         if select.select([sys.stdin], [], [], 0.05)[0]:
                             ch3 = sys.stdin.read(1)
                             return f'\x1b[{ch3}'
@@ -707,10 +707,11 @@ def render_dashboard():
         if row >= middle_end:
             break
 
-        status_icon = {"pending": "⬚", "running": "▶", "done": "✅", "failed": "❌"}.get(f["status"], "?")
         dur_min = f["duration"] // 60
         safe = f["safe_name"]
         is_selected = (i == STATE.selected_file_idx)
+        sel_pre  = f"{C}{BD}►{NC}" if is_selected else " "
+        sel_name = f"{BD}{safe:<16}{NC}" if is_selected else f"{safe:<16}"
 
         if f["status"] == "running":
             est_time = max(1, f["duration"] * 0.3)
@@ -719,25 +720,18 @@ def render_dashboard():
             bar_w = 15
             filled_f = bar_w * file_pct // 100
             fbar = "█" * filled_f + "░" * (bar_w - filled_f)
-            color = Y
-            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{fbar}{NC} {file_pct:>2}%")
+            lines.append(f" {sel_pre} {Y}▓{NC} {sel_name} {dur_min:>4}min {Y}{fbar}{NC} {file_pct:>2}%")
         elif f["status"] == "done":
-            color = G
-            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{'✓' * 15}{NC} 100%")
+            lines.append(f" {sel_pre} {G}✓{NC} {sel_name} {dur_min:>4}min {G}{'─' * 15}{NC} 100%")
         elif f["status"] == "failed":
-            color = R
-            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{'✗' * 15}{NC} ERR")
-        else:
-            color = D
-            prefix = "▶" if is_selected else " "
+            lines.append(f" {sel_pre} {R}✗{NC} {sel_name} {dur_min:>4}min {R}{'✗' * 15}{NC} ERR")
+        else:  # pending
+            icon = f"{C}⏸{NC}" if STATE.started else f"{D}⬚{NC}"
             lines.append(move_cursor(row, 1))
-            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{'·' * 15}{NC} ---")
+            lines.append(f" {sel_pre} {icon} {sel_name} {dur_min:>4}min {D}{'·' * 15}{NC} ---")
 
     # ── MIDDLE-RIGHT: Detail cards ──
     lines.append(move_cursor(middle_start, right_start_col))
@@ -1495,23 +1489,18 @@ def handle_keypress(key):
         STATE.watch_mode = not STATE.watch_mode
         if STATE.watch_mode:
             log_event("info", f"Watch mode ON — monitoring {STATE.watch_dir or 'default dir'}")
-    # Arrow keys: \x1b[A=up, \x1b[B=down, \x1b[C=right, \x1b[D=left
-    elif key == '\x1b[A':
+    # Arrow up/down: navigate queue rows
+    elif key in ('\x1b[A',):  # up
         if STATE.selected_file_idx > 0:
             STATE.selected_file_idx -= 1
         STATE.current_display_idx = STATE.selected_file_idx
-    elif key == '\x1b[B':
+    elif key in ('\x1b[B',):  # down
         if STATE.selected_file_idx < len(STATE.files) - 1:
             STATE.selected_file_idx += 1
         STATE.current_display_idx = STATE.selected_file_idx
-    elif key == '\x1b[C':
-        if STATE.selected_file_idx < len(STATE.files) - 1:
-            STATE.selected_file_idx += 1
-        STATE.current_display_idx = STATE.selected_file_idx
-    elif key == '\x1b[D':
-        if STATE.selected_file_idx > 0:
-            STATE.selected_file_idx -= 1
-        STATE.current_display_idx = STATE.selected_file_idx
+    # Space: cycle card mode for the selected file's detail panel
+    elif key == ' ':
+        STATE.card_mode = (STATE.card_mode + 1) % 7
 
 # ─── Second Brain Export System ───────────────────────────────────────────────
 

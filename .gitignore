@@ -18,5 +18,12 @@ logs/
 # OS
 .DS_Store
 
+# Test complete outputs and versioned re-runs
+/tests/test_complete/
+/tests/**/*_subfile[*/
+
+# Impeccable config (local tooling)
+.impeccable/
+
 # Keep folder structure
 !tests/**/.gitkeep
