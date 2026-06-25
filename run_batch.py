@@ -111,6 +111,28 @@ class BatchState:
         # Max parallel processes
         self.max_parallel = 3
 
+        # Selected file index (for arrow key navigation)
+        self.selected_file_idx = 0
+
+        # Auto-start: if False, wait for Enter before processing
+        self.auto_start = False
+
+        # Processing started flag
+        self.started = False
+
+        # Watch mode: monitor folder for new files
+        self.watch_mode = False
+        self.watch_dir = ""
+
+        # Second Brain export format (0=none, selected via [E])
+        self.export_format = 0  # 0=none, cycles through formats
+
+        # Output formats list
+        self.export_formats = [
+            "Wiki MD", "Obsidian", "CSV", "JSON", "HTML", "SQL",
+            "OPML", "Excel", "WordPress", "Substack", "CapCut", "Notion"
+        ]
+
         # Terminal dimensions
         self.term_rows = 40
         self.term_cols = 120
@@ -220,11 +242,22 @@ def move_cursor(row, col=1):
     return f"\033[{row};{col}H"
 
 def nonblocking_getchar():
-    """Read a single key press without blocking. Returns None if no input."""
+    """Read a single key press without blocking. Returns None if no input.
+    Handles arrow key escape sequences."""
     try:
         import select
         if select.select([sys.stdin], [], [], 0.0)[0]:
             ch = sys.stdin.read(1)
+            # Check for escape sequence (arrow keys)
+            if ch == '\x1b':
+                # Try to read the rest of the sequence
+                if select.select([sys.stdin], [], [], 0.05)[0]:
+                    ch2 = sys.stdin.read(1)
+                    if ch2 == '[':
+                        if select.select([sys.stdin], [], [], 0.05)[0]:
+                            ch3 = sys.stdin.read(1)
+                            return f'\x1b[{ch3}'
+                return ch  # just escape key
             return ch
     except Exception:
         pass
@@ -654,7 +687,10 @@ def render_dashboard():
 
     # ── MIDDLE-LEFT: Queue with progress bars ──
     lines.append(move_cursor(middle_start, 1))
-    lines.append(f"  {BD}📋 QUEUE{NC}")
+    if not STATE.started:
+        lines.append(f"  {BD}📋 QUEUE{NC}  {Y}⏸ Press [Enter] to start${NC}")
+    else:
+        lines.append(f"  {BD}📋 QUEUE${NC}")
 
     queue_row = middle_start + 1
     visible_queue = min(middle_height - 2, len(STATE.files))
@@ -667,30 +703,34 @@ def render_dashboard():
         status_icon = {"pending": "⬚", "running": "▶", "done": "✅", "failed": "❌"}.get(f["status"], "?")
         dur_min = f["duration"] // 60
         safe = f["safe_name"]
+        is_selected = (i == STATE.selected_file_idx)
 
         if f["status"] == "running":
-            # Estimate progress based on elapsed time vs estimated time
-            est_time = max(1, f["duration"] * 0.3)  # rough: 30% of audio duration
+            est_time = max(1, f["duration"] * 0.3)
             elapsed_f = time.time() - f["start_time"]
             file_pct = min(99, int(elapsed_f / est_time * 100))
             bar_w = 15
             filled_f = bar_w * file_pct // 100
             fbar = "█" * filled_f + "░" * (bar_w - filled_f)
             color = Y
+            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f"  {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{fbar}{NC} {file_pct:>2}%")
+            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{fbar}{NC} {file_pct:>2}%")
         elif f["status"] == "done":
             color = G
+            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f"  {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {G}{'✓' * 15}{NC} 100%")
+            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{'✓' * 15}{NC} 100%")
         elif f["status"] == "failed":
             color = R
+            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f"  {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {R}{'✗' * 15}{NC} ERR")
+            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{'✗' * 15}{NC} ERR")
         else:
             color = D
+            prefix = "▶" if is_selected else " "
             lines.append(move_cursor(row, 1))
-            lines.append(f"  {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {D}{'·' * 15}{NC} ---")
+            lines.append(f" {prefix} {color}{status_icon}{NC} {safe:<16} {dur_min:>4}min {color}{'·' * 15}{NC} ---")
 
     # ── MIDDLE-RIGHT: Detail cards ──
     lines.append(move_cursor(middle_start, right_start_col))
@@ -1108,21 +1148,26 @@ def render_dashboard():
     lines.append(move_cursor(bottom_start, 1))
     lines.append(f"{D}{'─' * (cols - 1)}{NC}")
 
-    # Menu items — two rows
+    # Menu items — three rows for all shortcuts
     menu1 = (
         f"  {BD}[N]{NC} Names:{STATE.name_privacy_label()}  "
         f"{BD}[P]{NC} Nums:{STATE.num_privacy_label()}  "
-        f"{BD}[F]{NC} Cards:{STATE.card_mode_label()}  "
+        f"{BD}[F]{NC} Card:{STATE.card_mode_label()}  "
         f"{BD}[D]{NC} Dec:{'✅' if STATE.deception else '❌'}  "
         f"{BD}[V]{NC} Ver:{'✅' if STATE.veracity else '❌'}  "
-        f"{BD}[J]{NC} Jef:{'✅' if STATE.jefferson else '❌'}"
+        f"{BD}[J]{NC} Jef:{'✅' if STATE.jefferson else '❌'}  "
+        f"{BD}[C]{NC} Clin:{'✅' if STATE.clinical else '❌'}"
     )
+    export_label = STATE.export_formats[STATE.export_format - 1] if STATE.export_format > 0 else "OFF"
+    watch_label = "ON" if STATE.watch_mode else "OFF"
     menu2 = (
-        f"  {BD}[C]{NC} Clin:{'✅' if STATE.clinical else '❌'}  "
+        f"  {BD}[↑↓←→]{NC} Navigate files  "
         f"{BD}[1-7]{NC} Jump card  "
         f"{BD}[⏎]{NC} Start  "
-        f"{BD}[Q]{NC} Quit  "
-        f"{D}│ {STATE.card_mode + 1}/7 {STATE.card_mode_label()} │ Toggles affect next file{NC}"
+        f"{BD}[E]{NC} Export:{export_label}  "
+        f"{BD}[X]{NC} Export now  "
+        f"{BD}[W]{NC} Watch:{watch_label}  "
+        f"{BD}[Q]{NC} Quit"
     )
 
     lines.append(move_cursor(bottom_start + 1, 1))
@@ -1145,7 +1190,7 @@ def handle_keypress(key):
     elif key_lower == 'p':
         STATE.num_privacy = (STATE.num_privacy + 1) % 3
     elif key_lower == 'f':
-        STATE.card_mode = (STATE.card_mode + 1) % 7  # 7 modes now
+        STATE.card_mode = (STATE.card_mode + 1) % 7
     elif key_lower == 'd':
         STATE.deception = not STATE.deception
     elif key_lower == 'v':
@@ -1157,11 +1202,465 @@ def handle_keypress(key):
     elif key_lower == 'q':
         STATE.quit_requested = True
     elif key in '1234567':
-        # Direct jump to card mode
         STATE.card_mode = int(key) - 1
     elif key == '\r' or key == '\n':
-        # Enter — start processing if not started, or no-op
-        pass
+        # Enter — start processing
+        STATE.started = True
+        log_event("info", "Processing started by user")
+    elif key == 'e':
+        # Cycle export format
+        STATE.export_format = (STATE.export_format + 1) % (len(STATE.export_formats) + 1)
+    elif key == 'x':
+        # Export now in current format
+        if STATE.export_format > 0:
+            fmt = STATE.export_formats[STATE.export_format - 1]
+            export_second_brain(fmt)
+    elif key == 'w':
+        # Toggle watch mode
+        STATE.watch_mode = not STATE.watch_mode
+        if STATE.watch_mode:
+            log_event("info", f"Watch mode ON — monitoring {STATE.watch_dir or 'default dir'}")
+    # Arrow keys come as escape sequences: \x1b[A=up, \x1b[B=down, \x1b[C=right, \x1b[D=left
+    elif key == '\x1b[A':
+        # Up — select previous file
+        if STATE.selected_file_idx > 0:
+            STATE.selected_file_idx -= 1
+        STATE.current_display_idx = STATE.selected_file_idx
+    elif key == '\x1b[B':
+        # Down — select next file
+        if STATE.selected_file_idx < len(STATE.files) - 1:
+            STATE.selected_file_idx += 1
+        STATE.current_display_idx = STATE.selected_file_idx
+    elif key == '\x1b[C':
+        # Right — next file
+        if STATE.selected_file_idx < len(STATE.files) - 1:
+            STATE.selected_file_idx += 1
+        STATE.current_display_idx = STATE.selected_file_idx
+    elif key == '\x1b[D':
+        # Left — previous file
+        if STATE.selected_file_idx > 0:
+            STATE.selected_file_idx -= 1
+        STATE.current_display_idx = STATE.selected_file_idx
+
+# ─── Second Brain Export System ───────────────────────────────────────────────
+
+EXPORT_FORMAT_EXPLAINERS = {
+    "Wiki MD":      "Markdown with [[wiki-links]] — bidirectional connections, Karpathy-style second brain",
+    "Obsidian":     "Full Obsidian vault: frontmatter + wiki-links + graph-ready folder structure",
+    "CSV":          "Tabular CSV — one row per entity/quote, importable into Excel/Sheets/databases",
+    "JSON":         "Structured JSON — nested blocks, relationships, machine-readable",
+    "HTML":         "Web-ready HTML with inline CSS — viewable in any browser",
+    "SQL":          "SQL INSERT statements — creates tables for people, places, quotes, indicators",
+    "OPML":         "Outline Processor Markup — hierarchical tree, importable to Workflowy/Dynalist",
+    "Excel":        "CSV formatted for Excel import — multiple sheets (entities, quotes, indicators)",
+    "WordPress":    "WordPress-ready HTML post with formatting, categories, and tags",
+    "Substack":     "Substack-ready Markdown newsletter post with sections",
+    "CapCut":       "CapCut script: timestamped quote cards for video editing",
+    "Notion":       "Notion-import-ready Markdown with database tables and relations",
+}
+
+def export_second_brain(fmt):
+    """Export all completed file data in the specified Second Brain format."""
+    output_dir = SCRIPT_DIR / "second_brain_export"
+    output_dir.mkdir(exist_ok=True)
+
+    completed = [f for f in STATE.files if f["status"] == "done" and f.get("result")]
+    if not completed:
+        log_event("warn", "No completed files to export")
+        return
+
+    log_event("info", f"Exporting {len(completed)} files as {fmt}...")
+
+    if fmt == "Wiki MD":
+        _export_wiki_md(completed, output_dir)
+    elif fmt == "Obsidian":
+        _export_obsidian(completed, output_dir)
+    elif fmt == "CSV":
+        _export_csv(completed, output_dir)
+    elif fmt == "JSON":
+        _export_json(completed, output_dir)
+    elif fmt == "HTML":
+        _export_html(completed, output_dir)
+    elif fmt == "SQL":
+        _export_sql(completed, output_dir)
+    elif fmt == "OPML":
+        _export_opml(completed, output_dir)
+    elif fmt == "Excel":
+        _export_excel(completed, output_dir)
+    elif fmt == "WordPress":
+        _export_wordpress(completed, output_dir)
+    elif fmt == "Substack":
+        _export_substack(completed, output_dir)
+    elif fmt == "CapCut":
+        _export_capcut(completed, output_dir)
+    elif fmt == "Notion":
+        _export_notion(completed, output_dir)
+
+    log_event("info", f"Export complete: {output_dir}/{fmt.lower().replace(' ', '_')}/")
+
+
+def _export_wiki_md(completed, output_dir):
+    """Karpathy-style second brain: markdown files with [[wiki-links]]."""
+    export_dir = output_dir / "wiki_md"
+    export_dir.mkdir(exist_ok=True)
+
+    # Build entity index for wiki links
+    all_people = set()
+    all_places = set()
+    for f in completed:
+        r = f.get("result", {})
+        for p in r.get("people", []):
+            all_people.add(p.get("name", ""))
+        for pl in r.get("places", []):
+            all_places.add(pl.get("place", ""))
+
+    # Index page
+    index_lines = ["# Second Brain Index\n", "## Files\n"]
+    for f in completed:
+        safe = f["safe_name"]
+        index_lines.append(f"- [[{safe}]] — {f['duration']//60}min, {f.get('result',{}).get('segment_count',0)} segments")
+
+    index_lines.append("\n## People\n")
+    for p in sorted(all_people):
+        if p:
+            index_lines.append(f"- [[{p}]]")
+
+    index_lines.append("\n## Places\n")
+    for pl in sorted(all_places):
+        if pl:
+            index_lines.append(f"- [[{pl}]]")
+
+    (export_dir / "index.md").write_text("\n".join(index_lines), encoding="utf-8")
+
+    # One file per recording
+    for f in completed:
+        r = f.get("result", {})
+        safe = f["safe_name"]
+        lines = [
+            f"# {safe}\n",
+            f"**Duration:** {f['duration']//60}min\n",
+            f"**Model:** {r.get('model', '?')}\n",
+            f"**Segments:** {r.get('segment_count', 0)}\n",
+            f"**Tokens:** ~{f['duration']//60*112}\n",
+            f"**Date processed:** {datetime.now().strftime('%Y-%m-%d')}\n",
+            "\n## People Mentioned\n",
+        ]
+        for p in r.get("people", []):
+            pname = p.get("name", "")
+            if pname:
+                lines.append(f"- [[{pname}]] (certainty: {p.get('certainty', 0):.2f}, occurrences: {p.get('occurrences', 1)})")
+
+        lines.append("\n## Places Mentioned\n")
+        for pl in r.get("places", []):
+            ploc = pl.get("place", "")
+            if ploc:
+                lines.append(f"- [[{ploc}]] ({pl.get('occurrences', 1)}x)")
+
+        lines.append("\n## Key Quotes\n")
+        for q in r.get("quotes", []):
+            lines.append(f"> {q.get('emoji','')} [{q.get('intensity',5)}/10] {q.get('text','')}")
+            lines.append(f"  — {safe} at {q.get('time','')}\n")
+
+        lines.append("\n## Indicators\n")
+        lines.append(f"- Deception markers: {r.get('deception_count', 0)}")
+        lines.append(f"- Veracity markers: {r.get('veracity_count', 0)}")
+        lines.append(f"- Clinical markers: {r.get('clinical_count', 0)}")
+        lines.append(f"- Freeze events: {r.get('freeze_count', 0)}")
+
+        lines.append("\n## Noteworthy\n")
+        for nw in r.get("noteworthy", [])[:10]:
+            lines.append(f"- {nw.get('note', '')}")
+
+        lines.append("\n## How Conclusions Were Reached\n")
+        lines.append("Each indicator above was detected via:")
+        lines.append("- **Deception**: text pattern matching for false starts, corrections, stalling repetitions, memory disclaimers, defensive language, evasion")
+        lines.append("- **Veracity**: text pattern matching for qualified certainty, sensory detail, temporal sequencing, contextual embedding, cognitive complexity")
+        lines.append("- **Clinical**: text pattern matching for PTSD fragmentation, somatic recall, ADHD maze blocks, ASD awkward pauses")
+        lines.append("- **Freeze events**: silence >10s between Whisper segments")
+        lines.append("- **Jefferson markers**: text pattern matching for shouting, whispering, prolonged sounds, pitch spikes, pauses")
+        lines.append(f"\n certainty scores range from 0.00 to 1.00 — below 0.70 should be manually verified")
+
+        (export_dir / f"{safe}.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_obsidian(completed, output_dir):
+    """Obsidian vault: frontmatter + wiki-links + folder structure."""
+    vault = output_dir / "obsidian_vault"
+    vault.mkdir(exist_ok=True)
+    (vault / "attachments").mkdir(exist_ok=True)
+    (vault / "people").mkdir(exist_ok=True)
+    (vault / "places").mkdir(exist_ok=True)
+
+    for f in completed:
+        r = f.get("result", {})
+        safe = f["safe_name"]
+        lines = [
+            "---",
+            f"file: {safe}",
+            f"duration: {f['duration']}",
+            f"model: {r.get('model', '?')}",
+            f"segments: {r.get('segment_count', 0)}",
+            f"deception: {r.get('deception_count', 0)}",
+            f"veracity: {r.get('veracity_count', 0)}",
+            f"clinical: {r.get('clinical_count', 0)}",
+            f"freeze_events: {r.get('freeze_count', 0)}",
+            f"date: {datetime.now().strftime('%Y-%m-%d')}",
+            "tags: [second-brain, audio-analysis]",
+            "---",
+            "",
+            f"# {safe}",
+            "",
+        ]
+        for q in r.get("quotes", []):
+            lines.append(f"> {q.get('emoji','')} **[{q.get('intensity',5)}/10]** {q.get('text','')}")
+            lines.append("")
+
+        for p in r.get("people", []):
+            pname = p.get("name", "")
+            if pname:
+                lines.append(f"Person: [[people/{pname}|{pname}]] (cert: {p.get('certainty',0):.2f})")
+
+        (vault / f"{safe}.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_csv(completed, output_dir):
+    """CSV export — entities, quotes, indicators as separate CSVs."""
+    import csv as csv_mod
+    export_dir = output_dir / "csv"
+    export_dir.mkdir(exist_ok=True)
+
+    # Entities CSV
+    with open(export_dir / "entities.csv", "w", newline="", encoding="utf-8") as ef:
+        w = csv_mod.writer(ef)
+        w.writerow(["file", "entity", "type", "certainty", "occurrences"])
+        for f in completed:
+            r = f.get("result", {})
+            for p in r.get("people", []):
+                w.writerow([f["safe_name"], p.get("name",""), "person", p.get("certainty",0), p.get("occurrences",1)])
+            for pl in r.get("places", []):
+                w.writerow([f["safe_name"], pl.get("place",""), "place", pl.get("certainty",0), pl.get("occurrences",1)])
+
+    # Quotes CSV
+    with open(export_dir / "quotes.csv", "w", newline="", encoding="utf-8") as qf:
+        w = csv_mod.writer(qf)
+        w.writerow(["file", "time", "emoji", "affect", "intensity", "text"])
+        for f in completed:
+            r = f.get("result", {})
+            for q in r.get("quotes", []):
+                w.writerow([f["safe_name"], q.get("time",""), q.get("emoji",""), q.get("affect",""), q.get("intensity",5), q.get("text","")])
+
+    # Indicators CSV
+    with open(export_dir / "indicators.csv", "w", newline="", encoding="utf-8") as inf:
+        w = csv_mod.writer(inf)
+        w.writerow(["file", "deception", "veracity", "clinical", "freezes", "noteworthy", "segments", "tokens"])
+        for f in completed:
+            r = f.get("result", {})
+            w.writerow([f["safe_name"], r.get("deception_count",0), r.get("veracity_count",0), r.get("clinical_count",0), r.get("freeze_count",0), r.get("noteworthy_count",0), r.get("segment_count",0), f["duration"]//60*112])
+
+
+def _export_json(completed, output_dir):
+    """Structured JSON export."""
+    export_dir = output_dir / "json"
+    export_dir.mkdir(exist_ok=True)
+    data = {"export_date": datetime.now().isoformat(), "files": []}
+    for f in completed:
+        data["files"].append({
+            "name": f["safe_name"],
+            "duration": f["duration"],
+            "result": f.get("result", {}),
+        })
+    (export_dir / "second_brain.json").write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _export_html(completed, output_dir):
+    """Web-ready HTML export."""
+    export_dir = output_dir / "html"
+    export_dir.mkdir(exist_ok=True)
+    lines = ["<html><head><meta charset='utf-8'><title>Second Brain Export</title>",
+             "<style>body{font-family:system-ui;max-width:900px;margin:2em auto;padding:1em}",
+             ".file{border:1px solid #ddd;padding:1em;margin:1em 0;border-radius:8px}",
+             ".quote{border-left:3px solid #666;padding-left:1em;margin:0.5em 0;color:#555}",
+             ".indicator{display:inline-block;padding:2px 8px;margin:2px;border-radius:4px;font-size:0.9em}",
+             "</style></head><body><h1>🎧 Second Brain Export</h1>"]
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f"<div class='file'><h2>{f['safe_name']}</h2>")
+        lines.append(f"<p>Duration: {f['duration']//60}min | Segments: {r.get('segment_count',0)} | Tokens: ~{f['duration']//60*112}</p>")
+        lines.append("<h3>Quotes</h3>")
+        for q in r.get("quotes", []):
+            lines.append(f"<div class='quote'>{q.get('emoji','')} [{q.get('intensity',5)}/10] {q.get('text','')}</div>")
+        lines.append("<h3>Indicators</h3>")
+        lines.append(f"<span class='indicator' style='background:#fdd'>Deception: {r.get('deception_count',0)}</span>")
+        lines.append(f"<span class='indicator' style='background:#dfd'>Veracity: {r.get('veracity_count',0)}</span>")
+        lines.append(f"<span class='indicator' style='background:#ffd'>Clinical: {r.get('clinical_count',0)}</span>")
+        lines.append(f"<span class='indicator' style='background:#ddf'>Freezes: {r.get('freeze_count',0)}</span>")
+        lines.append("</div>")
+    lines.append("</body></html>")
+    (export_dir / "index.html").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_sql(completed, output_dir):
+    """SQL INSERT statements."""
+    export_dir = output_dir / "sql"
+    export_dir.mkdir(exist_ok=True)
+    lines = [
+        "-- Second Brain SQL Export",
+        "-- Auto-generated by Emotion Audio Analyser",
+        "",
+        "CREATE TABLE IF NOT EXISTS files (id INTEGER PRIMARY KEY, name TEXT, duration_s INTEGER, segments INTEGER, tokens INTEGER);",
+        "CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, file_id INTEGER, name TEXT, certainty REAL, occurrences INTEGER);",
+        "CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY, file_id INTEGER, time TEXT, affect TEXT, intensity INTEGER, text TEXT);",
+        "CREATE TABLE IF NOT EXISTS indicators (file_id INTEGER PRIMARY KEY, deception INTEGER, veracity INTEGER, clinical INTEGER, freezes INTEGER);",
+        "",
+    ]
+    for i, f in enumerate(completed, 1):
+        r = f.get("result", {})
+        safe = f["safe_name"].replace("'", "''")
+        lines.append(f"INSERT INTO files VALUES ({i}, '{safe}', {f['duration']}, {r.get('segment_count',0)}, {f['duration']//60*112});")
+        for p in r.get("people", []):
+            pname = p.get("name","").replace("'", "''")
+            lines.append(f"INSERT INTO people VALUES (NULL, {i}, '{pname}', {p.get('certainty',0)}, {p.get('occurrences',1)});")
+        for q in r.get("quotes", []):
+            qtext = q.get("text","").replace("'", "''")
+            lines.append(f"INSERT INTO quotes VALUES (NULL, {i}, '{q.get('time','')}', '{q.get('affect','')}', {q.get('intensity',5)}, '{qtext}');")
+        lines.append(f"INSERT INTO indicators VALUES ({i}, {r.get('deception_count',0)}, {r.get('veracity_count',0)}, {r.get('clinical_count',0)}, {r.get('freeze_count',0)});")
+    (export_dir / "second_brain.sql").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_opml(completed, output_dir):
+    """OPML outline export."""
+    export_dir = output_dir / "opml"
+    export_dir.mkdir(exist_ok=True)
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<opml version="2.0"><head><title>Second Brain</title></head><body>']
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f'  <outline text="{f["safe_name"]}">')
+        for q in r.get("quotes", []):
+            lines.append(f'    <outline text="{q.get("text","")[:80]}" />')
+        lines.append('  </outline>')
+    lines.append('</body></opml>')
+    (export_dir / "second_brain.opml").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_excel(completed, output_dir):
+    """Excel-compatible CSV with multiple sheets (files)."""
+    import csv as csv_mod
+    export_dir = output_dir / "excel"
+    export_dir.mkdir(exist_ok=True)
+    # Single combined CSV that Excel can open
+    with open(export_dir / "second_brain.xlsx.csv", "w", newline="", encoding="utf-8") as ef:
+        w = csv_mod.writer(ef)
+        w.writerow(["File", "Duration", "Segments", "Tokens", "Deception", "Veracity", "Clinical", "Freezes", "Top Emotion", "People Count"])
+        for f in completed:
+            r = f.get("result", {})
+            emo = r.get("emotion_dist", {})
+            top_emo = max(emo, key=emo.get) if emo else "N/A"
+            w.writerow([f["safe_name"], f"{f['duration']//60}min", r.get("segment_count",0), f["duration"]//60*112, r.get("deception_count",0), r.get("veracity_count",0), r.get("clinical_count",0), r.get("freeze_count",0), top_emo, len(r.get("people",[]))])
+
+
+def _export_wordpress(completed, output_dir):
+    """WordPress-ready HTML post."""
+    export_dir = output_dir / "wordpress"
+    export_dir.mkdir(exist_ok=True)
+    lines = ["<!-- WordPress Post Export -->",
+             "<h2>🎧 Audio Analysis Batch Report</h2>",
+             f"<p>Processed {len(completed)} files on {datetime.now().strftime('%Y-%m-%d')}</p>"]
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f"<h3>{f['safe_name']}</h3>")
+        lines.append(f"<p>Duration: {f['duration']//60}min | Deception: {r.get('deception_count',0)} | Veracity: {r.get('veracity_count',0)}</p>")
+        lines.append("<blockquote>")
+        for q in r.get("quotes", [])[:3]:
+            lines.append(f"<p>{q.get('emoji','')} {q.get('text','')}</p>")
+        lines.append("</blockquote>")
+    lines.append("\n<!-- Categories: audio-analysis, second-brain -->")
+    lines.append("<!-- Tags: emotion, deception, veracity, transcription -->")
+    (export_dir / "wordpress_post.html").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_substack(completed, output_dir):
+    """Substack-ready Markdown newsletter."""
+    export_dir = output_dir / "substack"
+    export_dir.mkdir(exist_ok=True)
+    lines = [f"# Audio Analysis Batch — {datetime.now().strftime('%B %d, %Y')}\n"]
+    lines.append(f"*{len(completed)} files processed*\n")
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f"## {f['safe_name']}\n")
+        lines.append(f"*{f['duration']//60} minutes | {r.get('segment_count',0)} segments*\n")
+        for q in r.get("quotes", [])[:2]:
+            lines.append(f"> {q.get('emoji','')} **[{q.get('intensity',5)}/10]** {q.get('text','')}\n")
+        lines.append(f"\n*Deception: {r.get('deception_count',0)} | Veracity: {r.get('veracity_count',0)} | Clinical: {r.get('clinical_count',0)}*\n")
+    (export_dir / "substack_post.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_capcut(completed, output_dir):
+    """CapCut script: timestamped quote cards for video editing."""
+    export_dir = output_dir / "capcut"
+    export_dir.mkdir(exist_ok=True)
+    lines = ["# CapCut Script — Timestamped Quote Cards\n"]
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f"## {f['safe_name']}\n")
+        for q in r.get("quotes", []):
+            time_str = q.get("time", "00:00")
+            text = q.get("text", "")[:60]
+            lines.append(f"[{time_str}] {q.get('emoji','')} {text}")
+            lines.append(f"  → Card: {q.get('affect','')} (intensity {q.get('intensity',5)}/10)")
+            lines.append("")
+    (export_dir / "capcut_script.txt").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _export_notion(completed, output_dir):
+    """Notion-import-ready Markdown with database tables."""
+    export_dir = output_dir / "notion"
+    export_dir.mkdir(exist_ok=True)
+    lines = ["# Audio Analysis Database\n"]
+    lines.append("| File | Duration | Segments | Deception | Veracity | Clinical | Freezes |")
+    lines.append("|------|----------|----------|-----------|----------|----------|---------|")
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f"| {f['safe_name']} | {f['duration']//60}min | {r.get('segment_count',0)} | {r.get('deception_count',0)} | {r.get('veracity_count',0)} | {r.get('clinical_count',0)} | {r.get('freeze_count',0)} |")
+    lines.append("\n## Detailed Notes\n")
+    for f in completed:
+        r = f.get("result", {})
+        lines.append(f"### {f['safe_name']}\n")
+        for q in r.get("quotes", [])[:3]:
+            lines.append(f"- {q.get('emoji','')} [{q.get('intensity',5)}/10] {q.get('text','')}")
+        lines.append("")
+    (export_dir / "notion_import.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+# ─── Folder Watcher ───────────────────────────────────────────────────────────
+
+def check_watch_dir():
+    """Check watch directory for new .m4a files and add them to the queue."""
+    if not STATE.watch_mode or not STATE.watch_dir:
+        return
+    audio_dir = Path(STATE.watch_dir)
+    existing_paths = {f["path"] for f in STATE.files}
+    for new_file in sorted(audio_dir.glob("*.m4a")):
+        if str(new_file) not in existing_paths:
+            dur = get_duration(new_file)
+            safe = sanitize_filename(new_file.name)
+            STATE.files.append({
+                "path": str(new_file),
+                "name": new_file.name,
+                "stem": new_file.stem,
+                "duration": dur,
+                "size_mb": new_file.stat().st_size / 1048576,
+                "model": "tiny" if dur < 300 else "base",
+                "safe_name": safe,
+                "tokens": dur // 60 * 112,
+                "status": "pending",
+                "pid": None,
+                "start_time": None,
+                "end_time": None,
+                "output_dir": str(audio_dir / (new_file.stem + "_subfile")),
+            })
+            log_event("info", f"Watch: new file detected — {safe} ({dur//60}min)")
+
 
 # ─── Main Loop ────────────────────────────────────────────────────────────────
 
@@ -1184,6 +1683,9 @@ def main():
     parser.add_argument("--stealth", action="store_true", help="Minimal output")
     parser.add_argument("--forensic", action="store_true", help="Deception + veracity + clinical")
     parser.add_argument("--no-facts", action="store_true", help="Disable facts (unused in dashboard)")
+    parser.add_argument("--watch", action="store_true", help="Watch directory for new files")
+    parser.add_argument("--auto-start", action="store_true", help="Start processing immediately (default: wait for Enter)")
+    parser.add_argument("--export", default="", help="Auto-export on completion: wiki_md, obsidian, csv, json, html, sql, opml, excel, wordpress, substack, capcut, notion")
     args = parser.parse_args()
 
     # Apply profiles
@@ -1220,6 +1722,10 @@ def main():
 
     STATE.max_parallel = args.parallel
     max_parallel = args.parallel
+    STATE.watch_mode = args.watch
+    STATE.watch_dir = args.dir
+    STATE.auto_start = args.auto_start
+    STATE.started = args.auto_start
 
     # Init terminal
     old_term = init_raw_terminal()
@@ -1241,8 +1747,12 @@ def main():
             # Check for completed processes
             check_running()
 
-            # Start new files if under parallel limit and not quitting
-            if not STATE.quit_requested:
+            # Check watch directory for new files
+            if STATE.watch_mode:
+                check_watch_dir()
+
+            # Start new files only if started and under parallel limit and not quitting
+            if STATE.started and not STATE.quit_requested:
                 pending = [f for f in STATE.files if f["status"] == "pending"]
                 while STATE.running < max_parallel and pending:
                     f = pending.pop(0)
@@ -1257,13 +1767,17 @@ def main():
             # Render dashboard
             render_dashboard()
 
-            # Check if all done
-            all_done = all(f["status"] in ("done", "failed") for f in STATE.files)
-            if all_done or (STATE.quit_requested and STATE.running == 0):
-                # Final render
-                render_dashboard()
-                time.sleep(2)
-                break
+            # Check if all done (only if we've started)
+            if STATE.started:
+                all_done = all(f["status"] in ("done", "failed") for f in STATE.files)
+                if all_done or (STATE.quit_requested and STATE.running == 0):
+                    # Auto-export if requested
+                    if args.export:
+                        export_second_brain(args.export.replace("_", " ").title())
+                    # Final render
+                    render_dashboard()
+                    time.sleep(2)
+                    break
 
             time.sleep(0.3)
 

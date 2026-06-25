@@ -403,7 +403,12 @@ python3 run_batch.py --help                    # All options
 | `[V]` | Veracity: ON/OFF |
 | `[J]` | Jefferson: ON/OFF |
 | `[C]` | Clinical: ON/OFF |
-| `[⏎]` | Enter: Start processing |
+| `[⏎]` | Enter: Start processing (does not auto-start by default) |
+| `[E]` | Cycle export format (12 Second Brain formats) |
+| `[X]` | Export now in selected format |
+| `[W]` | Toggle folder watch mode |
+| `[↑↓]` | Navigate up/down file list (selects file for card display) |
+| `[←→]` | Navigate left/right (previous/next file, updates card display) |
 | `[Q]` | Quit gracefully (finish current, stop queuing) |
 
 #### Card modes (middle-right panel, switchable with [F] or [1]-[7])
@@ -417,6 +422,48 @@ python3 run_batch.py --help                    # All options
 | 5 | Micro RAG | Cross-file entity index: people/places/topics appearing in multiple files |
 | 6 | Event Log | Chronological system log: file started/done/failed, indicator counts found |
 | 7 | Tech Specs | System info: Python version, Whisper models, librosa/ffmpeg status, disk space |
+
+#### No auto-start
+
+By default, the dashboard does NOT start processing automatically. It shows the file queue and waits for you to press [Enter]. This lets you review files, adjust settings, and select which file to view before starting. Use `--auto-start` to start immediately.
+
+#### Folder watch mode
+
+Press [W] or use `--watch` to enable folder watching. New .m4a files added to the directory are automatically detected and added to the queue. Useful for processing recordings as they come in.
+
+```bash
+python3 run_batch.py --watch                # Watch default directory
+python3 run_batch.py --watch --auto-start   # Watch and start immediately
+```
+
+#### Second Brain export (12 formats)
+
+Press [E] to cycle through export formats, then [X] to export. Or use `--export` for auto-export on completion.
+
+| Format | Description |
+|--------|-------------|
+| Wiki MD | Markdown with [[wiki-links]] — Karpathy-style second brain, bidirectional connections |
+| Obsidian | Full Obsidian vault: frontmatter + wiki-links + graph-ready folder structure |
+| CSV | Tabular CSV — entities, quotes, indicators as separate files, importable into spreadsheets |
+| JSON | Structured JSON — nested blocks, relationships, machine-readable |
+| HTML | Web-ready HTML with inline CSS — viewable in any browser |
+| SQL | SQL INSERT statements — creates tables for people, places, quotes, indicators |
+| OPML | Outline Processor Markup — hierarchical tree, importable to Workflowy/Dynalist |
+| Excel | Excel-compatible CSV with summary table (file, duration, indicators, emotions) |
+| WordPress | WordPress-ready HTML post with formatting, categories, and tags |
+| Substack | Substack-ready Markdown newsletter post with quotes and indicator summary |
+| CapCut | CapCut script: timestamped quote cards for video editing |
+| Notion | Notion-import-ready Markdown with database tables and relations |
+
+Each export includes a "How Conclusions Were Reached" section explaining the detection methodology for all indicators.
+
+```bash
+python3 run_batch.py --export wiki_md      # Auto-export as Wiki MD on completion
+python3 run_batch.py --export obsidian     # Auto-export as Obsidian vault
+python3 run_batch.py --export csv          # Auto-export as CSV files
+```
+
+Export files are saved to `second_brain_export/<format>/`.
 
 #### Privacy modes
 
