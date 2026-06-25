@@ -90,7 +90,7 @@ class BatchState:
         self.name_privacy = 0
         self.num_privacy = 0
 
-        # Card mode: 0=Emotional, 1=Technical
+        # Card mode: 0=Emotional, 1=Technical, 2=Quotes, 3=BatchStats, 4=MicroRAG, 5=EventLog, 6=TechSpecs
         self.card_mode = 0
 
         # Current file being displayed in middle-right
@@ -98,6 +98,18 @@ class BatchState:
 
         # Last completed file data
         self.last_result: dict = {}
+
+        # Event log — chronological list of events during this run
+        self.event_log: list = []
+
+        # Batch stats — aggregated across all completed files
+        self.batch_stats: dict = {}
+
+        # Micro RAG — cross-file entity index
+        self.micro_rag: dict = {}
+
+        # Max parallel processes
+        self.max_parallel = 3
 
         # Terminal dimensions
         self.term_rows = 40
@@ -125,10 +137,26 @@ class BatchState:
         return ["REDACTED", "EMOJI", "FULL"][self.num_privacy]
 
     def card_mode_label(self):
-        return ["Emotional", "Technical"][self.card_mode]
+        return ["Emotional", "Technical", "Quotes", "Batch Stats", "Micro RAG", "Event Log", "Tech Specs"][self.card_mode]
 
 
 STATE = BatchState()
+
+# ─── Capability checks ───────────────────────────────────────────────────────
+
+_has_librosa = False
+try:
+    import librosa  # noqa: F401
+    _has_librosa = True
+except ImportError:
+    pass
+
+_has_ffmpeg = False
+try:
+    subprocess.run(["ffmpeg", "-version"], capture_output=True, check=True)
+    _has_ffmpeg = True
+except Exception:
+    pass
 
 # ─── Privacy Filtering ────────────────────────────────────────────────────────
 
@@ -274,7 +302,6 @@ def get_duration(path):
 
 def start_file(file_entry):
     """Start processing a file in a subprocess."""
-    idx = STATE.files.index(file_entry)
     flags = STATE.get_cli_flags()
     model = file_entry["model"]
 
@@ -288,6 +315,8 @@ def start_file(file_entry):
 
     file_entry["status"] = "running"
     file_entry["start_time"] = time.time()
+
+    log_event("start", f"Started: {file_entry['safe_name']} ({file_entry['duration']//60}min, model:{model})", file_entry["safe_name"])
 
     proc = subprocess.Popen(
         cmd,
@@ -312,9 +341,14 @@ def check_running():
                     f["status"] = "done"
                     STATE.completed += 1
                     load_result_data(f)
+                    r = f.get("result", {})
+                    log_event("done", f"Done: {f['safe_name']} — {r.get('deception_count',0)} dec, {r.get('veracity_count',0)} ver, {r.get('freeze_count',0)} freezes", f["safe_name"])
+                    update_batch_stats()
+                    update_micro_rag()
                 else:
                     f["status"] = "failed"
                     STATE.failed += 1
+                    log_event("fail", f"Failed: {f['safe_name']} (exit {ret})", f["safe_name"])
                 STATE.running -= 1
                 STATE.current_display_idx = STATE.files.index(f)
 
@@ -418,6 +452,133 @@ def load_result_data(file_entry):
     STATE.last_result = result
 
 # ─── Dashboard Rendering ──────────────────────────────────────────────────────
+
+# ─── Event Log ────────────────────────────────────────────────────────────────
+
+def log_event(event_type, message, file_name=""):
+    """Add an event to the event log."""
+    STATE.event_log.append({
+        "time": datetime.now().strftime("%H:%M:%S"),
+        "type": event_type,
+        "message": message,
+        "file": file_name,
+    })
+    # Keep last 100 events
+    if len(STATE.event_log) > 100:
+        STATE.event_log = STATE.event_log[-100:]
+
+# ─── Batch Stats Aggregation ──────────────────────────────────────────────────
+
+def update_batch_stats():
+    """Aggregate statistics across all completed files."""
+    stats = {
+        "files_done": 0,
+        "files_failed": 0,
+        "total_segments": 0,
+        "total_words": 0,
+        "total_tokens": 0,
+        "total_freezes": 0,
+        "total_deception": 0,
+        "total_veracity": 0,
+        "total_clinical": 0,
+        "total_noteworthy": 0,
+        "emotion_dist": {},
+        "jefferson_dist": {},
+        "speakers_seen": set(),
+        "people_seen": {},
+        "places_seen": {},
+    }
+
+    for f in STATE.files:
+        if f["status"] not in ("done", "failed"):
+            continue
+        if f["status"] == "done":
+            stats["files_done"] += 1
+        else:
+            stats["files_failed"] += 1
+
+        r = f.get("result", {})
+        stats["total_segments"] += r.get("segment_count", 0)
+        stats["total_words"] += r.get("word_count", 0)
+        stats["total_tokens"] += r.get("duration", 0) // 60 * 112
+        stats["total_freezes"] += r.get("freeze_count", 0)
+        stats["total_deception"] += r.get("deception_count", 0)
+        stats["total_veracity"] += r.get("veracity_count", 0)
+        stats["total_clinical"] += r.get("clinical_count", 0)
+        stats["total_noteworthy"] += r.get("noteworthy_count", 0)
+
+        for label, count in r.get("emotion_dist", {}).items():
+            stats["emotion_dist"][label] = stats["emotion_dist"].get(label, 0) + count
+
+        for sym, info in r.get("jefferson_summary", {}).items():
+            stats["jefferson_dist"][sym] = stats["jefferson_dist"].get(sym, 0) + info.get("count", 0)
+
+        for spk in r.get("speakers", []):
+            stats["speakers_seen"].add(spk)
+
+        for p in r.get("people", []):
+            pname = p.get("name", "")
+            if pname:
+                stats["people_seen"][pname] = stats["people_seen"].get(pname, 0) + p.get("occurrences", 1)
+
+        for pl in r.get("places", []):
+            ploc = pl.get("place", "")
+            if ploc:
+                stats["places_seen"][ploc] = stats["places_seen"].get(ploc, 0) + pl.get("occurrences", 1)
+
+    STATE.batch_stats = stats
+
+# ─── Micro RAG (cross-file entity index) ─────────────────────────────────────
+
+def update_micro_rag():
+    """Build a cross-file entity index showing where people/places/topics appear across files."""
+    rag = {"people": {}, "places": {}, "quotes": [], "topics": {}}
+
+    for f in STATE.files:
+        if f["status"] != "done":
+            continue
+        r = f.get("result", {})
+        safe = f["safe_name"]
+
+        # People cross-reference
+        for p in r.get("people", []):
+            pname = p.get("name", "")
+            if pname:
+                if pname not in rag["people"]:
+                    rag["people"][pname] = {"files": [], "total_occurrences": 0}
+                rag["people"][pname]["files"].append(safe)
+                rag["people"][pname]["total_occurrences"] += p.get("occurrences", 1)
+
+        # Places cross-reference
+        for pl in r.get("places", []):
+            ploc = pl.get("place", "")
+            if ploc:
+                if ploc not in rag["places"]:
+                    rag["places"][ploc] = {"files": [], "total_occurrences": 0}
+                rag["places"][ploc]["files"].append(safe)
+                rag["places"][ploc]["total_occurrences"] += pl.get("occurrences", 1)
+
+        # Quotes cross-reference (high-intensity segments)
+        for q in r.get("quotes", []):
+            rag["quotes"].append({
+                "file": safe,
+                "time": q.get("time", ""),
+                "emoji": q.get("emoji", ""),
+                "affect": q.get("affect", ""),
+                "intensity": q.get("intensity", 5),
+                "text": q.get("text", ""),
+            })
+
+        # Topics from hashtags
+        for tag in r.get("hashtags", []):
+            tag = tag.lstrip("#")
+            if tag:
+                if tag not in rag["topics"]:
+                    rag["topics"][tag] = []
+                rag["topics"][tag].append(safe)
+
+    STATE.micro_rag = rag
+
 
 def render_dashboard():
     """Render the complete fixed dashboard."""
@@ -633,7 +794,7 @@ def render_dashboard():
                     lines.append(f"  {D}(none){NC}")
                     row += 1
 
-        else:
+        elif STATE.card_mode == 1:
             # ── Technical mode ──
             row = card_row
 
@@ -698,6 +859,240 @@ def render_dashboard():
                     lines.append(f"  {D}(none){NC}")
                     row += 1
 
+        elif STATE.card_mode == 2:
+            # ── Quotes mode ── key quotes/facts/key points
+            row = card_row
+            lines.append(move_cursor(row, right_start_col))
+            lines.append(f"{C}📌 Key Quotes & Facts{NC}")
+            row += 1
+
+            # Pull from noteworthy items — filter for interesting types
+            nw = r.get("noteworthy", [])
+            quotes_shown = 0
+            for item in nw:
+                if row >= middle_end: break
+                if quotes_shown >= 8: break
+                itype = item.get("type", "")
+                note = item.get("note", "")
+                # Skip generic uncertain entities
+                if "uncertain_entity" in itype:
+                    continue
+                text = filter_text(note[:card_width - 6])
+                icon = "🚨" if "freeze" in itype else "⚠️" if "deception" in itype else "✓" if "veracity" in itype else "🏥" if "clinical" in itype else "🔍"
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {icon} {D}{text}{NC}")
+                row += 1
+                quotes_shown += 1
+
+            if quotes_shown == 0:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {D}(no key quotes yet){NC}")
+                row += 1
+
+            # Also show high-intensity quotes
+            row += 1
+            if row < middle_end:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"{C}💬 High-Intensity Moments{NC}")
+                row += 1
+                for q in r.get("quotes", [])[:4]:
+                    if row >= middle_end: break
+                    text = filter_text(q["text"][:card_width - 12])
+                    lines.append(move_cursor(row, right_start_col))
+                    lines.append(f"  {q['emoji']} [{q['intensity']}/10] {D}{text}{NC}")
+                    row += 1
+
+        elif STATE.card_mode == 3:
+            # ── Batch Stats mode ── aggregate across all completed files
+            row = card_row
+            lines.append(move_cursor(row, right_start_col))
+            lines.append(f"{C}📊 Batch Statistics ({STATE.batch_stats.get('files_done', 0)} files){NC}")
+            row += 1
+
+            bs = STATE.batch_stats
+            batch_items = [
+                ("Files completed", str(bs.get("files_done", 0))),
+                ("Files failed", str(bs.get("files_failed", 0))),
+                ("Total segments", str(bs.get("total_segments", 0))),
+                ("Total words", str(bs.get("total_words", 0))),
+                ("Total tokens", f"~{bs.get('total_tokens', 0)}"),
+                ("Freeze events", str(bs.get("total_freezes", 0))),
+                ("Deception markers", str(bs.get("total_deception", 0))),
+                ("Veracity markers", str(bs.get("total_veracity", 0))),
+                ("Clinical markers", str(bs.get("total_clinical", 0))),
+                ("Noteworthy items", str(bs.get("total_noteworthy", 0))),
+            ]
+            for label, val in batch_items:
+                if row >= middle_end: break
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {label:<18} {W}{val}{NC}")
+                row += 1
+
+            row += 1
+            # Top emotions across batch
+            if row < middle_end:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"{C}🎭 Top Emotions (batch){NC}")
+                row += 1
+                emo = bs.get("emotion_dist", {})
+                for label, count in sorted(emo.items(), key=lambda x: -x[1])[:4]:
+                    if row >= middle_end: break
+                    lines.append(move_cursor(row, right_start_col))
+                    lines.append(f"  {label:<14} {count:>4}")
+                    row += 1
+
+            row += 1
+            # Top people across batch
+            if row < middle_end:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"{C}👥 People (batch){NC}")
+                row += 1
+                people = bs.get("people_seen", {})
+                for pname, count in sorted(people.items(), key=lambda x: -x[1])[:4]:
+                    if row >= middle_end: break
+                    filtered = filter_name(pname)
+                    lines.append(move_cursor(row, right_start_col))
+                    lines.append(f"  {filtered:<12} {count:>3}x")
+                    row += 1
+
+        elif STATE.card_mode == 4:
+            # ── Micro RAG mode ── cross-file entity index
+            row = card_row
+            lines.append(move_cursor(row, right_start_col))
+            lines.append(f"{C}🔎 Micro RAG — Cross-File Index{NC}")
+            row += 1
+
+            rag = STATE.micro_rag
+
+            # People appearing in multiple files
+            if row < middle_end:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"{C}👥 People Across Files{NC}")
+                row += 1
+            cross_people = [(name, info) for name, info in rag.get("people", {}).items() if len(info["files"]) > 1]
+            cross_people.sort(key=lambda x: -x[1]["total_occurrences"])
+            for pname, info in cross_people[:4]:
+                if row >= middle_end: break
+                filtered = filter_name(pname)
+                file_count = len(info["files"])
+                occ = info["total_occurrences"]
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {filtered:<10} {file_count} files  {occ}x")
+                row += 1
+            if not cross_people:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {D}(no cross-file matches yet){NC}")
+                row += 1
+
+            row += 1
+            # Places appearing in multiple files
+            if row < middle_end:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"{C}📍 Places Across Files{NC}")
+                row += 1
+            cross_places = [(name, info) for name, info in rag.get("places", {}).items() if len(info["files"]) > 1]
+            cross_places.sort(key=lambda x: -x[1]["total_occurrences"])
+            for ploc, info in cross_places[:4]:
+                if row >= middle_end: break
+                file_count = len(info["files"])
+                occ = info["total_occurrences"]
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {ploc:<14} {file_count} files  {occ}x")
+                row += 1
+            if not cross_places:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {D}(no cross-file places yet){NC}")
+                row += 1
+
+            row += 1
+            # Topics across files
+            if row < middle_end:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"{C}🏷 Topics Across Files{NC}")
+                row += 1
+            cross_topics = [(tag, files) for tag, files in rag.get("topics", {}).items() if len(files) > 1]
+            cross_topics.sort(key=lambda x: -len(x[1]))
+            for tag, files in cross_topics[:4]:
+                if row >= middle_end: break
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  #{tag:<14} {len(files)} files")
+                row += 1
+            if not cross_topics:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {D}(no cross-file topics yet){NC}")
+                row += 1
+
+        elif STATE.card_mode == 5:
+            # ── Event Log mode ── chronological system log
+            row = card_row
+            lines.append(move_cursor(row, right_start_col))
+            lines.append(f"{C}📋 Event Log{NC}")
+            row += 1
+
+            events = STATE.event_log[-(middle_end - card_row - 1):]
+            if events:
+                for ev in events:
+                    if row >= middle_end: break
+                    icon = {"start": "▶", "done": "✅", "fail": "❌", "info": "ℹ️", "warn": "⚠️"}.get(ev["type"], "•")
+                    msg = filter_text(ev["message"][:card_width - 14])
+                    lines.append(move_cursor(row, right_start_col))
+                    lines.append(f"  {D}{ev['time']}{NC} {icon} {msg}")
+                    row += 1
+            else:
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {D}(no events yet){NC}")
+                row += 1
+
+        elif STATE.card_mode == 6:
+            # ── Tech Specs mode ── system info
+            row = card_row
+            lines.append(move_cursor(row, right_start_col))
+            lines.append(f"{C}⚙️ System Tech Specs{NC}")
+            row += 1
+
+            # Gather system info
+            py_ver = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+            whisper_models = []
+            try:
+                import whisper
+                for m in ["tiny", "base", "small", "medium", "large"]:
+                    try:
+                        p = SCRIPT_DIR / f"~/.cache/whisper/{m}.pt"
+                        whisper_models.append(f"{m}✓" if p.exists() else m)
+                    except Exception:
+                        whisper_models.append(m)
+            except ImportError:
+                whisper_models = ["(not installed)"]
+
+            librosa_ok = "✅" if _has_librosa else "❌"
+
+            # Disk space
+            try:
+                stat = os.statvfs(str(SCRIPT_DIR))
+                disk_gb = (stat.f_bavail * stat.f_frsize) / 1073741824
+                disk_str = f"{disk_gb:.1f} GB free"
+            except Exception:
+                disk_str = "?"
+
+            specs = [
+                ("Python", py_ver),
+                ("Whisper models", ", ".join(whisper_models[:4])),
+                ("librosa", librosa_ok),
+                ("ffmpeg", "✅" if _has_ffmpeg else "❌"),
+                ("Disk space", disk_str),
+                ("Script dir", str(SCRIPT_DIR)[:card_width - 20]),
+                ("Batch files", str(len(STATE.files))),
+                ("Parallel max", str(STATE.max_parallel)),
+                ("Provider", "Local (on-device)"),
+                ("LLM engine", "OpenAI Whisper (local)"),
+                ("Cost", "$0.00"),
+            ]
+            for label, val in specs:
+                if row >= middle_end: break
+                lines.append(move_cursor(row, right_start_col))
+                lines.append(f"  {label:<16} {W}{val}{NC}")
+                row += 1
+
     elif display_file and display_file["status"] == "running":
         lines.append(move_cursor(card_row, right_start_col))
         lines.append(f"  {Y}⏳ Processing...{NC}")
@@ -718,14 +1113,16 @@ def render_dashboard():
         f"  {BD}[N]{NC} Names:{STATE.name_privacy_label()}  "
         f"{BD}[P]{NC} Nums:{STATE.num_privacy_label()}  "
         f"{BD}[F]{NC} Cards:{STATE.card_mode_label()}  "
-        f"{BD}[D]{NC} Deception:{'✅' if STATE.deception else '❌'}  "
-        f"{BD}[V]{NC} Veracity:{'✅' if STATE.veracity else '❌'}  "
-        f"{BD}[J]{NC} Jefferson:{'✅' if STATE.jefferson else '❌'}"
+        f"{BD}[D]{NC} Dec:{'✅' if STATE.deception else '❌'}  "
+        f"{BD}[V]{NC} Ver:{'✅' if STATE.veracity else '❌'}  "
+        f"{BD}[J]{NC} Jef:{'✅' if STATE.jefferson else '❌'}"
     )
     menu2 = (
-        f"  {BD}[C]{NC} Clinical:{'✅' if STATE.clinical else '❌'}  "
+        f"  {BD}[C]{NC} Clin:{'✅' if STATE.clinical else '❌'}  "
+        f"{BD}[1-7]{NC} Jump card  "
+        f"{BD}[⏎]{NC} Start  "
         f"{BD}[Q]{NC} Quit  "
-        f"{D}│  Toggles affect next queued file{NC}"
+        f"{D}│ {STATE.card_mode + 1}/7 {STATE.card_mode_label()} │ Toggles affect next file{NC}"
     )
 
     lines.append(move_cursor(bottom_start + 1, 1))
@@ -741,24 +1138,30 @@ def render_dashboard():
 
 def handle_keypress(key):
     """Handle a single keypress for live toggling."""
-    key = key.lower()
+    key_lower = key.lower()
 
-    if key == 'n':
+    if key_lower == 'n':
         STATE.name_privacy = (STATE.name_privacy + 1) % 3
-    elif key == 'p':
+    elif key_lower == 'p':
         STATE.num_privacy = (STATE.num_privacy + 1) % 3
-    elif key == 'f':
-        STATE.card_mode = (STATE.card_mode + 1) % 2
-    elif key == 'd':
+    elif key_lower == 'f':
+        STATE.card_mode = (STATE.card_mode + 1) % 7  # 7 modes now
+    elif key_lower == 'd':
         STATE.deception = not STATE.deception
-    elif key == 'v':
+    elif key_lower == 'v':
         STATE.veracity = not STATE.veracity
-    elif key == 'j':
+    elif key_lower == 'j':
         STATE.jefferson = not STATE.jefferson
-    elif key == 'c':
+    elif key_lower == 'c':
         STATE.clinical = not STATE.clinical
-    elif key == 'q':
+    elif key_lower == 'q':
         STATE.quit_requested = True
+    elif key in '1234567':
+        # Direct jump to card mode
+        STATE.card_mode = int(key) - 1
+    elif key == '\r' or key == '\n':
+        # Enter — start processing if not started, or no-op
+        pass
 
 # ─── Main Loop ────────────────────────────────────────────────────────────────
 
@@ -815,6 +1218,7 @@ def main():
     STATE.total_duration = sum(f["duration"] for f in STATE.files)
     STATE.total_tokens = sum(f["tokens"] for f in STATE.files)
 
+    STATE.max_parallel = args.parallel
     max_parallel = args.parallel
 
     # Init terminal

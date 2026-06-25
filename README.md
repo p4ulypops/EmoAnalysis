@@ -391,12 +391,32 @@ python3 run_batch.py --help                    # All options
 |-----|--------|
 | `[N]` | Names privacy: cycles REDACTED -> EMOJI -> FULL |
 | `[P]` | Numbers privacy: cycles REDACTED -> EMOJI -> FULL |
-| `[F]` | Card mode: switches between Emotional and Technical |
+| `[F]` | Card mode: cycles through 7 modes (see below) |
+| `[1]` | Jump to card: Emotional |
+| `[2]` | Jump to card: Technical |
+| `[3]` | Jump to card: Quotes |
+| `[4]` | Jump to card: Batch Stats |
+| `[5]` | Jump to card: Micro RAG |
+| `[6]` | Jump to card: Event Log |
+| `[7]` | Jump to card: Tech Specs |
 | `[D]` | Deception: ON/OFF (affects next queued file) |
 | `[V]` | Veracity: ON/OFF |
 | `[J]` | Jefferson: ON/OFF |
 | `[C]` | Clinical: ON/OFF |
+| `[⏎]` | Enter: Start processing |
 | `[Q]` | Quit gracefully (finish current, stop queuing) |
+
+#### Card modes (middle-right panel, switchable with [F] or [1]-[7])
+
+| # | Mode | What it shows |
+|---|------|--------------|
+| 1 | Emotional | Choice quotes, emotion distribution, people found, noteworthy items |
+| 2 | Technical | Model, tokens, segments, indicator counts, Jefferson markers |
+| 3 | Quotes | Key quotes/facts/key points from noteworthy items + high-intensity moments |
+| 4 | Batch Stats | Aggregate stats across ALL completed files: totals, emotion distribution, top people |
+| 5 | Micro RAG | Cross-file entity index: people/places/topics appearing in multiple files |
+| 6 | Event Log | Chronological system log: file started/done/failed, indicator counts found |
+| 7 | Tech Specs | System info: Python version, Whisper models, librosa/ffmpeg status, disk space |
 
 #### Privacy modes
 
