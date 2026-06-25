@@ -360,100 +360,61 @@ Run: `brew install ffmpeg`
 
 ---
 
-## Batch Runner (`run_batch.sh`)
+## Batch Runner
 
-The batch runner processes all `.m4a` files in a folder with toggleable options, live progress stats, fun facts, and automatic privacy filtering (no names or personal content appear in terminal output).
+The batch runner comes in two versions:
 
-### Profiles (preset combinations)
+### Dashboard mode (`run_batch.py`) — recommended
 
-| Profile | What it does |
-|---------|-------------|
-| `--fast` | Quick draft — tiny model, no extras, no omni |
-| `--full` | Everything ON, small model, HTML viewer included |
-| `--stealth` | Minimal output, no facts, no viewer, tiny model |
-| `--forensic` | Deception + veracity + clinical, no omni, base model |
-| (default) | All features ON, auto model, 3 parallel |
+A fixed terminal dashboard with live toggles, dual-mode cards, and 3-level privacy filtering. The screen stays fixed (no vertical scrolling) with four zones:
 
-### Toggle flags (combine freely)
-
-All toggles default to ON (except viewer and diarise-local). Like Hermes mode switching, you can mix and match:
-
-| Flag | Counterpart | Default | What it controls |
-|------|-------------|---------|------------------|
-| `--facts` | `--no-facts` | ON | Fun facts during processing |
-| `--deception` | `--no-deception` | ON | Deception indicator detection |
-| `--veracity` | `--no-veracity` | ON | Truthfulness/veracity indicators |
-| `--jefferson` | `--no-jefferson` | ON | Jefferson paralinguistic markers |
-| `--clinical` | `--no-clinical` | ON | Clinical markers (PTSD/ASD/ADHD) |
-| `--voice-dynamics` | `--no-voice-dynamics` | ON | Voice dynamics (raised voice, whisper, shaky) |
-| `--emotional` | `--no-emotional` | ON | Emotional analysis (affect heuristics) |
-| `--omni` | `--no-omni` | ON | Omni single-file output |
-| `--viewer` | `--no-viewer` | OFF | HTML viewer generation |
-| `--diarise-local` | — | OFF | Local speaker clustering (Resemblyzer) |
-| `--copy-audio` | — | OFF | Copy audio into output folder |
-
-### Model control
-
-| Flag | Description |
-|------|-------------|
-| `--model tiny\|base\|small\|medium\|large` | Force a specific Whisper model |
-| `--auto-model` | Auto-select model by audio duration |
-| `--estimate-cost` | Print token/cost estimate |
-| `--parallel N` | Max simultaneous processes (default 3) |
-| `--dir PATH` | Custom audio directory |
-
-### Batch output includes
-
-When running, the batch terminal shows:
-- Active configuration table (all toggles, model, parallel count)
-- File scan with per-file duration, size, model, token estimate
-- Batch summary: total audio hours, total tokens, LLM engine, provider, cost, estimated wall time
-- Live progress: done/fail/running counts, percentage, elapsed time
-- Fun facts (toggleable) every 20 seconds while processing
-- Per-file start/end notifications with model and token count
-- All speaker names replaced with Speaker_XX, all renames redacted
-- Final report: success/fail counts, total time, per-file breakdown
-- Output file locations
-
-### Batch examples
+- **TOP**: Title bar + active config (all toggles) + overall progress bar
+- **MIDDLE-LEFT**: Queue of files with per-file progress bars
+- **MIDDLE-RIGHT**: Detail cards for the current/last-processed file, switchable between Emotional mode (choice quotes, emotional markers, people found, noteworthy items) and Technical mode (model, tokens, segments, indicator counts, Jefferson markers)
+- **BOTTOM**: Menu bar with single-key shortcuts
 
 ```bash
-# Default — everything ON, 3 parallel
-./run_batch.sh
-
-# Quick draft of everything
-./run_batch.sh --fast
-
-# Full analysis with viewer, 2 at a time
-./run_batch.sh --full --parallel 2
-
-# Deception + veracity only, no clinical
-./run_batch.sh --forensic --no-clinical
-
-# Emotion + Jefferson only, no deception/veracity
-./run_batch.sh --no-deception --no-veracity
-
-# Fast, quiet, 4 parallel, no facts
-./run_batch.sh --stealth --parallel 4 --no-facts
-
-# With speaker clustering
-./run_batch.sh --diarise-local
-
-# Custom directory
-./run_batch.sh --dir /path/to/other/audios
-
-# Force small model on everything
-./run_batch.sh --model small --parallel 2
+python3 run_batch.py                           # Default: all ON, 3 parallel
+python3 run_batch.py --fast                    # Quick draft (tiny, no extras)
+python3 run_batch.py --full                    # Everything ON, small model
+python3 run_batch.py --forensic                # Deception + veracity + clinical
+python3 run_batch.py --stealth                 # Minimal
+python3 run_batch.py --dir /path/to/audios     # Custom directory
+python3 run_batch.py --parallel 4              # 4 simultaneous
+python3 run_batch.py --model small             # Force model
+python3 run_batch.py --help                    # All options
 ```
 
-### Privacy filtering in batch mode
+#### Keyboard shortcuts (press key, no Enter needed)
 
-The batch runner automatically:
-- Strips all personal names from filenames (shows generic labels like `Recording_...`)
-- Replaces all speaker labels with `Speaker_XX` in terminal output
-- Redacts all voice-match rename operations
-- Filters NSFW or sensitive content from display
-- The actual output files in `_subfile/` folders contain full unfiltered data for your review
+| Key | Action |
+|-----|--------|
+| `[N]` | Names privacy: cycles REDACTED -> EMOJI -> FULL |
+| `[P]` | Numbers privacy: cycles REDACTED -> EMOJI -> FULL |
+| `[F]` | Card mode: switches between Emotional and Technical |
+| `[D]` | Deception: ON/OFF (affects next queued file) |
+| `[V]` | Veracity: ON/OFF |
+| `[J]` | Jefferson: ON/OFF |
+| `[C]` | Clinical: ON/OFF |
+| `[Q]` | Quit gracefully (finish current, stop queuing) |
+
+#### Privacy modes
+
+| Level | Names | Numbers |
+|-------|-------|---------|
+| REDACTED | Speaker_XX, [NAME] | [NUM] |
+| EMOJI | 🗣️ | 🔢 |
+| FULL | Show everything | Show everything |
+
+### Legacy scroll mode (`run_batch.sh`)
+
+The original bash-based batch runner with vertical scrolling output. Still available but superseded by the dashboard.
+
+```bash
+./run_batch.sh --fast
+./run_batch.sh --forensic --no-clinical
+./run_batch.sh --help
+```
 
 ---
 
