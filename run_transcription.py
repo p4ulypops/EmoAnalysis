@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Emotion Audio — Local Transcription + Analysis Script  v2.1
+Emotion Audio — Local Transcription + Analysis Script  v3.0
+
+v3.0 — Omni output, full Jefferson, deception + veracity, voice dynamics, token min-maxing
+v2.1 — Diarization, voice matching, environmental scans, HTML viewer
+v2.0 — Core pipeline
 
 Creates a folder named after the audio file containing:
     transcript.md    — verbatim transcript with timings + [G:N] glossary refs
@@ -9,6 +13,9 @@ Creates a folder named after the audio file containing:
     meta.json        — recording metadata, speakers, hashtags, file info
     glossary.json    — medical/legal/tech terms + acronyms found in speech
     noteworthy.json  — flagged moments (freezes, events, uncertainties)
+    omni.md          — EVERYTHING in one file (all views, all markers, all indicators)
+    analysis.json    — deception/veracity/voice-dynamics/clinical data
+    viewer.html      — interactive HTML viewer (optional)
 
 Requirements:
     pip3 install openai-whisper librosa soundfile numpy --break-system-packages
@@ -27,17 +34,38 @@ Speaker identification (choose one):
     pip3 install pyannote.audio --break-system-packages
     python3 '...run_transcription.py' audio.m4a --diarise --hf-token hf_xxx
 
-  Voice matching (after any diarization tier):
-    --match-voice '/path/to/known_voice.m4a' 'Name'
-    Can be repeated for multiple known speakers:
-    --match-voice '/clips/natalia.m4a' 'Natalia' --match-voice '/clips/jacky.m4a' 'Jacky'
-
 Usage:
-    python3 '/Users/user/Library/Application Support/Claude/local-agent-mode-sessions/9f946972-8ad4-4a83-bda4-fd9d7e621aad/b6e0b069-0598-4b7f-bfaf-fa7c4d9e0e64/local_152db07a-1520-4dae-aa27-00751e5d4cdf/outputs/run_transcription.py' '/path/to/audio.m4a'
-    python3 '...run_transcription.py' '/path/to/audio.m4a' --diarise-local
-    python3 '...run_transcription.py' '/path/to/audio.m4a' --diarise --hf-token hf_xxx
-    python3 '...run_transcription.py' '/path/to/audio.m4a' --diarise-local --match-voice '/clip.m4a' 'Pauly'
-    python3 '...run_transcription.py' '/path/to/audio.m4a' --output-dir ~/Desktop
+    python3 run_transcription.py '/path/to/audio.m4a'
+    python3 run_transcription.py '/path/to/audio.m4a' --diarise-local
+    python3 run_transcription.py '/path/to/audio.m4a' --model small
+    python3 run_transcription.py '/path/to/audio.m4a' --omni
+    python3 run_transcription.py '/path/to/audio.m4a' --auto-model
+    python3 run_transcription.py '/path/to/audio.m4a' --no-deception --no-veracity
+
+All options:
+    --model         Whisper model: tiny|base|small|medium|large (default: base)
+    --auto-model    Auto-select model based on audio duration (token min-maxing)
+    --language      ISO 639-1 code (default: en)
+    --context       Context label (default: general)
+    --output-dir    Where to create output folder
+    --diarise-local Local speaker clustering (Resemblyzer, no internet)
+    --diarise       pyannote diarization (needs HF token)
+    --hf-token      HuggingFace token
+    --n-speakers    Expected speaker count
+    --match-voice   Match known voice clips: --match-voice clip.m4a Name
+    --subfolder-suffix  Suffix for output subfolder (default: _subfile)
+    --no-copy-audio Don't copy audio into output folder
+    --no-viewer     Don't generate HTML viewer
+    --omni          Generate omni.md (comprehensive single-file output) — default ON
+    --no-omni       Skip omni.md generation
+    --no-jefferson  Disable Jefferson paralinguistic marker detection
+    --no-deception  Disable deception indicator detection
+    --no-veracity   Disable truthfulness/veracity indicator detection
+    --no-voice-dynamics  Disable voice dynamics analysis (raised voice, whisper, etc.)
+    --no-clinical   Disable clinical marker detection (PTSD/ASD/ADHD)
+    --no-emotional  Disable emotional analysis (affect heuristics)
+    --estimate-cost Print token/cost estimation before running
+    --json-output   Output analysis.json with all structured indicator data
 """
 
 import argparse
@@ -48,6 +76,47 @@ import sys
 import shutil
 from datetime import datetime, timedelta
 from pathlib import Path
+
+
+
+# ─── Token Min-Maxing / Model Selection ─────────────────────────────────────────
+
+# Model cost table (approximate, OpenRouter pricing in USD per 1K tokens)
+# Whisper models are local/free but have different speed/resource trade-offs
+WHISPER_MODEL_PROFILES = {
+    "tiny":   {"vram_mb": 1000,  "speed": "fastest",  "accuracy": "draft",  "min_duration_s": 0,    "max_duration_s": 600},
+    "base":   {"vram_mb": 1000,  "speed": "fast",     "accuracy": "good",   "min_duration_s": 0,    "max_duration_s": 1800},
+    "small":  {"vram_mb": 2000,  "speed": "medium",   "accuracy": "better", "min_duration_s": 60,   "max_duration_s": 3600},
+    "medium": {"vram_mb": 5000,  "speed": "slow",     "accuracy": "high",   "min_duration_s": 300,  "max_duration_s": 7200},
+    "large":  {"vram_mb": 10000, "speed": "slowest",  "accuracy": "best",   "min_duration_s": 600,  "max_duration_s": 99999},
+}
+
+def auto_select_model(duration_s: float) -> str:
+    """Auto-select Whisper model based on audio duration for optimal speed/accuracy."""
+    for model_name in ["tiny", "base", "small", "medium", "large"]:
+        profile = WHISPER_MODEL_PROFILES[model_name]
+        if profile["min_duration_s"] <= duration_s <= profile["max_duration_s"]:
+            return model_name
+    return "base"
+
+def estimate_tokens(duration_s: float, model_size: str) -> dict:
+    """Estimate token count and processing cost."""
+    # Rough: English speech ~150 words/min, ~0.75 tokens/word
+    words_per_min = 150
+    est_words = int((duration_s / 60) * words_per_min)
+    est_tokens = int(est_words * 0.75)
+    # Whisper processing time estimate (on CPU, base model)
+    speed_multiplier = {"tiny": 0.5, "base": 1.0, "small": 2.5, "medium": 5.0, "large": 10.0}
+    est_process_s = duration_s * speed_multiplier.get(model_size, 1.0)
+    return {
+        "estimated_words": est_words,
+        "estimated_tokens": est_tokens,
+        "estimated_process_seconds": int(est_process_s),
+        "estimated_process_minutes": round(est_process_s / 60, 1),
+        "model": model_size,
+        "cost_usd": 0.0,  # Local Whisper is free
+        "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript.",
+    }
 
 
 # ─── Wordlists ────────────────────────────────────────────────────────────────
@@ -80,13 +149,11 @@ TECH_TERMS = {
     "mcp", "plugin", "model", "neural", "prompt", "token", "inference",
 }
 
+
 # ─── Config Loading ───────────────────────────────────────────────────────────
 
-# Holds custom definitions from wordlists.json "custom" list
 CUSTOM_GLOSSARY_DEFS: list = []
-# Holds extra place names from places.json
 EXTRA_PLACES: list = []
-
 
 def load_config(script_path: Path) -> None:
     """Load user config files from config/ next to the script and merge into globals."""
@@ -97,7 +164,6 @@ def load_config(script_path: Path) -> None:
     if not config_dir.exists():
         return
 
-    # ── emotions.json ──
     emo_file = config_dir / "emotions.json"
     if emo_file.exists():
         try:
@@ -109,7 +175,6 @@ def load_config(script_path: Path) -> None:
         except Exception as e:
             print(f"  ⚠️ config/emotions.json parse error: {e}")
 
-    # ── places.json ──
     places_file = config_dir / "places.json"
     if places_file.exists():
         try:
@@ -119,7 +184,6 @@ def load_config(script_path: Path) -> None:
         except Exception as e:
             print(f"  ⚠️ config/places.json parse error: {e}")
 
-    # ── wordlists.json ──
     wl_file = config_dir / "wordlists.json"
     if wl_file.exists():
         try:
@@ -151,6 +215,504 @@ AFFECT_HEURISTICS = [
     (r'\b(confused|lost|don\'t understand|what do you mean)\b',"😕","Confused",      4),
     (r'\b(frustrated|stuck|blocked|can\'t get|won\'t let)\b', "😤", "Frustrated",    6),
 ]
+
+
+# ─── Jefferson Paralinguistic Markers ──────────────────────────────────────────
+# All ON by default. Each marker type can be disabled via CLI flags.
+
+def detect_jefferson_markers(text: str, pause_before: float, prev_text: str = "") -> list:
+    """Detect all Jefferson paralinguistic markers in a text segment.
+    Returns list of marker descriptions with their Jefferson notation symbol.
+    """
+    markers = []
+
+    # CAPS — shouting / strong emphasis (3+ consecutive uppercase words or all-caps words 3+ chars)
+    caps_words = re.findall(r'\b[A-Z]{3,}\b', text)
+    if caps_words:
+        # Filter out common acronyms
+        acro_stop = {"NHS", "PIP", "ESA", "DLA", "CBT", "DBT", "EMDR", "ADHD", "ASD", "PTSD", "OCD", "BPD", "GDP", "API", "SDK", "LLM", "GPT", "MCP", "UC", "WCA", "SEN", "EHCP", "CAMHS", "IAPT", "CQC", "DOLS", "LPA", "IMCA", "IMHA", "CPS", "ICO", "SAR", "COPDOL", "PHSO", "LGO"}
+        real_caps = [w for w in caps_words if w not in acro_stop]
+        if real_caps:
+            markers.append({
+                "symbol": "WORD",
+                "phenomenon": "Shouting / strong emphasis",
+                "clinical_note": "Caps = distinctly louder than baseline",
+                "words": real_caps,
+                "certainty": 0.75,
+            })
+
+    # Whisper indicators — low volume, hedging, shame language
+    whisper_patterns = [
+        (r'\b(quietly|under my breath|whisper|mutter|mumbled)\b', "°word°", "Whisper / quiet speech", "Shame, conspiracy, trauma recall"),
+        (r'\b(I dunno|sort of|kind of|ish|maybe just)\b', "°word°", "Hedging / minimising", "Low confidence, shame, or evasion"),
+    ]
+    for pattern, symbol, phenomenon, note in whisper_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            markers.append({"symbol": symbol, "phenomenon": phenomenon, "clinical_note": note, "certainty": 0.60})
+
+    # Shaky voice — distress indicators in text
+    shaky_patterns = [
+        (r'\b(crying|tears|sobbing|breaking down|shaking|trembling)\b', "~word~", "Shaky/crying voice", "Diaphragmatic control loss; grief, distress"),
+        (r'\b(can\'t breathe|choking up|overwhelmed with emotion)\b', "~word~", "Shaky/crying voice", "Acute emotional dysregulation"),
+    ]
+    for pattern, symbol, phenomenon, note in shaky_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            markers.append({"symbol": symbol, "phenomenon": phenomenon, "clinical_note": note, "certainty": 0.65})
+
+    # Creaky voice / vocal fry — exhaustion, low arousal
+    creaky_patterns = [
+        (r'\b(exhausted|drained|burnt out|wrung out|spent|depleted|dead tired)\b', "#word#", "Creaky voice / vocal fry", "Low arousal, exhaustion, confidence collapse"),
+        (r'\b(whatever|I suppose|not bothered|don\'t care anymore)\b', "#word#", "Creaky voice / vocal fry", "Resignation, emotional withdrawal"),
+    ]
+    for pattern, symbol, phenomenon, note in creaky_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            markers.append({"symbol": symbol, "phenomenon": phenomenon, "clinical_note": note, "certainty": 0.55})
+
+    # Prolonged sound — drawn out words
+    if re.search(r'\b\w{2,}(?:oo+|aa+|ee+|er+|um+)\b', text, re.IGNORECASE):
+        markers.append({"symbol": "word::", "phenomenon": "Prolonged sound", "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation", "certainty": 0.60})
+    # Also check for repeated letters (e.g. "soooo", "wellll")
+    if re.search(r'\b\w*(\w)\1{2,}\w*\b', text) and not re.match(r'^[A-Z]+$', text.strip()):
+        markers.append({"symbol": "word::", "phenomenon": "Prolonged sound (repeated letters)", "clinical_note": "Emphasis, emotional elongation", "certainty": 0.55})
+
+    # Pitch spike — panic, shock
+    pitch_spike_patterns = [
+        (r'[!?]{2,}', "↑↑word", "Extreme pitch spike (exclamation)", "Panic, shock, dysregulation"),
+        (r'\b(suddenly|oh my god|what the|no way|are you serious)\b', "↑↑word", "Extreme pitch spike (exclamation)", "Surprise, alarm, dysregulation"),
+    ]
+    for pattern, symbol, phenomenon, note in pitch_spike_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            markers.append({"symbol": symbol, "phenomenon": phenomenon, "clinical_note": note, "certainty": 0.60})
+
+    # Pitch drop — resignation, defeat
+    pitch_drop_patterns = [
+        (r'\b(never mind|forget it|it doesn\'t matter|what\'s the point|give up)\b', "↓↓word", "Extreme pitch drop", "Resignation, defeat"),
+        (r'\b(I tried|I did my best|nothing works)\b', "↓↓word", "Extreme pitch drop", "Resignation, defeat"),
+    ]
+    for pattern, symbol, phenomenon, note in pitch_drop_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            markers.append({"symbol": symbol, "phenomenon": phenomenon, "clinical_note": note, "certainty": 0.55})
+
+    # Accelerated delivery — rushed, hurried
+    if re.search(r'\b(anyway|so anyway|moving on|next thing|long story short)\b', text, re.IGNORECASE):
+        markers.append({"symbol": ">word<", "phenomenon": "Accelerated delivery", "clinical_note": "Hurried, rushed — evasion or anxiety", "certainty": 0.50})
+
+    # Decelerated delivery — deliberate slowing
+    if re.search(r'\b(let me be clear|I want to be precise|let me think|how do I put this)\b', text, re.IGNORECASE):
+        markers.append({"symbol": "<word>", "phenomenon": "Decelerated delivery", "clinical_note": "Deliberate slowing — careful, possibly deceptive or carefully truthful", "certainty": 0.50})
+
+    # Sharp inbreath — shock, trauma trigger
+    if re.search(r'\b(gasp|oh god|jesus|christ|fuck me|bloody hell|oh no)\b', text, re.IGNORECASE):
+        markers.append({"symbol": ".hhh", "phenomenon": "Sharp inbreath", "clinical_note": "Shock, trauma trigger, sobbing preparation", "certainty": 0.55})
+
+    # Exhalation — relief, resignation
+    if re.search(r'\b(sigh|phew|oh well|there we go|that\'s that)\b', text, re.IGNORECASE):
+        markers.append({"symbol": "hhh", "phenomenon": "Exhalation", "clinical_note": "Relief, resignation, or emotional release", "certainty": 0.50})
+
+    # Micropause
+    if 0.08 <= pause_before <= 0.2:
+        markers.append({"symbol": "(.)", "phenomenon": "Micropause (0.08–0.2s)", "clinical_note": "Brief hesitation or natural turn boundary", "certainty": 0.90})
+
+    # Timed pause
+    if 0.2 < pause_before <= 1.5:
+        markers.append({"symbol": f"({pause_before:.1f})", "phenomenon": "Timed pause", "clinical_note": "Processing, hesitation, or topic shift", "certainty": 0.88})
+
+    # Significant pause
+    if 1.5 < pause_before <= 5:
+        markers.append({"symbol": f"({pause_before:.2f})", "phenomenon": "Significant pause (1.5–5s)", "clinical_note": "Emotional processing or topic gravity", "certainty": 0.85})
+
+    # Extended pause / freeze
+    if pause_before > 5:
+        m_v = int(pause_before // 60)
+        s_v = pause_before % 60
+        if pause_before > 10:
+            markers.append({"symbol": f"({m_v:02d}:{s_v:06.3f})", "phenomenon": "Extended freeze (>10s)", "clinical_note": "PTSD marker, dissociation, emotional shutdown", "certainty": 0.90})
+        else:
+            markers.append({"symbol": f"({pause_before:.2f})", "phenomenon": "Extended pause (5–10s)", "clinical_note": "Deep emotional processing, possible freeze response", "certainty": 0.88})
+
+    # Question / uncertainty
+    if "?" in text:
+        markers.append({"symbol": "?", "phenomenon": "Question / uncertainty", "clinical_note": "Seeking information or expressing doubt", "certainty": 0.95})
+
+    # Latching — no gap between turns (if previous text ends abruptly)
+    if prev_text and pause_before < 0.08 and pause_before > 0:
+        markers.append({"symbol": "=", "phenomenon": "Latching (no gap between turns)", "clinical_note": "Power dynamic, interruption, or urgency", "certainty": 0.70})
+
+    # Overlap — if text starts mid-sentence from previous
+    if prev_text and not prev_text.rstrip().endswith(('.', '!', '?', '...')):
+        if pause_before < 0.05:
+            markers.append({"symbol": "[", "phenomenon": "Possible overlap (simultaneous speech)", "clinical_note": "Competition for turn, or supportive co-construction", "certainty": 0.40})
+
+    # Uncertain transcription — words Whisper may have gotten wrong
+    if re.search(r'\b(huh|mm|um|er|uh|hmm)\b', text, re.IGNORECASE):
+        markers.append({"symbol": "(word)", "phenomenon": "Uncertain transcription (filler/hesitation)", "clinical_note": "Hesitation, cognitive load, or stalling", "certainty": 0.80})
+
+    return markers
+
+
+# ─── Deception Indicators ──────────────────────────────────────────────────────
+
+def detect_deception_indicators(text: str, prev_text: str = "") -> list:
+    """Detect potential deception markers in a text segment.
+    Based on Statement Validity Analysis, Reality Monitoring, and cognitive load theory.
+    Each marker carries a certainty score and interpretation note.
+    """
+    indicators = []
+
+    # False start — sentence abandoned mid-way (<fs>)
+    # Pattern: sentence starts, then redirects with a different structure
+    false_start_patterns = [
+        (r'\b(I was|he was|she was|they were|we were)\b.{1,20}\b(but|actually|no|well|I mean)\b', "false_start", "Sentence abandoned and redirected"),
+        (r'\b(I think|I believe|I guess)\b.{1,30}\b(no|actually|well|I mean|rather)\b', "false_start", "Hedged statement then corrected"),
+    ]
+    for pattern, mtype, note in false_start_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "false_start", "symbol": "<fs>", "note": note, "certainty": 0.55})
+
+    # Also detect: sentence starts with capital, then dash/ellipsis mid-sentence
+    if re.search(r'[A-Z][a-z]+.{2,30}(\.{2,}|—|–)', text):
+        indicators.append({"type": "false_start", "symbol": "<fs>", "note": "Sentence abandoned mid-way (dash/ellipsis)", "certainty": 0.50})
+
+    # Spontaneous correction (<corrsp>) — self-correcting a word or phrase
+    corrsp_patterns = [
+        (r'\b(\w+)\b.{0,5}\b(I mean|I meant|sorry|rather|or rather)\b.{0,5}\b(\w+)\b', "spontaneous_correction", "Word replaced with alternative"),
+        (r'\b(\w+)\s*[-–]\s*(\w+)\b', "self_correction_dash", "Word corrected via dash (e.g. 'went–came')"),
+    ]
+    for pattern, mtype, note in corrsp_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "spontaneous_correction", "symbol": "<corrsp>", "note": note, "certainty": 0.50})
+
+    # Stalling repetition (<rep n="N">) — repeating a word or phrase 3+ times
+    rep_match = re.findall(r'\b(\w{3,})\b(?:\s+\1){2,}', text, re.IGNORECASE)
+    if rep_match:
+        for word in rep_match:
+            count = len(re.findall(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE))
+            indicators.append({
+                "type": "stalling_repetition", "symbol": f'<rep n="{count}">{word}</rep>',
+                "note": f"Word '{word}' repeated {count} times — stalling for time",
+                "certainty": 0.60,
+            })
+
+    # Also detect repeated phrases (2+ word phrases)
+    phrase_reps = re.findall(r'\b((?:\w+\s+){1,3}\w+)\b(?:\s+\1){1,}', text, re.IGNORECASE)
+    for phrase in phrase_reps[:3]:
+        indicators.append({
+            "type": "stalling_repetition", "symbol": f'<rep>{phrase}</rep>',
+            "note": f"Phrase '{phrase}' repeated — possible stalling",
+            "certainty": 0.45,
+        })
+
+    # Memory disclaimer (<lack-mem>) — claiming not to remember
+    lack_mem_patterns = [
+        (r'\b(I don\'t remember|I can\'t remember|I don\'t recall|I forget|I\'ve forgotten)\b', "Memory disclaimer — claiming inability to recall"),
+        (r'\b(not sure if|I might be wrong|I could be mistaken|if I remember correctly)\b', "Hedged memory — distancing from certainty"),
+        (r'\b(I think|I believe|as far as I know|to the best of my recollection)\b', "Qualified memory — weakening commitment to statement"),
+        (r'\b(allegedly|apparently|supposedly|they say|I\'m told)\b', "Attribution distancing — removing personal agency"),
+    ]
+    for pattern, note in lack_mem_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "memory_disclaimer", "symbol": "<lack-mem>", "note": note, "certainty": 0.55})
+
+    # Excessive detail / over-elaboration (deception: too much detail where not needed)
+    words = text.split()
+    if len(words) > 40:
+        # Check for unnecessary specificity (exact times, exact numbers in casual context)
+        over_detail_patterns = [
+            (r'\b(at exactly \d|precisely \d|exactly \d|to be specific)\b', "Excessive precision in casual context"),
+            (r'\b(as I mentioned before|like I said|as previously stated)\b', "Repetition of already-stated facts (rehearsal indicator)"),
+        ]
+        for pattern, note in over_detail_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                indicators.append({"type": "over_elaboration", "symbol": "<over-elab>", "note": note, "certainty": 0.40})
+
+    # Defensive language
+    defensive_patterns = [
+        (r'\b(I didn\'t do it|it wasn\'t me|that\'s not what happened|I would never)\b', "Pre-emptive denial / defensive stance"),
+        (r'\b(why would I|what reason would I have|I have no reason to)\b', "Rhetorical defence — challenging the questioner"),
+        (r'\b(honestly|to be honest|I swear|believe me|truthfully)\b', "Emphasis on honesty — possible overcompensation"),
+        (r'\b(let me be clear|for the record|just to clarify)\b', "Formalised framing — possible rehearsal"),
+    ]
+    for pattern, note in defensive_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "defensive_language", "symbol": "<defensive>", "note": note, "certainty": 0.45})
+
+    # Inconsistency markers — contradicting earlier statements
+    contradiction_patterns = [
+        (r'\b(well actually|that\'s not quite right|let me correct)\b', "Self-correction with contradiction cue"),
+    ]
+    for pattern, note in contradiction_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "contradiction", "symbol": "<contradict>", "note": note, "certainty": 0.40})
+
+    # Cognitive load indicators — complex sentences under pressure
+    if len(words) > 25:
+        clause_count = text.count(',') + text.count(';')
+        if clause_count > 4:
+            indicators.append({
+                "type": "cognitive_load", "symbol": "<cog-load>",
+                "note": f"Complex sentence ({clause_count} clauses, {len(words)} words) — high cognitive load for spontaneous speech",
+                "certainty": 0.35,
+            })
+
+    # Evasion / topic avoidance
+    evasion_patterns = [
+        (r'\b(anyway|moving on|that\'s in the past|let\'s not go there|I don\'t want to talk about)\b', "Topic avoidance / deflection"),
+        (r'\b(what difference does it make|does it matter|it\'s not important)\b', "Minimising / dismissing the topic"),
+    ]
+    for pattern, note in evasion_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "evasion", "symbol": "<evade>", "note": note, "certainty": 0.40})
+
+    return indicators
+
+
+# ─── Veracity / Truthfulness Indicators (reverse of deception) ────────────────
+
+def detect_veracity_indicators(text: str, pause_before: float = 0.0) -> list:
+    """Detect truthfulness indicators — the exact reverse of deception.
+    Based on Reality Monitoring criteria: genuine memories have more sensory detail,
+    contextual embedding, and emotional consistency.
+    """
+    indicators = []
+
+    # Qualified certainty — appropriately confident (not over- or under-confident)
+    certainty_patterns = [
+        (r'\b(I\'m certain|I\'m sure|I clearly remember|I know for a fact)\b', "Qualified certainty — appropriate confidence"),
+        (r'\b(I saw|I heard|I felt|I was there)\b', "First-person sensory recall — direct experience"),
+    ]
+    for pattern, note in certainty_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "qualified_certainty", "symbol": "<veracious>", "note": note, "certainty": 0.65})
+
+    # Sensory detail — genuine memories have more sensory specificity
+    sensory_patterns = [
+        (r'\b(I could see|I could hear|I could smell|I could feel|I could taste)\b', "Multi-sensory recall — genuine memory"),
+        (r'\b(the sound of|the smell of|the feeling of|the taste of)\b', "Sensory specificity — genuine memory"),
+        (r'\b(bright|dark|loud|quiet|warm|cold|heavy|light|sharp|dull)\b', "Sensory adjectives — experiential recall"),
+    ]
+    for pattern, note in sensory_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "sensory_detail", "symbol": "<sensory-recall>", "note": note, "certainty": 0.60})
+
+    # Temporal sequencing — genuine memories have logical time order
+    temporal_patterns = [
+        (r'\b(first|then|after that|next|finally|in the end)\b', "Temporal sequencing — structured recall"),
+        (r'\b(before|after|while|during|as soon as|once)\b', "Temporal relation — genuine memory structure"),
+        (r'\b(in the morning|later that day|the next day|that evening)\b', "Temporal specificity — real memory anchor"),
+    ]
+    for pattern, note in temporal_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "temporal_sequencing", "symbol": "<temporal>", "note": note, "certainty": 0.55})
+
+    # Contextual embedding — real memories are connected to time/place/setting
+    context_patterns = [
+        (r'\b(at \w+\'s house|at the \w+|in the \w+|on the \w+|by the \w+)\b', "Spatial embedding — genuine memory"),
+        (r'\b(we were|I was|they were|he was|she was)\b.{0,20}\b(when|while|because|so that)\b', "Contextual embedding — situational recall"),
+    ]
+    for pattern, note in context_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "contextual_embedding", "symbol": "<context>", "note": note, "certainty": 0.55})
+
+    # Emotional consistency — genuine emotion matches content
+    emotional_consistency_patterns = [
+        (r'\b(I was scared|I felt afraid|I was terrified)\b.{0,30}\b(ran|fled|hid|shaking|screaming)\b', "Emotional-behavioural consistency"),
+        (r'\b(I was angry|I was furious)\b.{0,30}\b(shouted|screamed|slammed|confronted)\b', "Emotional-behavioural consistency"),
+        (r'\b(I was sad|I was heartbroken)\b.{0,30}\b(cried|wept|broke down)\b', "Emotional-behavioural consistency"),
+    ]
+    for pattern, note in emotional_consistency_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "emotional_consistency", "symbol": "<emo-consist>", "note": note, "certainty": 0.60})
+
+    # Cognitive complexity — genuine recall includes doubt, self-correction, and nuance
+    complexity_patterns = [
+        (r'\b(I\'m not entirely sure but|I think maybe|part of me thinks)\b', "Appropriate doubt — genuine recall includes uncertainty"),
+        (r'\b(on the other hand|but then again|although|even so)\b', "Cognitive complexity — weighing alternatives"),
+        (r'\b(I might be wrong but|correct me if I\'m wrong)\b', "Intellectual humility — confidence without overcompensation"),
+    ]
+    for pattern, note in complexity_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            indicators.append({"type": "cognitive_complexity", "symbol": "<cog-complex>", "note": note, "certainty": 0.50})
+
+    # Spontaneous detail — unprompted, relevant detail (vs rehearsed)
+    if len(text.split()) > 15:
+        if re.search(r'\b(suddenly|out of nowhere|I didn\'t expect|it surprised me)\b', text, re.IGNORECASE):
+            indicators.append({"type": "spontaneous_detail", "symbol": "<spontaneous>", "note": "Spontaneous reaction detail — genuine recall", "certainty": 0.50})
+
+    # Appropriate pause before recall (thinking, not stalling)
+    if 0.5 < pause_before < 3.0:
+        # Short pause is normal for genuine recall
+        if not re.search(r'\b(um|er|uh|hmm)\b', text, re.IGNORECASE):
+            indicators.append({"type": "appropriate_recall_pause", "symbol": "<recall-pause>", "note": f"Natural {pause_before:.1f}s pause before recall — genuine processing", "certainty": 0.40})
+
+    return indicators
+
+
+# ─── Voice Dynamics Analysis ───────────────────────────────────────────────────
+
+def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
+    """Analyze voice dynamics per segment: raised voice, quiet, whisper, sub-vocal, shaky.
+    Uses librosa to extract RMS energy and pitch features per segment.
+    Returns a list of per-segment voice dynamics records.
+    """
+    try:
+        import librosa
+        import numpy as np
+    except ImportError:
+        print("  ⚠️ librosa not available — voice dynamics analysis skipped")
+        return []
+
+    print("  → Loading audio for voice dynamics analysis...")
+    y, sr = librosa.load(str(audio_path), sr=None, mono=True)
+    duration = len(y) / sr
+
+    # Compute global RMS for normalisation
+    global_rms = float(np.sqrt(np.mean(y ** 2)))
+
+    dynamics = []
+    for seg in segments:
+        start = int(seg.get("start", 0) * sr)
+        end = int(seg.get("end", 0) * sr)
+        clip = y[start:end]
+        if len(clip) < sr * 0.05:
+            continue
+
+        rms = float(np.sqrt(np.mean(clip ** 2)))
+        peak = float(np.max(np.abs(clip)))
+
+        # Pitch via pyin
+        f0_mean = 0.0
+        f0_std = 0.0
+        try:
+            f0, voiced, _ = librosa.pyin(clip, fmin=60, fmax=400,
+                                          frame_length=2048)
+            f0_clean = f0[voiced]
+            if len(f0_clean) > 0:
+                f0_mean = float(np.nanmean(f0_clean))
+                f0_std = float(np.nanstd(f0_clean))
+        except Exception:
+            pass
+
+        # Classify voice level relative to global RMS
+        rms_ratio = rms / global_rms if global_rms > 0 else 1.0
+
+        if rms_ratio > 1.8:
+            level = "raised_voice"
+            label = "Raised voice / loud"
+            cert = 0.75
+        elif rms_ratio > 0.8:
+            level = "normal"
+            label = "Normal volume"
+            cert = 0.80
+        elif rms_ratio > 0.3:
+            level = "quiet"
+            label = "Quiet speech"
+            cert = 0.70
+        elif rms_ratio > 0.1:
+            level = "whisper"
+            label = "Whispered / very quiet"
+            cert = 0.65
+        else:
+            level = "sub_vocal"
+            label = "Sub-vocal / murmured"
+            cert = 0.50
+
+        # Shaky voice detection — high pitch variability
+        shaky = False
+        if f0_std > 60 and f0_mean > 80:
+            shaky = True
+        # Also check for amplitude instability
+        frame_rms = librosa.feature.rms(y=clip, frame_length=512, hop_length=256)[0]
+        if len(frame_rms) > 4:
+            rms_cv = float(np.std(frame_rms) / (np.mean(frame_rms) + 1e-8))
+            if rms_cv > 0.8:
+                shaky = True
+
+        # Speaking rate
+        word_count = len(seg.get("text", "").split())
+        seg_duration = seg.get("end", 0) - seg.get("start", 0)
+        rate = word_count / seg_duration if seg_duration > 0 else 0
+
+        entry = {
+            "index": seg.get("index", 0),
+            "timestamp": fmt_ms(seg.get("start", 0)),
+            "speaker": seg.get("speaker", ""),
+            "rms_energy": round(rms, 4),
+            "rms_ratio_to_global": round(rms_ratio, 3),
+            "peak_amplitude": round(peak, 4),
+            "f0_mean_hz": round(f0_mean, 1) if f0_mean else None,
+            "f0_std_hz": round(f0_std, 1) if f0_std else None,
+            "voice_level": level,
+            "voice_label": label,
+            "certainty": cert,
+            "speaking_rate_wps": round(rate, 2) if rate > 0 else None,
+        }
+
+        if shaky:
+            entry["shaky_voice"] = True
+            entry["shaky_label"] = "Shaky/crying voice — pitch or amplitude instability"
+            entry["shaky_certainty"] = 0.65
+
+        if level == "raised_voice":
+            entry["jefferson"] = "WORD (CAPS)"
+        elif level == "whisper":
+            entry["jefferson"] = "°word°"
+        elif level == "quiet":
+            entry["jefferson"] = "°word°"
+        elif level == "sub_vocal":
+            entry["jefferson"] = "((murmured))"
+
+        dynamics.append(entry)
+
+    return dynamics
+
+
+# ─── Clinical Markers ─────────────────────────────────────────────────────────
+
+def detect_clinical_markers(text: str, pause_before: float) -> list:
+    """Detect clinical phenotype markers: PTSD, ASD, ADHD, and general clinical."""
+    markers = []
+
+    # PTSD fragmentation
+    ptsd_patterns = [
+        (r'\b(the|that)\b.{1,30}\b(the|that)\b.{1,30}\b(the|that)\b', "repetition", "PTSD: Repetitive narrative fragments"),
+        (r'\b(I couldn\'t|I can\'t|I didn\'t want to)\b.{1,20}\b(anymore|any more|ever again)\b', "unfinished", "PTSD: Unfinished utterance pattern"),
+    ]
+    for pattern, mtype, note in ptsd_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            markers.append({"phenotype": "PTSD", "type": mtype, "note": note,
+                            "tei": f'<ptsd-frag type="{mtype}">', "certainty": 0.45})
+
+    # Somatic recall
+    if re.search(r'\b(felt like|my body|I could feel|in my chest|in my stomach|my hands were)\b', text, re.IGNORECASE):
+        markers.append({"phenotype": "PTSD", "type": "somatic", "note": "Visceral sensory recall",
+                        "tei": "<somatic>", "certainty": 0.55})
+
+    # Mental defeat
+    if re.search(r'\b(I (am|was) (alone|trapped|helpless|worthless|nothing)|nobody (cares|came|helped)|there\'s no (point|hope))\b', text, re.IGNORECASE):
+        markers.append({"phenotype": "PTSD", "type": "mental_defeat", "note": "First-person pronoun cluster + hopelessness",
+                        "tei": "<mental-defeat>", "certainty": 0.50})
+
+    # ADHD markers
+    if re.search(r'\b(anyway|so anyway|where was I|what was I saying|back to|tangent)\b', text, re.IGNORECASE):
+        markers.append({"phenotype": "ADHD", "type": "meta_correction", "note": "Self-correction back to topic",
+                        "tei": '<meta-correction type="rerail">', "certainty": 0.45})
+
+    # Maze (tangential narrative)
+    words = text.split()
+    if len(words) > 30:
+        topic_shifts = len(re.findall(r'\b(but|so|anyway|and then|oh|also|another thing)\b', text, re.IGNORECASE))
+        if topic_shifts > 3:
+            markers.append({"phenotype": "ADHD", "type": "maze", "note": f"Tangential narrative ({topic_shifts} topic shifts in {len(words)} words)",
+                            "tei": "<maze>", "certainty": 0.40})
+
+    # ASD markers
+    if pause_before > 1.0 and pause_before < 5.0:
+        # Non-grammatical pause (not at sentence boundary)
+        if not text.rstrip().endswith(('.', '!', '?')):
+            markers.append({"phenotype": "ASD", "type": "awkward_pause", "note": f"Non-grammatical pause ({pause_before:.1f}s)",
+                            "tei": f'<pause dur="{pause_before:.1f}s" type="awkward"/>', "certainty": 0.35})
+
+    return markers
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -196,7 +758,6 @@ def label_from_cluster(cluster_id: int) -> str:
 
 
 def diarise_pyannote(audio_path: Path, hf_token: str) -> list:
-    """Tier 3: pyannote.audio — best accuracy, requires HuggingFace token."""
     try:
         from pyannote.audio import Pipeline
     except ImportError:
@@ -225,9 +786,6 @@ def diarise_pyannote(audio_path: Path, hf_token: str) -> list:
 
 
 def diarise_local(audio_path: Path, n_speakers: int = None) -> list:
-    """Tier 2: Resemblyzer — fully local, no token, no internet.
-    pip3 install resemblyzer scikit-learn --break-system-packages
-    """
     try:
         from resemblyzer import VoiceEncoder, preprocess_wav
         from sklearn.cluster import AgglomerativeClustering
@@ -238,18 +796,14 @@ def diarise_local(audio_path: Path, n_speakers: int = None) -> list:
 
     print("Loading Resemblyzer voice encoder (local, no internet)...")
     encoder = VoiceEncoder()
-
     print("Preprocessing audio for voice analysis...")
     wav = preprocess_wav(str(audio_path))
-    sr = 16000  # Resemblyzer always uses 16kHz
+    sr = 16000
 
     print("Extracting voice embeddings per segment...")
     embeddings = []
     valid_indices = []
 
-    # We'll use the Whisper segments as our time windows
-    # This function is called before segments exist, so we build windows ourselves
-    # Use 3-second sliding windows for embedding
     window_s = 3.0
     step_s = 1.5
     n_samples = len(wav)
@@ -273,22 +827,16 @@ def diarise_local(audio_path: Path, n_speakers: int = None) -> list:
         print("  ⚠️ Not enough audio for voice clustering — defaulting to Speaker_01")
         return [{"start": 0, "end": duration_s, "speaker": "Speaker_01"}]
 
-    embeds_arr = embeddings  # list of 256-dim arrays
-
-    # Estimate speaker count if not given
     if n_speakers is None:
-        # Heuristic: start at 2, cap at 6
         n_speakers = min(6, max(2, len(embeddings) // 20))
         print(f"  → Auto-estimating {n_speakers} speakers")
 
     print(f"  → Clustering voice embeddings into {n_speakers} speaker groups...")
-    import numpy as np
     clustering = AgglomerativeClustering(n_clusters=n_speakers,
                                          metric="cosine",
                                          linkage="average")
-    labels = clustering.fit_predict(embeds_arr)
+    labels = clustering.fit_predict(embeddings)
 
-    # Build speaker turn list from windows
     turns = []
     for i, window in enumerate(windows):
         turns.append({
@@ -301,7 +849,6 @@ def diarise_local(audio_path: Path, n_speakers: int = None) -> list:
 
 
 def assign_speakers_from_turns(segments: list, speaker_turns: list) -> list:
-    """Map Whisper segments to diarized speaker turns by timestamp overlap."""
     if not speaker_turns:
         return segments
 
@@ -323,11 +870,6 @@ def assign_speakers_from_turns(segments: list, speaker_turns: list) -> list:
 
 def match_known_voices(audio_path: Path, segments: list,
                        voice_refs: list) -> list:
-    """
-    Match known voice clips against diarized speaker clusters.
-    voice_refs: list of (audio_path, name) tuples.
-    Returns list of match results, and renames speaker labels in segments in-place.
-    """
     if not voice_refs:
         return []
     try:
@@ -342,14 +884,13 @@ def match_known_voices(audio_path: Path, segments: list,
     sr = 16000
     audio_wav = preprocess_wav(str(audio_path))
 
-    # Build average embedding per discovered speaker
     speaker_clip_embeds: dict = {}
     for seg in segments:
         spk = seg.get("speaker", "Speaker_01")
         start_i = int(seg["start"] * sr)
         end_i = int(seg["end"] * sr)
         clip = audio_wav[start_i:end_i]
-        if len(clip) < sr * 0.5:  # skip clips under 0.5s
+        if len(clip) < sr * 0.5:
             continue
         try:
             embed = encoder.embed_utterance(clip)
@@ -362,7 +903,7 @@ def match_known_voices(audio_path: Path, segments: list,
         speaker_avg[spk] = np.mean(embeds, axis=0)
 
     results = []
-    rename_map: dict = {}  # old_label -> new_name
+    rename_map: dict = {}
 
     for ref_path, ref_name in voice_refs:
         ref_path = Path(ref_path)
@@ -386,7 +927,6 @@ def match_known_voices(audio_path: Path, segments: list,
         best_sim = similarities[best_spk]
         cert = round(min(0.95, max(0.20, best_sim)), 2)
 
-        # Only rename if similarity is convincing (>0.60)
         if best_sim >= 0.60 and best_spk not in rename_map:
             rename_map[best_spk] = ref_name
             print(f"     ✅ {best_spk} → '{ref_name}' [C:{cert:.2f}]")
@@ -406,7 +946,6 @@ def match_known_voices(audio_path: Path, segments: list,
                     else "⚠️ similarity <0.60 — verify before trusting",
         })
 
-    # Apply renames to segments
     if rename_map:
         for seg in segments:
             old = seg.get("speaker", "")
@@ -448,31 +987,26 @@ def detect_glossary_terms(segments: list) -> list:
             "first_appears_at": fmt_ms(first_time(term)),
         })
 
-    # Acronyms (2-5 uppercase letters, not trivial)
     trivial = {"I", "UK", "US", "TV", "OK", "AM", "PM", "GP"}
     for m in re.finditer(r'\b([A-Z]{2,5})\b', full_text):
         ac = m.group(1)
         if ac not in trivial:
             add(ac, "acronym", "Acronym — definition unknown; please fill in", 0.55)
 
-    # Medical
     for term in MEDICAL_TERMS:
         if re.search(r'\b' + re.escape(term) + r'\b', full_text, re.IGNORECASE):
             add(term, "medical/clinical",
                 "Medical or clinical term — see NHS guidance or professional definition", 0.82)
 
-    # Legal
     for term in LEGAL_TERMS:
         if re.search(r'\b' + re.escape(term) + r'\b', full_text, re.IGNORECASE):
             add(term, "legal",
                 "Legal or regulatory term — consult solicitor or official guidance", 0.82)
 
-    # Tech
     for term in TECH_TERMS:
         if re.search(r'\b' + re.escape(term) + r'\b', full_text, re.IGNORECASE):
             add(term, "technical", "Technical/digital term", 0.78)
 
-    # Drug name patterns
     drug_re = re.compile(
         r'\b([A-Za-z]{3,}(?:ol|ine|mab|nib|stat|pril|sartan|azole|mycin|cillin))\b',
         re.IGNORECASE
@@ -483,14 +1017,12 @@ def detect_glossary_terms(segments: list) -> list:
             add(term, "medication",
                 "Possible medication — verify: dosage, purpose, side effects", 0.65)
 
-    # Similes / metaphors
     for m in re.finditer(r'\b(?:like|as)\s+(?:a|an|the)\s+(\w+)', full_text, re.IGNORECASE):
         phrase = f"like a {m.group(1)}"
         if phrase.lower() not in seen:
             add(phrase, "metaphor/simile",
                 "Figurative expression — contextual interpretation may be needed", 0.45)
 
-    # Custom definitions from config/wordlists.json
     for entry in CUSTOM_GLOSSARY_DEFS:
         if not isinstance(entry, dict):
             continue
@@ -507,14 +1039,11 @@ def detect_glossary_terms(segments: list) -> list:
 
 
 def build_term_index(glossary: list) -> dict:
-    """term_lower -> gid"""
     return {e["term"].lower(): e["id"] for e in glossary}
 
 
 def mark_glossary_inline(text: str, term_index: dict, already_marked: set) -> tuple:
-    """Insert [G:N] on first occurrence of each term. Returns (marked_text, updated_set)."""
     result = text
-    # Longest terms first to avoid partial matches
     for term_lower, gid in sorted(term_index.items(), key=lambda x: -len(x[0])):
         if term_lower in already_marked:
             continue
@@ -530,7 +1059,6 @@ def mark_glossary_inline(text: str, term_index: dict, already_marked: set) -> tu
 def extract_things(segments: list, speaker_hints: list) -> dict:
     full_text = " ".join(s.get("text", "") for s in segments)
 
-    # People
     people = []
     seen_people = set()
     for hint in speaker_hints:
@@ -559,7 +1087,6 @@ def extract_things(segments: list, speaker_hints: list) -> dict:
                            "source": "heuristic",
                            "flag": "⚠️ verify" if cert < 0.70 else None})
 
-    # Places — built-in + config/places.json
     extra = "|".join(re.escape(p.lower()) for p in EXTRA_PLACES) if EXTRA_PLACES else ""
     extra_part = ("|" + extra) if extra else ""
     loc_pat = (r'\b(hospital|clinic|surgery|school|park|station|court|council|ward|'
@@ -571,12 +1098,11 @@ def extract_things(segments: list, speaker_hints: list) -> dict:
         count = len(re.findall(r'\b' + re.escape(m) + r'\b', full_text, re.IGNORECASE))
         places.append({"place": m, "certainty": 0.70, "occurrences": count})
 
-    # Dates
     dates = []
     date_patterns = [
-        (r'\b(\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})\b', "absolute"),
+        (r'\b(\d{1,2}[\/\-\.]\\d{1,2}[\/\-\.]\\d{2,4})\b', "absolute"),
         (r'\b(\d{1,2}(?:st|nd|rd|th)?\s+(?:january|february|march|april|may|june|'
-         r'july|august|september|october|november|december)(?:\s+\d{4})?)\b', "absolute"),
+         r'july|august|september|october|november|december)(?:\s+\\d{4})?)\b', "absolute"),
         (r'\b(yesterday|today|tomorrow|last\s+\w+|next\s+\w+|this\s+\w+)\b', "relative"),
     ]
     seen_dates = set()
@@ -587,7 +1113,6 @@ def extract_things(segments: list, speaker_hints: list) -> dict:
                 seen_dates.add(val.lower())
                 dates.append({"value": val, "type": dtype, "certainty": 0.88})
 
-    # Times
     times = []
     seen_times = set()
     for m in re.findall(
@@ -606,13 +1131,21 @@ def extract_things(segments: list, speaker_hints: list) -> dict:
     }
 
 
-# ─── Emotions ─────────────────────────────────────────────────────────────────
+# ─── Emotions (Enhanced with all indicators) ──────────────────────────────────
 
-def build_emotions(segments: list, env_events: list, acoustic: list, room: list) -> dict:
+def build_emotions(segments: list, env_events: list, acoustic: list, room: list,
+                   enable_jefferson: bool = True, enable_deception: bool = True,
+                   enable_veracity: bool = True, enable_clinical: bool = True,
+                   enable_emotional: bool = True) -> dict:
     emotion_segments = []
     pauses = []
     freeze_events = []
     prev_end = 0.0
+    prev_text = ""
+
+    all_deception = []
+    all_veracity = []
+    all_clinical = []
 
     for i, seg in enumerate(segments):
         start = seg.get("start", 0)
@@ -621,6 +1154,7 @@ def build_emotions(segments: list, env_events: list, acoustic: list, room: list)
         speaker = seg.get("speaker", "Speaker")
         pause_before = max(0.0, round(start - prev_end, 2))
 
+        # Pause detection
         if pause_before > 10:
             freeze_events.append({
                 "timestamp": fmt_ms(prev_end),
@@ -636,31 +1170,52 @@ def build_emotions(segments: list, env_events: list, acoustic: list, room: list)
             pauses.append({"timestamp": fmt_ms(prev_end), "duration_s": pause_before,
                            "type": "notable", "certainty": 0.85})
 
+        # Affect heuristics
         emoji = "😐"
         affect = "Neutral"
         intensity = 5
-        for pattern, em, label, inten in AFFECT_HEURISTICS:
-            if re.search(pattern, text, re.IGNORECASE):
-                emoji = em
-                affect = label
-                intensity = inten
-                break
+        if enable_emotional:
+            for pattern, em, label, inten in AFFECT_HEURISTICS:
+                if re.search(pattern, text, re.IGNORECASE):
+                    emoji = em
+                    affect = label
+                    intensity = inten
+                    break
 
         has_caps = bool(re.search(r'\b[A-Z]{3,}\b', text))
         if has_caps:
             intensity = min(10, intensity + 2)
-            emoji = "😠"
-            affect = "Raised voice / emphasis"
+            if affect == "Neutral":
+                emoji = "😠"
+                affect = "Raised voice / emphasis"
 
-        jefferson = []
-        if has_caps:
-            jefferson.append("CAPS — shouting or strong emphasis")
-        if "?" in text:
-            jefferson.append("? — question / uncertainty")
-        if pause_before > 1.5:
-            jefferson.append(f"({pause_before:.1f}) — pause before utterance")
+        # Jefferson markers (all, enhanced)
+        jefferson_markers = []
+        if enable_jefferson:
+            jefferson_markers = detect_jefferson_markers(text, pause_before, prev_text)
 
-        emotion_segments.append({
+        # Deception indicators
+        deception_markers = []
+        if enable_deception:
+            deception_markers = detect_deception_indicators(text, prev_text)
+            if deception_markers:
+                all_deception.extend([{"segment_index": i, "timestamp": fmt_ms(start), **d} for d in deception_markers])
+
+        # Veracity indicators
+        veracity_markers = []
+        if enable_veracity:
+            veracity_markers = detect_veracity_indicators(text, pause_before)
+            if veracity_markers:
+                all_veracity.extend([{"segment_index": i, "timestamp": fmt_ms(start), **v} for v in veracity_markers])
+
+        # Clinical markers
+        clinical_markers = []
+        if enable_clinical:
+            clinical_markers = detect_clinical_markers(text, pause_before)
+            if clinical_markers:
+                all_clinical.extend([{"segment_index": i, "timestamp": fmt_ms(start), **c} for c in clinical_markers])
+
+        seg_entry = {
             "index": i,
             "timestamp": fmt_ms(start),
             "start_s": round(start, 2),
@@ -673,10 +1228,16 @@ def build_emotions(segments: list, env_events: list, acoustic: list, room: list)
             "affect_label": affect,
             "has_raised_voice": has_caps,
             "has_question": "?" in text,
-            "jefferson_markers": jefferson,
+            "jefferson_markers": jefferson_markers,
+            "deception_markers": deception_markers,
+            "veracity_markers": veracity_markers,
+            "clinical_markers": clinical_markers,
             "certainty": 0.65,
-        })
+        }
+
+        emotion_segments.append(seg_entry)
         prev_end = end
+        prev_text = text
 
     return {
         "total_segments": len(segments),
@@ -688,6 +1249,21 @@ def build_emotions(segments: list, env_events: list, acoustic: list, room: list)
             for e in (env_events + acoustic + room)
         ],
         "segments": emotion_segments,
+        "deception_indicators": all_deception,
+        "veracity_indicators": all_veracity,
+        "clinical_markers": all_clinical,
+        "summary": {
+            "total_deception_markers": len(all_deception),
+            "total_veracity_markers": len(all_veracity),
+            "total_clinical_markers": len(all_clinical),
+            "freeze_events_count": len(freeze_events),
+            "significant_pauses_count": len(pauses),
+            "jefferson_enabled": enable_jefferson,
+            "deception_enabled": enable_deception,
+            "veracity_enabled": enable_veracity,
+            "clinical_enabled": enable_clinical,
+            "emotional_enabled": enable_emotional,
+        },
     }
 
 
@@ -799,6 +1375,34 @@ def build_noteworthy(emotions: dict, env_events: list, acoustic: list,
             "note": f"Possible {e['type']} — may affect transcript accuracy nearby",
         })
 
+    # Deception flags
+    for d in emotions.get("deception_indicators", []):
+        items.append({
+            "type": f"deception_{d.get('type', 'unknown')}",
+            "timestamp": d.get("timestamp", ""),
+            "certainty": d.get("certainty", 0.5),
+            "note": f"DECEPTION: {d.get('note', '')} [{d.get('symbol', '')}]",
+            "action": "Review context — single indicator is not proof of deception",
+        })
+
+    # Veracity positives
+    for v in emotions.get("veracity_indicators", []):
+        items.append({
+            "type": f"veracity_{v.get('type', 'unknown')}",
+            "timestamp": v.get("timestamp", ""),
+            "certainty": v.get("certainty", 0.5),
+            "note": f"VERACITY: {v.get('note', '')} [{v.get('symbol', '')}]",
+        })
+
+    # Clinical markers
+    for c in emotions.get("clinical_markers", []):
+        items.append({
+            "type": f"clinical_{c.get('phenotype', 'unknown')}",
+            "timestamp": c.get("timestamp", ""),
+            "certainty": c.get("certainty", 0.4),
+            "note": f"CLINICAL ({c.get('phenotype', '')}): {c.get('note', '')} [{c.get('tei', '')}]",
+        })
+
     for p in things.get("people", []):
         if p["certainty"] < 0.60:
             items.append({
@@ -845,13 +1449,15 @@ def generate_hashtags(things: dict, segments: list, context_type: str) -> list:
     return sorted(tags)
 
 
-# ─── Transcript MD ────────────────────────────────────────────────────────────
+# ─── Transcript MD (Enhanced with all inline markers) ──────────────────────────
 
 def build_transcript_md(segments: list, emotions_data: dict,
-                        glossary: list, audio_path: Path) -> str:
+                        glossary: list, audio_path: Path,
+                        voice_dynamics: list = None) -> str:
     term_index = build_term_index(glossary)
     already_marked: set = set()
     em_by_index = {e["index"]: e for e in emotions_data["segments"]}
+    vd_by_index = {v["index"]: v for v in voice_dynamics} if voice_dynamics else {}
 
     lines = [
         f"# Transcript: {audio_path.name}",
@@ -863,9 +1469,15 @@ def build_transcript_md(segments: list, emotions_data: dict,
         "| [meta.json](meta.json) | Recording metadata, speakers, hashtags |",
         "| [glossary.json](glossary.json) | Terms marked `[G:N]` in this transcript |",
         "| [noteworthy.json](noteworthy.json) | Freezes, room changes, uncertainties |",
+        "| [omni.md](omni.md) | EVERYTHING — all views, all indicators, all markers |",
+        "| [analysis.json](analysis.json) | Structured deception/veracity/voice/clinical data |",
         "",
         "> `[G:N]` after a word → see entry N in glossary.json",
         "> `[C:0.00–1.00]` certainty — below 0.70 is ⚠️ verify",
+        "> Jefferson markers shown inline: WORD=shout, °word°=whisper, ~word~=shaky, #word#=creaky",
+        "> word::=prolonged, ↑↑=pitch spike, ↓↓=pitch drop, >word<=fast, <word>=slow",
+        "> Deception: <fs>=false start, <corrsp>=correction, <rep>=repetition, <lack-mem>=memory lapse",
+        "> Veracity: <veracious>=certainty, <sensory-recall>=sensory, <temporal>=sequencing",
         "",
         "---",
         "",
@@ -880,8 +1492,10 @@ def build_transcript_md(segments: list, emotions_data: dict,
         text = seg.get("text", "").strip()
         speaker = seg.get("speaker", "Speaker")
         em = em_by_index.get(i, {})
+        vd = vd_by_index.get(i, {})
         pause_before = max(0.0, start - prev_end)
 
+        # Pause markers
         if pause_before > 10:
             m_v = int(pause_before // 60)
             s_v = pause_before % 60
@@ -890,21 +1504,57 @@ def build_transcript_md(segments: list, emotions_data: dict,
             lines.append(f"\n`({pause_before:.2f})` ⚠️ significant pause\n")
         elif pause_before > 1.5:
             lines.append(f"\n`({pause_before:.2f})`\n")
+        elif 0.08 <= pause_before <= 0.2:
+            lines.append(f"\n`(.)`\n")
 
+        # Speaker header
         if speaker != prev_speaker:
             emoji = em.get("emoji", "😐")
             affect = em.get("affect_label", "Neutral")
             intensity = em.get("intensity", 5)
+            # Add voice level to header
+            voice_info = ""
+            if vd:
+                vl = vd.get("voice_level", "")
+                if vl and vl != "normal":
+                    voice_info = f" [{vd.get('voice_label', '')}]"
             lines.append(
                 f"\n**[{fmt_ms(start)}] {{{speaker}}} "
-                f"[{emoji} {affect} : {intensity}/10] [C:0.70]:**"
+                f"[{emoji} {affect} : {intensity}/10]{voice_info} [C:0.70]:**"
             )
             prev_speaker = speaker
         else:
             lines.append(f"[{fmt_ms(start)}]")
 
+        # Inline glossary marks
         marked_text, already_marked = mark_glossary_inline(text, term_index, already_marked)
+
+        # Add inline deception/veracity markers AFTER the text
+        deco_markers = em.get("deception_markers", [])
+        ver_markers = em.get("veracity_markers", [])
+        clin_markers = em.get("clinical_markers", [])
+
         lines.append(marked_text)
+
+        # Inline indicator annotations
+        annotations = []
+        for d in deco_markers:
+            annotations.append(f"  ⚠️ DECEPTION: {d.get('note', '')} {d.get('symbol', '')} [C:{d.get('certainty', 0.5):.2f}]")
+        for v in ver_markers:
+            annotations.append(f"  ✓ VERACITY: {v.get('note', '')} {v.get('symbol', '')} [C:{v.get('certainty', 0.5):.2f}]")
+        for c in clin_markers:
+            annotations.append(f"  🏥 CLINICAL: {c.get('note', '')} {c.get('tei', '')} [C:{c.get('certainty', 0.4):.2f}]")
+
+        # Jefferson markers summary
+        jf_markers = em.get("jefferson_markers", [])
+        if jf_markers:
+            jf_summary = ", ".join(f"{m['symbol']} ({m['phenomenon']})" for m in jf_markers[:5])
+            annotations.append(f"  📝 JEFFERSON: {jf_summary}")
+
+        if annotations:
+            for a in annotations:
+                lines.append(a)
+
         prev_end = end
 
     lines += [
@@ -925,9 +1575,542 @@ def build_transcript_md(segments: list, emotions_data: dict,
     lines += [
         "",
         "---",
-        "_Generated by Emotion Audio Analyser v2.0_",
-        "_Paste transcript.md into Claude with the `emotion-audio-analyser` skill for full annotation_",
+        f"_Generated by Emotion Audio Analyser v3.0_",
+        f"_All Jefferson markers ON | Deception indicators ON | Veracity indicators ON | Voice dynamics ON_",
+        f"_Paste transcript.md into Claude with the `emotion-audio-analyser` skill for full annotation_",
     ]
+    return "\n".join(lines)
+
+
+# ─── Omni Output (single comprehensive file with EVERYTHING) ──────────────────
+
+def build_omni_md(segments: list, emotions_data: dict, things: dict,
+                  glossary: list, noteworthy: list, voice_dynamics: list,
+                  meta: dict, audio_path: Path, config_summary: dict,
+                  cost_estimate: dict) -> str:
+    """Build omni.md — a single comprehensive markdown file containing EVERYTHING:
+    - Full annotated transcript with all inline markers
+    - Emotion timeline
+    - Deception indicator matrix
+    - Veracity indicator matrix
+    - Voice dynamics report
+    - Clinical markers report
+    - Environmental events log
+    - Entity register
+    - Speaker manifest
+    - Noteworthy items
+    - Glossary
+    - Acoustic-prosodic summary
+    - Cost/token estimate
+    - Config summary
+    """
+    em_by_index = {e["index"]: e for e in emotions_data["segments"]}
+    vd_by_index = {v["index"]: v for v in voice_dynamics} if voice_dynamics else {}
+
+    lines = [
+        f"# OMNI OUTPUT — {audio_path.name}",
+        "",
+        f"_Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_",
+        f"_Schema: Affective-Clinical-MD v3.0 (Omni)_",
+        f"_All indicators ON by default — see config summary below_",
+        "",
+        "---",
+        "",
+        "## Table of Contents",
+        "1. [Recording Metadata](#recording-metadata)",
+        "2. [Cost & Token Estimate](#cost--token-estimate)",
+        "3. [Entity Register](#entity-register)",
+        "4. [Speaker Manifest](#speaker-manifest)",
+        "5. [Emotion Timeline](#emotion-timeline)",
+        "6. [Deception Indicator Matrix](#deception-indicator-matrix)",
+        "7. [Veracity Indicator Matrix](#veracity-indicator-matrix)",
+        "8. [Voice Dynamics Report](#voice-dynamics-report)",
+        "9. [Clinical Markers Report](#clinical-markers-report)",
+        "10. [Jefferson Paralinguistic Markers](#jefferson-paralinguistic-markers)",
+        "11. [Environmental Events Log](#environmental-events-log)",
+        "12. [Noteworthy Items](#noteworthy-items)",
+        "13. [Full Annotated Transcript](#full-annotated-transcript)",
+        "14. [Glossary](#glossary)",
+        "15. [Configuration Summary](#configuration-summary)",
+        "",
+        "---",
+        "",
+    ]
+
+    # ── 1. Recording Metadata ──
+    lines += [
+        "## Recording Metadata",
+        "",
+        f"| Field | Value |",
+        f"|-------|-------|",
+        f"| File | {meta.get('audio_file', '')} |",
+        f"| Duration | {meta.get('duration_formatted', '')} ({meta.get('duration_s', 0)}s) |",
+        f"| Whisper model | {meta.get('whisper_model', '')} |",
+        f"| Language | {meta.get('language', '')} |",
+        f"| Context | {meta.get('context_type', '')} |",
+        f"| Schema | {meta.get('schema_version', '')} |",
+        f"| Privacy | {'✅ Local only' if meta.get('wispr_privacy_mode') else '⚠️ Unknown'} |",
+        f"| Segments | {meta.get('segment_count', 0)} |",
+        f"| Words | {meta.get('word_count', 0)} |",
+        f"| Hashtags | {' '.join(meta.get('hashtags', []))} |",
+        "",
+    ]
+
+    # ── 2. Cost & Token Estimate ──
+    lines += [
+        "## Cost & Token Estimate",
+        "",
+        f"| Metric | Value |",
+        f"|--------|-------|",
+        f"| Estimated words | {cost_estimate.get('estimated_words', '?')} |",
+        f"| Estimated tokens | {cost_estimate.get('estimated_tokens', '?')} |",
+        f"| Model used | {cost_estimate.get('model', '?')} |",
+        f"| Est. processing time | {cost_estimate.get('estimated_process_minutes', '?')} min |",
+        f"| Cost (local Whisper) | ${cost_estimate.get('cost_usd', 0):.2f} |",
+        f"| Note | {cost_estimate.get('note', '')} |",
+        "",
+        "**Token Min-Maxing Tips:**",
+        "- Use `--auto-model` to auto-select Whisper model based on duration",
+        "- For batch processing, split long files and use `tiny` for drafts, `base` for final",
+        "- Sub-agents can process different files in parallel with different models",
+        "- Cloud LLM annotation pass costs ~$0.01-0.05 per transcript via OpenRouter",
+        "",
+    ]
+
+    # ── 3. Entity Register ──
+    lines += [
+        "## Entity Register",
+        "",
+        "| Entity | Type | [C:] | Occurrences | Notes |",
+        "|--------|------|------|-------------|-------|",
+    ]
+    for p in things.get("people", []):
+        flag = p.get("flag", "") or ""
+        lines.append(f"| {p['name']} | Person | [C:{p['certainty']:.2f}] | {p['occurrences']} | {p.get('source', '')} {flag} |")
+    for pl in things.get("places", []):
+        lines.append(f"| {pl['place']} | Place | [C:{pl['certainty']:.2f}] | {pl['occurrences']} | |")
+    for d in things.get("dates", []):
+        lines.append(f"| {d['value']} | Date ({d['type']}) | [C:{d['certainty']:.2f}] | | |")
+    for t in things.get("times", []):
+        lines.append(f"| {t['value']} | Time | [C:{t['certainty']:.2f}] | | |")
+    lines.append("")
+
+    # ── 4. Speaker Manifest ──
+    lines += [
+        "## Speaker Manifest",
+        "",
+        f"| Speaker | Method |",
+        f"|---------|--------|",
+    ]
+    dia = meta.get("diarization", {})
+    for spk in dia.get("speaker_labels", []):
+        lines.append(f"| {spk} | {dia.get('method', 'unknown')} |")
+    for vm in dia.get("voice_matching", []):
+        renamed = vm.get("renamed_to", "")
+        if renamed:
+            lines.append(f"| → renamed to: {renamed} | matched: {vm['best_match_speaker']} [C:{vm['certainty']:.2f}] |")
+    lines.append("")
+
+    # ── 5. Emotion Timeline ──
+    lines += [
+        "## Emotion Timeline",
+        "",
+        "| Time | Speaker | Emoji | Affect | Intensity | Pauses | Question | Raised |",
+        "|------|---------|-------|--------|-----------|--------|----------|--------|",
+    ]
+    for seg in emotions_data["segments"]:
+        lines.append(
+            f"| {seg['timestamp']} | {seg['speaker']} | {seg['emoji']} | {seg['affect_label']} "
+            f"| {seg['intensity']}/10 | {seg['pause_before_s']:.1f}s | "
+            f"{'?' if seg['has_question'] else ''} | "
+            f"{'⚠️' if seg['has_raised_voice'] else ''} |"
+        )
+    lines.append("")
+
+    # Emotion distribution
+    affects = {}
+    for seg in emotions_data["segments"]:
+        label = seg["affect_label"]
+        affects[label] = affects.get(label, 0) + 1
+    lines += [
+        "### Emotion Distribution",
+        "",
+        "| Affect | Count | % |",
+        "|--------|-------|---|",
+    ]
+    total = sum(affects.values()) or 1
+    for label, count in sorted(affects.items(), key=lambda x: -x[1]):
+        lines.append(f"| {label} | {count} | {count/total*100:.0f}% |")
+    lines.append("")
+
+    # ── 6. Deception Indicator Matrix ──
+    all_deception = emotions_data.get("deception_indicators", [])
+    lines += [
+        "## Deception Indicator Matrix",
+        "",
+        f"**Total deception indicators detected: {len(all_deception)}**",
+        "",
+    ]
+    if all_deception:
+        # Group by type
+        by_type = {}
+        for d in all_deception:
+            t = d.get("type", "unknown")
+            by_type.setdefault(t, []).append(d)
+
+        lines += [
+            "| Type | Symbol | Count | Avg Certainty | Examples |",
+            "|------|--------|-------|---------------|----------|",
+        ]
+        for dtype, items in sorted(by_type.items(), key=lambda x: -len(x[1])):
+            avg_cert = sum(i.get("certainty", 0.5) for i in items) / len(items)
+            examples = "; ".join(i.get("note", "")[:60] for i in items[:3])
+            sym = items[0].get("symbol", "")
+            lines.append(f"| {dtype} | {sym} | {len(items)} | [C:{avg_cert:.2f}] | {examples} |")
+        lines.append("")
+
+        lines += [
+            "### Deception Indicators Detail",
+            "",
+            "| Time | Type | Note | Symbol | [C:] |",
+            "|------|------|------|--------|------|",
+        ]
+        for d in all_deception:
+            lines.append(f"| {d.get('timestamp', '')} | {d.get('type', '')} | {d.get('note', '')} | {d.get('symbol', '')} | [C:{d.get('certainty', 0.5):.2f}] |")
+        lines.append("")
+    else:
+        lines += ["_No deception indicators detected._", ""]
+
+    lines += [
+        "> ⚠️ **IMPORTANT**: Deception indicators are NOT proof of deception. They are patterns",
+        "> that *may* indicate cognitive load, rehearsal, or evasive behaviour. Single indicators",
+        "> are meaningless — look for clusters and patterns. Always consider context, baseline",
+        "> behaviour, and alternative explanations. These are heuristic text-pattern matches, not",
+        "> voice-stress analysis or scientific deception detection.",
+        "",
+    ]
+
+    # ── 7. Veracity Indicator Matrix ──
+    all_veracity = emotions_data.get("veracity_indicators", [])
+    lines += [
+        "## Veracity Indicator Matrix",
+        "",
+        f"**Total veracity indicators detected: {len(all_veracity)}**",
+        "",
+    ]
+    if all_veracity:
+        by_type = {}
+        for v in all_veracity:
+            t = v.get("type", "unknown")
+            by_type.setdefault(t, []).append(v)
+
+        lines += [
+            "| Type | Symbol | Count | Avg Certainty | Examples |",
+            "|------|--------|-------|---------------|----------|",
+        ]
+        for vtype, items in sorted(by_type.items(), key=lambda x: -len(x[1])):
+            avg_cert = sum(i.get("certainty", 0.5) for i in items) / len(items)
+            examples = "; ".join(i.get("note", "")[:60] for i in items[:3])
+            sym = items[0].get("symbol", "")
+            lines.append(f"| {vtype} | {sym} | {len(items)} | [C:{avg_cert:.2f}] | {examples} |")
+        lines.append("")
+
+        lines += [
+            "### Veracity Indicators Detail",
+            "",
+            "| Time | Type | Note | Symbol | [C:] |",
+            "|------|------|------|--------|------|",
+        ]
+        for v in all_veracity:
+            lines.append(f"| {v.get('timestamp', '')} | {v.get('type', '')} | {v.get('note', '')} | {v.get('symbol', '')} | [C:{v.get('certainty', 0.5):.2f}] |")
+        lines.append("")
+    else:
+        lines += ["_No veracity indicators detected._", ""]
+
+    # Deception vs Veracity ratio
+    deco_count = len(all_deception)
+    ver_count = len(all_veracity)
+    total_indicators = deco_count + ver_count
+    if total_indicators > 0:
+        deco_pct = deco_count / total_indicators * 100
+        ver_pct = ver_count / total_indicators * 100
+        lines += [
+            "### Deception vs Veracity Balance",
+            "",
+            f"| Metric | Value |",
+            f"|--------|-------|",
+            f"| Deception indicators | {deco_count} ({deco_pct:.0f}%) |",
+            f"| Veracity indicators | {ver_count} ({ver_pct:.0f}%) |",
+            f"| Ratio (veracity:deception) | {ver_count/max(deco_count,1):.1f}:1 |",
+            f"| Interpretation | {'More veracity signals — likely truthful overall' if ver_pct > 60 else 'More deception signals — review carefully' if deco_pct > 60 else 'Balanced — inconclusive from indicators alone'} |",
+            "",
+        ]
+
+    return "\n".join(lines)
+
+
+    # ── 8. Voice Dynamics Report ──
+    lines += [
+        "## Voice Dynamics Report",
+        "",
+    ]
+    if voice_dynamics:
+        # Summary stats
+        levels = {}
+        shaky_count = 0
+        for vd in voice_dynamics:
+            level = vd.get("voice_level", "unknown")
+            levels[level] = levels.get(level, 0) + 1
+            if vd.get("shaky_voice"):
+                shaky_count += 1
+
+        lines += [
+            "### Voice Level Distribution",
+            "",
+            "| Level | Count | % | Jefferson |",
+            "|-------|-------|---|-----------|",
+        ]
+        total_vd = len(voice_dynamics) or 1
+        jf_map = {"raised_voice": "WORD (CAPS)", "normal": "—", "quiet": "°word°",
+                  "whisper": "°word°", "sub_vocal": "((murmured))"}
+        for level in ["raised_voice", "normal", "quiet", "whisper", "sub_vocal"]:
+            count = levels.get(level, 0)
+            if count:
+                lines.append(f"| {level.replace('_', ' ').title()} | {count} | {count/total_vd*100:.0f}% | {jf_map.get(level, '')} |")
+        lines.append("")
+
+        if shaky_count:
+            lines += [f"**Shaky/crying voice detected in {shaky_count} segments** (~{shaky_count/total_vd*100:.0f}%)\n"]
+
+        lines += [
+            "### Voice Dynamics Detail",
+            "",
+            "| Time | Speaker | Level | RMS | F0 Mean | F0 Std | Rate | Shaky |",
+            "|------|---------|-------|-----|---------|--------|------|-------|",
+        ]
+        for vd in voice_dynamics:
+            shaky = "⚠️ yes" if vd.get("shaky_voice") else ""
+            f0m = f"{vd['f0_mean_hz']:.0f}Hz" if vd.get("f0_mean_hz") else "—"
+            f0s = f"{vd['f0_std_hz']:.0f}Hz" if vd.get("f0_std_hz") else "—"
+            rate = f"{vd['speaking_rate_wps']:.1f}w/s" if vd.get("speaking_rate_wps") else "—"
+            lines.append(f"| {vd['timestamp']} | {vd['speaker']} | {vd['voice_label']} | {vd['rms_energy']:.4f} | {f0m} | {f0s} | {rate} | {shaky} |")
+        lines.append("")
+    else:
+        lines += ["_Voice dynamics analysis not available (librosa may not be installed)._\n"]
+
+    # ── 9. Clinical Markers Report ──
+    all_clinical = emotions_data.get("clinical_markers", [])
+    lines += [
+        "## Clinical Markers Report",
+        "",
+        f"**Total clinical markers detected: {len(all_clinical)}**",
+        "",
+    ]
+    if all_clinical:
+        by_phenotype = {}
+        for c in all_clinical:
+            ph = c.get("phenotype", "unknown")
+            by_phenotype.setdefault(ph, []).append(c)
+
+        for ph, items in sorted(by_phenotype.items()):
+            lines += [f"### {ph} Markers ({len(items)} detected)", ""]
+            lines += [
+                "| Time | Type | Note | TEI | [C:] |",
+                "|------|------|------|-----|------|",
+            ]
+            for c in items:
+                lines.append(f"| {c.get('timestamp', '')} | {c.get('type', '')} | {c.get('note', '')} | {c.get('tei', '')} | [C:{c.get('certainty', 0.4):.2f}] |")
+            lines.append("")
+    else:
+        lines += ["_No clinical markers detected._", ""]
+
+    # ── 10. Jefferson Paralinguistic Markers ──
+    lines += [
+        "## Jefferson Paralinguistic Markers",
+        "",
+    ]
+    all_jf = {}
+    for seg in emotions_data["segments"]:
+        for jf in seg.get("jefferson_markers", []):
+            sym = jf.get("symbol", "")
+            all_jf.setdefault(sym, {"count": 0, "phenomenon": jf.get("phenomenon", ""), "clinical": jf.get("clinical_note", "")})
+            all_jf[sym]["count"] += 1
+
+    if all_jf:
+        lines += [
+            "| Symbol | Phenomenon | Count | Clinical Note |",
+            "|--------|-----------|-------|---------------|",
+        ]
+        for sym, info in sorted(all_jf.items(), key=lambda x: -x[1]["count"]):
+            lines.append(f"| `{sym}` | {info['phenomenon']} | {info['count']} | {info['clinical']} |")
+        lines.append("")
+    else:
+        lines += ["_No Jefferson markers detected._", ""]
+
+    # ── 11. Environmental Events Log ──
+    lines += [
+        "## Environmental Events Log",
+        "",
+    ]
+    env_events = emotions_data.get("environmental_events", [])
+    if env_events:
+        lines += [
+            "| Time | Duration | Type | [C:] |",
+            "|------|----------|------|------|",
+        ]
+        for e in env_events[:30]:
+            lines.append(f"| {e.get('timestamp', '')} | {e.get('duration_s', '')}s | {e.get('type', '')} | [C:{e.get('certainty', 0.5):.2f}] |")
+        if len(env_events) > 30:
+            lines.append(f"| ... | ... | _{len(env_events) - 30} more events_ | |")
+        lines.append("")
+    else:
+        lines += ["_No environmental events detected._", ""]
+
+    # Freeze events
+    if emotions_data.get("freeze_events"):
+        lines += [
+            "### 🚨 Freeze Events (>10s silence)",
+            "",
+            "| Time | Duration | [C:] | Note |",
+            "|------|----------|------|------|",
+        ]
+        for fe in emotions_data["freeze_events"]:
+            lines.append(f"| {fe['timestamp']} | {fe['duration_s']}s | [C:{fe['certainty']:.2f}] | {fe['note']} |")
+        lines.append("")
+
+    # ── 12. Noteworthy Items ──
+    lines += [
+        "## Noteworthy Items",
+        "",
+        f"**Total noteworthy items: {len(noteworthy)}**",
+        "",
+    ]
+    if noteworthy:
+        # Group by type
+        by_type = {}
+        for item in noteworthy:
+            t = item.get("type", "unknown")
+            by_type.setdefault(t, []).append(item)
+
+        for ntype, items in sorted(by_type.items(), key=lambda x: -len(x[1])):
+            icon = "🚨" if "freeze" in ntype else "⚠️" if "deception" in ntype else "✓" if "veracity" in ntype else "🏥" if "clinical" in ntype else "🔍"
+            lines += [f"### {icon} {ntype.replace('_', ' ').title()} ({len(items)})", ""]
+            lines += [
+                "| Time | [C:] | Note |",
+                "|------|------|------|",
+            ]
+            for item in items[:20]:
+                lines.append(f"| {item.get('timestamp', '')} | [C:{item.get('certainty', 0.5):.2f}] | {item.get('note', '')} |")
+            if len(items) > 20:
+                lines.append(f"| ... | | _{len(items) - 20} more items_ |")
+            lines.append("")
+    else:
+        lines += ["_No noteworthy items._", ""]
+
+    # ── 13. Full Annotated Transcript ──
+    lines += [
+        "## Full Annotated Transcript",
+        "",
+        "---",
+        "",
+    ]
+
+    prev_end = 0.0
+    prev_speaker = None
+    for i, seg in enumerate(segments):
+        start = seg.get("start", 0)
+        end = seg.get("end", 0)
+        text = seg.get("text", "").strip()
+        speaker = seg.get("speaker", "Speaker")
+        em = em_by_index.get(i, {})
+        vd = vd_by_index.get(i, {})
+        pause_before = max(0.0, start - prev_end)
+
+        if pause_before > 10:
+            m_v = int(pause_before // 60)
+            s_v = pause_before % 60
+            lines.append(f"\n`({m_v:02d}:{s_v:06.3f})` 🚨 **EXTENDED FREEZE**\n")
+        elif pause_before > 5:
+            lines.append(f"\n`({pause_before:.2f})` ⚠️ significant pause\n")
+        elif pause_before > 1.5:
+            lines.append(f"\n`({pause_before:.2f})`\n")
+        elif 0.08 <= pause_before <= 0.2:
+            lines.append(f"\n`(.)`\n")
+
+        if speaker != prev_speaker:
+            emoji = em.get("emoji", "😐")
+            affect = em.get("affect_label", "Neutral")
+            intensity = em.get("intensity", 5)
+            voice_info = ""
+            if vd and vd.get("voice_level", "normal") != "normal":
+                voice_info = f" [{vd.get('voice_label', '')}]"
+            lines.append(
+                f"\n**[{fmt_ms(start)}] {{{speaker}}} "
+                f"[{emoji} {affect} : {intensity}/10]{voice_info} [C:0.70]:**"
+            )
+            prev_speaker = speaker
+        else:
+            lines.append(f"[{fmt_ms(start)}]")
+
+        lines.append(text)
+
+        # All inline annotations
+        for d in em.get("deception_markers", []):
+            lines.append(f"  ⚠️ DECEPTION: {d.get('note', '')} {d.get('symbol', '')} [C:{d.get('certainty', 0.5):.2f}]")
+        for v in em.get("veracity_markers", []):
+            lines.append(f"  ✓ VERACITY: {v.get('note', '')} {v.get('symbol', '')} [C:{v.get('certainty', 0.5):.2f}]")
+        for c in em.get("clinical_markers", []):
+            lines.append(f"  🏥 CLINICAL: {c.get('note', '')} {c.get('tei', '')} [C:{c.get('certainty', 0.4):.2f}]")
+        jf_list = em.get("jefferson_markers", [])
+        if jf_list:
+            jf_summary = ", ".join(f"{m['symbol']} ({m['phenomenon']})" for m in jf_list[:5])
+            lines.append(f"  📝 JEFFERSON: {jf_summary}")
+
+        prev_end = end
+
+    # ── 14. Glossary ──
+    lines += [
+        "",
+        "---",
+        "",
+        "## Glossary",
+        "",
+        "| [G:N] | Term | Category | Definition | First at | [C:] |",
+        "|-------|------|----------|------------|----------|------|",
+    ]
+    for entry in glossary:
+        lines.append(
+            f"| [G:{entry['id']}] | {entry['term']} | {entry['category']} "
+            f"| {entry['definition']} | {entry['first_appears_at']} | [C:{entry['certainty']:.2f}] |"
+        )
+    lines.append("")
+
+    # ── 15. Configuration Summary ──
+    lines += [
+        "---",
+        "",
+        "## Configuration Summary",
+        "",
+        f"| Option | Status |",
+        f"|--------|--------|",
+    ]
+    summary = emotions_data.get("summary", {})
+    for key in ["jefferson_enabled", "deception_enabled", "veracity_enabled",
+                 "clinical_enabled", "emotional_enabled"]:
+        status = "✅ ON" if summary.get(key, True) else "❌ OFF"
+        lines.append(f"| {key} | {status} |")
+
+    lines += [
+        f"| voice_dynamics | {'✅ ON' if voice_dynamics else '⚠️ unavailable'} |",
+        f"| omni_output | ✅ ON |",
+        f"| auto_model | {'✅ ' + cost_estimate.get('model', '') if config_summary.get('auto_model') else '❌ manual'} |",
+        "",
+        "---",
+        "",
+        "_Generated by Emotion Audio Analyser v3.0 — Omni Output_",
+        "_All indicators, all markers, all views — in one file._",
+    ]
+
     return "\n".join(lines)
 
 
@@ -943,13 +2126,15 @@ class MatchVoiceAction(argparse.Action):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Transcribe audio → structured analysis folder",
+        description="Transcribe audio → structured analysis folder (v3.0 — Omni)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("audio", help="Path to audio file (m4a/mp3/wav/etc.)")
     parser.add_argument("--model", default="base",
                         choices=["tiny", "base", "small", "medium", "large"],
                         help="Whisper model size (default: base)")
+    parser.add_argument("--auto-model", action="store_true",
+                        help="Auto-select Whisper model based on audio duration (token min-maxing)")
     parser.add_argument("--language", default="en",
                         help="Language code (default: en)")
     parser.add_argument("--context", default="general",
@@ -957,14 +2142,12 @@ def main():
     parser.add_argument("--output-dir", default="",
                         help="Where to create output folder (default: current dir)")
 
-    # Speaker diarization — mutually exclusive tiers
+    # Speaker diarization
     diar_group = parser.add_mutually_exclusive_group()
     diar_group.add_argument("--diarise-local", action="store_true",
-                             help="Local voice clustering via Resemblyzer (no internet, no token). "
-                                  "Install: pip3 install resemblyzer scikit-learn --break-system-packages")
+                             help="Local voice clustering via Resemblyzer (no internet, no token)")
     diar_group.add_argument("--diarise", action="store_true",
-                             help="Speaker diarization via pyannote.audio (requires HuggingFace token). "
-                                  "Install: pip3 install pyannote.audio --break-system-packages")
+                             help="Speaker diarization via pyannote.audio (requires HuggingFace token)")
 
     parser.add_argument("--hf-token", default="",
                         help="HuggingFace token for --diarise (or set HF_TOKEN env var)")
@@ -972,18 +2155,41 @@ def main():
                         help="Expected number of speakers (optional — auto-detected if omitted)")
     parser.add_argument("--match-voice", nargs=2, metavar=("AUDIO_PATH", "NAME"),
                         action=MatchVoiceAction, dest="voice_refs",
-                        help="Match a known voice clip to a speaker label. "
-                             "Repeatable: --match-voice clip1.m4a Pauly --match-voice clip2.m4a Mum. "
-                             "Requires --diarise or --diarise-local.")
+                        help="Match a known voice clip to a speaker label. Repeatable.")
     parser.add_argument("--subfolder-suffix", default="_subfile",
                         help="Suffix to append to the audio filename for the output subfolder (default: _subfile)")
     parser.add_argument("--no-copy-audio", dest="copy_audio", action="store_false",
                         help="Do not copy the original audio file into the output folder")
     parser.add_argument("--no-viewer", dest="generate_viewer", action="store_false",
                         help="Do not generate the embedded HTML viewer in the output folder")
+
+    # Omni output (ON by default)
+    parser.add_argument("--omni", dest="generate_omni", action="store_true", default=True,
+                        help="Generate omni.md (comprehensive single-file output) — DEFAULT ON")
+    parser.add_argument("--no-omni", dest="generate_omni", action="store_false",
+                        help="Skip omni.md generation")
+
+    # Feature toggles (all ON by default)
+    parser.add_argument("--no-jefferson", dest="enable_jefferson", action="store_false", default=True,
+                        help="Disable Jefferson paralinguistic marker detection")
+    parser.add_argument("--no-deception", dest="enable_deception", action="store_false", default=True,
+                        help="Disable deception indicator detection")
+    parser.add_argument("--no-veracity", dest="enable_veracity", action="store_false", default=True,
+                        help="Disable truthfulness/veracity indicator detection")
+    parser.add_argument("--no-voice-dynamics", dest="enable_voice_dynamics", action="store_false", default=True,
+                        help="Disable voice dynamics analysis (raised voice, whisper, etc.)")
+    parser.add_argument("--no-clinical", dest="enable_clinical", action="store_false", default=True,
+                        help="Disable clinical marker detection (PTSD/ASD/ADHD)")
+    parser.add_argument("--no-emotional", dest="enable_emotional", action="store_false", default=True,
+                        help="Disable emotional analysis (affect heuristics)")
+
+    # Cost estimation
+    parser.add_argument("--estimate-cost", action="store_true",
+                        help="Print token/cost estimation before running")
+
     args = parser.parse_args()
 
-    # Load user config (config/ folder next to this script)
+    # Load user config
     script_path = Path(__file__).resolve()
     print("Loading config...")
     load_config(script_path)
@@ -998,17 +2204,53 @@ def main():
               "Enabling --diarise-local automatically.")
         args.diarise_local = True
 
+    # ── Get audio duration for model selection ──
+    print("\nChecking audio duration...")
+    try:
+        import librosa
+        duration_s = librosa.get_duration(path=str(audio_path))
+    except Exception:
+        # Fallback: use ffprobe
+        try:
+            r = subprocess.run(
+                ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                 "-of", "default=noprint_wrappers=1:nokey=1", str(audio_path)],
+                capture_output=True, text=True
+            )
+            duration_s = float(r.stdout.strip()) if r.stdout.strip() else 0
+        except Exception:
+            duration_s = 0
+
+    print(f"  Duration: {fmt_ms(duration_s) if duration_s else 'unknown'} ({duration_s:.0f}s)")
+
+    # ── Auto model selection ──
+    if args.auto_model and duration_s > 0:
+        selected = auto_select_model(duration_s)
+        print(f"  → Auto-selected model: {selected} (based on {duration_s:.0f}s duration)")
+        args.model = selected
+
+    # ── Cost estimation ──
+    cost = estimate_tokens(duration_s, args.model)
+    if args.estimate_cost:
+        print(f"\n  Cost Estimate:")
+        print(f"    Model: {cost['model']}")
+        print(f"    Est. words: {cost['estimated_words']}")
+        print(f"    Est. tokens: {cost['estimated_tokens']}")
+        print(f"    Est. processing time: {cost['estimated_process_minutes']} min")
+        print(f"    Cost: ${cost['cost_usd']:.2f} (local Whisper is free)")
+        print()
+
     # Output folder
     base_dir = Path(args.output_dir) if args.output_dir else audio_path.parent
     out_folder = base_dir / (audio_path.stem + str(args.subfolder_suffix))
     out_folder.mkdir(parents=True, exist_ok=True)
     print(f"\nOutput folder: {out_folder}\n")
 
-    # ── Transcribe ──────────────────────────────────────────────────────────
+    # ── Transcribe ──
     result = transcribe(audio_path, model_size=args.model, language=args.language)
     segments = result.get("segments", [])
 
-    # ── Speaker Diarization ─────────────────────────────────────────────────
+    # ── Speaker Diarization ──
     voice_match_results = []
     diarization_method = "none (Whisper turn heuristics only)"
 
@@ -1028,16 +2270,15 @@ def main():
             result["segments"] = segments
             diarization_method = "pyannote.audio (HuggingFace)"
 
-    # ── Voice Matching ──────────────────────────────────────────────────────
+    # ── Voice Matching ──
     if args.voice_refs:
         print("\nRunning voice matching against reference clips...")
         voice_match_results = match_known_voices(audio_path, segments, args.voice_refs)
-        result["segments"] = segments  # segments may have been renamed
+        result["segments"] = segments
 
-    # Collect discovered speaker labels
     discovered_speakers = sorted(set(s.get("speaker", "Speaker_01") for s in segments))
 
-    # ── Environment Scans ───────────────────────────────────────────────────
+    # ── Environment Scans ──
     print("\nScanning audio...")
     print("  → Environmental audio (music/radio/AI)...")
     env_events = detect_environmental_ffmpeg(audio_path)
@@ -1046,38 +2287,56 @@ def main():
     print("  → Room changes (door events)...")
     room = detect_room_changes_ffmpeg(audio_path)
 
-    # ── Build Structured Data ───────────────────────────────────────────────
+    # ── Voice Dynamics ──
+    voice_dynamics = []
+    if args.enable_voice_dynamics:
+        print("\nAnalyzing voice dynamics (raised voice, whisper, shaky voice)...")
+        voice_dynamics = analyze_voice_dynamics(segments, audio_path)
+        if voice_dynamics:
+            raised = sum(1 for v in voice_dynamics if v.get("voice_level") == "raised_voice")
+            quiet = sum(1 for v in voice_dynamics if v.get("voice_level") in ("quiet", "whisper"))
+            shaky = sum(1 for v in voice_dynamics if v.get("shaky_voice"))
+            print(f"  → {raised} raised voice, {quiet} quiet/whisper, {shaky} shaky voice segments")
+
+    # ── Build Structured Data ──
     print("\nBuilding analysis...")
     print("  → Extracting entities...")
     things = extract_things(segments, discovered_speakers)
     print("  → Detecting glossary terms...")
     glossary = detect_glossary_terms(segments)
-    print("  → Building emotions data...")
-    emotions = build_emotions(segments, env_events, acoustic, room)
+    print("  → Building emotions + all indicators...")
+    emotions = build_emotions(segments, env_events, acoustic, room,
+                              enable_jefferson=args.enable_jefferson,
+                              enable_deception=args.enable_deception,
+                              enable_veracity=args.enable_veracity,
+                              enable_clinical=args.enable_clinical,
+                              enable_emotional=args.enable_emotional)
+    print(f"  → {emotions['summary']['total_deception_markers']} deception, "
+          f"{emotions['summary']['total_veracity_markers']} veracity, "
+          f"{emotions['summary']['total_clinical_markers']} clinical markers")
     print("  → Building noteworthy items...")
     noteworthy = build_noteworthy(emotions, env_events, acoustic, room, things, glossary)
     hashtags = generate_hashtags(things, segments, args.context)
 
-    # ── Meta ────────────────────────────────────────────────────────────────
-    duration_s = segments[-1]["end"] if segments else 0
+    # ── Meta ──
+    duration_s_final = segments[-1]["end"] if segments else duration_s
     meta = {
         "audio_file": audio_path.name,
         "audio_path": str(audio_path),
-        "duration_s": round(duration_s, 1),
-        "duration_formatted": fmt_ms(duration_s),
+        "duration_s": round(duration_s_final, 1),
+        "duration_formatted": fmt_ms(duration_s_final),
         "transcription_timestamp": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         "whisper_model": args.model,
         "language": result.get("language", args.language),
         "context_type": args.context,
-        "schema_version": "Affective-Clinical-MD-v2.6",
+        "schema_version": "Affective-Clinical-MD-v3.0-Omni",
         "wispr_privacy_mode": True,
         "diarization": {
             "method": diarization_method,
             "n_speakers_detected": len(discovered_speakers),
             "speaker_labels": discovered_speakers,
             "voice_matching": voice_match_results,
-            "note": "Speaker labels are discovered automatically — names are not assumed. "
-                    "Use --match-voice to attach names to voice clusters.",
+            "note": "Speaker labels are discovered automatically — names are not assumed.",
         },
         "segment_count": len(segments),
         "word_count": len(result.get("text", "").split()),
@@ -1086,14 +2345,25 @@ def main():
         "output_files": [
             "transcript.md", "emotions.json", "things.json",
             "meta.json", "glossary.json", "noteworthy.json",
+            "omni.md", "analysis.json",
         ],
+        "features_enabled": {
+            "jefferson": args.enable_jefferson,
+            "deception": args.enable_deception,
+            "veracity": args.enable_veracity,
+            "voice_dynamics": args.enable_voice_dynamics,
+            "clinical": args.enable_clinical,
+            "emotional": args.enable_emotional,
+            "omni": args.generate_omni,
+        },
+        "cost_estimate": cost,
     }
 
-    # ── Build Transcript ─────────────────────────────────────────────────────
+    # ── Build outputs ──
     print("  → Building transcript.md...")
-    transcript_md = build_transcript_md(segments, emotions, glossary, audio_path)
+    transcript_md = build_transcript_md(segments, emotions, glossary, audio_path, voice_dynamics)
 
-    # ── Write Files ──────────────────────────────────────────────────────────
+    # ── Write Files ──
     print("\nWriting files...")
     outputs = {
         "transcript.md":   transcript_md,
@@ -1103,48 +2373,86 @@ def main():
         "glossary.json":   json.dumps({"entries": glossary}, indent=2, ensure_ascii=False),
         "noteworthy.json": json.dumps({"items": noteworthy}, indent=2, ensure_ascii=False),
     }
-    for filename, content in outputs.items():
-        (out_folder / filename).write_text(content, encoding="utf-8")
+
+    # Analysis.json — structured indicator data
+    analysis_data = {
+        "deception_indicators": emotions.get("deception_indicators", []),
+        "veracity_indicators": emotions.get("veracity_indicators", []),
+        "clinical_markers": emotions.get("clinical_markers", []),
+        "voice_dynamics": voice_dynamics,
+        "jefferson_summary": {},
+        "summary": emotions.get("summary", {}),
+        "cost_estimate": cost,
+    }
+    # Jefferson summary
+    for seg in emotions.get("segments", []):
+        for jf in seg.get("jefferson_markers", []):
+            sym = jf.get("symbol", "")
+            if sym not in analysis_data["jefferson_summary"]:
+                analysis_data["jefferson_summary"][sym] = {"count": 0, "phenomenon": jf.get("phenomenon", "")}
+            analysis_data["jefferson_summary"][sym]["count"] += 1
+
+    outputs["analysis.json"] = json.dumps(analysis_data, indent=2, ensure_ascii=False)
+
+    # Omni output
+    if args.generate_omni:
+        print("  → Building omni.md (comprehensive single-file output)...")
+        config_summary = {
+            "auto_model": args.auto_model,
+            "jefferson": args.enable_jefferson,
+            "deception": args.enable_deception,
+            "veracity": args.enable_veracity,
+            "voice_dynamics": args.enable_voice_dynamics,
+            "clinical": args.enable_clinical,
+            "emotional": args.enable_emotional,
+        }
+        omni_md = build_omni_md(segments, emotions, things, glossary, noteworthy,
+                                voice_dynamics, meta, audio_path, config_summary, cost)
+        outputs["omni.md"] = omni_md
+
+    for filename, content_str in outputs.items():
+        (out_folder / filename).write_text(content_str, encoding="utf-8")
         print(f"  ✅ {filename}")
 
-        # Copy audio into output folder by default (optional)
+    # Copy audio
+    try:
+        if args.copy_audio:
+            dest_audio = out_folder / audio_path.name
+            if not dest_audio.exists():
+                shutil.copy2(audio_path, dest_audio)
+                print(f"  ✅ copied audio: {dest_audio.name}")
+    except Exception as e:
+        print(f"  ⚠️ could not copy audio: {e}")
+
+    # ── Generate HTML viewer (optional) ──
+    if getattr(args, "generate_viewer", True):
         try:
-                if args.copy_audio:
-                        dest_audio = out_folder / audio_path.name
-                        if not dest_audio.exists():
-                                shutil.copy2(audio_path, dest_audio)
-                                print(f"  ✅ copied audio: {dest_audio.name}")
-        except Exception as e:
-                print(f"  ⚠️ could not copy audio: {e}")
+            segments_json = json.dumps(segments, ensure_ascii=False)
+            emotions_json = outputs.get("emotions.json", "{}")
+            things_json = outputs.get("things.json", "{}")
+            glossary_json = outputs.get("glossary.json", "{}")
+            noteworthy_json = outputs.get("noteworthy.json", "{}")
+            meta_json = outputs.get("meta.json", "{}")
+            transcript_text = transcript_md.replace("</script>", "</scr" + "ipt>")
 
-        # Generate a single-file HTML viewer that embeds the outputs and audio (optional)
-        if getattr(args, "generate_viewer", True):
-                try:
-                        # Prepare embedded JSON and transcript (escape closing script tags)
-                        segments_json = json.dumps(segments, ensure_ascii=False)
-                        emotions_json = outputs.get("emotions.json", "{}")
-                        things_json = outputs.get("things.json", "{}")
-                        glossary_json = outputs.get("glossary.json", "{}")
-                        noteworthy_json = outputs.get("noteworthy.json", "{}")
-                        meta_json = outputs.get("meta.json", "{}")
-                        transcript_text = transcript_md.replace("</script>", "</scr" + "ipt>")
-
-                        viewer_html = """<!doctype html>
+            viewer_html = """<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Emotion Audio Viewer — {audio_path.name}</title>
+    <title>Emotion Audio Viewer — {audio_name}</title>
     <style>
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; height:100vh; display:flex; flex-direction:column; }
-        #top { padding:8px; display:flex; gap:8px; align-items:center; }
-        #timeline { height:120px; background:#111; color:#fff; position:relative; display:flex; align-items:center; padding:10px; }
-        #timeline .bar { position:relative; height:8px; background:#333; width:100%; border-radius:4px; }
-        .marker { position:absolute; top:6px; width:8px; height:8px; background:#ffcc00; border-radius:50%; transform:translateX(-50%); cursor:pointer; }
-        #controls { display:flex; gap:8px; align-items:center; }
-        #transcript { height:40vh; overflow:auto; border-top:1px solid #ddd; padding:12px; }
-        .segment { padding:6px 0; border-bottom:1px dashed #eee; }
-        .timestamp { color:#666; margin-right:8px; cursor:pointer; }
+        body {{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; height:100vh; display:flex; flex-direction:column; }}
+        #top {{ padding:8px; display:flex; gap:8px; align-items:center; background:#1a1a2e; color:#fff; }}
+        #timeline {{ height:120px; background:#111; color:#fff; position:relative; display:flex; align-items:center; padding:10px; }}
+        #timeline .bar {{ position:relative; height:8px; background:#333; width:100%; border-radius:4px; }}
+        .marker {{ position:absolute; top:6px; width:8px; height:8px; background:#ffcc00; border-radius:50%; transform:translateX(-50%); cursor:pointer; }}
+        #controls {{ display:flex; gap:8px; align-items:center; }}
+        #transcript {{ height:50vh; overflow:auto; border-top:1px solid #ddd; padding:12px; }}
+        .segment {{ padding:6px 0; border-bottom:1px dashed #eee; }}
+        .timestamp {{ color:#666; margin-right:8px; cursor:pointer; }}
+        .deception {{ background:#ffe0e0; padding:2px 4px; border-radius:3px; }}
+        .veracity {{ background:#e0ffe0; padding:2px 4px; border-radius:3px; }}
     </style>
 </head>
 <body>
@@ -1156,31 +2464,16 @@ def main():
             <span id="time">00:00 / 00:00</span>
         </div>
     </div>
-    <div id="timeline">
-        <div class="bar" id="bar"></div>
-    </div>
+    <div id="timeline"><div class="bar" id="bar"></div></div>
     <div id="transcript"></div>
-
-    <audio id="audio" controls style="width:0;height:0;opacity:0;position:fixed;left:-9999px;" src="{audio_path.name}"></audio>
-
+    <audio id="audio" controls style="width:0;height:0;opacity:0;position:fixed;left:-9999px;" src="{audio_name}"></audio>
     <script>
         const segments = {SEGMENTS_JSON_PLACEHOLDER};
         const emotions = {EMOTIONS_JSON_PLACEHOLDER};
-        const things = {THINGS_JSON_PLACEHOLDER};
-        const glossary = {GLOSSARY_JSON_PLACEHOLDER};
         const noteworthy = {NOTEWORTHY_JSON_PLACEHOLDER};
         const meta = {META_JSON_PLACEHOLDER};
-        const transcript = `{TRANSCRIPT_PLACEHOLDER}`;
-
         const audio = document.getElementById('audio');
-        const playBtn = document.getElementById('play');
-        const pauseBtn = document.getElementById('pause');
         const bar = document.getElementById('bar');
-        const timeline = document.getElementById('timeline');
-        const timeLabel = document.getElementById('time');
-        const zoom = document.getElementById('zoom');
-
-        // Render transcript
         const tEl = document.getElementById('transcript');
         segments.forEach(s => {
             const d = document.createElement('div'); d.className='segment';
@@ -1194,96 +2487,63 @@ def main():
             d.appendChild(txt);
             tEl.appendChild(d);
         });
-
-        // Build markers using segments (start times)
-        function renderMarkers() {
-            bar.innerHTML='';
-            const dur = audio.duration || meta.duration_s || 0;
-            const scale = parseFloat(zoom.value);
-            segments.forEach(s => {
-                const el = document.createElement('div'); el.className='marker';
-                const pct = (s.start / dur) * 100;
-                el.style.left = pct + '%';
-                el.title = `${s.start.toFixed(1)}s`;
-                el.onclick = (e) => { e.stopPropagation(); audio.currentTime = s.start; audio.play(); };
-                bar.appendChild(el);
-            });
-            // noteworthy markers
-            try {
-                const items = (noteworthy.items) || [];
-                items.forEach(it => {
-                    if (it.time || it.start) {
-                        const t = it.time || it.start;
-                        const el = document.createElement('div'); el.className='marker'; el.style.background='#ff66cc';
-                        const pct = (t / dur) * 100;
-                        el.style.left = pct + '%';
-                        el.title = it.note || it.desc || 'noteworthy';
-                        el.onclick = (e) => { e.stopPropagation(); audio.currentTime = t; audio.play(); };
-                        bar.appendChild(el);
-                    }
-                });
-            } catch(e){}
-        }
-
-        playBtn.onclick = () => audio.play();
-        pauseBtn.onclick = () => audio.pause();
+        document.getElementById('play').onclick = () => audio.play();
+        document.getElementById('pause').onclick = () => audio.pause();
         audio.ontimeupdate = () => {
-            const cur = audio.currentTime || 0;
-            const dur = audio.duration || meta.duration_s || 0;
+            const cur = audio.currentTime||0, dur = audio.duration||meta.duration_s||0;
             const mm = Math.floor(cur/60).toString().padStart(2,'0');
             const ss = Math.floor(cur%60).toString().padStart(2,'0');
             const dmm = Math.floor(dur/60).toString().padStart(2,'0');
             const dss = Math.floor(dur%60).toString().padStart(2,'0');
-            timeLabel.textContent = `${mm}:${ss} / ${dmm}:${dss}`;
-            // progress indicator
-            const pct = (cur / (dur || 1)) * 100;
-            bar.style.setProperty('--pos', pct + '%');
+            document.getElementById('time').textContent = `${mm}:${ss} / ${dmm}:${dss}`;
         };
-
-        // scrubbing
-        bar.parentElement.onclick = (e) => {
-            const rect = bar.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const pct = x / rect.width;
+        function renderMarkers() {
+            bar.innerHTML='';
             const dur = audio.duration || meta.duration_s || 0;
-            audio.currentTime = pct * dur;
-        };
-
-        zoom.oninput = () => { renderMarkers(); };
-
+            segments.forEach(s => {
+                const el = document.createElement('div'); el.className='marker';
+                el.style.left = (s.start / dur * 100) + '%';
+                el.title = `${s.start.toFixed(1)}s`;
+                el.onclick = (e) => { e.stopPropagation(); audio.currentTime = s.start; audio.play(); };
+                bar.appendChild(el);
+            });
+        }
         audio.onloadedmetadata = () => { renderMarkers(); };
-
     </script>
 </body>
-</html>
-"""
+</html>"""
 
-                        # Replace placeholders safely (avoid Python f-string conflicts with JS braces)
-                        viewer_html = viewer_html.replace('{SEGMENTS_JSON_PLACEHOLDER}', segments_json)
-                        viewer_html = viewer_html.replace('{EMOTIONS_JSON_PLACEHOLDER}', emotions_json)
-                        viewer_html = viewer_html.replace('{THINGS_JSON_PLACEHOLDER}', things_json)
-                        viewer_html = viewer_html.replace('{GLOSSARY_JSON_PLACEHOLDER}', glossary_json)
-                        viewer_html = viewer_html.replace('{NOTEWORTHY_JSON_PLACEHOLDER}', noteworthy_json)
-                        viewer_html = viewer_html.replace('{META_JSON_PLACEHOLDER}', meta_json)
-                        # transcript_text may contain backticks or closing script tags; it was pre-escaped earlier
-                        viewer_html = viewer_html.replace('{TRANSCRIPT_PLACEHOLDER}', transcript_text)
-                        # audio src
-                        viewer_html = viewer_html.replace('{audio_path.name}', audio_path.name)
+            viewer_html = viewer_html.replace('{SEGMENTS_JSON_PLACEHOLDER}', segments_json)
+            viewer_html = viewer_html.replace('{EMOTIONS_JSON_PLACEHOLDER}', emotions_json)
+            viewer_html = viewer_html.replace('{NOTEWORTHY_JSON_PLACEHOLDER}', noteworthy_json)
+            viewer_html = viewer_html.replace('{META_JSON_PLACEHOLDER}', meta_json)
+            viewer_html = viewer_html.replace('{audio_name}', audio_path.name)
 
-                        (out_folder / "viewer.html").write_text(viewer_html, encoding="utf-8")
-                        print("  ✅ viewer.html")
-                except Exception as e:
-                        print(f"  ⚠️ could not generate viewer: {e}")
+            (out_folder / "viewer.html").write_text(viewer_html, encoding="utf-8")
+            print("  ✅ viewer.html")
+        except Exception as e:
+            print(f"  ⚠️ could not generate viewer: {e}")
 
-    print(f"\n✅ Done — {len(outputs)} files in:")
+    # ── Summary ──
+    print(f"\n{'='*60}")
+    print(f"✅ Done — {len(outputs)} files in:")
     print(f"   {out_folder}")
     print(f"\n   Speakers detected: {', '.join(discovered_speakers)}")
-    if voice_match_results:
-        for r in voice_match_results:
-            renamed = f" → renamed to '{r['renamed_to']}'" if r.get("renamed_to") else " (not renamed — low confidence)"
-            print(f"   Voice match: {r['reference_name']} = {r['best_match_speaker']}{renamed} [C:{r['certainty']:.2f}]")
-    print(f"\nNext: paste transcript.md into Claude with the emotion-audio-analyser skill")
-    print(f"      for full Jefferson/TEI/CHAT annotation and clinical analysis.")
+    print(f"   Segments: {len(segments)}")
+    summary = emotions.get("summary", {})
+    print(f"   Deception indicators: {summary.get('total_deception_markers', 0)}")
+    print(f"   Veracity indicators: {summary.get('total_veracity_markers', 0)}")
+    print(f"   Clinical markers: {summary.get('total_clinical_markers', 0)}")
+    print(f"   Freeze events: {summary.get('freeze_events_count', 0)}")
+    if voice_dynamics:
+        raised = sum(1 for v in voice_dynamics if v.get("voice_level") == "raised_voice")
+        quiet = sum(1 for v in voice_dynamics if v.get("voice_level") in ("quiet", "whisper"))
+        print(f"   Voice dynamics: {raised} raised, {quiet} quiet/whisper")
+    print(f"   Cost: ${cost['cost_usd']:.2f} | Est. tokens: {cost['estimated_tokens']}")
+    print(f"\n   📂 omni.md contains EVERYTHING — all views, all indicators")
+    print(f"   📂 analysis.json has structured indicator data")
+    print(f"\n   Next: paste transcript.md into Claude with the emotion-audio-analyser skill")
+    print(f"         for full Jefferson/TEI/CHAT annotation and clinical analysis.")
 
 
 if __name__ == "__main__":

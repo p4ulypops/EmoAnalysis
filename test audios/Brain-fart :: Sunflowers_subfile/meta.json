@@ -1,13 +1,13 @@
 {
   "audio_file": "Brain-fart :: Sunflowers.m4a",
   "audio_path": "test audios/Brain-fart :: Sunflowers.m4a",
-  "duration_s": 320.0,
+  "duration_s": 320.1,
   "duration_formatted": "05:20",
-  "transcription_timestamp": "2026-06-16T16:06:35Z",
-  "whisper_model": "base",
+  "transcription_timestamp": "2026-06-25T13:18:49Z",
+  "whisper_model": "tiny",
   "language": "en",
   "context_type": "general",
-  "schema_version": "Affective-Clinical-MD-v2.6",
+  "schema_version": "Affective-Clinical-MD-v3.0-Omni",
   "wispr_privacy_mode": true,
   "diarization": {
     "method": "none (Whisper turn heuristics only)",
@@ -16,10 +16,10 @@
       "Speaker_01"
     ],
     "voice_matching": [],
-    "note": "Speaker labels are discovered automatically — names are not assumed. Use --match-voice to attach names to voice clusters."
+    "note": "Speaker labels are discovered automatically — names are not assumed."
   },
-  "segment_count": 54,
-  "word_count": 729,
+  "segment_count": 46,
+  "word_count": 721,
   "hashtags": [
     "#family",
     "#general",
@@ -32,6 +32,26 @@
     "things.json",
     "meta.json",
     "glossary.json",
-    "noteworthy.json"
-  ]
+    "noteworthy.json",
+    "omni.md",
+    "analysis.json"
+  ],
+  "features_enabled": {
+    "jefferson": true,
+    "deception": true,
+    "veracity": true,
+    "voice_dynamics": true,
+    "clinical": true,
+    "emotional": true,
+    "omni": true
+  },
+  "cost_estimate": {
+    "estimated_words": 806,
+    "estimated_tokens": 604,
+    "estimated_process_seconds": 161,
+    "estimated_process_minutes": 2.7,
+    "model": "tiny",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
 }

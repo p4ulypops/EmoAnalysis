@@ -1,0 +1,612 @@
+{
+  "deception_indicators": [
+    {
+      "segment_index": 4,
+      "timestamp": "00:32",
+      "type": "stalling_repetition",
+      "symbol": "<rep>a bit of</rep>",
+      "note": "Phrase 'a bit of' repeated — possible stalling",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 16,
+      "timestamp": "02:01",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 17,
+      "timestamp": "02:06",
+      "type": "evasion",
+      "symbol": "<evade>",
+      "note": "Topic avoidance / deflection",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 23,
+      "timestamp": "02:52",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 28,
+      "timestamp": "03:22",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 31,
+      "timestamp": "03:41",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 36,
+      "timestamp": "04:12",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    }
+  ],
+  "veracity_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "00:27",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "00:27",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 5,
+      "timestamp": "00:42",
+      "type": "qualified_certainty",
+      "symbol": "<veracious>",
+      "note": "First-person sensory recall — direct experience",
+      "certainty": 0.65
+    },
+    {
+      "segment_index": 5,
+      "timestamp": "00:42",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 7,
+      "timestamp": "01:00",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 7,
+      "timestamp": "01:00",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 8,
+      "timestamp": "01:06",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 9,
+      "timestamp": "01:14",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 10,
+      "timestamp": "01:21",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 10,
+      "timestamp": "01:21",
+      "type": "cognitive_complexity",
+      "symbol": "<cog-complex>",
+      "note": "Cognitive complexity — weighing alternatives",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 10,
+      "timestamp": "01:21",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 11,
+      "timestamp": "01:31",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 11,
+      "timestamp": "01:31",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 12,
+      "timestamp": "01:37",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 12,
+      "timestamp": "01:37",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 13,
+      "timestamp": "01:42",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 13,
+      "timestamp": "01:42",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 14,
+      "timestamp": "01:48",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 16,
+      "timestamp": "02:01",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 18,
+      "timestamp": "02:15",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 20,
+      "timestamp": "02:34",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 22,
+      "timestamp": "02:46",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 25,
+      "timestamp": "03:04",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 26,
+      "timestamp": "03:09",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 27,
+      "timestamp": "03:14",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 28,
+      "timestamp": "03:22",
+      "type": "cognitive_complexity",
+      "symbol": "<cog-complex>",
+      "note": "Cognitive complexity — weighing alternatives",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 28,
+      "timestamp": "03:22",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.4s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 29,
+      "timestamp": "03:29",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 30,
+      "timestamp": "03:36",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 30,
+      "timestamp": "03:36",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 32,
+      "timestamp": "03:48",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 35,
+      "timestamp": "04:06",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 36,
+      "timestamp": "04:12",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 37,
+      "timestamp": "04:19",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 38,
+      "timestamp": "04:29",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 38,
+      "timestamp": "04:29",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 38,
+      "timestamp": "04:29",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 38,
+      "timestamp": "04:29",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 39,
+      "timestamp": "04:38",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 39,
+      "timestamp": "04:38",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 40,
+      "timestamp": "04:42",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 41,
+      "timestamp": "04:48",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 44,
+      "timestamp": "05:10",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    }
+  ],
+  "clinical_markers": [
+    {
+      "segment_index": 3,
+      "timestamp": "00:27",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.7s)",
+      "tei": "<pause dur=\"1.7s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 14,
+      "timestamp": "01:48",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.1s)",
+      "tei": "<pause dur=\"1.1s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 17,
+      "timestamp": "02:06",
+      "phenotype": "ADHD",
+      "type": "meta_correction",
+      "note": "Self-correction back to topic",
+      "tei": "<meta-correction type=\"rerail\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 27,
+      "timestamp": "03:14",
+      "phenotype": "ADHD",
+      "type": "meta_correction",
+      "note": "Self-correction back to topic",
+      "tei": "<meta-correction type=\"rerail\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 28,
+      "timestamp": "03:22",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.4s)",
+      "tei": "<pause dur=\"1.4s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 30,
+      "timestamp": "03:36",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.5s)",
+      "tei": "<pause dur=\"1.5s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 37,
+      "timestamp": "04:19",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.3s)",
+      "tei": "<pause dur=\"1.3s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 41,
+      "timestamp": "04:48",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.7s)",
+      "tei": "<pause dur=\"1.7s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    }
+  ],
+  "voice_dynamics": [],
+  "jefferson_summary": {
+    "[": {
+      "count": 13,
+      "phenomenon": "Possible overlap (simultaneous speech)"
+    },
+    "(1.66)": {
+      "count": 2,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.56)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(2.72)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "word::": {
+      "count": 17,
+      "phenomenon": "Prolonged sound"
+    },
+    "(1.3)": {
+      "count": 3,
+      "phenomenon": "Timed pause"
+    },
+    "(1.88)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(2.94)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.70)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(0.6)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "(1.1)": {
+      "count": 3,
+      "phenomenon": "Timed pause"
+    },
+    "(0.8)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    ">word<": {
+      "count": 1,
+      "phenomenon": "Accelerated delivery"
+    },
+    "(0.4)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "(1.80)": {
+      "count": 2,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(0.5)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(0.7)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "(1.4)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(1.5)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(.)": {
+      "count": 1,
+      "phenomenon": "Micropause (0.08–0.2s)"
+    },
+    "?": {
+      "count": 1,
+      "phenomenon": "Question / uncertainty"
+    },
+    "°word°": {
+      "count": 1,
+      "phenomenon": "Hedging / minimising"
+    },
+    "(1.54)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.2)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(1.53)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 7,
+    "total_veracity_markers": 44,
+    "total_clinical_markers": 8,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 11,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 806,
+    "estimated_tokens": 604,
+    "estimated_process_seconds": 161,
+    "estimated_process_minutes": 2.7,
+    "model": "tiny",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

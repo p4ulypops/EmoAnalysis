@@ -1,18 +1,27 @@
 # Emotion Audio Analyser — Reference Guide
 
-A local audio analysis tool for transcribing speech, identifying speakers, and flagging emotional and contextual events.
+A local audio analysis tool for transcribing speech, identifying speakers, and flagging emotional, clinical, and forensic indicators.
 
 This repo is a processing utility. It extracts structure from recordings and writes review-ready outputs. The tool is designed to run on your machine and does not send audio files out by default.
 
 ---
 
-## What it does
+## What it does (v3.0 — Omni)
 
 - Transcribes audio from m4a, mp3, wav, ogg, flac files
 - Detects speaker turns and optional speaker clusters
 - Annotates emotion, pauses, and uncertainty
 - Extracts people, places, dates, and times
 - Produces JSON and Markdown output for review or automation
+- **NEW v3.0**: Full Jefferson paralinguistic markers (all ON by default)
+- **NEW v3.0**: Deception indicators (false starts, corrections, stalling, memory disclaimers, defensive language, evasion)
+- **NEW v3.0**: Veracity/truthfulness indicators (certainty, sensory detail, temporal sequencing, contextual embedding, cognitive complexity, emotional consistency)
+- **NEW v3.0**: Voice dynamics analysis (raised voice, quiet, whisper, sub-vocal, shaky voice) via librosa
+- **NEW v3.0**: Clinical markers (PTSD fragmentation, somatic recall, mental defeat, ADHD maze, ASD awkward pauses)
+- **NEW v3.0**: Omni output — a single comprehensive `omni.md` file with EVERYTHING
+- **NEW v3.0**: Analysis.json — structured data for all indicators
+- **NEW v3.0**: Token min-maxing — auto-model selection, cost estimation
+- **NEW v3.0**: All features configurable via CLI flags
 
 ---
 
@@ -23,14 +32,187 @@ python3 ./run_transcription.py /path/to/audio.m4a
 ```
 
 A folder named after the audio file is created with:
-- `transcript.md`
-- `emotions.json`
-- `things.json`
-- `meta.json`
-- `glossary.json`
-- `noteworthy.json`
+- `transcript.md` — annotated transcript with all inline markers
+- `emotions.json` — per-segment emotion, deception, veracity, clinical data
+- `things.json` — people, places, dates, times
+- `meta.json` — recording metadata, speakers, hashtags, cost estimate
+- `glossary.json` — terms with definitions
+- `noteworthy.json` — flagged moments (freezes, deception, veracity, clinical, uncertainties)
+- `omni.md` — EVERYTHING in one file (all views, all indicators, all markers)
+- `analysis.json` — structured deception/veracity/voice/clinical data
+- `viewer.html` — interactive HTML viewer (optional)
 
-For more technical detail, see `techy.readme.md`.
+---
+
+## All CLI Options
+
+### Basic options
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `audio` | (required) | Path to audio file (m4a/mp3/wav/ogg/flac) |
+| `--model` | `base` | Whisper model: tiny, base, small, medium, large |
+| `--auto-model` | off | Auto-select model based on audio duration (token min-maxing) |
+| `--language` | `en` | ISO 639-1 language code |
+| `--context` | `general` | Context type label for analysis |
+| `--output-dir` | current dir | Where to create output folder |
+| `--subfolder-suffix` | `_subfile` | Suffix for output subfolder name |
+| `--no-copy-audio` | off | Don't copy audio into output folder |
+| `--no-viewer` | off | Don't generate HTML viewer |
+
+### Speaker diarization
+
+| Flag | Description |
+|------|-------------|
+| `--diarise-local` | Local voice clustering via Resemblyzer (no internet, no token) |
+| `--diarise` | pyannote.audio diarization (needs HuggingFace token) |
+| `--hf-token` | HuggingFace access token for --diarise |
+| `--n-speakers` | Expected number of speakers (auto-detected if omitted) |
+| `--match-voice` | Match known voice clip to speaker label. Repeatable: `--match-voice clip.m4a Name` |
+
+### Feature toggles (all ON by default)
+
+| Flag | What it disables |
+|------|-----------------|
+| `--no-jefferson` | Jefferson paralinguistic marker detection |
+| `--no-deception` | Deception indicator detection |
+| `--no-veracity` | Truthfulness/veracity indicator detection |
+| `--no-voice-dynamics` | Voice dynamics analysis (raised voice, whisper, shaky) |
+| `--no-clinical` | Clinical marker detection (PTSD/ASD/ADHD) |
+| `--no-emotional` | Emotional analysis (affect heuristics) |
+| `--no-omni` | Skip omni.md generation |
+
+### Output control
+
+| Flag | Description |
+|------|-------------|
+| `--omni` | Generate omni.md (default ON) |
+| `--estimate-cost` | Print token/cost estimation before running |
+
+---
+
+## Token Min-Maxing
+
+The tool supports automatic model selection based on audio duration:
+
+| Duration | Model | Speed | Accuracy |
+|----------|-------|-------|----------|
+| 0-10 min | tiny | fastest | draft |
+| 0-30 min | base | fast | good |
+| 1-60 min | small | medium | better |
+| 5-120 min | medium | slow | high |
+| 10+ min | large | slowest | best |
+
+Use `--auto-model` to enable automatic selection. Use `--estimate-cost` to see the token count and processing time estimate before running.
+
+**Parallel processing tip**: For batch processing, run multiple files in parallel with different models — use `tiny` for quick drafts, `base` or `small` for final transcriptions. Sub-agents can process different files simultaneously.
+
+---
+
+## Jefferson Paralinguistic Markers (all ON by default)
+
+| Symbol | Phenomenon | Clinical note |
+|--------|-----------|---------------|
+| `WORD` | Shouting / strong emphasis | Caps = distinctly louder than baseline |
+| `°word°` | Whisper / quiet speech | Shame, conspiracy, trauma recall |
+| `~word~` | Shaky/crying voice | Diaphragmatic control loss; grief, distress |
+| `#word#` | Creaky voice / vocal fry | Low arousal, exhaustion, confidence collapse |
+| `word::` | Prolonged sound | Each colon ≈ 0.2s extra duration |
+| `↑↑word` | Extreme pitch spike | Panic, shock, dysregulation |
+| `↓↓word` | Extreme pitch drop | Resignation, defeat |
+| `>word<` | Accelerated delivery | Hurried, rushed — evasion or anxiety |
+| `<word>` | Decelerated delivery | Deliberate slowing — careful or deceptive |
+| `.hhh` | Sharp inbreath | Shock, trauma trigger, sobbing prep |
+| `hhh` | Exhalation | Relief, resignation, emotional release |
+| `(.)` | Micropause (0.08-0.2s) | Brief hesitation or natural turn boundary |
+| `(0.7)` | Timed pause | Processing, hesitation, or topic shift |
+| `(1:04.20)` | Extended pause/freeze | PTSD marker, dissociation, emotional shutdown |
+| `=` | Latching (no gap between turns) | Power dynamic, interruption, or urgency |
+| `[` | Overlap (simultaneous speech) | Competition for turn, or supportive co-construction |
+| `(word)` | Uncertain transcription | Hesitation, cognitive load, or stalling |
+
+---
+
+## Deception Indicators (ON by default)
+
+| Symbol | Type | What it detects |
+|--------|------|----------------|
+| `<fs>` | False start | Sentence abandoned and redirected |
+| `<corrsp>` | Spontaneous correction | Word replaced with alternative |
+| `<rep n="N">` | Stalling repetition | Word/phrase repeated 3+ times |
+| `<lack-mem>` | Memory disclaimer | Claiming inability to recall |
+| `<over-elab>` | Over-elaboration | Excessive precision in casual context |
+| `<defensive>` | Defensive language | Pre-emptive denial, rhetorical defence |
+| `<contradict>` | Contradiction | Self-correction with contradiction cue |
+| `<cog-load>` | Cognitive load | Complex sentences under pressure |
+| `<evade>` | Evasion | Topic avoidance, minimising, deflecting |
+
+> ⚠️ Deception indicators are NOT proof of deception. They are heuristic text-pattern matches that *may* indicate cognitive load, rehearsal, or evasive behaviour. Look for clusters, not single indicators. Always consider context.
+
+---
+
+## Veracity / Truthfulness Indicators (ON by default)
+
+| Symbol | Type | What it detects |
+|--------|------|----------------|
+| `<veracious>` | Qualified certainty | Appropriate confidence, direct experience |
+| `<sensory-recall>` | Sensory detail | Multi-sensory recall — genuine memory |
+| `<temporal>` | Temporal sequencing | Logical time order — structured recall |
+| `<context>` | Contextual embedding | Connected to time/place/setting |
+| `<emo-consist>` | Emotional consistency | Emotion matches content and behaviour |
+| `<cog-complex>` | Cognitive complexity | Doubt, self-correction, nuance |
+| `<spontaneous>` | Spontaneous detail | Unprompted, relevant detail |
+| `<recall-pause>` | Appropriate recall pause | Natural processing pause before recall |
+
+---
+
+## Voice Dynamics (ON by default, requires librosa)
+
+| Level | Jefferson | What it means |
+|-------|-----------|---------------|
+| `raised_voice` | `WORD` | RMS > 1.8x global average — shouting/loud |
+| `normal` | — | Normal speaking volume |
+| `quiet` | `°word°` | RMS < 0.3x global — quiet speech |
+| `whisper` | `°word°` | RMS < 0.1x global — whispered |
+| `sub_vocal` | `((murmured))` | Very low energy — sub-vocal/murmured |
+| `shaky` | `~word~` | High pitch variability or amplitude instability |
+
+---
+
+## Clinical Markers (ON by default)
+
+| Phenotype | Tag | What it detects |
+|-----------|-----|----------------|
+| PTSD | `<ptsd-frag type="repetition">` | Repetitive narrative fragments |
+| PTSD | `<ptsd-frag type="unfinished">` | Unfinished utterance pattern |
+| PTSD | `<somatic>` | Visceral sensory recall |
+| PTSD | `<mental-defeat>` | First-person pronoun cluster + hopelessness |
+| ADHD | `<meta-correction type="rerail">` | Self-correction back to topic |
+| ADHD | `<maze>` | Tangential narrative blocks |
+| ASD | `<pause type="awkward">` | Non-grammatical pause |
+
+---
+
+## Omni Output (omni.md)
+
+The omni.md file is a single comprehensive document containing EVERYTHING:
+
+1. Recording Metadata
+2. Cost & Token Estimate
+3. Entity Register (people, places, dates, times)
+4. Speaker Manifest
+5. Emotion Timeline (per-segment affect, intensity, distribution)
+6. Deception Indicator Matrix (by type, with examples, detail table)
+7. Veracity Indicator Matrix (by type, with examples, detail table)
+8. Deception vs Veracity Balance (ratio and interpretation)
+9. Voice Dynamics Report (level distribution, per-segment detail)
+10. Clinical Markers Report (by phenotype, with TEI tags)
+11. Jefferson Paralinguistic Markers (all symbols, counts, clinical notes)
+12. Environmental Events Log (music, acoustic events, room changes, freezes)
+13. Noteworthy Items (grouped by type — freezes, deception, veracity, clinical, entities)
+14. Full Annotated Transcript (all inline markers, all indicators per segment)
+15. Glossary (all terms with definitions)
+16. Configuration Summary (what's ON/OFF)
 
 ---
 
@@ -55,16 +237,20 @@ pip3 install resemblyzer scikit-learn --break-system-packages
 pip3 install pyannote.audio --break-system-packages
 ```
 
-If you use `--diarise`, you also need a HuggingFace token.
-
 ---
 
 ## Use cases
 
-### Transcribe a file
+### Basic transcription (all features ON)
 
 ```bash
 python3 ./run_transcription.py /path/to/audio.m4a
+```
+
+### With auto model selection (token min-maxing)
+
+```bash
+python3 ./run_transcription.py /path/to/audio.m4a --auto-model --estimate-cost
 ```
 
 ### Private speaker clustering
@@ -73,17 +259,16 @@ python3 ./run_transcription.py /path/to/audio.m4a
 python3 ./run_transcription.py /path/to/audio.m4a --diarise-local
 ```
 
-### Fix speaker count
+### Disable specific features
 
 ```bash
-python3 ./run_transcription.py /path/to/audio.m4a --diarise-local --n-speakers 2
+python3 ./run_transcription.py /path/to/audio.m4a --no-deception --no-veracity
 ```
 
-### Best speaker diarization
+### Only emotional analysis, no deception/clinical
 
 ```bash
-export HF_TOKEN=hf_yourtoken
-python3 ./run_transcription.py /path/to/audio.m4a --diarise --hf-token $HF_TOKEN
+python3 ./run_transcription.py /path/to/audio.m4a --no-deception --no-veracity --no-clinical
 ```
 
 ### Name speakers with reference clips
@@ -95,65 +280,11 @@ python3 ./run_transcription.py /path/to/audio.m4a \
   --match-voice /clips/reference2.m4a Speaker_02
 ```
 
-Only add known voice references when you already know the speaker identity. The tool will rename a detected cluster only when the voice match is confident.
+### Best speaker diarization
 
----
-
-## Output files
-
-### `transcript.md`
-A human-readable transcript with timestamps, speaker labels, emoji cues, pause markers, and glossary references.
-
-### `emotions.json`
-Segment-level emotion tagging with intensity, pause detection, and flags.
-
-### `things.json`
-Detected people, places, dates, and times.
-
-### `meta.json`
-Run metadata, model choice, speaker settings, and privacy notes.
-
-### `glossary.json`
-Terms, acronyms, and domain vocabulary discovered in the recording.
-
-### `noteworthy.json`
-Highlighted moments and follow-up items for review.
-
----
-
-## How to use
-
-- Use `--diarise-local` if you want private, offline speaker clustering.
-- Use `--diarise` only if you need more advanced speaker separation.
-- Keep audio local and review outputs manually.
-- The tool is an assistant, not a final decision engine.
-
----
-
-## Customization
-
-Edit `config/` files to tune the output without changing code.
-
-### `config/emotions.json`
-Add custom emotion patterns and labels.
-
-### `config/places.json`
-Add custom location names to recognize.
-
-### `config/wordlists.json`
-Extend the glossary with medical, legal, technical, and custom terms.
-
-Terms with your own definitions (appear verbatim in `glossary.json`):
-```json
-{
-  "custom": [
-    {
-      "term": "PIP",
-      "definition": "Personal Independence Payment — UK disability benefit.",
-      "category": "benefit/legal"
-    }
-  ]
-}
+```bash
+export HF_TOKEN=hf_yourtoken
+python3 ./run_transcription.py /path/to/audio.m4a --diarise --hf-token $HF_TOKEN
 ```
 
 ---
@@ -171,20 +302,18 @@ All automated annotations carry a `[C:0.00–1.00]` score.
 
 ---
 
-## Jefferson Notation (in transcript.md)
+## Customization
 
-| Marker | Meaning |
-|--------|---------|
-| `~word~` | Shaky/crying voice |
-| `WORD` | Shouting / raised voice |
-| `°word°` | Whisper |
-| `#word#` | Creaky voice / vocal fry |
-| `(0.7)` | Pause in seconds |
-| `(01:04.20)` | Extended pause — min:sec.ms |
-| `↑↑word` | Extreme pitch spike |
-| `>word<` | Accelerated delivery |
-| `word::` | Prolonged sound |
-| `.hhh` | Sharp inbreath |
+Edit `config/` files to tune the output without changing code.
+
+### `config/emotions.json`
+Add custom emotion patterns and labels.
+
+### `config/places.json`
+Add custom location names to recognize.
+
+### `config/wordlists.json`
+Extend the glossary with medical, legal, technical, and custom terms.
 
 ---
 
@@ -198,34 +327,23 @@ All automated annotations carry a `[C:0.00–1.00]` score.
 
 ---
 
-## Next Steps After Running
-
-1. Open `transcript.md` and listen back — apply Jefferson markers where you hear emotion
-2. Fill in undefined acronyms in `glossary.json` (check `noteworthy.json` for the list)
-3. Verify ⚠️ flagged entities in `things.json`
-4. Paste `transcript.md` into Claude with the `emotion-audio-analyser` skill for full annotation
-5. For PDF evidence output: use the `trauma-evidence-pdf` skill in Claude
-
----
-
 ## Troubleshooting
 
 **"No such file or directory: run_transcription.py"**
 Use the full path in quotes: `python3 '/full/path/to/run_transcription.py'`
 
 **Transcription is slow**
-Normal for long files. A 37-minute recording takes ~10–15 min on CPU with the `base` model.
-Use `--model tiny` for a fast draft run first.
+Normal for long files. Use `--auto-model` or `--model tiny` for a fast draft run first.
+
+**Voice dynamics not working**
+Install librosa: `pip3 install librosa soundfile numpy --break-system-packages`
 
 **Speaker clustering puts everyone in one group**
 Try `--n-speakers 2` (or however many speakers you know are present).
 
-**Voice match certainty is low (<0.60)**
-The reference clip may be too short or contain background noise. Use a clean 30–60 second clip.
-
 **ffmpeg not found**
 Run: `brew install ffmpeg`
 
-**ImportError for resemblyzer or pyannote**
-Run: `pip3 install resemblyzer scikit-learn --break-system-packages`
-or: `pip3 install pyannote.audio --break-system-packages`
+---
+
+## For more technical detail, see `techy.readme.md`.
