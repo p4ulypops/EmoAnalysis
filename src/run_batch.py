@@ -62,6 +62,8 @@ D = "\033[2m"
 BD = "\033[1m"
 NC = "\033[0m"
 
+MODELS = ["tiny", "base", "small", "medium", "large"]
+
 # ─── State ────────────────────────────────────────────────────────────────────
 
 class BatchState:
@@ -136,6 +138,11 @@ class BatchState:
         # Terminal dimensions
         self.term_rows = 40
         self.term_cols = 120
+
+        # Overlay state: None, "options", "help"
+        self.overlay = None
+        # Forced model for all pending files ("" = per-file auto-select)
+        self.model_override = ""
 
     def get_cli_flags(self):
         flags = []
@@ -688,9 +695,9 @@ def render_dashboard():
     # ── MIDDLE-LEFT: Queue with progress bars ──
     lines.append(move_cursor(middle_start, 1))
     if not STATE.started:
-        lines.append(f"  {BD}📋 QUEUE{NC}  {Y}⏸ Press [Enter] to start${NC}")
+        lines.append(f"  {BD}📋 QUEUE{NC}  {Y}⏸ Press [Enter] to start{NC}")
     else:
-        lines.append(f"  {BD}📋 QUEUE${NC}")
+        lines.append(f"  {BD}📋 QUEUE{NC}")
 
     queue_row = middle_start + 1
     visible_queue = min(middle_height - 2, len(STATE.files))
@@ -1148,7 +1155,7 @@ def render_dashboard():
     lines.append(move_cursor(bottom_start, 1))
     lines.append(f"{D}{'─' * (cols - 1)}{NC}")
 
-    # Menu items — three rows for all shortcuts
+    # Menu bar — three rows
     menu1 = (
         f"  {BD}[N]{NC} Names:{STATE.name_privacy_label()}  "
         f"{BD}[P]{NC} Nums:{STATE.num_privacy_label()}  "
@@ -1156,16 +1163,26 @@ def render_dashboard():
         f"{BD}[D]{NC} Dec:{'✅' if STATE.deception else '❌'}  "
         f"{BD}[V]{NC} Ver:{'✅' if STATE.veracity else '❌'}  "
         f"{BD}[J]{NC} Jef:{'✅' if STATE.jefferson else '❌'}  "
-        f"{BD}[C]{NC} Clin:{'✅' if STATE.clinical else '❌'}"
+        f"{BD}[C]{NC} Clin:{'✅' if STATE.clinical else '❌'}  "
+        f"{BD}[G]{NC} Voice:{'✅' if STATE.voice_dynamics else '❌'}  "
+        f"{BD}[A]{NC} Emo:{'✅' if STATE.emotional else '❌'}"
     )
     export_label = STATE.export_formats[STATE.export_format - 1] if STATE.export_format > 0 else "OFF"
     watch_label = "ON" if STATE.watch_mode else "OFF"
+    model_label = STATE.model_override if STATE.model_override else "auto"
     menu2 = (
-        f"  {BD}[↑↓←→]{NC} Navigate files  "
-        f"{BD}[1-7]{NC} Jump card  "
+        f"  {BD}[O]{NC} Options  "
+        f"{BD}[H]{NC} Help  "
+        f"{BD}[M]{NC} Model:{model_label}  "
+        f"{BD}[+/-]{NC} Par:{STATE.max_parallel}  "
+        f"{BD}[I]{NC} Omni:{'✅' if STATE.omni else '❌'}  "
+        f"{BD}[B]{NC} Viewer:{'✅' if STATE.viewer else '❌'}  "
+        f"{BD}[↑↓]{NC} Nav  "
+        f"{BD}[1-7]{NC} Card  "
         f"{BD}[⏎]{NC} Start  "
-        f"{BD}[E]{NC} Export:{export_label}  "
-        f"{BD}[X]{NC} Export now  "
+        f"{BD}[E]{NC} Exp:{export_label}  "
+        f"{BD}[X]{NC} ExNow  "
+        f"{BD}[R]{NC} Requeue  "
         f"{BD}[W]{NC} Watch:{watch_label}  "
         f"{BD}[Q]{NC} Quit"
     )
@@ -1175,9 +1192,218 @@ def render_dashboard():
     lines.append(move_cursor(bottom_start + 2, 1))
     lines.append(CLEAR_LINE + menu2)
 
-    # Flush all at once
+    # Flush main dashboard
     sys.stdout.write("".join(lines))
     sys.stdout.flush()
+
+    # Render overlay on top if active
+    if STATE.overlay == "options":
+        render_overlay_options()
+    elif STATE.overlay == "help":
+        render_overlay_help()
+
+# ─── Overlay Renderers ───────────────────────────────────────────────────────
+
+def render_overlay_options():
+    """Render a full-screen options overlay replacing the middle section."""
+    rows = STATE.term_rows
+    cols = STATE.term_cols
+    bottom_start = rows - 4
+    middle_start = 8
+    middle_end = bottom_start - 1
+
+    out = []
+
+    # Clear middle section
+    for r in range(middle_start, middle_end + 1):
+        out.append(move_cursor(r, 1))
+        out.append(CLEAR_LINE)
+
+    # Header
+    out.append(move_cursor(middle_start, 1))
+    out.append(f"  {BD}{P}⚙️  OPTIONS & PARAMETERS{NC}  {D}[O] close · changes apply immediately{NC}")
+    out.append(move_cursor(middle_start + 1, 1))
+    out.append(f"{P}{'─' * (cols - 1)}{NC}")
+
+    half = max(cols // 2, 42)
+
+    def sect(row, col, label):
+        out.append(move_cursor(row, col))
+        out.append(f"  {BD}{C}{label}{NC}")
+
+    def opt(row, col, key, label, value, color=W):
+        out.append(move_cursor(row, col))
+        out.append(f"  {BD}[{key}]{NC} {label:<24} {color}{value}{NC}")
+
+    r = middle_start + 2
+
+    # LEFT COLUMN
+    sect(r, 1, "🧠 Analysis Features")
+    r += 1
+    opt(r, 1, "D", "Deception detection", "✅ ON" if STATE.deception else "❌ OFF", G if STATE.deception else R)
+    r += 1
+    opt(r, 1, "V", "Veracity detection",  "✅ ON" if STATE.veracity else "❌ OFF", G if STATE.veracity else R)
+    r += 1
+    opt(r, 1, "J", "Jefferson notation",  "✅ ON" if STATE.jefferson else "❌ OFF", G if STATE.jefferson else R)
+    r += 1
+    opt(r, 1, "C", "Clinical markers",    "✅ ON" if STATE.clinical else "❌ OFF", G if STATE.clinical else R)
+    r += 1
+    opt(r, 1, "G", "Voice dynamics",      "✅ ON" if STATE.voice_dynamics else "❌ OFF", G if STATE.voice_dynamics else R)
+    r += 1
+    opt(r, 1, "A", "Emotional analysis",  "✅ ON" if STATE.emotional else "❌ OFF", G if STATE.emotional else R)
+    r += 2
+    sect(r, 1, "📤 Export / Output")
+    r += 1
+    opt(r, 1, "I", "Omni output (.md)",   "✅ ON" if STATE.omni else "❌ OFF", G if STATE.omni else R)
+    r += 1
+    opt(r, 1, "B", "HTML Viewer output",  "✅ ON" if STATE.viewer else "❌ OFF", G if STATE.viewer else R)
+    r += 1
+    opt(r, 1, "K", "Diarise local",       "✅ ON" if STATE.diarise_local else "❌ OFF", G if STATE.diarise_local else R)
+    r += 1
+    export_label = STATE.export_formats[STATE.export_format - 1] if STATE.export_format > 0 else "OFF"
+    opt(r, 1, "E", "Second Brain format", export_label, Y)
+    r += 1
+    opt(r, 1, "X", "Export now",          f"({export_label})", D)
+
+    # RIGHT COLUMN
+    r2 = middle_start + 2
+    sect(r2, half, "⚙️ Processing Parameters")
+    r2 += 1
+    model_display = STATE.model_override if STATE.model_override else "auto (per duration)"
+    opt(r2, half, "M", "Whisper model (cycle)", model_display, Y)
+    r2 += 1
+    opt(r2, half, "+", "Increase parallel",  f"{STATE.max_parallel} → {min(8, STATE.max_parallel + 1)}", Y)
+    r2 += 1
+    opt(r2, half, "-", "Decrease parallel",  f"{STATE.max_parallel} → {max(1, STATE.max_parallel - 1)}", Y)
+    r2 += 2
+    sect(r2, half, "🔒 Privacy Levels")
+    r2 += 1
+    opt(r2, half, "N", "Names (cycle)",   STATE.name_privacy_label(), Y)
+    r2 += 1
+    opt(r2, half, "P", "Numbers (cycle)", STATE.num_privacy_label(), Y)
+    r2 += 2
+    sect(r2, half, "📂 Queue & Navigation")
+    r2 += 1
+    opt(r2, half, "↑↓", "Select file",      f"{STATE.selected_file_idx + 1}/{max(1,len(STATE.files))}", Y)
+    r2 += 1
+    opt(r2, half, "1–7", "Jump to card mode", STATE.card_mode_label(), Y)
+    r2 += 1
+    opt(r2, half, "R",   "Requeue failed",   f"{STATE.failed} failed file(s)", Y if STATE.failed else D)
+    r2 += 1
+    opt(r2, half, "W",   "Watch mode",       "ON" if STATE.watch_mode else "OFF", G if STATE.watch_mode else D)
+    r2 += 2
+    sect(r2, half, "ℹ️ Indicator Explanations")
+    r2 += 1
+    out.append(move_cursor(r2, half))
+    out.append(f"  {D}<dec>  false-start/correction/stall/evade/mem{NC}")
+    r2 += 1
+    out.append(move_cursor(r2, half))
+    out.append(f"  {D}<ver>  sensory-recall/temporal/context/complex{NC}")
+    r2 += 1
+    out.append(move_cursor(r2, half))
+    out.append(f"  {D}<clin> PTSD-frag/somatic/ADHD-maze/ASD-pause{NC}")
+    r2 += 1
+    out.append(move_cursor(r2, half))
+    out.append(f"  {D}Certainty 0.00–1.00 · <0.70 = manual verify{NC}")
+
+    sys.stdout.write("".join(out))
+    sys.stdout.flush()
+
+
+def render_overlay_help():
+    """Render a help screen overlay listing all keyboard shortcuts."""
+    rows = STATE.term_rows
+    cols = STATE.term_cols
+    bottom_start = rows - 4
+    middle_start = 8
+    middle_end = bottom_start - 1
+
+    out = []
+    for r in range(middle_start, middle_end + 1):
+        out.append(move_cursor(r, 1))
+        out.append(CLEAR_LINE)
+
+    out.append(move_cursor(middle_start, 1))
+    out.append(f"  {BD}{Y}⌨️  KEYBOARD SHORTCUTS{NC}  {D}[H] close{NC}")
+    out.append(move_cursor(middle_start + 1, 1))
+    out.append(f"{Y}{'─' * (cols - 1)}{NC}")
+
+    half = max(cols // 2, 42)
+
+    shortcuts_left = [
+        ("SECTION", "Analysis Toggles"),
+        ("D", "Deception detection ON/OFF"),
+        ("V", "Veracity detection ON/OFF"),
+        ("J", "Jefferson notation ON/OFF"),
+        ("C", "Clinical markers ON/OFF"),
+        ("G", "Voice dynamics ON/OFF"),
+        ("A", "Emotional analysis ON/OFF"),
+        ("I", "Omni output (.md) ON/OFF"),
+        ("B", "HTML Viewer output ON/OFF"),
+        ("K", "Diarise-local ON/OFF"),
+        ("", ""),
+        ("SECTION", "Privacy & Display"),
+        ("N", "Names: REDACTED → EMOJI → FULL"),
+        ("P", "Numbers: REDACTED → EMOJI → FULL"),
+        ("F", "Cycle card mode (7 modes)"),
+        ("1–7", "Jump directly to card mode 1–7"),
+        ("", ""),
+        ("SECTION", "Navigation"),
+        ("↑ / ↓", "Select file in queue"),
+        ("← / →", "Navigate files (same as ↑↓)"),
+        ("⏎ Enter", "Start batch processing"),
+    ]
+
+    shortcuts_right = [
+        ("SECTION", "Card Modes (1–7)"),
+        ("1", "Emotional: quotes, emotions, people"),
+        ("2", "Technical: model, segments, tokens"),
+        ("3", "Quotes: key facts & high-intensity"),
+        ("4", "Batch Stats: aggregate all files"),
+        ("5", "Micro RAG: cross-file entity index"),
+        ("6", "Event Log: chronological events"),
+        ("7", "Tech Specs: system information"),
+        ("", ""),
+        ("SECTION", "Processing & Export"),
+        ("M", "Cycle Whisper model (tiny→large)"),
+        ("+", "Increase max parallel processes"),
+        ("-", "Decrease max parallel processes"),
+        ("R", "Requeue all failed files"),
+        ("W", "Toggle folder watch mode"),
+        ("E", "Cycle Second Brain export format"),
+        ("X", "Export now (current format)"),
+        ("O", "Open/close Options screen"),
+        ("H", "Open/close this Help screen"),
+        ("Q", "Quit gracefully (finish current)"),
+    ]
+
+    r = middle_start + 2
+    for left, right in zip(shortcuts_left, shortcuts_right):
+        if r >= middle_end:
+            break
+        lkey, lval = left
+        rkey, rval = right
+
+        if lkey == "SECTION":
+            out.append(move_cursor(r, 1))
+            out.append(f"  {BD}{C}{lval}{NC}")
+        elif lkey:
+            out.append(move_cursor(r, 1))
+            out.append(f"  {BD}{W}[{lkey}]{NC} {D}{lval}{NC}")
+        # else blank row
+
+        if rkey == "SECTION":
+            out.append(move_cursor(r, half))
+            out.append(f"  {BD}{C}{rval}{NC}")
+        elif rkey:
+            out.append(move_cursor(r, half))
+            out.append(f"  {BD}{W}[{rkey}]{NC} {D}{rval}{NC}")
+
+        r += 1
+
+    sys.stdout.write("".join(out))
+    sys.stdout.flush()
+
 
 # ─── Keyboard Handler ─────────────────────────────────────────────────────────
 
@@ -1185,6 +1411,19 @@ def handle_keypress(key):
     """Handle a single keypress for live toggling."""
     key_lower = key.lower()
 
+    # ── Overlay toggles (work regardless of overlay state) ──
+    if key_lower == 'o':
+        STATE.overlay = None if STATE.overlay == "options" else "options"
+        return
+    elif key_lower == 'h':
+        STATE.overlay = None if STATE.overlay == "help" else "help"
+        return
+    # Escape closes any overlay
+    elif key == '\x1b' and STATE.overlay:
+        STATE.overlay = None
+        return
+
+    # ── All other keys work normally; overlays stay open to show live feedback ──
     if key_lower == 'n':
         STATE.name_privacy = (STATE.name_privacy + 1) % 3
     elif key_lower == 'p':
@@ -1199,45 +1438,77 @@ def handle_keypress(key):
         STATE.jefferson = not STATE.jefferson
     elif key_lower == 'c':
         STATE.clinical = not STATE.clinical
+    elif key_lower == 'g':
+        STATE.voice_dynamics = not STATE.voice_dynamics
+    elif key_lower == 'a':
+        STATE.emotional = not STATE.emotional
+    elif key_lower == 'i':
+        STATE.omni = not STATE.omni
+    elif key_lower == 'b':
+        STATE.viewer = not STATE.viewer
+    elif key_lower == 'k':
+        STATE.diarise_local = not STATE.diarise_local
+    elif key_lower == 'm':
+        # Cycle model override
+        idx = MODELS.index(STATE.model_override) if STATE.model_override in MODELS else -1
+        STATE.model_override = MODELS[(idx + 1) % len(MODELS)] if idx < len(MODELS) - 1 else ""
+        # Apply to all still-pending files
+        for f in STATE.files:
+            if f["status"] == "pending" and STATE.model_override:
+                f["model"] = STATE.model_override
+        log_event("info", f"Model override: {STATE.model_override or 'auto'}")
+    elif key == '+' or key == '=':
+        STATE.max_parallel = min(8, STATE.max_parallel + 1)
+        log_event("info", f"Parallel: {STATE.max_parallel}")
+    elif key == '-':
+        STATE.max_parallel = max(1, STATE.max_parallel - 1)
+        log_event("info", f"Parallel: {STATE.max_parallel}")
+    elif key_lower == 'r':
+        # Requeue all failed files
+        requeued = 0
+        for f in STATE.files:
+            if f["status"] == "failed":
+                f["status"] = "pending"
+                f["pid"] = None
+                f["proc"] = None
+                f.pop("result", None)
+                STATE.failed = max(0, STATE.failed - 1)
+                requeued += 1
+        if requeued:
+            log_event("info", f"Requeued {requeued} failed file(s)")
     elif key_lower == 'q':
         STATE.quit_requested = True
     elif key in '1234567':
         STATE.card_mode = int(key) - 1
     elif key == '\r' or key == '\n':
-        # Enter — start processing
+        # Enter — start processing, also close overlay
         STATE.started = True
+        STATE.overlay = None
         log_event("info", "Processing started by user")
     elif key == 'e':
-        # Cycle export format
         STATE.export_format = (STATE.export_format + 1) % (len(STATE.export_formats) + 1)
     elif key == 'x':
-        # Export now in current format
         if STATE.export_format > 0:
             fmt = STATE.export_formats[STATE.export_format - 1]
             export_second_brain(fmt)
     elif key == 'w':
-        # Toggle watch mode
         STATE.watch_mode = not STATE.watch_mode
         if STATE.watch_mode:
             log_event("info", f"Watch mode ON — monitoring {STATE.watch_dir or 'default dir'}")
-    # Arrow keys come as escape sequences: \x1b[A=up, \x1b[B=down, \x1b[C=right, \x1b[D=left
+    # Arrow keys: \x1b[A=up, \x1b[B=down, \x1b[C=right, \x1b[D=left
     elif key == '\x1b[A':
-        # Up — select previous file
         if STATE.selected_file_idx > 0:
             STATE.selected_file_idx -= 1
         STATE.current_display_idx = STATE.selected_file_idx
     elif key == '\x1b[B':
-        # Down — select next file
         if STATE.selected_file_idx < len(STATE.files) - 1:
             STATE.selected_file_idx += 1
         STATE.current_display_idx = STATE.selected_file_idx
     elif key == '\x1b[C':
-        # Right — next file
         if STATE.selected_file_idx < len(STATE.files) - 1:
             STATE.selected_file_idx += 1
         STATE.current_display_idx = STATE.selected_file_idx
     elif key == '\x1b[D':
-        # Left — previous file
         if STATE.selected_file_idx > 0:
             STATE.selected_file_idx -= 1
         STATE.current_display_idx = STATE.selected_file_idx
@@ -1473,30 +1744,571 @@ def _export_json(completed, output_dir):
 
 
 def _export_html(completed, output_dir):
-    """Web-ready HTML export."""
+    """Generate a rich, interactive batch viewer HTML file."""
     export_dir = output_dir / "html"
     export_dir.mkdir(exist_ok=True)
-    lines = ["<html><head><meta charset='utf-8'><title>Second Brain Export</title>",
-             "<style>body{font-family:system-ui;max-width:900px;margin:2em auto;padding:1em}",
-             ".file{border:1px solid #ddd;padding:1em;margin:1em 0;border-radius:8px}",
-             ".quote{border-left:3px solid #666;padding-left:1em;margin:0.5em 0;color:#555}",
-             ".indicator{display:inline-block;padding:2px 8px;margin:2px;border-radius:4px;font-size:0.9em}",
-             "</style></head><body><h1>🎧 Second Brain Export</h1>"]
+
+    # Build embedded data payload — load full omni.md for each file if available
+    files_data = []
     for f in completed:
         r = f.get("result", {})
-        lines.append(f"<div class='file'><h2>{f['safe_name']}</h2>")
-        lines.append(f"<p>Duration: {f['duration']//60}min | Segments: {r.get('segment_count',0)} | Tokens: ~{f['duration']//60*112}</p>")
-        lines.append("<h3>Quotes</h3>")
-        for q in r.get("quotes", []):
-            lines.append(f"<div class='quote'>{q.get('emoji','')} [{q.get('intensity',5)}/10] {q.get('text','')}</div>")
-        lines.append("<h3>Indicators</h3>")
-        lines.append(f"<span class='indicator' style='background:#fdd'>Deception: {r.get('deception_count',0)}</span>")
-        lines.append(f"<span class='indicator' style='background:#dfd'>Veracity: {r.get('veracity_count',0)}</span>")
-        lines.append(f"<span class='indicator' style='background:#ffd'>Clinical: {r.get('clinical_count',0)}</span>")
-        lines.append(f"<span class='indicator' style='background:#ddf'>Freezes: {r.get('freeze_count',0)}</span>")
-        lines.append("</div>")
-    lines.append("</body></html>")
-    (export_dir / "index.html").write_text("\n".join(lines), encoding="utf-8")
+        entry = {
+            "name": f["safe_name"],
+            "original_name": f.get("name", f["safe_name"]),
+            "duration": f["duration"],
+            "status": f["status"],
+            "output_dir": f.get("output_dir", ""),
+            "result": r,
+        }
+        # Embed omni.md content if present
+        omni_path = Path(f.get("output_dir", "")) / "omni.md"
+        if omni_path.exists():
+            try:
+                entry["omni_md"] = omni_path.read_text(encoding="utf-8")
+            except Exception:
+                entry["omni_md"] = ""
+        # Embed transcript.md
+        transcript_path = Path(f.get("output_dir", "")) / "transcript.md"
+        if transcript_path.exists():
+            try:
+                entry["transcript_md"] = transcript_path.read_text(encoding="utf-8")
+            except Exception:
+                entry["transcript_md"] = ""
+        files_data.append(entry)
+
+    batch_payload = json.dumps({
+        "generated": datetime.now().isoformat(),
+        "files": files_data,
+    }, ensure_ascii=False, indent=None)
+
+    html = _build_batch_viewer_html(batch_payload)
+    out_path = export_dir / "batch_viewer.html"
+    out_path.write_text(html, encoding="utf-8")
+    log_event("info", f"Batch viewer: {out_path}")
+
+
+def _build_batch_viewer_html(batch_payload_json: str) -> str:
+    """Build the complete batch viewer HTML string."""
+    # Escape </script> inside JSON payload
+    safe_payload = batch_payload_json.replace("</script>", "<\\/script>")
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>🎧 Emotion Audio Batch Viewer</title>
+<style>
+:root{{
+  --bg:#0d1117;--bg-card:#161b22;--bg-hover:#21262d;--bg-active:#1f3044;
+  --border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#388bfd;
+  --green:#3fb950;--yellow:#d29922;--red:#f85149;--purple:#bc8cff;--orange:#f0883e;
+  --sidebar-w:260px;
+}}
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}}
+/* TOP BAR */
+#topbar{{background:#010409;border-bottom:1px solid var(--border);padding:0 16px;height:52px;display:flex;align-items:center;gap:16px;flex-shrink:0}}
+#topbar h1{{font-size:15px;font-weight:600;white-space:nowrap}}
+#batch-pills{{display:flex;gap:8px;flex-wrap:wrap}}
+.pill{{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2px 10px;font-size:12px;white-space:nowrap}}
+.pill.dec{{border-color:var(--red);color:var(--red)}}
+.pill.ver{{border-color:var(--green);color:var(--green)}}
+.pill.clin{{border-color:var(--yellow);color:var(--yellow)}}
+.pill.freeze{{border-color:var(--purple);color:var(--purple)}}
+#mode-badge{{margin-left:auto;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 8px}}
+/* MAIN LAYOUT */
+#layout{{display:flex;flex:1;overflow:hidden}}
+/* SIDEBAR */
+#sidebar{{width:var(--sidebar-w);flex-shrink:0;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}}
+#sidebar-header{{padding:10px 12px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border)}}
+#file-list{{overflow-y:auto;flex:1}}
+.file-item{{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}}
+.file-item:hover{{background:var(--bg-hover)}}
+.file-item.active{{background:var(--bg-active);border-left:3px solid var(--accent)}}
+.fi-name{{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.fi-meta{{font-size:11px;color:var(--muted);margin-top:3px}}
+.fi-badges{{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}}
+.fi-badge{{font-size:10px;padding:1px 5px;border-radius:3px;font-weight:600}}
+.fi-badge.d{{background:#3d1a1a;color:var(--red)}}
+.fi-badge.v{{background:#1a3d1a;color:var(--green)}}
+.fi-badge.c{{background:#3d2e1a;color:var(--yellow)}}
+.fi-badge.f{{background:#2a1a3d;color:var(--purple)}}
+/* MAIN CONTENT */
+#main{{flex:1;display:flex;flex-direction:column;overflow:hidden}}
+/* TABS */
+#tabs{{display:flex;border-bottom:1px solid var(--border);background:var(--bg-card);flex-shrink:0;padding:0 12px;gap:0;overflow-x:auto}}
+.tab{{padding:10px 14px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);white-space:nowrap;transition:color .15s,border-color .15s}}
+.tab:hover{{color:var(--text)}}
+.tab.active{{color:var(--text);border-bottom-color:var(--accent)}}
+/* TAB PANELS */
+#tab-content{{flex:1;overflow-y:auto;padding:20px}}
+.panel{{display:none}}
+.panel.active{{display:block}}
+/* STAT CARDS */
+.stats-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:20px}}
+.stat-card{{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}}
+.stat-card .num{{font-size:28px;font-weight:700;line-height:1}}
+.stat-card .label{{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.04em}}
+.stat-card.dec .num{{color:var(--red)}}
+.stat-card.ver .num{{color:var(--green)}}
+.stat-card.clin .num{{color:var(--yellow)}}
+.stat-card.freeze .num{{color:var(--purple)}}
+.stat-card.words .num{{color:var(--accent)}}
+/* SECTION HEADINGS */
+.section-head{{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}}
+/* EMOTION BAR CHART */
+.emo-chart{{display:flex;flex-direction:column;gap:6px}}
+.emo-row{{display:flex;align-items:center;gap:8px;font-size:13px}}
+.emo-label{{width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}}
+.emo-bar-wrap{{flex:1;height:16px;background:var(--bg-card);border-radius:4px;overflow:hidden}}
+.emo-bar{{height:100%;background:var(--accent);border-radius:4px;transition:width .3s}}
+.emo-count{{width:30px;text-align:right;font-size:12px;color:var(--muted)}}
+/* TRANSCRIPT */
+#transcript-text{{font-family:'JetBrains Mono','Fira Code','Consolas',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;max-height:calc(100vh - 280px);overflow-y:auto}}
+.ts-timestamp{{color:var(--accent);cursor:pointer}}
+.ts-timestamp:hover{{text-decoration:underline}}
+.ts-dec{{background:#3d1a1a;color:var(--red);border-radius:2px;padding:0 2px}}
+.ts-ver{{background:#1a3d1a;color:var(--green);border-radius:2px;padding:0 2px}}
+.ts-jef{{color:var(--orange);font-weight:600}}
+.ts-freeze{{background:#2a1a3d;color:var(--purple);border-radius:2px;padding:0 2px}}
+/* INDICATOR TABLE */
+.ind-table{{width:100%;border-collapse:collapse;font-size:13px}}
+.ind-table th{{padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--border)}}
+.ind-table td{{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}}
+.ind-table tr:hover td{{background:var(--bg-hover)}}
+.cert-bar{{height:6px;border-radius:3px;background:var(--border)}}
+.cert-fill{{height:100%;border-radius:3px}}
+.sym-dec{{color:var(--red);font-weight:700;font-family:monospace}}
+.sym-ver{{color:var(--green);font-weight:700;font-family:monospace}}
+/* NOTEWORTHY */
+.nw-list{{display:flex;flex-direction:column;gap:8px}}
+.nw-item{{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:10px 14px;display:flex;gap:10px;align-items:flex-start}}
+.nw-icon{{font-size:16px;flex-shrink:0}}
+.nw-note{{font-size:13px;line-height:1.5}}
+.nw-time{{font-size:11px;color:var(--muted);margin-top:2px}}
+/* ENTITIES */
+.entity-table{{width:100%;border-collapse:collapse;font-size:13px}}
+.entity-table th{{padding:7px 10px;text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;border-bottom:2px solid var(--border)}}
+.entity-table td{{padding:7px 10px;border-bottom:1px solid var(--border)}}
+.entity-table tr:hover td{{background:var(--bg-hover)}}
+/* OMNI VIEW */
+#omni-content{{font-size:13px;line-height:1.8;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;max-height:calc(100vh - 280px);overflow-y:auto}}
+#omni-content h1,#omni-content h2{{color:var(--text);border-bottom:1px solid var(--border);padding-bottom:6px;margin:20px 0 10px}}
+#omni-content h3{{color:var(--muted);margin:14px 0 8px}}
+#omni-content table{{border-collapse:collapse;width:100%;margin:10px 0;font-size:12px}}
+#omni-content th{{background:var(--bg-hover);padding:6px 10px;text-align:left;border:1px solid var(--border)}}
+#omni-content td{{padding:6px 10px;border:1px solid var(--border)}}
+#omni-content code{{background:var(--bg-hover);padding:1px 5px;border-radius:3px;font-family:monospace}}
+#omni-content blockquote{{border-left:3px solid var(--border);padding-left:12px;color:var(--muted);margin:8px 0}}
+/* AUDIO PLAYER */
+#player{{background:#010409;border-top:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;height:54px}}
+#player-title{{font-size:12px;color:var(--muted);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+#player audio{{height:32px;flex:1;accent-color:var(--accent);min-width:0}}
+/* SCROLLBARS */
+::-webkit-scrollbar{{width:6px;height:6px}}
+::-webkit-scrollbar-track{{background:transparent}}
+::-webkit-scrollbar-thumb{{background:var(--border);border-radius:3px}}
+::-webkit-scrollbar-thumb:hover{{background:var(--muted)}}
+/* EMPTY STATE */
+.empty{{color:var(--muted);font-size:13px;font-style:italic;padding:20px 0}}
+/* QUOTES */
+.quote-item{{background:var(--bg-card);border-left:3px solid var(--accent);padding:10px 14px;margin-bottom:8px;border-radius:0 6px 6px 0}}
+.quote-header{{display:flex;align-items:center;gap:8px;margin-bottom:4px}}
+.quote-text{{font-size:13px;line-height:1.5;color:var(--text)}}
+.intensity{{font-size:11px;color:var(--muted)}}
+</style>
+</head>
+<body>
+<div id="topbar">
+  <h1>🎧 Emotion Audio Analyser — Batch Viewer</h1>
+  <div id="batch-pills"></div>
+  <div id="mode-badge">Embedded Data</div>
+</div>
+<div id="layout">
+  <aside id="sidebar">
+    <div id="sidebar-header">Batch Files (<span id="file-count">0</span>)</div>
+    <div id="file-list"></div>
+  </aside>
+  <div id="main">
+    <div id="tabs">
+      <div class="tab active" data-tab="overview">Overview</div>
+      <div class="tab" data-tab="transcript">Transcript</div>
+      <div class="tab" data-tab="emotions">Emotions</div>
+      <div class="tab" data-tab="indicators">Indicators</div>
+      <div class="tab" data-tab="entities">Entities</div>
+      <div class="tab" data-tab="noteworthy">Noteworthy</div>
+      <div class="tab" data-tab="omni">Omni View</div>
+    </div>
+    <div id="tab-content">
+      <div class="panel active" id="panel-overview"></div>
+      <div class="panel" id="panel-transcript"></div>
+      <div class="panel" id="panel-emotions"></div>
+      <div class="panel" id="panel-indicators"></div>
+      <div class="panel" id="panel-entities"></div>
+      <div class="panel" id="panel-noteworthy"></div>
+      <div class="panel" id="panel-omni"></div>
+    </div>
+  </div>
+</div>
+<div id="player">
+  <span id="player-title">No file selected</span>
+  <audio id="audio-el" controls></audio>
+</div>
+<script>
+const BATCH_DATA = {safe_payload};
+
+let selectedIdx = 0;
+const audioEl = document.getElementById('audio-el');
+
+function esc(s){{ const d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML; }}
+
+function fmt_dur(s){{
+  const m=Math.floor(s/60), sec=Math.floor(s%60);
+  return `${{m}}:${{sec.toString().padStart(2,'0')}}`;
+}}
+
+function cert_color(c){{
+  if(c>=0.7) return 'var(--green)';
+  if(c>=0.5) return 'var(--yellow)';
+  return 'var(--red)';
+}}
+
+// Build batch summary pills
+function renderBatchSummary(){{
+  const files = BATCH_DATA.files||[];
+  let totDec=0,totVer=0,totClin=0,totFreeze=0,totWords=0,totDur=0;
+  files.forEach(f=>{{
+    const r=f.result||{{}};
+    totDec+=r.deception_count||0;
+    totVer+=r.veracity_count||0;
+    totClin+=r.clinical_count||0;
+    totFreeze+=r.freeze_count||0;
+    totWords+=r.word_count||0;
+    totDur+=f.duration||0;
+  }});
+  const pills = document.getElementById('batch-pills');
+  pills.innerHTML = `
+    <span class="pill">📁 ${{files.length}} files</span>
+    <span class="pill">⏱ ${{fmt_dur(totDur)}}</span>
+    <span class="pill dec">🧠 ${{totDec}} deception</span>
+    <span class="pill ver">✅ ${{totVer}} veracity</span>
+    <span class="pill clin">🏥 ${{totClin}} clinical</span>
+    <span class="pill freeze">❄️ ${{totFreeze}} freezes</span>
+    <span class="pill">📝 ${{totWords.toLocaleString()}} words</span>
+  `;
+}}
+
+// Build sidebar file list
+function renderSidebar(){{
+  const files = BATCH_DATA.files||[];
+  document.getElementById('file-count').textContent = files.length;
+  const list = document.getElementById('file-list');
+  list.innerHTML = '';
+  files.forEach((f,i)=>{{
+    const r=f.result||{{}};
+    const item = document.createElement('div');
+    item.className = 'file-item' + (i===selectedIdx?' active':'');
+    item.innerHTML = `
+      <div class="fi-name" title="${{esc(f.original_name||f.name)}}">${{esc(f.name)}}</div>
+      <div class="fi-meta">${{fmt_dur(f.duration||0)}} · ${{r.segment_count||0}} segs · ${{r.word_count||0}} words</div>
+      <div class="fi-badges">
+        ${{(r.deception_count||0)>0?`<span class="fi-badge d">⚠ ${{r.deception_count}} dec</span>`:''}}
+        ${{(r.veracity_count||0)>0?`<span class="fi-badge v">✓ ${{r.veracity_count}} ver</span>`:''}}
+        ${{(r.clinical_count||0)>0?`<span class="fi-badge c">🏥 ${{r.clinical_count}} clin</span>`:''}}
+        ${{(r.freeze_count||0)>0?`<span class="fi-badge f">❄ ${{r.freeze_count}} freeze</span>`:''}}
+      </div>
+    `;
+    item.onclick = ()=>selectFile(i);
+    list.appendChild(item);
+  }});
+}}
+
+function selectFile(i){{
+  selectedIdx = i;
+  renderSidebar();
+  renderAllPanels();
+  // Try to load audio
+  const f = (BATCH_DATA.files||[])[i];
+  if(f && f.output_dir){{
+    const audioName = (f.original_name||f.name||'').replace(/\\/g,'/');
+    // Try audio file in output_dir parent
+    const base = f.output_dir.replace(/_subfile$/,'');
+    audioEl.src = base;
+    document.getElementById('player-title').textContent = f.name||'';
+  }}
+}}
+
+function renderAllPanels(){{
+  const f = (BATCH_DATA.files||[])[selectedIdx];
+  if(!f) return;
+  renderOverview(f);
+  renderTranscript(f);
+  renderEmotions(f);
+  renderIndicators(f);
+  renderEntities(f);
+  renderNoteworthy(f);
+  renderOmni(f);
+}}
+
+function renderOverview(f){{
+  const r = f.result||{{}};
+  const p = document.getElementById('panel-overview');
+  const emo = r.emotion_dist||{{}};
+  const topEmo = Object.entries(emo).sort((a,b)=>b[1]-a[1]).slice(0,1)[0];
+  const topEmoStr = topEmo?`${{topEmo[0]}} (${{topEmo[1]}})`:'—';
+
+  let quotesHtml = '';
+  (r.quotes||[]).slice(0,5).forEach(q=>{{
+    const intColor = q.intensity>=8?'var(--red)':q.intensity>=6?'var(--yellow)':'var(--green)';
+    quotesHtml += `<div class="quote-item">
+      <div class="quote-header">
+        <span style="font-size:18px">${{esc(q.emoji||'')}}</span>
+        <span style="font-size:12px;color:var(--muted)">${{esc(q.time||'')}}</span>
+        <span class="intensity" style="color:${{intColor}};font-weight:600">${{q.intensity||5}}/10</span>
+        <span class="intensity">${{esc(q.affect||'')}}</span>
+      </div>
+      <div class="quote-text">${{esc(q.text||'')}}</div>
+    </div>`;
+  }});
+  if(!quotesHtml) quotesHtml = '<div class="empty">No high-intensity quotes detected</div>';
+
+  p.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card dec"><div class="num">${{r.deception_count||0}}</div><div class="label">Deception</div></div>
+      <div class="stat-card ver"><div class="num">${{r.veracity_count||0}}</div><div class="label">Veracity</div></div>
+      <div class="stat-card clin"><div class="num">${{r.clinical_count||0}}</div><div class="label">Clinical</div></div>
+      <div class="stat-card freeze"><div class="num">${{r.freeze_count||0}}</div><div class="label">Freezes</div></div>
+      <div class="stat-card words"><div class="num">${{r.word_count||0}}</div><div class="label">Words</div></div>
+      <div class="stat-card"><div class="num">${{r.segment_count||0}}</div><div class="label">Segments</div></div>
+      <div class="stat-card"><div class="num" style="font-size:16px;padding-top:4px">${{esc(r.model||'?')}}</div><div class="label">Model</div></div>
+      <div class="stat-card"><div class="num" style="font-size:16px;padding-top:4px">${{fmt_dur(f.duration||0)}}</div><div class="label">Duration</div></div>
+    </div>
+    <div class="section-head">💬 High-Intensity Quotes</div>
+    ${{quotesHtml}}
+  `;
+}}
+
+function renderTranscript(f){{
+  const p = document.getElementById('panel-transcript');
+  const raw = f.transcript_md||'';
+  if(!raw){{ p.innerHTML='<div class="empty">No transcript available</div>'; return; }}
+  // Highlight timestamps, deception markers, veracity markers, Jefferson markers
+  let html = esc(raw)
+    .replace(/\\[(\\d{{2}}:\\d{{2}}(?:\\.\\d+)?)\\]/g, '<span class="ts-timestamp" onclick="seekAudio($1)">[$1]</span>')
+    .replace(/&lt;(fs|corrsp|rep|lack-mem|over-elab|defensive|contradict|cog-load|evade)[^&gt;]*&gt;(.*?)&lt;\\/\\1&gt;/g,
+             '<span class="ts-dec">&lt;$1&gt;$2&lt;/$1&gt;</span>')
+    .replace(/&lt;(veracious|sensory-recall|temporal|context|emo-consist|cog-complex|spontaneous|recall-pause)[^&gt;]*&gt;(.*?)&lt;\\/\\1&gt;/g,
+             '<span class="ts-ver">&lt;$1&gt;$2&lt;/$1&gt;</span>')
+    .replace(/\\((\\d+\\.\\d+)\\)|\\((\\d+:\\d+\\.\\d+)\\)/g, '<span class="ts-freeze">($1$2)</span>');
+  p.innerHTML = `<div id="transcript-text">${{html}}</div>`;
+}}
+
+function seekAudio(ts){{
+  // ts is MM:SS — convert to seconds and seek
+  const parts = String(ts).split(':');
+  if(parts.length===2){{
+    const secs = parseInt(parts[0])*60+parseInt(parts[1]);
+    audioEl.currentTime=secs; audioEl.play();
+  }}
+}}
+
+function renderEmotions(f){{
+  const r = f.result||{{}};
+  const p = document.getElementById('panel-emotions');
+  const emo = r.emotion_dist||{{}};
+  const total = Object.values(emo).reduce((a,b)=>a+b,0)||1;
+  const sorted = Object.entries(emo).sort((a,b)=>b[1]-a[1]);
+
+  let chart = '<div class="emo-chart">';
+  sorted.forEach(([label,count])=>{{
+    const pct = Math.round(count/total*100);
+    chart += `<div class="emo-row">
+      <div class="emo-label">${{esc(label)}}</div>
+      <div class="emo-bar-wrap"><div class="emo-bar" style="width:${{pct}}%"></div></div>
+      <div class="emo-count">${{count}}</div>
+    </div>`;
+  }});
+  chart += '</div>';
+
+  // Freeze events
+  let freezeHtml = '';
+  (r.freeze_events||[]).forEach(fe=>{{
+    freezeHtml += `<div class="nw-item">
+      <div class="nw-icon">❄️</div>
+      <div><div class="nw-note">Freeze/silence event</div>
+      <div class="nw-time">${{esc(JSON.stringify(fe))}}</div></div>
+    </div>`;
+  }});
+  if(!freezeHtml) freezeHtml = '<div class="empty">No freeze events detected</div>';
+
+  if(!sorted.length){{ p.innerHTML='<div class="empty">No emotion data available</div>'; return; }}
+  p.innerHTML = `
+    <div class="section-head">🎭 Emotion Distribution</div>
+    ${{chart}}
+    <div class="section-head">❄️ Freeze / Silence Events (${{(r.freeze_events||[]).length}})</div>
+    <div class="nw-list">${{freezeHtml}}</div>
+  `;
+}}
+
+function renderIndicators(f){{
+  const r = f.result||{{}};
+  const p = document.getElementById('panel-indicators');
+
+  function indTable(items, symClass, label){{
+    if(!items||!items.length) return `<div class="empty">No ${{label}} detected</div>`;
+    let html = `<table class="ind-table"><thead><tr>
+      <th>Time</th><th>Symbol</th><th>Type</th><th>Note</th><th>Certainty</th>
+    </tr></thead><tbody>`;
+    items.forEach(it=>{{
+      const cert = it.certainty||it.confidence||0;
+      const w = Math.round(cert*100);
+      const col = cert_color(cert);
+      html += `<tr>
+        <td style="color:var(--accent);font-family:monospace">${{esc(it.timestamp||'')}}</td>
+        <td><span class="${{symClass}}">${{esc(it.symbol||it.type||'')}}</span></td>
+        <td style="color:var(--muted)">${{esc(it.type||'')}}</td>
+        <td>${{esc(it.note||it.description||'')}}</td>
+        <td><div class="cert-bar"><div class="cert-fill" style="width:${{w}}%;background:${{col}}"></div></div>
+          <span style="font-size:11px;color:var(--muted)">${{cert.toFixed(2)}}</span></td>
+      </tr>`;
+    }});
+    html += '</tbody></table>';
+    return html;
+  }}
+
+  // Extract from noteworthy items as fallback
+  const noteworthy = r.noteworthy||[];
+  const decItems = noteworthy.filter(n=>n.type&&n.type.includes('deception'));
+  const verItems = noteworthy.filter(n=>n.type&&n.type.includes('veracity'));
+
+  p.innerHTML = `
+    <div class="section-head">🧠 Deception Indicators (${{r.deception_count||decItems.length}})</div>
+    ${{indTable(decItems, 'sym-dec', 'deception indicators')}}
+    <div class="section-head" style="margin-top:24px">✅ Veracity Indicators (${{r.veracity_count||verItems.length}})</div>
+    ${{indTable(verItems, 'sym-ver', 'veracity indicators')}}
+    <div style="margin-top:16px;padding:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--muted)">
+      <strong style="color:var(--text)">How these are detected:</strong><br>
+      Deception: false-starts &lt;fs&gt;, corrections &lt;corrsp&gt;, stalling &lt;rep&gt;, memory disclaimers &lt;lack-mem&gt;, over-elaboration, defensive language, contradiction, cognitive load, evasion<br>
+      Veracity: qualified certainty, sensory detail &lt;sensory-recall&gt;, temporal sequencing &lt;temporal&gt;, contextual embedding, cognitive complexity, spontaneous recall<br>
+      Certainty scores &lt;0.70 should be manually verified.
+    </div>
+  `;
+}}
+
+function renderEntities(f){{
+  const r = f.result||{{}};
+  const p = document.getElementById('panel-entities');
+  const people = r.people||[];
+  const places = r.places||[];
+  const hashtags = r.hashtags||[];
+
+  let pplHtml = '';
+  if(people.length){{
+    pplHtml = '<table class="entity-table"><thead><tr><th>Name</th><th>Certainty</th><th>Occurrences</th></tr></thead><tbody>';
+    people.forEach(pe=>{{
+      const cert = pe.certainty||0;
+      pplHtml += `<tr>
+        <td>${{esc(pe.name||'')}}</td>
+        <td><div class="cert-bar" style="width:60px"><div class="cert-fill" style="width:${{Math.round(cert*100)}}%;background:${{cert_color(cert)}}"></div></div></td>
+        <td style="color:var(--muted)">${{pe.occurrences||1}}</td>
+      </tr>`;
+    }});
+    pplHtml += '</tbody></table>';
+  }} else pplHtml = '<div class="empty">No people detected</div>';
+
+  let plHtml = '';
+  if(places.length){{
+    plHtml = '<table class="entity-table"><thead><tr><th>Place</th><th>Certainty</th><th>Occurrences</th></tr></thead><tbody>';
+    places.forEach(pl=>{{
+      const cert = pl.certainty||0;
+      plHtml += `<tr>
+        <td>${{esc(pl.place||pl.name||'')}}</td>
+        <td><div class="cert-bar" style="width:60px"><div class="cert-fill" style="width:${{Math.round(cert*100)}}%;background:${{cert_color(cert)}}"></div></div></td>
+        <td style="color:var(--muted)">${{pl.occurrences||1}}</td>
+      </tr>`;
+    }});
+    plHtml += '</tbody></table>';
+  }} else plHtml = '<div class="empty">No places detected</div>';
+
+  let tagsHtml = hashtags.length
+    ? hashtags.map(t=>`<span class="pill" style="margin:2px">${{esc(t)}}</span>`).join('')
+    : '<div class="empty">No hashtags</div>';
+
+  p.innerHTML = `
+    <div class="section-head">👥 People Mentioned</div>
+    ${{pplHtml}}
+    <div class="section-head">📍 Places Mentioned</div>
+    ${{plHtml}}
+    <div class="section-head">🏷 Hashtags</div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;padding:4px 0">${{tagsHtml}}</div>
+  `;
+}}
+
+function renderNoteworthy(f){{
+  const r = f.result||{{}};
+  const p = document.getElementById('panel-noteworthy');
+  const items = r.noteworthy||[];
+  if(!items.length){{ p.innerHTML='<div class="empty">No noteworthy items</div>'; return; }}
+
+  const iconMap = {{
+    freeze:'❄️', deception:'🚨', veracity:'✅', clinical:'🏥', entity:'🔍',
+    jefferson:'📝', voice:'🎤', unknown:'•'
+  }};
+
+  let html = '<div class="nw-list">';
+  items.forEach(it=>{{
+    const t = it.type||'unknown';
+    const icon = Object.keys(iconMap).find(k=>t.includes(k))||'unknown';
+    html += `<div class="nw-item">
+      <div class="nw-icon">${{iconMap[icon]}}</div>
+      <div>
+        <div class="nw-note">${{esc(it.note||it.description||'')}}</div>
+        <div class="nw-time">${{esc(it.timestamp||it.time||'')}}&nbsp;·&nbsp;<span style="color:var(--muted)">${{esc(t)}}</span></div>
+      </div>
+    </div>`;
+  }});
+  html += '</div>';
+  p.innerHTML = html;
+}}
+
+function renderOmni(f){{
+  const p = document.getElementById('panel-omni');
+  const raw = f.omni_md||'';
+  if(!raw){{ p.innerHTML='<div class="empty">No omni.md available for this file</div>'; return; }}
+  // Simple markdown → HTML conversion
+  let html = esc(raw)
+    // Tables
+    .replace(/^(\\|.+\\|)$/gm, m=>m)
+    // Code blocks
+    .replace(/```[\\s\\S]*?```/g, m=>`<pre><code>${{m.replace(/```/g,'')}}</code></pre>`)
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\\*\\*(.+?)\\*\\*/g,'<strong>$1</strong>')
+    .replace(/\\*(.+?)\\*/g,'<em>$1</em>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/^---$/gm,'<hr style="border-color:var(--border)">')
+    .replace(/\\n/g,'<br>');
+  p.innerHTML = `<div id="omni-content">${{html}}</div>`;
+}}
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab=>{{
+  tab.onclick = ()=>{{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+  }};
+}});
+
+// Init
+renderBatchSummary();
+renderSidebar();
+if((BATCH_DATA.files||[]).length>0) selectFile(0);
+</script>
+</body>
+</html>"""
 
 
 def _export_sql(completed, output_dir):
@@ -1774,6 +2586,12 @@ def main():
                     # Auto-export if requested
                     if args.export:
                         export_second_brain(args.export.replace("_", " ").title())
+                    # Auto-generate batch viewer if viewer toggle is ON
+                    if STATE.viewer:
+                        completed_files = [f for f in STATE.files if f["status"] == "done" and f.get("result")]
+                        if completed_files:
+                            export_second_brain("HTML")
+                            log_event("info", "Batch viewer generated (viewer ON)")
                     # Final render
                     render_dashboard()
                     time.sleep(2)

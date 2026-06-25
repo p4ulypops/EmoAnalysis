@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<!--
+  BATCH VIEWER TEMPLATE — Emotion Audio Analyser
+  ================================================
+  Two modes:
+  1. LIVE: Place this file in the same folder as one or more _subfile/ directories,
+     or open with ?dir=relative/path/to/subfile (fetches JSON files dynamically).
+     Requires a local HTTP server (e.g. python3 -m http.server 8000).
+
+  2. EMBEDDED: Generated automatically by run_batch.py (export HTML / viewer ON).
+     All data baked in — works offline, no server needed.
+
+  URL parameters:
+    ?dir=./MyRecording_subfile    — load one specific subfile directory
+    ?dirs=dir1,dir2,dir3          — load multiple subfile directories
+-->
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>🎧 Emotion Audio Batch Viewer</title>
+<style>
+:root{
+  --bg:#0d1117;--bg-card:#161b22;--bg-hover:#21262d;--bg-active:#1f3044;
+  --border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#388bfd;
+  --green:#3fb950;--yellow:#d29922;--red:#f85149;--purple:#bc8cff;--orange:#f0883e;
+  --sidebar-w:260px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+#topbar{background:#010409;border-bottom:1px solid var(--border);padding:0 16px;height:52px;display:flex;align-items:center;gap:16px;flex-shrink:0}
+#topbar h1{font-size:15px;font-weight:600;white-space:nowrap}
+#batch-pills{display:flex;gap:8px;flex-wrap:wrap;overflow:hidden}
+.pill{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2px 10px;font-size:12px;white-space:nowrap}
+.pill.dec{border-color:var(--red);color:var(--red)}
+.pill.ver{border-color:var(--green);color:var(--green)}
+.pill.clin{border-color:var(--yellow);color:var(--yellow)}
+.pill.freeze{border-color:var(--purple);color:var(--purple)}
+#mode-badge{margin-left:auto;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 8px;white-space:nowrap;cursor:pointer}
+#layout{display:flex;flex:1;overflow:hidden}
+#sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+#sidebar-header{padding:10px 12px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+#sidebar-load{font-size:11px;color:var(--accent);cursor:pointer;margin-left:auto}
+#file-list{overflow-y:auto;flex:1}
+.file-item{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.file-item:hover{background:var(--bg-hover)}
+.file-item.active{background:var(--bg-active);border-left:3px solid var(--accent)}
+.fi-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fi-meta{font-size:11px;color:var(--muted);margin-top:3px}
+.fi-badges{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
+.fi-badge{font-size:10px;padding:1px 5px;border-radius:3px;font-weight:600}
+.fi-badge.d{background:#3d1a1a;color:var(--red)}
+.fi-badge.v{background:#1a3d1a;color:var(--green)}
+.fi-badge.c{background:#3d2e1a;color:var(--yellow)}
+.fi-badge.f{background:#2a1a3d;color:var(--purple)}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+#tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg-card);flex-shrink:0;padding:0 12px;gap:0;overflow-x:auto}
+.tab{padding:10px 14px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);white-space:nowrap;transition:color .15s,border-color .15s}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--text);border-bottom-color:var(--accent)}
+#tab-content{flex:1;overflow-y:auto;padding:20px}
+.panel{display:none}.panel.active{display:block}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+.stat-card .num{font-size:28px;font-weight:700;line-height:1}
+.stat-card .label{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
+.stat-card.dec .num{color:var(--red)}.stat-card.ver .num{color:var(--green)}
+.stat-card.clin .num{color:var(--yellow)}.stat-card.freeze .num{color:var(--purple)}
+.stat-card.words .num{color:var(--accent)}
+.section-head{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+.emo-chart{display:flex;flex-direction:column;gap:6px}
+.emo-row{display:flex;align-items:center;gap:8px;font-size:13px}
+.emo-label{width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.emo-bar-wrap{flex:1;height:16px;background:var(--bg-card);border-radius:4px;overflow:hidden}
+.emo-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .3s}
+.emo-count{width:30px;text-align:right;font-size:12px;color:var(--muted)}
+#transcript-text{font-family:'JetBrains Mono','Fira Code','Consolas',monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;max-height:calc(100vh - 280px);overflow-y:auto}
+.ts-timestamp{color:var(--accent);cursor:pointer}.ts-timestamp:hover{text-decoration:underline}
+.ts-dec{background:#3d1a1a;color:var(--red);border-radius:2px;padding:0 2px}
+.ts-ver{background:#1a3d1a;color:var(--green);border-radius:2px;padding:0 2px}
+.ts-freeze{background:#2a1a3d;color:var(--purple);border-radius:2px;padding:0 2px}
+.ind-table{width:100%;border-collapse:collapse;font-size:13px}
+.ind-table th{padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+.ind-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.ind-table tr:hover td{background:var(--bg-hover)}
+.cert-bar{height:6px;border-radius:3px;background:var(--border);width:60px}
+.cert-fill{height:100%;border-radius:3px}
+.sym-dec{color:var(--red);font-weight:700;font-family:monospace}
+.sym-ver{color:var(--green);font-weight:700;font-family:monospace}
+.nw-list{display:flex;flex-direction:column;gap:8px}
+.nw-item{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:10px 14px;display:flex;gap:10px;align-items:flex-start}
+.nw-icon{font-size:16px;flex-shrink:0}
+.nw-note{font-size:13px;line-height:1.5}
+.nw-time{font-size:11px;color:var(--muted);margin-top:2px}
+.entity-table{width:100%;border-collapse:collapse;font-size:13px}
+.entity-table th{padding:7px 10px;text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;border-bottom:2px solid var(--border)}
+.entity-table td{padding:7px 10px;border-bottom:1px solid var(--border)}
+.entity-table tr:hover td{background:var(--bg-hover)}
+#omni-content{font-size:13px;line-height:1.8;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px;max-height:calc(100vh - 280px);overflow-y:auto}
+#omni-content h1,#omni-content h2{color:var(--text);border-bottom:1px solid var(--border);padding-bottom:6px;margin:20px 0 10px}
+#omni-content h3{color:var(--muted);margin:14px 0 8px}
+#omni-content table{border-collapse:collapse;width:100%;margin:10px 0;font-size:12px}
+#omni-content th{background:var(--bg-hover);padding:6px 10px;text-align:left;border:1px solid var(--border)}
+#omni-content td{padding:6px 10px;border:1px solid var(--border)}
+#omni-content code{background:var(--bg-hover);padding:1px 5px;border-radius:3px;font-family:monospace}
+#omni-content blockquote{border-left:3px solid var(--border);padding-left:12px;color:var(--muted);margin:8px 0}
+#player{background:#010409;border-top:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;height:54px}
+#player-title{font-size:12px;color:var(--muted);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#player audio{height:32px;flex:1;accent-color:var(--accent);min-width:0}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.empty{color:var(--muted);font-size:13px;font-style:italic;padding:20px 0}
+.quote-item{background:var(--bg-card);border-left:3px solid var(--accent);padding:10px 14px;margin-bottom:8px;border-radius:0 6px 6px 0}
+.quote-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.quote-text{font-size:13px;line-height:1.5;color:var(--text)}
+.intensity{font-size:11px;color:var(--muted)}
+#loading{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:100}
+#loading.hidden{display:none}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#drop-zone{border:2px dashed var(--border);border-radius:12px;padding:40px;text-align:center;color:var(--muted);font-size:14px;margin:20px}
+#drop-zone.over{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="spinner"></div>
+  <div id="loading-msg" style="color:var(--muted);font-size:14px">Loading...</div>
+</div>
+
+<div id="topbar">
+  <h1>🎧 Emotion Audio Analyser — Batch Viewer</h1>
+  <div id="batch-pills"></div>
+  <div id="mode-badge" title="Click to reload from URL params">Live Mode</div>
+</div>
+<div id="layout">
+  <aside id="sidebar">
+    <div id="sidebar-header">
+      Files (<span id="file-count">0</span>)
+      <span id="sidebar-load" onclick="promptLoadDir()" title="Load directory">+ Load</span>
+    </div>
+    <div id="file-list"></div>
+  </aside>
+  <div id="main">
+    <div id="tabs">
+      <div class="tab active" data-tab="overview">Overview</div>
+      <div class="tab" data-tab="transcript">Transcript</div>
+      <div class="tab" data-tab="emotions">Emotions</div>
+      <div class="tab" data-tab="indicators">Indicators</div>
+      <div class="tab" data-tab="entities">Entities</div>
+      <div class="tab" data-tab="noteworthy">Noteworthy</div>
+      <div class="tab" data-tab="omni">Omni View</div>
+    </div>
+    <div id="tab-content">
+      <div class="panel active" id="panel-overview">
+        <div id="drop-zone" id="dz">
+          <strong>Drop a _subfile/ folder here</strong><br>
+          or use <code>?dir=./MyRecording_subfile</code> in the URL<br>
+          or start a local server: <code>python3 -m http.server 8000</code>
+        </div>
+      </div>
+      <div class="panel" id="panel-transcript"></div>
+      <div class="panel" id="panel-emotions"></div>
+      <div class="panel" id="panel-indicators"></div>
+      <div class="panel" id="panel-entities"></div>
+      <div class="panel" id="panel-noteworthy"></div>
+      <div class="panel" id="panel-omni"></div>
+    </div>
+  </div>
+</div>
+<div id="player">
+  <span id="player-title">No file selected</span>
+  <audio id="audio-el" controls></audio>
+</div>
+
+<script>
+// ── Embedded data (filled in by run_batch.py; null in template mode) ──
+const EMBEDDED_DATA = window.__BATCH_DATA__ || null;
+
+let BATCH_DATA = { files: [] };
+let selectedIdx = 0;
+const audioEl = document.getElementById('audio-el');
+
+function esc(s){ const d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML; }
+function fmtDur(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return `${m}:${sec.toString().padStart(2,'0')}`; }
+function certColor(c){ if(c>=0.7)return 'var(--green)'; if(c>=0.5)return 'var(--yellow)'; return 'var(--red)'; }
+
+// ── Data loading ──
+
+async function tryFetch(url, type='json'){
+  try{
+    const r = await fetch(url, {cache:'no-store'});
+    if(!r.ok) return null;
+    return type==='text' ? await r.text() : await r.json();
+  } catch(e){ return null; }
+}
+
+async function loadSubfileDir(dirPath){
+  // Normalize path
+  const base = dirPath.replace(/\/$/, '');
+  const [analysis, emotions, things, meta, noteworthy, omniMd, transcriptMd] = await Promise.all([
+    tryFetch(`${base}/analysis.json`),
+    tryFetch(`${base}/emotions.json`),
+    tryFetch(`${base}/things.json`),
+    tryFetch(`${base}/meta.json`),
+    tryFetch(`${base}/noteworthy.json`),
+    tryFetch(`${base}/omni.md`, 'text'),
+    tryFetch(`${base}/transcript.md`, 'text'),
+  ]);
+
+  if(!meta && !analysis && !emotions){
+    return null; // nothing found
+  }
+
+  // Build result object matching what run_batch.py produces
+  const result = {};
+  if(analysis){
+    result.deception_count = (analysis.deception_indicators||[]).length;
+    result.veracity_count  = (analysis.veracity_indicators||[]).length;
+    result.clinical_count  = (analysis.clinical_markers||[]).length;
+    result.voice_dynamics_count = (analysis.voice_dynamics||[]).length;
+    result.jefferson_summary = analysis.jefferson_summary||{};
+    result.summary  = analysis.summary||{};
+    result.cost     = analysis.cost_estimate||{};
+    // Build noteworthy from analysis if no noteworthy.json
+    const decItems = (analysis.deception_indicators||[]).map(d=>({type:'deception',timestamp:d.timestamp||'',note:d.note||d.symbol||'',certainty:d.certainty||0}));
+    const verItems = (analysis.veracity_indicators||[]).map(v=>({type:'veracity',timestamp:v.timestamp||'',note:v.note||v.symbol||'',certainty:v.certainty||0}));
+    result._dec_items = decItems;
+    result._ver_items = verItems;
+  }
+  if(emotions){
+    const segs = emotions.segments||[];
+    result.segment_count = segs.length;
+    result.freeze_events = emotions.freeze_events||[];
+    result.freeze_count  = result.freeze_events.length;
+    const dist={};
+    segs.forEach(s=>{ const l=s.affect_label||'Neutral'; dist[l]=(dist[l]||0)+1; });
+    result.emotion_dist = dist;
+    const quotes=[];
+    segs.forEach(s=>{ if((s.intensity||0)>=7||s.deception_markers||s.freeze_events){ const t=s.text_preview||''; if(t.length>10) quotes.push({time:s.timestamp||'',emoji:s.emoji||'',affect:s.affect_label||'',intensity:s.intensity||5,text:t}); }});
+    result.quotes = quotes.slice(0,5);
+    result.speakers = [...new Set(segs.map(s=>s.speaker||'').filter(Boolean))];
+  }
+  if(noteworthy){ result.noteworthy = (noteworthy.items||[]).slice(0,20); result.noteworthy_count=(noteworthy.items||[]).length; }
+  if(things){ result.people=(things.people||[]).slice(0,12); result.places=(things.places||[]).slice(0,8); }
+  if(meta){ result.model=meta.whisper_model||'?'; result.word_count=meta.word_count||0; result.hashtags=meta.hashtags||[]; }
+
+  const name = base.split('/').pop().replace(/_subfile$/,'');
+  return {
+    name, original_name: name,
+    duration: (meta&&meta.duration_s)||0,
+    status: 'done',
+    output_dir: base,
+    result,
+    omni_md: omniMd||'',
+    transcript_md: transcriptMd||'',
+  };
+}
+
+async function autoDiscoverDirs(){
+  // Check URL params first
+  const params = new URLSearchParams(location.search);
+  const singleDir = params.get('dir');
+  const multiDirs = params.get('dirs');
+
+  const dirs = multiDirs ? multiDirs.split(',').map(d=>d.trim()) : singleDir ? [singleDir] : [];
+
+  if(dirs.length){
+    document.getElementById('loading-msg').textContent = `Loading ${dirs.length} director${dirs.length>1?'ies':'y'}...`;
+    const files = (await Promise.all(dirs.map(loadSubfileDir))).filter(Boolean);
+    return files;
+  }
+
+  // Try to auto-discover _subfile dirs relative to current location
+  // (only works if index listing enabled — usually not, so skip)
+  return [];
+}
+
+async function init(){
+  if(EMBEDDED_DATA){
+    // Embedded mode — data already in page
+    BATCH_DATA = EMBEDDED_DATA;
+    document.getElementById('mode-badge').textContent = 'Embedded Data';
+    document.getElementById('loading').classList.add('hidden');
+    renderAll();
+    return;
+  }
+
+  // Live mode — try to load from URL params or auto-discover
+  document.getElementById('mode-badge').textContent = 'Live Mode';
+  const files = await autoDiscoverDirs();
+  if(files.length){
+    BATCH_DATA = { files, generated: new Date().toISOString() };
+    document.getElementById('loading').classList.add('hidden');
+    renderAll();
+  } else {
+    document.getElementById('loading').classList.add('hidden');
+    showDropZone();
+  }
+}
+
+function showDropZone(){
+  const p = document.getElementById('panel-overview');
+  p.innerHTML = `<div id="drop-zone">
+    <strong style="color:var(--text)">No data loaded</strong><br><br>
+    <strong>Option 1 — URL parameter:</strong><br>
+    Open this file with a local server and add <code>?dir=./MyRecording_subfile</code><br>
+    Example: <code>python3 -m http.server 8000</code> then visit<br>
+    <code>http://localhost:8000/batch_viewer_template.html?dir=../tests/Brain-fart%20::%20Sunflowers_subfile</code><br><br>
+    <strong>Option 2 — Multiple directories:</strong><br>
+    <code>?dirs=./File1_subfile,./File2_subfile,./File3_subfile</code><br><br>
+    <strong>Option 3 — Generate embedded viewer:</strong><br>
+    Run <code>python3 src/run_batch.py --full</code>, press <code>[B]</code> to enable viewer,<br>
+    then <code>[X]</code> to export. Or use <code>[E]</code> → HTML format.<br><br>
+    <strong>Option 4 — Type a path below:</strong><br>
+    <input id="dir-input" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:4px;width:400px;font-size:13px" placeholder="./MyRecording_subfile" />
+    <button onclick="loadFromInput()" style="background:var(--accent);border:none;color:#fff;padding:6px 14px;border-radius:4px;cursor:pointer;margin-left:8px;font-size:13px">Load</button>
+  </div>`;
+}
+
+function promptLoadDir(){
+  const d = prompt('Enter path to _subfile directory (relative to this HTML file):');
+  if(d) loadFromPath(d.trim());
+}
+
+async function loadFromInput(){
+  const val = document.getElementById('dir-input');
+  if(val) await loadFromPath(val.value.trim());
+}
+
+async function loadFromPath(path){
+  document.getElementById('loading').classList.remove('hidden');
+  document.getElementById('loading-msg').textContent = `Loading ${path}...`;
+  const f = await loadSubfileDir(path);
+  document.getElementById('loading').classList.add('hidden');
+  if(f){
+    const existing = BATCH_DATA.files.findIndex(x=>x.output_dir===f.output_dir);
+    if(existing>=0) BATCH_DATA.files[existing]=f; else BATCH_DATA.files.push(f);
+    renderAll();
+    selectFile(BATCH_DATA.files.length-1);
+  } else {
+    alert(`Could not load data from: ${path}\nMake sure you're running a local HTTP server and the path is correct.`);
+    showDropZone();
+  }
+}
+
+// ── Rendering ──
+
+function renderAll(){
+  renderBatchSummary();
+  renderSidebar();
+  if(BATCH_DATA.files.length>0) selectFile(0);
+}
+
+function renderBatchSummary(){
+  const files = BATCH_DATA.files||[];
+  let totDec=0,totVer=0,totClin=0,totFreeze=0,totWords=0,totDur=0;
+  files.forEach(f=>{ const r=f.result||{}; totDec+=r.deception_count||0; totVer+=r.veracity_count||0; totClin+=r.clinical_count||0; totFreeze+=r.freeze_count||0; totWords+=r.word_count||0; totDur+=f.duration||0; });
+  document.getElementById('batch-pills').innerHTML = `
+    <span class="pill">📁 ${files.length} file${files.length!==1?'s':''}</span>
+    <span class="pill">⏱ ${fmtDur(totDur)}</span>
+    ${totDec?`<span class="pill dec">🧠 ${totDec} dec</span>`:''}
+    ${totVer?`<span class="pill ver">✅ ${totVer} ver</span>`:''}
+    ${totClin?`<span class="pill clin">🏥 ${totClin} clin</span>`:''}
+    ${totFreeze?`<span class="pill freeze">❄️ ${totFreeze} freeze</span>`:''}
+    <span class="pill">📝 ${totWords.toLocaleString()} words</span>
+  `;
+}
+
+function renderSidebar(){
+  const files = BATCH_DATA.files||[];
+  document.getElementById('file-count').textContent = files.length;
+  const list = document.getElementById('file-list');
+  list.innerHTML = '';
+  files.forEach((f,i)=>{
+    const r=f.result||{};
+    const item = document.createElement('div');
+    item.className = 'file-item'+(i===selectedIdx?' active':'');
+    item.innerHTML = `
+      <div class="fi-name" title="${esc(f.original_name||f.name)}">${esc(f.name)}</div>
+      <div class="fi-meta">${fmtDur(f.duration||0)} · ${r.segment_count||0} segs · ${r.word_count||0} words</div>
+      <div class="fi-badges">
+        ${(r.deception_count||0)>0?`<span class="fi-badge d">⚠ ${r.deception_count} dec</span>`:''}
+        ${(r.veracity_count||0)>0?`<span class="fi-badge v">✓ ${r.veracity_count} ver</span>`:''}
+        ${(r.clinical_count||0)>0?`<span class="fi-badge c">🏥 ${r.clinical_count} clin</span>`:''}
+        ${(r.freeze_count||0)>0?`<span class="fi-badge f">❄ ${r.freeze_count} freeze</span>`:''}
+      </div>`;
+    item.onclick = ()=>selectFile(i);
+    list.appendChild(item);
+  });
+}
+
+function selectFile(i){
+  selectedIdx = i;
+  renderSidebar();
+  const f = (BATCH_DATA.files||[])[i];
+  if(!f) return;
+  renderOverview(f);
+  renderTranscript(f);
+  renderEmotions(f);
+  renderIndicators(f);
+  renderEntities(f);
+  renderNoteworthy(f);
+  renderOmni(f);
+  document.getElementById('player-title').textContent = f.name||'';
+  // Audio: try output_dir parent as audio path
+  if(f.output_dir){
+    const audioBase = f.output_dir.replace(/_subfile$/, '');
+    for(const ext of ['.m4a','.mp3','.wav','.ogg']){
+      audioEl.src = audioBase + ext;
+    }
+  }
+}
+
+function renderOverview(f){
+  const r=f.result||{};
+  const p=document.getElementById('panel-overview');
+  let quotesHtml='';
+  (r.quotes||[]).slice(0,5).forEach(q=>{
+    const c=q.intensity>=8?'var(--red)':q.intensity>=6?'var(--yellow)':'var(--green)';
+    quotesHtml+=`<div class="quote-item"><div class="quote-header"><span style="font-size:18px">${esc(q.emoji||'')}</span><span style="font-size:12px;color:var(--muted)">${esc(q.time||'')}</span><span class="intensity" style="color:${c};font-weight:600">${q.intensity||5}/10</span><span class="intensity">${esc(q.affect||'')}</span></div><div class="quote-text">${esc(q.text||'')}</div></div>`;
+  });
+  if(!quotesHtml) quotesHtml='<div class="empty">No high-intensity quotes detected</div>';
+  p.innerHTML=`<div class="stats-grid">
+    <div class="stat-card dec"><div class="num">${r.deception_count||0}</div><div class="label">Deception</div></div>
+    <div class="stat-card ver"><div class="num">${r.veracity_count||0}</div><div class="label">Veracity</div></div>
+    <div class="stat-card clin"><div class="num">${r.clinical_count||0}</div><div class="label">Clinical</div></div>
+    <div class="stat-card freeze"><div class="num">${r.freeze_count||0}</div><div class="label">Freezes</div></div>
+    <div class="stat-card words"><div class="num">${r.word_count||0}</div><div class="label">Words</div></div>
+    <div class="stat-card"><div class="num">${r.segment_count||0}</div><div class="label">Segments</div></div>
+    <div class="stat-card"><div class="num" style="font-size:16px;padding-top:4px">${esc(r.model||'?')}</div><div class="label">Model</div></div>
+    <div class="stat-card"><div class="num" style="font-size:16px;padding-top:4px">${fmtDur(f.duration||0)}</div><div class="label">Duration</div></div>
+  </div>
+  <div class="section-head">💬 High-Intensity Quotes</div>${quotesHtml}`;
+}
+
+function renderTranscript(f){
+  const p=document.getElementById('panel-transcript');
+  const raw=f.transcript_md||'';
+  if(!raw){p.innerHTML='<div class="empty">No transcript available</div>';return;}
+  let html=esc(raw)
+    .replace(/\[(\d{2}:\d{2}(?:\.\d+)?)\]/g,(m,ts)=>`<span class="ts-timestamp" onclick="seekTo('${ts}')">[${ts}]</span>`)
+    .replace(/&lt;(fs|corrsp|rep|lack-mem|over-elab|defensive|contradict|cog-load|evade)(&gt;|\s[^&]*&gt;)([\s\S]*?)&lt;\/\1&gt;/g,'<span class="ts-dec">&lt;$1&gt;$3&lt;/$1&gt;</span>')
+    .replace(/&lt;(veracious|sensory-recall|temporal|context|emo-consist|cog-complex|spontaneous|recall-pause)(&gt;|\s[^&]*&gt;)([\s\S]*?)&lt;\/\1&gt;/g,'<span class="ts-ver">&lt;$1&gt;$3&lt;/$1&gt;</span>');
+  p.innerHTML=`<div id="transcript-text">${html}</div>`;
+}
+
+function seekTo(ts){
+  const [mm,ss]=ts.split(':').map(Number);
+  audioEl.currentTime=mm*60+ss; audioEl.play();
+}
+
+function renderEmotions(f){
+  const r=f.result||{};
+  const p=document.getElementById('panel-emotions');
+  const emo=r.emotion_dist||{};
+  const total=Object.values(emo).reduce((a,b)=>a+b,0)||1;
+  const sorted=Object.entries(emo).sort((a,b)=>b[1]-a[1]);
+  if(!sorted.length){p.innerHTML='<div class="empty">No emotion data</div>';return;}
+  let chart='<div class="emo-chart">';
+  sorted.forEach(([l,c])=>{ const pct=Math.round(c/total*100); chart+=`<div class="emo-row"><div class="emo-label">${esc(l)}</div><div class="emo-bar-wrap"><div class="emo-bar" style="width:${pct}%"></div></div><div class="emo-count">${c}</div></div>`; });
+  chart+='</div>';
+  let fe='';
+  (r.freeze_events||[]).forEach(ev=>{ fe+=`<div class="nw-item"><div class="nw-icon">❄️</div><div><div class="nw-note">Silence/freeze event</div><div class="nw-time">${esc(JSON.stringify(ev))}</div></div></div>`; });
+  if(!fe) fe='<div class="empty">No freeze events</div>';
+  p.innerHTML=`<div class="section-head">🎭 Emotion Distribution</div>${chart}<div class="section-head">❄️ Freeze Events (${(r.freeze_events||[]).length})</div><div class="nw-list">${fe}</div>`;
+}
+
+function renderIndicators(f){
+  const r=f.result||{};
+  const p=document.getElementById('panel-indicators');
+  const decItems=r._dec_items||r.noteworthy&&r.noteworthy.filter(n=>n.type&&n.type.includes('deception'))||[];
+  const verItems=r._ver_items||r.noteworthy&&r.noteworthy.filter(n=>n.type&&n.type.includes('veracity'))||[];
+  function tbl(items,cls){
+    if(!items.length) return '<div class="empty">None detected</div>';
+    let h='<table class="ind-table"><thead><tr><th>Time</th><th>Symbol/Type</th><th>Note</th><th>Certainty</th></tr></thead><tbody>';
+    items.forEach(it=>{ const c=it.certainty||0; const w=Math.round(c*100); h+=`<tr><td style="color:var(--accent);font-family:monospace">${esc(it.timestamp||'')}</td><td><span class="${cls}">${esc(it.symbol||it.type||'')}</span></td><td>${esc(it.note||'')}</td><td><div class="cert-bar"><div class="cert-fill" style="width:${w}%;background:${certColor(c)}"></div></div><span style="font-size:11px;color:var(--muted)">${c.toFixed(2)}</span></td></tr>`; });
+    h+='</tbody></table>';
+    return h;
+  }
+  p.innerHTML=`<div class="section-head">🧠 Deception (${r.deception_count||decItems.length})</div>${tbl(decItems,'sym-dec')}
+  <div class="section-head" style="margin-top:24px">✅ Veracity (${r.veracity_count||verItems.length})</div>${tbl(verItems,'sym-ver')}
+  <div style="margin-top:16px;padding:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--muted)">
+    <strong style="color:var(--text)">Detection method:</strong> Text-pattern heuristics. Certainty &lt;0.70 requires manual verification.
+    Deception: &lt;fs&gt; false-start, &lt;corrsp&gt; correction, &lt;rep&gt; stall, &lt;lack-mem&gt; memory disclaimer, &lt;evade&gt; evasion.
+    Veracity: &lt;sensory-recall&gt;, &lt;temporal&gt;, &lt;context&gt;, &lt;cog-complex&gt;, &lt;veracious&gt;.
+  </div>`;
+}
+
+function renderEntities(f){
+  const r=f.result||{};
+  const p=document.getElementById('panel-entities');
+  function etbl(items,keyField){
+    if(!items.length) return '<div class="empty">None detected</div>';
+    let h='<table class="entity-table"><thead><tr><th>Name</th><th>Certainty</th><th>Count</th></tr></thead><tbody>';
+    items.forEach(it=>{ const c=it.certainty||0; h+=`<tr><td>${esc(it[keyField]||it.name||'')}</td><td><div class="cert-bar"><div class="cert-fill" style="width:${Math.round(c*100)}%;background:${certColor(c)}"></div></div></td><td style="color:var(--muted)">${it.occurrences||1}</td></tr>`; });
+    h+='</tbody></table>';
+    return h;
+  }
+  const tags=(r.hashtags||[]).map(t=>`<span class="pill" style="margin:2px">${esc(t)}</span>`).join('')||'<div class="empty">None</div>';
+  p.innerHTML=`<div class="section-head">👥 People</div>${etbl(r.people||[],'name')}
+  <div class="section-head">📍 Places</div>${etbl(r.places||[],'place')}
+  <div class="section-head">🏷 Hashtags</div><div style="display:flex;flex-wrap:wrap;gap:4px;padding:4px 0">${tags}</div>`;
+}
+
+function renderNoteworthy(f){
+  const r=f.result||{};
+  const p=document.getElementById('panel-noteworthy');
+  const items=r.noteworthy||[];
+  if(!items.length){p.innerHTML='<div class="empty">No noteworthy items</div>';return;}
+  const iconMap={freeze:'❄️',deception:'🚨',veracity:'✅',clinical:'🏥',entity:'🔍',jefferson:'📝',voice:'🎤',unknown:'•'};
+  let html='<div class="nw-list">';
+  items.forEach(it=>{ const t=it.type||'unknown'; const icon=Object.keys(iconMap).find(k=>t.includes(k))||'unknown'; html+=`<div class="nw-item"><div class="nw-icon">${iconMap[icon]}</div><div><div class="nw-note">${esc(it.note||it.description||'')}</div><div class="nw-time">${esc(it.timestamp||it.time||'')} · <span style="color:var(--muted)">${esc(t)}</span></div></div></div>`; });
+  html+='</div>';
+  p.innerHTML=html;
+}
+
+function renderOmni(f){
+  const p=document.getElementById('panel-omni');
+  const raw=f.omni_md||'';
+  if(!raw){p.innerHTML='<div class="empty">No omni.md available. Run with --omni flag to generate.</div>';return;}
+  // Simple markdown → HTML
+  let html=esc(raw)
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>').replace(/^---$/gm,'<hr style="border-color:var(--border)">')
+    .replace(/\n/g,'<br>');
+  p.innerHTML=`<div id="omni-content">${html}</div>`;
+}
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+  };
+});
+
+// Drop zone for folder dragging (limited browser support — mostly visual)
+document.addEventListener('dragover', e=>e.preventDefault());
+document.addEventListener('drop', e=>{
+  e.preventDefault();
+  const items=[...e.dataTransfer.items];
+  const dir=items.find(i=>i.kind==='file' && i.webkitGetAsEntry&&i.webkitGetAsEntry()&&i.webkitGetAsEntry().isDirectory);
+  if(dir){ const entry=dir.webkitGetAsEntry(); if(entry) alert(`Drag-and-drop of folders requires a local HTTP server.\nTry: ?dir=./${entry.name}`); }
+});
+
+// Init
+init();
+</script>
+</body>
+</html>
