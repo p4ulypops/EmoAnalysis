@@ -22,13 +22,27 @@ This repo is a processing utility. It extracts structure from recordings and wri
 - **NEW v3.0**: Analysis.json — structured data for all indicators
 - **NEW v3.0**: Token min-maxing — auto-model selection, cost estimation
 - **NEW v3.0**: All features configurable via CLI flags
+- **NEW v3.0**: Batch runner (`run_batch.sh`) with toggleable options, profiles, fun facts, privacy filtering, and live progress
 
 ---
 
 ## Quick start
 
+### Single file
+
 ```bash
 python3 ./run_transcription.py /path/to/audio.m4a
+```
+
+### Batch processing (all files in a folder)
+
+```bash
+./run_batch.sh                          # Default: all features ON, 3 parallel
+./run_batch.sh --fast                   # Quick draft (tiny, no extras)
+./run_batch.sh --full                   # Everything ON, small model, viewer
+./run_batch.sh --forensic               # Deception + veracity + clinical
+./run_batch.sh --stealth                # Minimal, quiet, no facts
+./run_batch.sh --help                   # See all options
 ```
 
 A folder named after the audio file is created with:
@@ -343,6 +357,103 @@ Try `--n-speakers 2` (or however many speakers you know are present).
 
 **ffmpeg not found**
 Run: `brew install ffmpeg`
+
+---
+
+## Batch Runner (`run_batch.sh`)
+
+The batch runner processes all `.m4a` files in a folder with toggleable options, live progress stats, fun facts, and automatic privacy filtering (no names or personal content appear in terminal output).
+
+### Profiles (preset combinations)
+
+| Profile | What it does |
+|---------|-------------|
+| `--fast` | Quick draft — tiny model, no extras, no omni |
+| `--full` | Everything ON, small model, HTML viewer included |
+| `--stealth` | Minimal output, no facts, no viewer, tiny model |
+| `--forensic` | Deception + veracity + clinical, no omni, base model |
+| (default) | All features ON, auto model, 3 parallel |
+
+### Toggle flags (combine freely)
+
+All toggles default to ON (except viewer and diarise-local). Like Hermes mode switching, you can mix and match:
+
+| Flag | Counterpart | Default | What it controls |
+|------|-------------|---------|------------------|
+| `--facts` | `--no-facts` | ON | Fun facts during processing |
+| `--deception` | `--no-deception` | ON | Deception indicator detection |
+| `--veracity` | `--no-veracity` | ON | Truthfulness/veracity indicators |
+| `--jefferson` | `--no-jefferson` | ON | Jefferson paralinguistic markers |
+| `--clinical` | `--no-clinical` | ON | Clinical markers (PTSD/ASD/ADHD) |
+| `--voice-dynamics` | `--no-voice-dynamics` | ON | Voice dynamics (raised voice, whisper, shaky) |
+| `--emotional` | `--no-emotional` | ON | Emotional analysis (affect heuristics) |
+| `--omni` | `--no-omni` | ON | Omni single-file output |
+| `--viewer` | `--no-viewer` | OFF | HTML viewer generation |
+| `--diarise-local` | — | OFF | Local speaker clustering (Resemblyzer) |
+| `--copy-audio` | — | OFF | Copy audio into output folder |
+
+### Model control
+
+| Flag | Description |
+|------|-------------|
+| `--model tiny\|base\|small\|medium\|large` | Force a specific Whisper model |
+| `--auto-model` | Auto-select model by audio duration |
+| `--estimate-cost` | Print token/cost estimate |
+| `--parallel N` | Max simultaneous processes (default 3) |
+| `--dir PATH` | Custom audio directory |
+
+### Batch output includes
+
+When running, the batch terminal shows:
+- Active configuration table (all toggles, model, parallel count)
+- File scan with per-file duration, size, model, token estimate
+- Batch summary: total audio hours, total tokens, LLM engine, provider, cost, estimated wall time
+- Live progress: done/fail/running counts, percentage, elapsed time
+- Fun facts (toggleable) every 20 seconds while processing
+- Per-file start/end notifications with model and token count
+- All speaker names replaced with Speaker_XX, all renames redacted
+- Final report: success/fail counts, total time, per-file breakdown
+- Output file locations
+
+### Batch examples
+
+```bash
+# Default — everything ON, 3 parallel
+./run_batch.sh
+
+# Quick draft of everything
+./run_batch.sh --fast
+
+# Full analysis with viewer, 2 at a time
+./run_batch.sh --full --parallel 2
+
+# Deception + veracity only, no clinical
+./run_batch.sh --forensic --no-clinical
+
+# Emotion + Jefferson only, no deception/veracity
+./run_batch.sh --no-deception --no-veracity
+
+# Fast, quiet, 4 parallel, no facts
+./run_batch.sh --stealth --parallel 4 --no-facts
+
+# With speaker clustering
+./run_batch.sh --diarise-local
+
+# Custom directory
+./run_batch.sh --dir /path/to/other/audios
+
+# Force small model on everything
+./run_batch.sh --model small --parallel 2
+```
+
+### Privacy filtering in batch mode
+
+The batch runner automatically:
+- Strips all personal names from filenames (shows generic labels like `Recording_...`)
+- Replaces all speaker labels with `Speaker_XX` in terminal output
+- Redacts all voice-match rename operations
+- Filters NSFW or sensitive content from display
+- The actual output files in `_subfile/` folders contain full unfiltered data for your review
 
 ---
 
