@@ -1,0 +1,74 @@
+{
+  "deception_indicators": [],
+  "veracity_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "00:20",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 4,
+      "timestamp": "00:24",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    }
+  ],
+  "clinical_markers": [],
+  "voice_dynamics": [],
+  "jefferson_summary": {
+    "word::": {
+      "count": 2,
+      "phenomenon": "Prolonged sound"
+    },
+    "[": {
+      "count": 1,
+      "phenomenon": "Possible overlap (simultaneous speech)"
+    },
+    "(.)": {
+      "count": 1,
+      "phenomenon": "Micropause (0.08–0.2s)"
+    },
+    "(1.2)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(1.3)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 0,
+    "total_veracity_markers": 3,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 0,
+    "jefferson_enabled": true,
+    "deception_enabled": false,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 74,
+    "estimated_tokens": 55,
+    "estimated_process_seconds": 14,
+    "estimated_process_minutes": 0.2,
+    "model": "tiny",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

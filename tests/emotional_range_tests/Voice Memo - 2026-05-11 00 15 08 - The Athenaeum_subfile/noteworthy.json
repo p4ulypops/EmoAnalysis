@@ -1,0 +1,331 @@
+{
+  "items": [
+    {
+      "type": "freeze",
+      "timestamp": "00:00",
+      "duration_s": 28.58,
+      "certainty": 0.9,
+      "note": "🚨 >10s silence — probable emotional freeze",
+      "action": "Listen to content immediately before + after — key emotional moment"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:27.61",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:37.59",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:42.36",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:00:57.57",
+      "duration_s": 24.9,
+      "certainty": 0.75,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:01:25.57",
+      "duration_s": 5.3,
+      "certainty": 0.54,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:01:35.60",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:01:37.79",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:01:40.81",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:01:42.89",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:01:47.31",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:01:53.27",
+      "duration_s": 6.3,
+      "certainty": 0.55,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:02:00.17",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:02:05.53",
+      "duration_s": 10.0,
+      "certainty": 0.62,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:02:16.95",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:02:20.37",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:02:23.98",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:02:26.24",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:02:31.65",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:02:35.28",
+      "duration_s": 7.0,
+      "certainty": 0.57,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:02:46.23",
+      "duration_s": 5.4,
+      "certainty": 0.54,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:02:51.82",
+      "duration_s": 12.3,
+      "certainty": 0.66,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:03:04.13",
+      "duration_s": 9.9,
+      "certainty": 0.61,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:03:32.77",
+      "duration_s": 5.7,
+      "certainty": 0.55,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "environmental_audio",
+      "timestamp": "00:03:38.50",
+      "duration_s": 10.4,
+      "certainty": 0.62,
+      "note": "Possible music/radio/TV — may affect transcript accuracy nearby"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:03:53.84",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "00:28",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "deception_evasion",
+      "timestamp": "00:30",
+      "certainty": 0.4,
+      "note": "DECEPTION: Topic avoidance / deflection [<evade>]",
+      "action": "Review context — single indicator is not proof of deception"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "00:30",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:38",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "deception_false_start",
+      "timestamp": "00:45",
+      "certainty": 0.5,
+      "note": "DECEPTION: Sentence abandoned mid-way (dash/ellipsis) [<fs>]",
+      "action": "Review context — single indicator is not proof of deception"
+    },
+    {
+      "type": "deception_memory_disclaimer",
+      "timestamp": "00:49",
+      "certainty": 0.55,
+      "note": "DECEPTION: Qualified memory — weakening commitment to statement [<lack-mem>]",
+      "action": "Review context — single indicator is not proof of deception"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:49",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "00:54",
+      "duration_s": 5.8,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "freeze",
+      "timestamp": "00:59",
+      "duration_s": 24.26,
+      "certainty": 0.9,
+      "note": "🚨 >10s silence — probable emotional freeze",
+      "action": "Listen to content immediately before + after — key emotional moment"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "01:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "01:29",
+      "duration_s": 9.94,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "01:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "01:49",
+      "duration_s": 7.78,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "02:06",
+      "duration_s": 7.84,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "freeze",
+      "timestamp": "02:36",
+      "duration_s": 28.06,
+      "certainty": 0.9,
+      "note": "🚨 >10s silence — probable emotional freeze",
+      "action": "Listen to content immediately before + after — key emotional moment"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "03:05",
+      "duration_s": 8.2,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Anyway",
+      "certainty": 0.44,
+      "note": "Person name 'Anyway' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Make",
+      "certainty": 0.44,
+      "note": "Person name 'Make' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Okay",
+      "certainty": 0.44,
+      "note": "Person name 'Okay' low-confidence — verify"
+    }
+  ]
+}

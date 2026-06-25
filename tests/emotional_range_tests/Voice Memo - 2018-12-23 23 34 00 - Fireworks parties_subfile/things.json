@@ -1,0 +1,32 @@
+{
+  "people": [
+    {
+      "name": "Halloween",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Not",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    }
+  ],
+  "places": [],
+  "dates": [
+    {
+      "value": "this  little",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this scared",
+      "type": "relative",
+      "certainty": 0.88
+    }
+  ],
+  "times": []
+}

@@ -1,0 +1,70 @@
+{
+  "audio_file": "Voice Memo - 2026-03-31 14 50 44 - 31-03-26 — Sabrina meeting @ Springwell.m4a",
+  "audio_path": "/Users/user/EmotionalVoiceAnalysis/test audios/emotional_range_tests/Voice Memo - 2026-03-31 14 50 44 - 31-03-26 — Sabrina meeting @ Springwell.m4a",
+  "duration_s": 4030.3,
+  "duration_formatted": "67:10",
+  "transcription_timestamp": "2026-06-25T16:43:35Z",
+  "whisper_model": "base",
+  "language": "en",
+  "context_type": "general",
+  "schema_version": "Affective-Clinical-MD-v3.0-Omni",
+  "wispr_privacy_mode": true,
+  "diarization": {
+    "method": "none (Whisper turn heuristics only)",
+    "n_speakers_detected": 1,
+    "speaker_labels": [
+      "Speaker_01"
+    ],
+    "voice_matching": [],
+    "note": "Speaker labels are discovered automatically — names are not assumed."
+  },
+  "segment_count": 1718,
+  "word_count": 9841,
+  "hashtags": [
+    "#Have",
+    "#NHS",
+    "#Sorry",
+    "#Yes",
+    "#care",
+    "#finance",
+    "#general",
+    "#hospital",
+    "#housing",
+    "#legal",
+    "#medical",
+    "#medication",
+    "#mentalhealth",
+    "#police",
+    "#therapy",
+    "#work"
+  ],
+  "output_folder": "/Users/user/EmotionalVoiceAnalysis/test audios/emotional_range_tests/Voice Memo - 2026-03-31 14 50 44 - 31-03-26 — Sabrina meeting @ Springwell_subfile",
+  "output_files": [
+    "transcript.md",
+    "emotions.json",
+    "things.json",
+    "meta.json",
+    "glossary.json",
+    "noteworthy.json",
+    "omni.md",
+    "analysis.json"
+  ],
+  "features_enabled": {
+    "jefferson": true,
+    "deception": true,
+    "veracity": true,
+    "voice_dynamics": true,
+    "clinical": true,
+    "emotional": true,
+    "omni": true
+  },
+  "cost_estimate": {
+    "estimated_words": 10075,
+    "estimated_tokens": 7556,
+    "estimated_process_seconds": 4030,
+    "estimated_process_minutes": 67.2,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

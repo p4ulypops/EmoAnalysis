@@ -1,0 +1,72 @@
+{
+  "audio_file": "Voice Memo - 2026-01-14 17 14 45 - 2026-01-14 — Anger Planet 2.m4a",
+  "audio_path": "/Users/user/EmotionalVoiceAnalysis/test audios/emotional_range_tests/Voice Memo - 2026-01-14 17 14 45 - 2026-01-14 — Anger Planet 2.m4a",
+  "duration_s": 7099.2,
+  "duration_formatted": "118:19",
+  "transcription_timestamp": "2026-06-25T16:37:24Z",
+  "whisper_model": "base",
+  "language": "en",
+  "context_type": "general",
+  "schema_version": "Affective-Clinical-MD-v3.0-Omni",
+  "wispr_privacy_mode": true,
+  "diarization": {
+    "method": "none (Whisper turn heuristics only)",
+    "n_speakers_detected": 1,
+    "speaker_labels": [
+      "Speaker_01"
+    ],
+    "voice_matching": [],
+    "note": "Speaker labels are discovered automatically — names are not assumed."
+  },
+  "segment_count": 910,
+  "word_count": 16015,
+  "hashtags": [
+    "#God",
+    "#Like",
+    "#NHS",
+    "#Sorry",
+    "#care",
+    "#education",
+    "#family",
+    "#finance",
+    "#general",
+    "#hospital",
+    "#housing",
+    "#legal",
+    "#medical",
+    "#medication",
+    "#mentalhealth",
+    "#socialcare",
+    "#therapy",
+    "#work"
+  ],
+  "output_folder": "/Users/user/EmotionalVoiceAnalysis/test audios/emotional_range_tests/Voice Memo - 2026-01-14 17 14 45 - 2026-01-14 — Anger Planet 2_subfile",
+  "output_files": [
+    "transcript.md",
+    "emotions.json",
+    "things.json",
+    "meta.json",
+    "glossary.json",
+    "noteworthy.json",
+    "omni.md",
+    "analysis.json"
+  ],
+  "features_enabled": {
+    "jefferson": true,
+    "deception": true,
+    "veracity": true,
+    "voice_dynamics": true,
+    "clinical": true,
+    "emotional": true,
+    "omni": true
+  },
+  "cost_estimate": {
+    "estimated_words": 17752,
+    "estimated_tokens": 13314,
+    "estimated_process_seconds": 7101,
+    "estimated_process_minutes": 118.4,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

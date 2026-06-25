@@ -1,2 +1,22 @@
-# Ignore test audio samples in Test Files without ignoring the folder itself
-/Test Files/*.m4a
+# Test audio files (large, don't commit)
+/tests/**/*.m4a
+
+# Output subfiles from batch processing
+/tests/**/*_subfile/
+
+# Second brain exports
+/second_brain_export/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+logs/
+
+# OS
+.DS_Store
+
+# Keep folder structure
+!tests/**/.gitkeep

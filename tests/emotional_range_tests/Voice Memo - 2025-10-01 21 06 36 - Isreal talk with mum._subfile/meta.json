@@ -1,0 +1,63 @@
+{
+  "audio_file": "Voice Memo - 2025-10-01 21 06 36 - Isreal talk with mum..m4a",
+  "audio_path": "/Users/user/EmotionalVoiceAnalysis/test audios/emotional_range_tests/Voice Memo - 2025-10-01 21 06 36 - Isreal talk with mum..m4a",
+  "duration_s": 3205.3,
+  "duration_formatted": "53:25",
+  "transcription_timestamp": "2026-06-25T17:02:32Z",
+  "whisper_model": "base",
+  "language": "en",
+  "context_type": "general",
+  "schema_version": "Affective-Clinical-MD-v3.0-Omni",
+  "wispr_privacy_mode": true,
+  "diarization": {
+    "method": "none (Whisper turn heuristics only)",
+    "n_speakers_detected": 1,
+    "speaker_labels": [
+      "Speaker_01"
+    ],
+    "voice_matching": [],
+    "note": "Speaker labels are discovered automatically — names are not assumed."
+  },
+  "segment_count": 1226,
+  "word_count": 6280,
+  "hashtags": [
+    "#All",
+    "#Mom",
+    "#Not",
+    "#education",
+    "#family",
+    "#general",
+    "#housing",
+    "#medical",
+    "#work"
+  ],
+  "output_folder": "/Users/user/EmotionalVoiceAnalysis/test audios/emotional_range_tests/Voice Memo - 2025-10-01 21 06 36 - Isreal talk with mum._subfile",
+  "output_files": [
+    "transcript.md",
+    "emotions.json",
+    "things.json",
+    "meta.json",
+    "glossary.json",
+    "noteworthy.json",
+    "omni.md",
+    "analysis.json"
+  ],
+  "features_enabled": {
+    "jefferson": true,
+    "deception": false,
+    "veracity": true,
+    "voice_dynamics": true,
+    "clinical": true,
+    "emotional": true,
+    "omni": true
+  },
+  "cost_estimate": {
+    "estimated_words": 8052,
+    "estimated_tokens": 6039,
+    "estimated_process_seconds": 3221,
+    "estimated_process_minutes": 53.7,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

@@ -1,0 +1,1372 @@
+{
+  "people": [
+    {
+      "name": "Not",
+      "certainty": 0.82,
+      "occurrences": 9,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "God",
+      "certainty": 0.82,
+      "occurrences": 19,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Natalia",
+      "certainty": 0.82,
+      "occurrences": 9,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Like",
+      "certainty": 0.82,
+      "occurrences": 9,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Christmas",
+      "certainty": 0.82,
+      "occurrences": 13,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Because",
+      "certainty": 0.82,
+      "occurrences": 13,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Thank",
+      "certainty": 0.82,
+      "occurrences": 10,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Yes",
+      "certainty": 0.82,
+      "occurrences": 13,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Anyway",
+      "certainty": 0.82,
+      "occurrences": 15,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Doctor",
+      "certainty": 0.82,
+      "occurrences": 7,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Okay",
+      "certainty": 0.82,
+      "occurrences": 36,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Eventually",
+      "certainty": 0.82,
+      "occurrences": 7,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Sorry",
+      "certainty": 0.82,
+      "occurrences": 16,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Alice",
+      "certainty": 0.82,
+      "occurrences": 9,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Now",
+      "certainty": 0.82,
+      "occurrences": 9,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Let",
+      "certainty": 0.82,
+      "occurrences": 7,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Tracy",
+      "certainty": 0.82,
+      "occurrences": 6,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "One",
+      "certainty": 0.8,
+      "occurrences": 5,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "All",
+      "certainty": 0.8,
+      "occurrences": 5,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Amazing",
+      "certainty": 0.8,
+      "occurrences": 5,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Tracey",
+      "certainty": 0.71,
+      "occurrences": 4,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Lincoln",
+      "certainty": 0.71,
+      "occurrences": 4,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Sometimes",
+      "certainty": 0.71,
+      "occurrences": 4,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Jess",
+      "certainty": 0.71,
+      "occurrences": 4,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Two",
+      "certainty": 0.71,
+      "occurrences": 4,
+      "source": "heuristic",
+      "flag": null
+    },
+    {
+      "name": "Any",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Elona",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Chisroom",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Helen",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Chinese",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Was",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Veronica",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Robin",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Did",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Some",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Number",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Say",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Look",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Again",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Maybe",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sabina",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "For",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Are",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Williams",
+      "certainty": 0.62,
+      "occurrences": 3,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Basically",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Literally",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Even",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Despite",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Don",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Apart",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Harming",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Joker",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Italian",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Excuse",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "North",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Peter",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Namaste",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Three",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "With",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Since",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Ellie",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sicily",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Still",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Parapsitting",
+      "certainty": 0.53,
+      "occurrences": 2,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Except",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Absolutely",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Luz",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Financially",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Arabic",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Apparently",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Over",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Flashbacks",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Your",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Kept",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Please",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Pharisee",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Having",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Obviously",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Fire",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Good",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Feeling",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Turns",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Bank",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Imagine",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Occasionally",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Get",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Very",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Wolves",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Barnet",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Metalphaline",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Shakur",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Blocking",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Ben",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Trying",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Straight",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Lucy",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Daily",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "App",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Does",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sunlight",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Keep",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Day",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Ask",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Atonies",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Chan",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sreek",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Function",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Another",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Most",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Together",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Act",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Time",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Render",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Pindit",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Barnett",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "See",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "After",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Here",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Sweating",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Langley",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Huh",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Kelvin",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Lady",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Can",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Nadie",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Paul",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Silver",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "First",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Rio",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "French",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Anything",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Golding",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Hey",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Red",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Nothing",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Lucky",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Mayo",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Stanford",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Once",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Chisrum",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Small",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Tokyo",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Social",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Earth",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Ciao",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Chisruin",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Crone",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Exactly",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Pay",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Finally",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Almost",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Being",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Energy",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Showering",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Thomas",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Mucky",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Ten",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Listen",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    },
+    {
+      "name": "Got",
+      "certainty": 0.44,
+      "occurrences": 1,
+      "source": "heuristic",
+      "flag": "⚠️ verify"
+    }
+  ],
+  "places": [
+    {
+      "place": "hospital",
+      "certainty": 0.7,
+      "occurrences": 1
+    },
+    {
+      "place": "Barnet",
+      "certainty": 0.7,
+      "occurrences": 1
+    },
+    {
+      "place": "park",
+      "certainty": 0.7,
+      "occurrences": 1
+    },
+    {
+      "place": "clinic",
+      "certainty": 0.7,
+      "occurrences": 10
+    },
+    {
+      "place": "council",
+      "certainty": 0.7,
+      "occurrences": 1
+    },
+    {
+      "place": "office",
+      "certainty": 0.7,
+      "occurrences": 1
+    },
+    {
+      "place": "school",
+      "certainty": 0.7,
+      "occurrences": 3
+    }
+  ],
+  "dates": [
+    {
+      "value": "This is",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "next appointment",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this Alice",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this building",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this guy",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this Chisroom",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this before",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "This meeting",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this Tracy",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "This happened",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "next day",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this tragedy",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this was",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this way",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this point",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this year",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "today",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this horrific",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this head",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this insurance",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this decade",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this class",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this because",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this problem",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this leap",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this one",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "This place",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this thing",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this week",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "last quite",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "This obviously",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this time",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this would",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this when",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "next year",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this the",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "last two",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this doctor",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "next month",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this happening",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this in",
+      "type": "relative",
+      "certainty": 0.88
+    },
+    {
+      "value": "this puppy",
+      "type": "relative",
+      "certainty": 0.88
+    }
+  ],
+  "times": [
+    {
+      "value": "2 o'clock",
+      "certainty": 0.85
+    }
+  ]
+}

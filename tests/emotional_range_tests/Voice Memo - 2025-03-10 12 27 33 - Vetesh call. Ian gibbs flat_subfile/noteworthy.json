@@ -1,0 +1,4718 @@
+{
+  "items": [
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:02.77",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:05.78",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:08.80",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:11.06",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:14.86",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:16.86",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:23.40",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:25.58",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:27.66",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:30.29",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:33.30",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:35.64",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:38.77",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:40.84",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:43.00",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "00:21",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (4.0s) [<pause dur=\"4.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "freeze",
+      "timestamp": "00:45",
+      "duration_s": 33.2,
+      "certainty": 0.9,
+      "note": "🚨 >10s silence — probable emotional freeze",
+      "action": "Listen to content immediately before + after — key emotional moment"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "01:18",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "01:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "01:29",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "01:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "01:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "01:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "01:54",
+      "duration_s": 8.08,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "02:10",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:37",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "02:54",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "02:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "03:02",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "03:22",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "03:22",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "03:22",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_qualified_certainty",
+      "timestamp": "03:34",
+      "certainty": 0.65,
+      "note": "VERACITY: Qualified certainty — appropriate confidence [<veracious>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "03:49",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:49",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "03:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "04:03",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "04:03",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "04:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "04:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "04:29",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "04:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "04:35",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "04:40",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "04:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "04:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "05:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "05:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "05:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "05:27",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "05:33",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "05:33",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "05:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "05:46",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "05:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "05:49",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:04",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "06:06",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "06:09",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "06:20",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "06:20",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "06:26",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "06:59",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "07:05",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "07:12",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:15",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:19",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:36",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "07:48",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "07:58",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "07:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "07:58",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "08:01",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "08:08",
+      "duration_s": 7.02,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "08:25",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:45",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "08:47",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "08:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:08",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "09:24",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "09:24",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:24",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "09:33",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "09:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:00",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "10:00",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "10:06",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:33",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "10:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "11:01",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "11:01",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:15",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:45",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:52",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "11:59",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "12:45",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:45",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "12:49",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "12:52",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "13:02",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "13:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "13:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "13:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "13:23",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "13:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "13:33",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "13:33",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "13:33",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "13:39",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "13:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "14:13",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_qualified_certainty",
+      "timestamp": "14:28",
+      "certainty": 0.65,
+      "note": "VERACITY: Qualified certainty — appropriate confidence [<veracious>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "14:30",
+      "duration_s": 7.8,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:52",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "14:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "15:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "freeze",
+      "timestamp": "15:04",
+      "duration_s": 35.74,
+      "certainty": 0.9,
+      "note": "🚨 >10s silence — probable emotional freeze",
+      "action": "Listen to content immediately before + after — key emotional moment"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "15:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "15:44",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "15:52",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "15:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:08",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "16:28",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "16:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "17:03",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "17:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "17:09",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "17:19",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "17:37",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "17:37",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "17:47",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "17:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "18:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "18:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "18:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "18:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "18:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "18:34",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.0s) [<pause dur=\"2.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "18:36",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "18:36",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "18:47",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "18:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "19:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "19:11",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "19:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "19:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "19:33",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "19:33",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "19:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "20:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "20:11",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "20:24",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "20:31",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "20:31",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "20:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "20:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "21:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "21:09",
+      "duration_s": 10.0,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "21:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "21:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "21:42",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:21",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:31",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "22:35",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "22:52",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:52",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "22:59",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "23:32",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:36",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_sensory_detail",
+      "timestamp": "23:39",
+      "certainty": 0.6,
+      "note": "VERACITY: Sensory adjectives — experiential recall [<sensory-recall>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "23:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:36",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:38",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:41",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "24:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "25:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "25:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "25:43",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "25:47",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "25:49",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "25:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:04",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:38",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "26:52",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "26:58",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:07",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "27:12",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.1s) [<pause dur=\"2.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:15",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "27:23",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.2s) [<pause dur=\"2.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "27:55",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "27:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "28:01",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.3s) [<pause dur=\"2.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "28:11",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.3s) [<pause dur=\"1.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:21",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:49",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "28:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:04",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "29:13",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "29:18",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "29:44",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:47",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "29:50",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "29:53",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "29:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:04",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "30:07",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:07",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_qualified_certainty",
+      "timestamp": "30:12",
+      "certainty": 0.65,
+      "note": "VERACITY: Qualified certainty — appropriate confidence [<veracious>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "30:12",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:15",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "30:29",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "30:38",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:38",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "30:38",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.7s) [<pause dur=\"1.7s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "30:43",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.3s) [<pause dur=\"1.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "30:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "significant_pause",
+      "timestamp": "31:06",
+      "duration_s": 7.82,
+      "certainty": 0.88,
+      "note": "Sustained silence — emotional processing or topic gravity"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "31:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "31:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "31:31",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "31:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "31:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "31:56",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "31:59",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "32:05",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "32:11",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "32:15",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "32:15",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "32:19",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "32:21",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "32:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "32:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "32:33",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "freeze",
+      "timestamp": "32:34",
+      "duration_s": 23.9,
+      "certainty": 0.9,
+      "note": "🚨 >10s silence — probable emotional freeze",
+      "action": "Listen to content immediately before + after — key emotional moment"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:08",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:15",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "33:26",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.6s) [<pause dur=\"2.6s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "33:29",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "33:34",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "33:40",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (3.2s) [<pause dur=\"3.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "33:46",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "33:51",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "33:51",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "33:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "34:02",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (3.3s) [<pause dur=\"3.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "34:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "34:10",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "34:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "34:21",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "34:21",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.1s) [<pause dur=\"2.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "34:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "34:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "34:29",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.0s) [<pause dur=\"1.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "34:47",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "35:10",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.3s) [<pause dur=\"1.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:15",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "35:17",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:21",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "35:21",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.4s) [<pause dur=\"2.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "35:28",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.3s) [<pause dur=\"1.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "35:43",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:47",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "35:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "35:55",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:04",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "36:20",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.2s) [<pause dur=\"1.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "36:28",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "36:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "37:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "37:01",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.0s) [<pause dur=\"1.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "37:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "37:22",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.1s) [<pause dur=\"2.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_cognitive_complexity",
+      "timestamp": "37:26",
+      "certainty": 0.5,
+      "note": "VERACITY: Cognitive complexity — weighing alternatives [<cog-complex>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "37:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "37:33",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "37:33",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "37:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "37:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "37:55",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:08",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "38:10",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "38:25",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.2s) [<pause dur=\"1.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:50",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "38:50",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "38:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:00",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:08",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "39:16",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:24",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "39:30",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.4s) [<pause dur=\"2.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "39:42",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:45",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "39:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "40:05",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "40:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "40:19",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "40:19",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "40:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "40:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "40:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "40:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "40:53",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.1s) [<pause dur=\"1.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "41:14",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.1s) [<pause dur=\"2.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "41:18",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.7s) [<pause dur=\"1.7s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "41:23",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:35",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "41:43",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "41:50",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:00",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "42:06",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "42:19",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:19",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:24",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_cognitive_complexity",
+      "timestamp": "42:34",
+      "certainty": 0.5,
+      "note": "VERACITY: Cognitive complexity — weighing alternatives [<cog-complex>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:45",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:46",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:50",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "42:59",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "42:59",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "43:00",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_PTSD",
+      "timestamp": "43:05",
+      "certainty": 0.45,
+      "note": "CLINICAL (PTSD): PTSD: Repetitive narrative fragments [<ptsd-frag type=\"repetition\">]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "43:05",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.3s) [<pause dur=\"1.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:25",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:30",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "43:48",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "43:48",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:54",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "43:59",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:06",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_sensory_detail",
+      "timestamp": "44:12",
+      "certainty": 0.6,
+      "note": "VERACITY: Sensory specificity — genuine memory [<sensory-recall>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:21",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:24",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:31",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "44:35",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "44:35",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "44:41",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "44:59",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "45:01",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.2s) [<pause dur=\"1.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:09",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "45:20",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "45:28",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "45:28",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:28",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "45:29",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:41",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:43",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "45:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "45:53",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.2s) [<pause dur=\"1.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "45:58",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "45:58",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "46:01",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "46:01",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "46:10",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "46:13",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.6s) [<pause dur=\"1.6s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "46:24",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "46:35",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "46:36",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:38",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "46:40",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:41",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:47",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:49",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "46:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "47:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "47:15",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "47:18",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "47:31",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "47:42",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "47:47",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "47:47",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.8s) [<pause dur=\"2.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "47:52",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "47:52",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.6s) [<pause dur=\"1.6s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "47:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "47:58",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.1s) [<pause dur=\"1.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:03",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:05",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "48:05",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "48:10",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.0s) [<pause dur=\"1.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "48:16",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "48:44",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_sensory_detail",
+      "timestamp": "48:55",
+      "certainty": 0.6,
+      "note": "VERACITY: Sensory adjectives — experiential recall [<sensory-recall>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "48:55",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:00",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "49:14",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.8s) [<pause dur=\"1.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "49:25",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "49:25",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "49:32",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:34",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "49:42",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "49:53",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.1s) [<pause dur=\"2.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "49:57",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "49:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "49:57",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.0s) [<pause dur=\"2.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:01",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:01",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:17",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:17",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:19",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:19",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:22",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:29",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (3.3s) [<pause dur=\"3.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:32",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.8s) [<pause dur=\"2.8s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:39",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:39",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.0s) [<pause dur=\"2.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:44",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.4s) [<pause dur=\"1.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "50:51",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (3.5s) [<pause dur=\"3.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "50:53",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "51:00",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (4.2s) [<pause dur=\"4.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "51:03",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_cognitive_complexity",
+      "timestamp": "51:03",
+      "certainty": 0.5,
+      "note": "VERACITY: Cognitive complexity — weighing alternatives [<cog-complex>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "51:03",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (3.1s) [<pause dur=\"3.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:07",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "51:07",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.7s) [<pause dur=\"1.7s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "51:10",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.6s) [<pause dur=\"1.6s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:14",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:19",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "51:23",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.4s) [<pause dur=\"2.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:26",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "51:26",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.0s) [<pause dur=\"1.0s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:29",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:37",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:51",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "51:58",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "51:58",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "51:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "52:07",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "52:13",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "52:40",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "52:58",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "53:18",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "53:18",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "53:18",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "53:45",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.2s) [<pause dur=\"1.2s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "53:50",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "53:56",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "53:56",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.5s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "54:07",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "54:17",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "54:34",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.9s) [<pause dur=\"2.9s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "54:37",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "54:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:02",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:04",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "55:04",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.3s) [<pause dur=\"1.3s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:12",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:23",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.6s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:32",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.7s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "55:32",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.7s) [<pause dur=\"2.7s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "55:43",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "55:43",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:48",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "55:48",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.1s) [<pause dur=\"1.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "55:57",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "56:10",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.8s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "56:16",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "56:16",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 2.4s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "56:16",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (2.4s) [<pause dur=\"2.4s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "56:25",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "56:36",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 0.9s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "56:38",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "56:44",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.0s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "56:55",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.5s) [<pause dur=\"1.5s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "57:05",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "57:15",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "57:15",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal relation — genuine memory structure [<temporal>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "57:27",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.1s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "clinical_ASD",
+      "timestamp": "57:27",
+      "certainty": 0.35,
+      "note": "CLINICAL (ASD): Non-grammatical pause (1.1s) [<pause dur=\"1.1s\" type=\"awkward\"/>]"
+    },
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "57:36",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "veracity_contextual_embedding",
+      "timestamp": "57:36",
+      "certainty": 0.55,
+      "note": "VERACITY: Spatial embedding — genuine memory [<context>]"
+    },
+    {
+      "type": "clinical_ADHD",
+      "timestamp": "57:44",
+      "certainty": 0.45,
+      "note": "CLINICAL (ADHD): Self-correction back to topic [<meta-correction type=\"rerail\">]"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Bar",
+      "certainty": 0.53,
+      "note": "Person name 'Bar' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Labour",
+      "certainty": 0.53,
+      "note": "Person name 'Labour' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "London",
+      "certainty": 0.53,
+      "note": "Person name 'London' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Vitesh",
+      "certainty": 0.53,
+      "note": "Person name 'Vitesh' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Farm",
+      "certainty": 0.53,
+      "note": "Person name 'Farm' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Would",
+      "certainty": 0.53,
+      "note": "Person name 'Would' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Yes",
+      "certainty": 0.53,
+      "note": "Person name 'Yes' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Three",
+      "certainty": 0.53,
+      "note": "Person name 'Three' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Please",
+      "certainty": 0.53,
+      "note": "Person name 'Please' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Chesson",
+      "certainty": 0.53,
+      "note": "Person name 'Chesson' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Indian",
+      "certainty": 0.53,
+      "note": "Person name 'Indian' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Paul",
+      "certainty": 0.53,
+      "note": "Person name 'Paul' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Good",
+      "certainty": 0.53,
+      "note": "Person name 'Good' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Obviously",
+      "certainty": 0.53,
+      "note": "Person name 'Obviously' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "For",
+      "certainty": 0.53,
+      "note": "Person name 'For' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Sometimes",
+      "certainty": 0.53,
+      "note": "Person name 'Sometimes' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Wherever",
+      "certainty": 0.53,
+      "note": "Person name 'Wherever' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Chase",
+      "certainty": 0.53,
+      "note": "Person name 'Chase' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Naki",
+      "certainty": 0.53,
+      "note": "Person name 'Naki' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Barnett",
+      "certainty": 0.53,
+      "note": "Person name 'Barnett' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Hypothetically",
+      "certainty": 0.53,
+      "note": "Person name 'Hypothetically' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Nfield",
+      "certainty": 0.53,
+      "note": "Person name 'Nfield' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Hold",
+      "certainty": 0.53,
+      "note": "Person name 'Hold' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "One",
+      "certainty": 0.53,
+      "note": "Person name 'One' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Your",
+      "certainty": 0.53,
+      "note": "Person name 'Your' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Don",
+      "certainty": 0.44,
+      "note": "Person name 'Don' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Enfield",
+      "certainty": 0.44,
+      "note": "Person name 'Enfield' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Value",
+      "certainty": 0.44,
+      "note": "Person name 'Value' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Occasionally",
+      "certainty": 0.44,
+      "note": "Person name 'Occasionally' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Remedy",
+      "certainty": 0.44,
+      "note": "Person name 'Remedy' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Again",
+      "certainty": 0.44,
+      "note": "Person name 'Again' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Look",
+      "certainty": 0.44,
+      "note": "Person name 'Look' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Market",
+      "certainty": 0.44,
+      "note": "Person name 'Market' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Renton",
+      "certainty": 0.44,
+      "note": "Person name 'Renton' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Today",
+      "certainty": 0.44,
+      "note": "Person name 'Today' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Remarker",
+      "certainty": 0.44,
+      "note": "Person name 'Remarker' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Gladberg",
+      "certainty": 0.44,
+      "note": "Person name 'Gladberg' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Trust",
+      "certainty": 0.44,
+      "note": "Person name 'Trust' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Hodgerton",
+      "certainty": 0.44,
+      "note": "Person name 'Hodgerton' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Listen",
+      "certainty": 0.44,
+      "note": "Person name 'Listen' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Straight",
+      "certainty": 0.44,
+      "note": "Person name 'Straight' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Welcome",
+      "certainty": 0.44,
+      "note": "Person name 'Welcome' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Have",
+      "certainty": 0.44,
+      "note": "Person name 'Have' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Management",
+      "certainty": 0.44,
+      "note": "Person name 'Management' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Imagine",
+      "certainty": 0.44,
+      "note": "Person name 'Imagine' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Although",
+      "certainty": 0.44,
+      "note": "Person name 'Although' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Unmogged",
+      "certainty": 0.44,
+      "note": "Person name 'Unmogged' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Portis",
+      "certainty": 0.44,
+      "note": "Person name 'Portis' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Sit",
+      "certainty": 0.44,
+      "note": "Person name 'Sit' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Working",
+      "certainty": 0.44,
+      "note": "Person name 'Working' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "About",
+      "certainty": 0.44,
+      "note": "Person name 'About' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Gibbs",
+      "certainty": 0.44,
+      "note": "Person name 'Gibbs' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "People",
+      "certainty": 0.44,
+      "note": "Person name 'People' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "House",
+      "certainty": 0.44,
+      "note": "Person name 'House' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Way",
+      "certainty": 0.44,
+      "note": "Person name 'Way' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Ludwig",
+      "certainty": 0.44,
+      "note": "Person name 'Ludwig' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Gladbeck",
+      "certainty": 0.44,
+      "note": "Person name 'Gladbeck' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Should",
+      "certainty": 0.44,
+      "note": "Person name 'Should' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Graham",
+      "certainty": 0.44,
+      "note": "Person name 'Graham' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Glad",
+      "certainty": 0.44,
+      "note": "Person name 'Glad' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Southgate",
+      "certainty": 0.44,
+      "note": "Person name 'Southgate' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Probably",
+      "certainty": 0.44,
+      "note": "Person name 'Probably' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Next",
+      "certainty": 0.44,
+      "note": "Person name 'Next' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Does",
+      "certainty": 0.44,
+      "note": "Person name 'Does' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Any",
+      "certainty": 0.44,
+      "note": "Person name 'Any' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "American",
+      "certainty": 0.44,
+      "note": "Person name 'American' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Monke",
+      "certainty": 0.44,
+      "note": "Person name 'Monke' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Are",
+      "certainty": 0.44,
+      "note": "Person name 'Are' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "None",
+      "certainty": 0.44,
+      "note": "Person name 'None' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Central",
+      "certainty": 0.44,
+      "note": "Person name 'Central' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Zazzanari",
+      "certainty": 0.44,
+      "note": "Person name 'Zazzanari' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Given",
+      "certainty": 0.44,
+      "note": "Person name 'Given' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Hampstead",
+      "certainty": 0.44,
+      "note": "Person name 'Hampstead' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Kind",
+      "certainty": 0.44,
+      "note": "Person name 'Kind' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Anything",
+      "certainty": 0.44,
+      "note": "Person name 'Anything' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Self",
+      "certainty": 0.44,
+      "note": "Person name 'Self' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Some",
+      "certainty": 0.44,
+      "note": "Person name 'Some' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Calling",
+      "certainty": 0.44,
+      "note": "Person name 'Calling' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Checking",
+      "certainty": 0.44,
+      "note": "Person name 'Checking' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Everything",
+      "certainty": 0.44,
+      "note": "Person name 'Everything' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Currently",
+      "certainty": 0.44,
+      "note": "Person name 'Currently' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Not",
+      "certainty": 0.44,
+      "note": "Person name 'Not' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Silver",
+      "certainty": 0.44,
+      "note": "Person name 'Silver' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Say",
+      "certainty": 0.44,
+      "note": "Person name 'Say' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "General",
+      "certainty": 0.44,
+      "note": "Person name 'General' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Nothing",
+      "certainty": 0.44,
+      "note": "Person name 'Nothing' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "India",
+      "certainty": 0.44,
+      "note": "Person name 'India' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Absolutely",
+      "certainty": 0.44,
+      "note": "Person name 'Absolutely' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Whatever",
+      "certainty": 0.44,
+      "note": "Person name 'Whatever' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "After",
+      "certainty": 0.44,
+      "note": "Person name 'After' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Eann",
+      "certainty": 0.44,
+      "note": "Person name 'Eann' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Location",
+      "certainty": 0.44,
+      "note": "Person name 'Location' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Association",
+      "certainty": 0.44,
+      "note": "Person name 'Association' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Make",
+      "certainty": 0.44,
+      "note": "Person name 'Make' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Black",
+      "certainty": 0.44,
+      "note": "Person name 'Black' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Maple",
+      "certainty": 0.44,
+      "note": "Person name 'Maple' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Finchery",
+      "certainty": 0.44,
+      "note": "Person name 'Finchery' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Plus",
+      "certainty": 0.44,
+      "note": "Person name 'Plus' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Brimstown",
+      "certainty": 0.44,
+      "note": "Person name 'Brimstown' low-confidence — verify"
+    },
+    {
+      "type": "undefined_acronym",
+      "term": "IPA",
+      "glossary_id": 1,
+      "first_appears_at": "26:38",
+      "note": "Acronym needs definition → glossary.json entry 1"
+    },
+    {
+      "type": "undefined_acronym",
+      "term": "SEO",
+      "glossary_id": 2,
+      "first_appears_at": "41:57",
+      "note": "Acronym needs definition → glossary.json entry 2"
+    }
+  ]
+}

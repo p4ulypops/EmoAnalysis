@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "type": "veracity_temporal_sequencing",
+      "timestamp": "00:00",
+      "certainty": 0.55,
+      "note": "VERACITY: Temporal sequencing — structured recall [<temporal>]"
+    },
+    {
+      "type": "possible_room_change",
+      "timestamp": "00:00:00.00",
+      "certainty": 0.46,
+      "note": "Possible door/entry/exit event",
+      "action": "⚠️ Shenanigans Watch — verify who was present before/after"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:20",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.2s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "veracity_appropriate_recall_pause",
+      "timestamp": "00:24",
+      "certainty": 0.4,
+      "note": "VERACITY: Natural 1.3s pause before recall — genuine processing [<recall-pause>]"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Halloween",
+      "certainty": 0.44,
+      "note": "Person name 'Halloween' low-confidence — verify"
+    },
+    {
+      "type": "uncertain_entity",
+      "value": "Not",
+      "certainty": 0.44,
+      "note": "Person name 'Not' low-confidence — verify"
+    }
+  ]
+}

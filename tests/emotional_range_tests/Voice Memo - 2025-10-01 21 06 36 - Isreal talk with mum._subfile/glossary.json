@@ -1,0 +1,212 @@
+{
+  "entries": [
+    {
+      "id": 1,
+      "term": "IKKO",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "00:31"
+    },
+    {
+      "id": 2,
+      "term": "BBC",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "02:38"
+    },
+    {
+      "id": 3,
+      "term": "ITV",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "02:38"
+    },
+    {
+      "id": 4,
+      "term": "NF",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "03:31"
+    },
+    {
+      "id": 5,
+      "term": "NFSE",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "03:34"
+    },
+    {
+      "id": 6,
+      "term": "ECL",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "11:56"
+    },
+    {
+      "id": 7,
+      "term": "CGI",
+      "category": "acronym",
+      "definition": "Acronym — definition unknown; please fill in",
+      "certainty": 0.55,
+      "first_appears_at": "45:41"
+    },
+    {
+      "id": 8,
+      "term": "autism",
+      "category": "medical/clinical",
+      "definition": "Medical or clinical term — see NHS guidance or professional definition",
+      "certainty": 0.82,
+      "first_appears_at": "10:39"
+    },
+    {
+      "id": 9,
+      "term": "app",
+      "category": "technical",
+      "definition": "Technical/digital term",
+      "certainty": 0.78,
+      "first_appears_at": "20:07"
+    },
+    {
+      "id": 10,
+      "term": "Imagine",
+      "category": "medication",
+      "definition": "Possible medication — verify: dosage, purpose, side effects",
+      "certainty": 0.65,
+      "first_appears_at": "08:55"
+    },
+    {
+      "id": 11,
+      "term": "Ukraine",
+      "category": "medication",
+      "definition": "Possible medication — verify: dosage, purpose, side effects",
+      "certainty": 0.65,
+      "first_appears_at": "27:47"
+    },
+    {
+      "id": 12,
+      "term": "school",
+      "category": "medication",
+      "definition": "Possible medication — verify: dosage, purpose, side effects",
+      "certainty": 0.65,
+      "first_appears_at": "47:59"
+    },
+    {
+      "id": 13,
+      "term": "like a BBC",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 14,
+      "term": "like a close",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "02:46"
+    },
+    {
+      "id": 15,
+      "term": "like a crowd",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 16,
+      "term": "like a football",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 17,
+      "term": "like a insult",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 18,
+      "term": "like a strong",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 19,
+      "term": "like a gangster",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "19:57"
+    },
+    {
+      "id": 20,
+      "term": "like a outsider",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 21,
+      "term": "like a scarf",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 22,
+      "term": "like a covering",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 23,
+      "term": "like a remote",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "47:40"
+    },
+    {
+      "id": 24,
+      "term": "like a thought",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "48:28"
+    },
+    {
+      "id": 25,
+      "term": "like a open",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    },
+    {
+      "id": 26,
+      "term": "like a one",
+      "category": "metaphor/simile",
+      "definition": "Figurative expression — contextual interpretation may be needed",
+      "certainty": 0.45,
+      "first_appears_at": "00:00"
+    }
+  ]
+}
