@@ -1,10 +1,10 @@
 {
   "audio_file": "Brain-fart :: Sunflowers.m4a",
-  "audio_path": "test audios/Brain-fart :: Sunflowers.m4a",
-  "duration_s": 320.1,
+  "audio_path": "tests/Brain-fart :: Sunflowers.m4a",
+  "duration_s": 320.0,
   "duration_formatted": "05:20",
-  "transcription_timestamp": "2026-06-25T13:18:49Z",
-  "whisper_model": "tiny",
+  "transcription_timestamp": "2026-06-25T20:20:51Z",
+  "whisper_model": "base",
   "language": "en",
   "context_type": "general",
   "schema_version": "Affective-Clinical-MD-v3.0-Omni",
@@ -18,14 +18,14 @@
     "voice_matching": [],
     "note": "Speaker labels are discovered automatically — names are not assumed."
   },
-  "segment_count": 46,
-  "word_count": 721,
+  "segment_count": 54,
+  "word_count": 729,
   "hashtags": [
     "#family",
     "#general",
     "#work"
   ],
-  "output_folder": "test audios/Brain-fart :: Sunflowers_subfile",
+  "output_folder": "tests/Brain-fart :: Sunflowers_subfile",
   "output_files": [
     "transcript.md",
     "emotions.json",
@@ -48,9 +48,9 @@
   "cost_estimate": {
     "estimated_words": 806,
     "estimated_tokens": 604,
-    "estimated_process_seconds": 161,
-    "estimated_process_minutes": 2.7,
-    "model": "tiny",
+    "estimated_process_seconds": 322,
+    "estimated_process_minutes": 5.4,
+    "model": "base",
     "cost_usd": 0.0,
     "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
   }

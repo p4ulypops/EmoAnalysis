@@ -1,70 +1,70 @@
 {
-  "total_segments": 46,
+  "total_segments": 54,
   "freeze_events": [],
   "significant_pauses": [
     {
-      "timestamp": "00:25",
-      "duration_s": 1.66,
+      "timestamp": "00:17",
+      "duration_s": 2.06,
       "type": "notable",
       "certainty": 0.85
     },
     {
-      "timestamp": "00:41",
+      "timestamp": "00:25",
+      "duration_s": 1.72,
+      "type": "notable",
+      "certainty": 0.85
+    },
+    {
+      "timestamp": "00:37",
+      "duration_s": 2.14,
+      "type": "notable",
+      "certainty": 0.85
+    },
+    {
+      "timestamp": "00:40",
       "duration_s": 1.56,
       "type": "notable",
       "certainty": 0.85
     },
     {
-      "timestamp": "00:57",
-      "duration_s": 2.72,
-      "type": "notable",
-      "certainty": 0.85
-    },
-    {
       "timestamp": "01:12",
-      "duration_s": 1.88,
-      "type": "notable",
-      "certainty": 0.85
-    },
-    {
-      "timestamp": "01:18",
-      "duration_s": 2.94,
-      "type": "notable",
-      "certainty": 0.85
-    },
-    {
-      "timestamp": "01:29",
-      "duration_s": 1.7,
-      "type": "notable",
-      "certainty": 0.85
-    },
-    {
-      "timestamp": "02:45",
-      "duration_s": 1.8,
+      "duration_s": 2.04,
       "type": "notable",
       "certainty": 0.85
     },
     {
       "timestamp": "03:02",
-      "duration_s": 1.8,
-      "type": "notable",
-      "certainty": 0.85
-    },
-    {
-      "timestamp": "04:11",
       "duration_s": 1.54,
       "type": "notable",
       "certainty": 0.85
     },
     {
-      "timestamp": "04:41",
-      "duration_s": 1.53,
+      "timestamp": "04:18",
+      "duration_s": 1.62,
       "type": "notable",
       "certainty": 0.85
     },
     {
       "timestamp": "04:46",
-      "duration_s": 1.66,
+      "duration_s": 1.64,
+      "type": "notable",
+      "certainty": 0.85
+    },
+    {
+      "timestamp": "05:01",
+      "duration_s": 2.18,
+      "type": "notable",
+      "certainty": 0.85
+    },
+    {
+      "timestamp": "05:09",
+      "duration_s": 1.9,
+      "type": "notable",
+      "certainty": 0.85
+    },
+    {
+      "timestamp": "05:16",
+      "duration_s": 2.18,
       "type": "notable",
       "certainty": 0.85
     }
@@ -286,9 +286,9 @@
       "index": 0,
       "timestamp": "00:00",
       "start_s": 0.0,
-      "end_s": 11.76,
+      "end_s": 17.22,
       "speaker": "Speaker",
-      "text_preview": "So this is a diary entry I made on the 16th of July, 2026. At the time, I was thinking a lot",
+      "text_preview": "So this is a diary entry I made on the 16th of July, 2026. At the time I was thinking a lot about th…",
       "pause_before_s": 0.0,
       "intensity": 5,
       "emoji": "😐",
@@ -310,12 +310,12 @@
     },
     {
       "index": 1,
-      "timestamp": "00:11",
-      "start_s": 11.76,
-      "end_s": 20.72,
+      "timestamp": "00:19",
+      "start_s": 19.28,
+      "end_s": 25.82,
       "speaker": "Speaker",
-      "text_preview": "about the world politics, my situation, neurodivertions and stuff like that. So yeah, let me read",
-      "pause_before_s": 0.0,
+      "text_preview": "So yeah, let me read it out. It's called, the title is Sunflowers.",
+      "pause_before_s": 2.06,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -323,51 +323,32 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
+          "symbol": "(2.06)",
+          "phenomenon": "Significant pause (1.5–5s)",
+          "clinical_note": "Emotional processing or topic gravity",
+          "certainty": 0.85
         }
       ],
       "deception_markers": [],
-      "veracity_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 2.1s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
       "index": 2,
-      "timestamp": "00:20",
-      "start_s": 20.72,
-      "end_s": 25.9,
-      "speaker": "Speaker",
-      "text_preview": "it out. It's called the title is Some Flows.",
-      "pause_before_s": 0.0,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 3,
       "timestamp": "00:27",
-      "start_s": 27.56,
-      "end_s": 32.58,
+      "start_s": 27.54,
+      "end_s": 37.0,
       "speaker": "Speaker",
-      "text_preview": "Yesterday on the way home for my meetings, I nipped into the shops and picked up some",
-      "pause_before_s": 1.66,
+      "text_preview": "Yesterday on the way home from my meetings, I nipped into the shops and picked up some Sozmum. I'm a…",
+      "pause_before_s": 1.72,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -375,7 +356,13 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(1.66)",
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(1.72)",
           "phenomenon": "Significant pause (1.5–5s)",
           "clinical_note": "Emotional processing or topic gravity",
           "certainty": 0.85
@@ -396,25 +383,17 @@
           "certainty": 0.4
         }
       ],
-      "clinical_markers": [
-        {
-          "phenotype": "ASD",
-          "type": "awkward_pause",
-          "note": "Non-grammatical pause (1.7s)",
-          "tei": "<pause dur=\"1.7s\" type=\"awkward\"/>",
-          "certainty": 0.35
-        }
-      ],
+      "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 4,
-      "timestamp": "00:32",
-      "start_s": 32.58,
-      "end_s": 41.32,
+      "index": 3,
+      "timestamp": "00:39",
+      "start_s": 39.14,
+      "end_s": 40.88,
       "speaker": "Speaker",
-      "text_preview": "Sod's mum, I'm a bit of a bit of a shit recently. I love you flowers.",
-      "pause_before_s": 0.0,
+      "text_preview": "I love you flowers.",
+      "pause_before_s": 2.14,
       "intensity": 7,
       "emoji": "🤩",
       "affect_label": "Positive",
@@ -422,31 +401,31 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
+          "symbol": "(2.14)",
+          "phenomenon": "Significant pause (1.5–5s)",
+          "clinical_note": "Emotional processing or topic gravity",
+          "certainty": 0.85
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 2.1s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
-      "deception_markers": [
-        {
-          "type": "stalling_repetition",
-          "symbol": "<rep>a bit of</rep>",
-          "note": "Phrase 'a bit of' repeated — possible stalling",
-          "certainty": 0.45
-        }
-      ],
-      "veracity_markers": [],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 5,
+      "index": 4,
       "timestamp": "00:42",
-      "start_s": 42.88,
-      "end_s": 51.66,
+      "start_s": 42.44,
+      "end_s": 51.26,
       "speaker": "Speaker",
-      "text_preview": "I thought I got out of the car and I saw some flowers. As I got out of the car, I thought I'd make h…",
+      "text_preview": "As I go out the car of, and I saw some sunflowers. As I go out the car, I thought I'd make Nux make …",
       "pause_before_s": 1.56,
       "intensity": 5,
       "emoji": "😄",
@@ -480,43 +459,24 @@
       "certainty": 0.65
     },
     {
-      "index": 6,
+      "index": 5,
       "timestamp": "00:51",
-      "start_s": 51.66,
-      "end_s": 57.82,
+      "start_s": 51.76,
+      "end_s": 65.06,
       "speaker": "Speaker",
-      "text_preview": "So as I got out of the car, I thought I'd make her laugh by unleashing Nugs by Dog.",
-      "pause_before_s": 0.0,
+      "text_preview": "So I go out the car, I thought I'd make her laugh by unleashing Nux my dog by making him run in the …",
+      "pause_before_s": 0.5,
       "intensity": 5,
       "emoji": "😄",
       "affect_label": "Amusement",
       "has_raised_voice": false,
       "has_question": false,
-      "jefferson_markers": [],
-      "deception_markers": [],
-      "veracity_markers": [],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 7,
-      "timestamp": "01:00",
-      "start_s": 60.54,
-      "end_s": 65.1,
-      "speaker": "Speaker",
-      "text_preview": "By making him run in the house covered in something else like this.",
-      "pause_before_s": 2.72,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(2.72)",
-          "phenomenon": "Significant pause (1.5–5s)",
-          "clinical_note": "Emotional processing or topic gravity",
-          "certainty": 0.85
+          "symbol": "(0.5)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
       "deception_markers": [],
@@ -526,25 +486,19 @@
           "symbol": "<context>",
           "note": "Spatial embedding — genuine memory",
           "certainty": 0.55
-        },
-        {
-          "type": "appropriate_recall_pause",
-          "symbol": "<recall-pause>",
-          "note": "Natural 2.7s pause before recall — genuine processing",
-          "certainty": 0.4
         }
       ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 8,
-      "timestamp": "01:06",
-      "start_s": 66.4,
-      "end_s": 72.86,
+      "index": 6,
+      "timestamp": "01:05",
+      "start_s": 65.8,
+      "end_s": 72.66,
       "speaker": "Speaker",
-      "text_preview": "And I remembered later on as I'm doing it, she used to call me when I was a kid, wild child.",
-      "pause_before_s": 1.3,
+      "text_preview": "And I remembered later on as I'm doing it, she used to call me when I was a kid's wild child.",
+      "pause_before_s": 0.74,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -558,7 +512,7 @@
           "certainty": 0.6
         },
         {
-          "symbol": "(1.3)",
+          "symbol": "(0.7)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -569,7 +523,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.3s pause before recall — genuine processing",
+          "note": "Natural 0.7s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -577,13 +531,13 @@
       "certainty": 0.65
     },
     {
-      "index": 9,
+      "index": 7,
       "timestamp": "01:14",
-      "start_s": 74.74,
-      "end_s": 78.86,
+      "start_s": 74.7,
+      "end_s": 80.54,
       "speaker": "Speaker",
       "text_preview": "This is a reference to the old hippie days of the 60s and 70s.",
-      "pause_before_s": 1.88,
+      "pause_before_s": 2.04,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -591,7 +545,7 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(1.88)",
+          "symbol": "(2.04)",
           "phenomenon": "Significant pause (1.5–5s)",
           "clinical_note": "Emotional processing or topic gravity",
           "certainty": 0.85
@@ -602,7 +556,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.9s pause before recall — genuine processing",
+          "note": "Natural 2.0s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -610,24 +564,24 @@
       "certainty": 0.65
     },
     {
-      "index": 10,
-      "timestamp": "01:21",
-      "start_s": 81.8,
-      "end_s": 89.72,
+      "index": 8,
+      "timestamp": "01:20",
+      "start_s": 80.6,
+      "end_s": 90.4,
       "speaker": "Speaker",
-      "text_preview": "Although for her, there was probably some song or movie back then, or just an expression I used.",
-      "pause_before_s": 2.94,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
+      "text_preview": "Although, although for her there was probably some song or movie back then or just an expression the…",
+      "pause_before_s": 0.06,
+      "intensity": 4,
+      "emoji": "🤔",
+      "affect_label": "Uncertain",
       "has_raised_voice": false,
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(2.94)",
-          "phenomenon": "Significant pause (1.5–5s)",
-          "clinical_note": "Emotional processing or topic gravity",
-          "certainty": 0.85
+          "symbol": "=",
+          "phenomenon": "Latching (no gap between turns)",
+          "clinical_note": "Power dynamic, interruption, or urgency",
+          "certainty": 0.7
         }
       ],
       "deception_markers": [],
@@ -643,148 +597,19 @@
           "symbol": "<cog-complex>",
           "note": "Cognitive complexity — weighing alternatives",
           "certainty": 0.5
-        },
-        {
-          "type": "appropriate_recall_pause",
-          "symbol": "<recall-pause>",
-          "note": "Natural 2.9s pause before recall — genuine processing",
-          "certainty": 0.4
         }
       ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 11,
+      "index": 9,
       "timestamp": "01:31",
-      "start_s": 91.42,
-      "end_s": 97.24,
+      "start_s": 91.52,
+      "end_s": 96.88,
       "speaker": "Speaker",
-      "text_preview": "She used to tell me that she's to go out on the band Bon Pro tests as a young teenager herself.",
-      "pause_before_s": 1.7,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
-        {
-          "symbol": "(1.70)",
-          "phenomenon": "Significant pause (1.5–5s)",
-          "clinical_note": "Emotional processing or topic gravity",
-          "certainty": 0.85
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [
-        {
-          "type": "contextual_embedding",
-          "symbol": "<context>",
-          "note": "Spatial embedding — genuine memory",
-          "certainty": 0.55
-        },
-        {
-          "type": "appropriate_recall_pause",
-          "symbol": "<recall-pause>",
-          "note": "Natural 1.7s pause before recall — genuine processing",
-          "certainty": 0.4
-        }
-      ],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 12,
-      "timestamp": "01:37",
-      "start_s": 97.86,
-      "end_s": 102.1,
-      "speaker": "Speaker",
-      "text_preview": "She wasn't really interested in politics. It was more because she was out on the pool",
-      "pause_before_s": 0.62,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "(0.6)",
-          "phenomenon": "Timed pause",
-          "clinical_note": "Processing, hesitation, or topic shift",
-          "certainty": 0.88
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [
-        {
-          "type": "contextual_embedding",
-          "symbol": "<context>",
-          "note": "Spatial embedding — genuine memory",
-          "certainty": 0.55
-        },
-        {
-          "type": "appropriate_recall_pause",
-          "symbol": "<recall-pause>",
-          "note": "Natural 0.6s pause before recall — genuine processing",
-          "certainty": 0.4
-        }
-      ],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 13,
-      "timestamp": "01:42",
-      "start_s": 102.1,
-      "end_s": 106.96,
-      "speaker": "Speaker",
-      "text_preview": "and it was a bit of excitement. Hopefully this was before she and then started dating.",
-      "pause_before_s": 0.0,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [
-        {
-          "type": "temporal_sequencing",
-          "symbol": "<temporal>",
-          "note": "Temporal sequencing — structured recall",
-          "certainty": 0.55
-        },
-        {
-          "type": "temporal_sequencing",
-          "symbol": "<temporal>",
-          "note": "Temporal relation — genuine memory structure",
-          "certainty": 0.55
-        }
-      ],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 14,
-      "timestamp": "01:48",
-      "start_s": 108.04,
-      "end_s": 114.54,
-      "speaker": "Speaker",
-      "text_preview": "But either way, fair play to her, good on her. I looked up a bit about your days and it was",
-      "pause_before_s": 1.08,
+      "text_preview": "She used to tell me that she used to go out on the band the Bond protests as a young teenager hersel…",
+      "pause_before_s": 1.12,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -807,6 +632,12 @@
       "deception_markers": [],
       "veracity_markers": [
         {
+          "type": "contextual_embedding",
+          "symbol": "<context>",
+          "note": "Spatial embedding — genuine memory",
+          "certainty": 0.55
+        },
+        {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
           "note": "Natural 1.1s pause before recall — genuine processing",
@@ -815,23 +646,23 @@
       ],
       "clinical_markers": [
         {
-          "phenotype": "ASD",
-          "type": "awkward_pause",
-          "note": "Non-grammatical pause (1.1s)",
-          "tei": "<pause dur=\"1.1s\" type=\"awkward\"/>",
-          "certainty": 0.35
+          "phenotype": "PTSD",
+          "type": "repetition",
+          "note": "PTSD: Repetitive narrative fragments",
+          "tei": "<ptsd-frag type=\"repetition\">",
+          "certainty": 0.45
         }
       ],
       "certainty": 0.65
     },
     {
-      "index": 15,
-      "timestamp": "01:54",
-      "start_s": 114.54,
-      "end_s": 120.36,
+      "index": 10,
+      "timestamp": "01:37",
+      "start_s": 97.56,
+      "end_s": 103.34,
       "speaker": "Speaker",
-      "text_preview": "pretty powerful to me. You know, it's not just all statistics and invisible illnesses.",
-      "pause_before_s": 0.0,
+      "text_preview": "She wasn't really interested in politics. It was more because she was out on the pool and it was a b…",
+      "pause_before_s": 0.68,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -839,25 +670,188 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
+          "symbol": "(0.7)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
       "deception_markers": [],
-      "veracity_markers": [],
+      "veracity_markers": [
+        {
+          "type": "contextual_embedding",
+          "symbol": "<context>",
+          "note": "Spatial embedding — genuine memory",
+          "certainty": 0.55
+        },
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.7s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 16,
-      "timestamp": "02:01",
-      "start_s": 121.12,
-      "end_s": 126.76,
+      "index": 11,
+      "timestamp": "01:44",
+      "start_s": 104.06,
+      "end_s": 106.42,
       "speaker": "Speaker",
-      "text_preview": "Now, I symbolized with the song flower. The anti-war Ukrainian entailment needs,",
-      "pause_before_s": 0.76,
+      "text_preview": "Hopefully this was before she and that started dating.",
+      "pause_before_s": 0.72,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(0.7)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "temporal_sequencing",
+          "symbol": "<temporal>",
+          "note": "Temporal relation — genuine memory structure",
+          "certainty": 0.55
+        },
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.7s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 12,
+      "timestamp": "01:47",
+      "start_s": 107.66,
+      "end_s": 110.54,
+      "speaker": "Speaker",
+      "text_preview": "But either way, third play to her, good on her.",
+      "pause_before_s": 1.24,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(1.2)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.2s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 13,
+      "timestamp": "01:51",
+      "start_s": 111.58,
+      "end_s": 115.6,
+      "speaker": "Speaker",
+      "text_preview": "I looked up a bit about those days and it was pretty powerful to me.",
+      "pause_before_s": 1.04,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.0)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.0s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 14,
+      "timestamp": "01:56",
+      "start_s": 116.46,
+      "end_s": 122.58,
+      "speaker": "Speaker",
+      "text_preview": "You know that it's not just all testics and invisible illnesses that are symbolized with the sunflow…",
+      "pause_before_s": 0.86,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(0.9)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.9s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 15,
+      "timestamp": "02:03",
+      "start_s": 123.36,
+      "end_s": 130.06,
+      "speaker": "Speaker",
+      "text_preview": "The anti-war Ukrainian and Taiwan needs users protests also use the sunflower.",
+      "pause_before_s": 0.78,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -897,13 +891,13 @@
       "certainty": 0.65
     },
     {
-      "index": 17,
-      "timestamp": "02:06",
-      "start_s": 126.76,
-      "end_s": 134.38,
+      "index": 16,
+      "timestamp": "02:11",
+      "start_s": 131.42,
+      "end_s": 134.24,
       "speaker": "Speaker",
-      "text_preview": "the protests also, is a song flower. Anyway, there's certainly some truth about this.",
-      "pause_before_s": 0.0,
+      "text_preview": "Anyway, there's certainly some truth about this.",
+      "pause_before_s": 1.36,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -911,22 +905,16 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
-        {
           "symbol": ">word<",
           "phenomenon": "Accelerated delivery",
           "clinical_note": "Hurried, rushed — evasion or anxiety",
           "certainty": 0.5
         },
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
+          "symbol": "(1.4)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
       "deception_markers": [
@@ -937,7 +925,14 @@
           "certainty": 0.4
         }
       ],
-      "veracity_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.4s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
       "clinical_markers": [
         {
           "phenotype": "ADHD",
@@ -950,13 +945,32 @@
       "certainty": 0.65
     },
     {
-      "index": 18,
-      "timestamp": "02:15",
-      "start_s": 135.0,
-      "end_s": 144.3,
+      "index": 17,
+      "timestamp": "02:14",
+      "start_s": 134.24,
+      "end_s": 135.54,
       "speaker": "Speaker",
-      "text_preview": "All in one, good. So many of these SJWs, something justice warriors, self justice warriors,",
-      "pause_before_s": 0.62,
+      "text_preview": "All the world good.",
+      "pause_before_s": 0.0,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [],
+      "deception_markers": [],
+      "veracity_markers": [],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 18,
+      "timestamp": "02:16",
+      "start_s": 136.38,
+      "end_s": 145.7,
+      "speaker": "Speaker",
+      "text_preview": "So many of these SJWs, something just as for yourself, just as for yourself, I forgot.",
+      "pause_before_s": 0.84,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -964,7 +978,7 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(0.6)",
+          "symbol": "(0.8)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -975,7 +989,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 0.6s pause before recall — genuine processing",
+          "note": "Natural 0.8s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -984,12 +998,12 @@
     },
     {
       "index": 19,
-      "timestamp": "02:24",
-      "start_s": 144.74,
-      "end_s": 154.32,
+      "timestamp": "02:26",
+      "start_s": 146.66,
+      "end_s": 148.84,
       "speaker": "Speaker",
-      "text_preview": "I forgot, forgot. Artists, SJWs, artists are of the autistic mindset. In my humble opinion,",
-      "pause_before_s": 0.44,
+      "text_preview": "Our, our, our, SJWs.",
+      "pause_before_s": 0.96,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -997,107 +1011,10 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(0.4)",
+          "symbol": "(1.0)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 20,
-      "timestamp": "02:34",
-      "start_s": 154.32,
-      "end_s": 159.92,
-      "speaker": "Speaker",
-      "text_preview": "it's because so many feel so, but it's understood while the world yet have a real understanding",
-      "pause_before_s": 0.0,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [
-        {
-          "type": "temporal_sequencing",
-          "symbol": "<temporal>",
-          "note": "Temporal relation — genuine memory structure",
-          "certainty": 0.55
-        }
-      ],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 21,
-      "timestamp": "02:39",
-      "start_s": 159.92,
-      "end_s": 165.14,
-      "speaker": "Speaker",
-      "text_preview": "of the wider context of how it works. All the theory about none of the practical.",
-      "pause_before_s": 0.0,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
-        {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 22,
-      "timestamp": "02:46",
-      "start_s": 166.94,
-      "end_s": 172.34,
-      "speaker": "Speaker",
-      "text_preview": "It sometimes feels like my mindset has formed into languages. My mother tongue is neurodivergent.",
-      "pause_before_s": 1.8,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
-        {
-          "symbol": "(1.80)",
-          "phenomenon": "Significant pause (1.5–5s)",
-          "clinical_note": "Emotional processing or topic gravity",
-          "certainty": 0.85
         }
       ],
       "deception_markers": [],
@@ -1105,7 +1022,118 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.8s pause before recall — genuine processing",
+          "note": "Natural 1.0s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 20,
+      "timestamp": "02:29",
+      "start_s": 149.68,
+      "end_s": 152.2,
+      "speaker": "Speaker",
+      "text_preview": "Our, our, our of the autistic one set.",
+      "pause_before_s": 0.84,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(0.8)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.8s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 21,
+      "timestamp": "02:33",
+      "start_s": 153.26,
+      "end_s": 161.76,
+      "speaker": "Speaker",
+      "text_preview": "In my humble opinion, it's because so many feel so misunderstood by the world yet have a real unders…",
+      "pause_before_s": 1.06,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(1.1)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "contextual_embedding",
+          "symbol": "<context>",
+          "note": "Spatial embedding — genuine memory",
+          "certainty": 0.55
+        },
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.1s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 22,
+      "timestamp": "02:42",
+      "start_s": 162.46,
+      "end_s": 165.14,
+      "speaker": "Speaker",
+      "text_preview": "All, all the theory about none of the practical.",
+      "pause_before_s": 0.7,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(0.7)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.7s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1114,11 +1142,83 @@
     },
     {
       "index": 23,
-      "timestamp": "02:52",
-      "start_s": 172.8,
-      "end_s": 177.78,
+      "timestamp": "02:46",
+      "start_s": 166.42,
+      "end_s": 169.4,
       "speaker": "Speaker",
-      "text_preview": "I can dress and it's like a multi-disciplinary scholar. I went out to speak neurotypical.",
+      "text_preview": "It sometimes feels like my mindset has formed in two languages.",
+      "pause_before_s": 1.28,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.3)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.3s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 24,
+      "timestamp": "02:50",
+      "start_s": 170.42,
+      "end_s": 172.16,
+      "speaker": "Speaker",
+      "text_preview": "My mother tongue is neurodivergent.",
+      "pause_before_s": 1.02,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(1.0)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.0s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 25,
+      "timestamp": "02:52",
+      "start_s": 172.62,
+      "end_s": 175.44,
+      "speaker": "Speaker",
+      "text_preview": "I converse in it's like a multi disciplinary scholar.",
       "pause_before_s": 0.46,
       "intensity": 5,
       "emoji": "😐",
@@ -1133,90 +1233,25 @@
           "certainty": 0.88
         }
       ],
-      "deception_markers": [
-        {
-          "type": "spontaneous_correction",
-          "symbol": "<corrsp>",
-          "note": "Word corrected via dash (e.g. 'went–came')",
-          "certainty": 0.5
-        }
-      ],
-      "veracity_markers": [],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 24,
-      "timestamp": "02:57",
-      "start_s": 177.78,
-      "end_s": 182.66,
-      "speaker": "Speaker",
-      "text_preview": "We've only a slight exaggeration. That times my accent is too strong.",
-      "pause_before_s": 0.0,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [],
       "deception_markers": [],
       "veracity_markers": [],
-      "clinical_markers": [],
-      "certainty": 0.65
-    },
-    {
-      "index": 25,
-      "timestamp": "03:04",
-      "start_s": 184.46,
-      "end_s": 188.76,
-      "speaker": "Speaker",
-      "text_preview": "I feel like I'm waiting for the pick in a hotel for my papers to be processed.",
-      "pause_before_s": 1.8,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "(1.80)",
-          "phenomenon": "Significant pause (1.5–5s)",
-          "clinical_note": "Emotional processing or topic gravity",
-          "certainty": 0.85
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [
-        {
-          "type": "appropriate_recall_pause",
-          "symbol": "<recall-pause>",
-          "note": "Natural 1.8s pause before recall — genuine processing",
-          "certainty": 0.4
-        }
-      ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
       "index": 26,
-      "timestamp": "03:09",
-      "start_s": 189.48,
-      "end_s": 194.48,
+      "timestamp": "02:56",
+      "start_s": 176.18,
+      "end_s": 182.38,
       "speaker": "Speaker",
-      "text_preview": "Learning that neurotypical from the Hunger Games, as I've already learned through",
-      "pause_before_s": 0.72,
+      "text_preview": "But when I speak neurotypical, with only a slight exaggeration, at times my accent is too strong.",
+      "pause_before_s": 0.74,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
       "has_raised_voice": false,
       "has_question": false,
       "jefferson_markers": [
-        {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
         {
           "symbol": "(0.7)",
           "phenomenon": "Timed pause",
@@ -1238,12 +1273,53 @@
     },
     {
       "index": 27,
-      "timestamp": "03:14",
-      "start_s": 194.48,
-      "end_s": 201.02,
+      "timestamp": "03:03",
+      "start_s": 183.92,
+      "end_s": 188.42,
       "speaker": "Speaker",
-      "text_preview": "Sesame Street and Goosebumps. And on the way over here, I've still get back to Socrates.",
-      "pause_before_s": 0.0,
+      "text_preview": "I feel like I'm waiting for the, in a hotel for my papers to be processed,",
+      "pause_before_s": 1.54,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.54)",
+          "phenomenon": "Significant pause (1.5–5s)",
+          "clinical_note": "Emotional processing or topic gravity",
+          "certainty": 0.85
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.5s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [
+        {
+          "phenotype": "ASD",
+          "type": "awkward_pause",
+          "note": "Non-grammatical pause (1.5s)",
+          "tei": "<pause dur=\"1.5s\" type=\"awkward\"/>",
+          "certainty": 0.35
+        }
+      ],
+      "certainty": 0.65
+    },
+    {
+      "index": 28,
+      "timestamp": "03:09",
+      "start_s": 189.42,
+      "end_s": 196.22,
+      "speaker": "Speaker",
+      "text_preview": "learning neurotypical from the Hunger Games as I already learned through Sesame Street and goosebump…",
+      "pause_before_s": 1.0,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1257,10 +1333,49 @@
           "certainty": 0.6
         },
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
+          "symbol": "(1.0)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.0s pause before recall — genuine processing",
           "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 29,
+      "timestamp": "03:17",
+      "start_s": 197.34,
+      "end_s": 200.86,
+      "speaker": "Speaker",
+      "text_preview": "And on the way over here, I'll soon get back to Socrates.",
+      "pause_before_s": 1.12,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(1.1)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
       "deception_markers": [],
@@ -1270,6 +1385,12 @@
           "symbol": "<context>",
           "note": "Spatial embedding — genuine memory",
           "certainty": 0.55
+        },
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.1s pause before recall — genuine processing",
+          "certainty": 0.4
         }
       ],
       "clinical_markers": [
@@ -1284,12 +1405,12 @@
       "certainty": 0.65
     },
     {
-      "index": 28,
+      "index": 30,
       "timestamp": "03:22",
-      "start_s": 202.42,
-      "end_s": 207.76,
+      "start_s": 202.26,
+      "end_s": 208.04,
       "speaker": "Speaker",
-      "text_preview": "My translated informs me that although I have a quick conditional fast-track to Cambridge University…",
+      "text_preview": "My translator informs me that although I have a preconditional fast tractor came to rich university,",
       "pause_before_s": 1.4,
       "intensity": 5,
       "emoji": "😐",
@@ -1304,14 +1425,7 @@
           "certainty": 0.88
         }
       ],
-      "deception_markers": [
-        {
-          "type": "spontaneous_correction",
-          "symbol": "<corrsp>",
-          "note": "Word corrected via dash (e.g. 'went–came')",
-          "certainty": 0.5
-        }
-      ],
+      "deception_markers": [],
       "veracity_markers": [
         {
           "type": "cognitive_complexity",
@@ -1338,13 +1452,13 @@
       "certainty": 0.65
     },
     {
-      "index": 29,
+      "index": 31,
       "timestamp": "03:29",
-      "start_s": 209.1,
-      "end_s": 215.14,
+      "start_s": 209.42,
+      "end_s": 214.78,
       "speaker": "Speaker",
-      "text_preview": "but only if my papers are processed in time for September, if not, to be another 12 months.",
-      "pause_before_s": 1.34,
+      "text_preview": "but only if my papers are processed in time for September, if not, it'd be another 12 months.",
+      "pause_before_s": 1.38,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1358,7 +1472,7 @@
           "certainty": 0.6
         },
         {
-          "symbol": "(1.3)",
+          "symbol": "(1.4)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -1369,7 +1483,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.3s pause before recall — genuine processing",
+          "note": "Natural 1.4s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1377,13 +1491,13 @@
       "certainty": 0.65
     },
     {
-      "index": 30,
+      "index": 32,
       "timestamp": "03:36",
-      "start_s": 216.62,
-      "end_s": 221.44,
+      "start_s": 216.22,
+      "end_s": 218.54,
       "speaker": "Speaker",
-      "text_preview": "Some of the staff at the hotel are so kind. It's think me in extra cups of tea and biscuits,",
-      "pause_before_s": 1.48,
+      "text_preview": "Some of the staff at the hotel are so kind.",
+      "pause_before_s": 1.44,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1391,7 +1505,7 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(1.5)",
+          "symbol": "(1.4)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -1408,62 +1522,21 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.5s pause before recall — genuine processing",
+          "note": "Natural 1.4s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
-      "clinical_markers": [
-        {
-          "phenotype": "ASD",
-          "type": "awkward_pause",
-          "note": "Non-grammatical pause (1.5s)",
-          "tei": "<pause dur=\"1.5s\" type=\"awkward\"/>",
-          "certainty": 0.35
-        }
-      ],
-      "certainty": 0.65
-    },
-    {
-      "index": 31,
-      "timestamp": "03:41",
-      "start_s": 221.6,
-      "end_s": 228.06,
-      "speaker": "Speaker",
-      "text_preview": "just as long as nobody finds out. It's not the non-tulantons of staff I'm worried about.",
-      "pause_before_s": 0.16,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "(.)",
-          "phenomenon": "Micropause (0.08–0.2s)",
-          "clinical_note": "Brief hesitation or natural turn boundary",
-          "certainty": 0.9
-        }
-      ],
-      "deception_markers": [
-        {
-          "type": "spontaneous_correction",
-          "symbol": "<corrsp>",
-          "note": "Word corrected via dash (e.g. 'went–came')",
-          "certainty": 0.5
-        }
-      ],
-      "veracity_markers": [],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 32,
-      "timestamp": "03:48",
-      "start_s": 228.72,
-      "end_s": 235.38,
+      "index": 33,
+      "timestamp": "03:39",
+      "start_s": 219.3,
+      "end_s": 222.98,
       "speaker": "Speaker",
-      "text_preview": "They don't really carry for way. It's the sadistic ones really.",
-      "pause_before_s": 0.66,
+      "text_preview": "They stink me in extra cups with tea and biscuits, just as long as nobody finds out.",
+      "pause_before_s": 0.76,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1471,7 +1544,7 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(0.7)",
+          "symbol": "(0.8)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -1482,7 +1555,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 0.7s pause before recall — genuine processing",
+          "note": "Natural 0.8s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1490,16 +1563,155 @@
       "certainty": 0.65
     },
     {
-      "index": 33,
-      "timestamp": "03:55",
-      "start_s": 235.38,
-      "end_s": 241.26,
+      "index": 34,
+      "timestamp": "03:44",
+      "start_s": 224.02,
+      "end_s": 227.94,
       "speaker": "Speaker",
-      "text_preview": "I can't even make eye contact. They'll see the crumbs on my bed and move me to get another hotel to",
-      "pause_before_s": 0.0,
+      "text_preview": "It's not the non-chalantant stuff I'm worried about.",
+      "pause_before_s": 1.04,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.0)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [
+        {
+          "type": "spontaneous_correction",
+          "symbol": "<corrsp>",
+          "note": "Word corrected via dash (e.g. 'went–came')",
+          "certainty": 0.5
+        }
+      ],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.0s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 35,
+      "timestamp": "03:48",
+      "start_s": 228.5,
+      "end_s": 229.64,
+      "speaker": "Speaker",
+      "text_preview": "They don't really carry it away.",
+      "pause_before_s": 0.56,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(0.6)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.6s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 36,
+      "timestamp": "03:50",
+      "start_s": 230.66,
+      "end_s": 235.0,
+      "speaker": "Speaker",
+      "text_preview": "It's a sadistic one, it's really.",
+      "pause_before_s": 1.02,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.0)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.0s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 37,
+      "timestamp": "03:55",
+      "start_s": 235.8,
+      "end_s": 237.12,
+      "speaker": "Speaker",
+      "text_preview": "I can't even make eye contact.",
+      "pause_before_s": 0.8,
       "intensity": 3,
       "emoji": "😴",
       "affect_label": "Depleted",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(0.8)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.8s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 38,
+      "timestamp": "03:58",
+      "start_s": 238.0,
+      "end_s": 241.64,
+      "speaker": "Speaker",
+      "text_preview": "They'll see the crumbs on my bed and move me to get another hotel to start again.",
+      "pause_before_s": 0.88,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
       "has_raised_voice": false,
       "has_question": false,
       "jefferson_markers": [
@@ -1508,21 +1720,53 @@
           "phenomenon": "Prolonged sound",
           "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
           "certainty": 0.6
+        },
+        {
+          "symbol": "(0.9)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.9s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 39,
+      "timestamp": "04:01",
+      "start_s": 241.64,
+      "end_s": 245.52,
+      "speaker": "Speaker",
+      "text_preview": "This Cambridge Unifing, that was a whole reason why I came here.",
+      "pause_before_s": 0.0,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [],
       "deception_markers": [],
       "veracity_markers": [],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 34,
-      "timestamp": "04:01",
-      "start_s": 241.26,
-      "end_s": 245.46,
+      "index": 40,
+      "timestamp": "04:06",
+      "start_s": 246.44,
+      "end_s": 248.66,
       "speaker": "Speaker",
-      "text_preview": "start today. This Cambridge University thing, now it was a whole reason why I came here.",
-      "pause_before_s": 0.0,
+      "text_preview": "I don't think I could start again, again.",
+      "pause_before_s": 0.92,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1530,25 +1774,32 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
+          "symbol": "(0.9)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
       "deception_markers": [],
-      "veracity_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 0.9s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 35,
-      "timestamp": "04:06",
-      "start_s": 246.58,
-      "end_s": 251.38,
+      "index": 41,
+      "timestamp": "04:09",
+      "start_s": 249.82,
+      "end_s": 251.36,
       "speaker": "Speaker",
-      "text_preview": "I don't think I could start again again. Can you imagine going for that?",
-      "pause_before_s": 1.12,
+      "text_preview": "Can you imagine going through that?",
+      "pause_before_s": 1.16,
       "intensity": 5,
       "emoji": "😨",
       "affect_label": "Anxious",
@@ -1556,7 +1807,7 @@
       "has_question": true,
       "jefferson_markers": [
         {
-          "symbol": "(1.1)",
+          "symbol": "(1.2)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -1573,7 +1824,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.1s pause before recall — genuine processing",
+          "note": "Natural 1.2s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1581,13 +1832,13 @@
       "certainty": 0.65
     },
     {
-      "index": 36,
+      "index": 42,
       "timestamp": "04:12",
-      "start_s": 252.92,
-      "end_s": 258.42,
+      "start_s": 252.6,
+      "end_s": 258.48,
       "speaker": "Speaker",
-      "text_preview": "So many are kind of hyper-empofetic as a result.",
-      "pause_before_s": 1.54,
+      "text_preview": "So many are kind of hyper empathetic as a result.",
+      "pause_before_s": 1.24,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1607,7 +1858,46 @@
           "certainty": 0.6
         },
         {
-          "symbol": "(1.54)",
+          "symbol": "(1.2)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.2s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 43,
+      "timestamp": "04:20",
+      "start_s": 260.1,
+      "end_s": 270.64,
+      "speaker": "Speaker",
+      "text_preview": "In Greek mythology, the sunflower was also, sorry, in Greek mythology, the sunflower was the nymph s…",
+      "pause_before_s": 1.62,
+      "intensity": 4,
+      "emoji": "😟",
+      "affect_label": "Apologetic",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "word::",
+          "phenomenon": "Prolonged sound",
+          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "(1.62)",
           "phenomenon": "Significant pause (1.5–5s)",
           "clinical_note": "Emotional processing or topic gravity",
           "certainty": 0.85
@@ -1617,7 +1907,7 @@
         {
           "type": "spontaneous_correction",
           "symbol": "<corrsp>",
-          "note": "Word corrected via dash (e.g. 'went–came')",
+          "note": "Word replaced with alternative",
           "certainty": 0.5
         }
       ],
@@ -1625,7 +1915,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.5s pause before recall — genuine processing",
+          "note": "Natural 1.6s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1633,27 +1923,21 @@
       "certainty": 0.65
     },
     {
-      "index": 37,
-      "timestamp": "04:19",
-      "start_s": 259.68,
-      "end_s": 268.82,
+      "index": 44,
+      "timestamp": "04:31",
+      "start_s": 271.16,
+      "end_s": 271.9,
       "speaker": "Speaker",
-      "text_preview": "In Greek mythology, the sunflower was also, so in Greek mythology, the sunflower was the nymph,",
-      "pause_before_s": 1.26,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
+      "text_preview": "I don't know.",
+      "pause_before_s": 0.52,
+      "intensity": 4,
+      "emoji": "🤔",
+      "affect_label": "Uncertain",
       "has_raised_voice": false,
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
-        {
-          "symbol": "(1.3)",
+          "symbol": "(0.5)",
           "phenomenon": "Timed pause",
           "clinical_note": "Processing, hesitation, or topic shift",
           "certainty": 0.88
@@ -1664,72 +1948,7 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.3s pause before recall — genuine processing",
-          "certainty": 0.4
-        }
-      ],
-      "clinical_markers": [
-        {
-          "phenotype": "ASD",
-          "type": "awkward_pause",
-          "note": "Non-grammatical pause (1.3s)",
-          "tei": "<pause dur=\"1.3s\" type=\"awkward\"/>",
-          "certainty": 0.35
-        }
-      ],
-      "certainty": 0.65
-    },
-    {
-      "index": 38,
-      "timestamp": "04:29",
-      "start_s": 269.88,
-      "end_s": 276.9,
-      "speaker": "Speaker",
-      "text_preview": "Slythi, Simp, or then I, she was hardbroken after me abandoned by the sun god Helios.",
-      "pause_before_s": 1.06,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
-      "has_raised_voice": false,
-      "has_question": false,
-      "jefferson_markers": [
-        {
-          "symbol": "word::",
-          "phenomenon": "Prolonged sound",
-          "clinical_note": "Each colon ≈ 0.2s extra duration — emphasis or hesitation",
-          "certainty": 0.6
-        },
-        {
-          "symbol": "(1.1)",
-          "phenomenon": "Timed pause",
-          "clinical_note": "Processing, hesitation, or topic shift",
-          "certainty": 0.88
-        }
-      ],
-      "deception_markers": [],
-      "veracity_markers": [
-        {
-          "type": "temporal_sequencing",
-          "symbol": "<temporal>",
-          "note": "Temporal sequencing — structured recall",
-          "certainty": 0.55
-        },
-        {
-          "type": "temporal_sequencing",
-          "symbol": "<temporal>",
-          "note": "Temporal relation — genuine memory structure",
-          "certainty": 0.55
-        },
-        {
-          "type": "contextual_embedding",
-          "symbol": "<context>",
-          "note": "Spatial embedding — genuine memory",
-          "certainty": 0.55
-        },
-        {
-          "type": "appropriate_recall_pause",
-          "symbol": "<recall-pause>",
-          "note": "Natural 1.1s pause before recall — genuine processing",
+          "note": "Natural 0.5s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1737,16 +1956,16 @@
       "certainty": 0.65
     },
     {
-      "index": 39,
-      "timestamp": "04:38",
-      "start_s": 278.06,
-      "end_s": 281.06,
+      "index": 45,
+      "timestamp": "04:33",
+      "start_s": 273.12,
+      "end_s": 276.68,
       "speaker": "Speaker",
-      "text_preview": "Ralph and Emily once, she should still day after day.",
-      "pause_before_s": 1.16,
-      "intensity": 5,
-      "emoji": "😐",
-      "affect_label": "Neutral",
+      "text_preview": "She was heartbroken after being abandoned by a sun god Helios.",
+      "pause_before_s": 1.22,
+      "intensity": 9,
+      "emoji": "💔",
+      "affect_label": "Heartbroken",
       "has_raised_voice": false,
       "has_question": false,
       "jefferson_markers": [
@@ -1782,13 +2001,13 @@
       "certainty": 0.65
     },
     {
-      "index": 40,
-      "timestamp": "04:42",
-      "start_s": 282.59,
-      "end_s": 286.85,
+      "index": 46,
+      "timestamp": "04:37",
+      "start_s": 277.96,
+      "end_s": 286.36,
       "speaker": "Speaker",
-      "text_preview": "Only turning, only to face the sun that would no longer look back.",
-      "pause_before_s": 1.53,
+      "text_preview": "Rather than moving on, she should still, day after day, only turning, only to face the sun that woul…",
+      "pause_before_s": 1.28,
       "intensity": 6,
       "emoji": "😠",
       "affect_label": "Refusing",
@@ -1802,18 +2021,37 @@
           "certainty": 0.6
         },
         {
-          "symbol": "(1.53)",
-          "phenomenon": "Significant pause (1.5–5s)",
-          "clinical_note": "Emotional processing or topic gravity",
-          "certainty": 0.85
+          "symbol": ">word<",
+          "phenomenon": "Accelerated delivery",
+          "clinical_note": "Hurried, rushed — evasion or anxiety",
+          "certainty": 0.5
+        },
+        {
+          "symbol": "(1.3)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
         }
       ],
-      "deception_markers": [],
+      "deception_markers": [
+        {
+          "type": "evasion",
+          "symbol": "<evade>",
+          "note": "Topic avoidance / deflection",
+          "certainty": 0.4
+        }
+      ],
       "veracity_markers": [
+        {
+          "type": "temporal_sequencing",
+          "symbol": "<temporal>",
+          "note": "Temporal relation — genuine memory structure",
+          "certainty": 0.55
+        },
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.5s pause before recall — genuine processing",
+          "note": "Natural 1.3s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1821,13 +2059,13 @@
       "certainty": 0.65
     },
     {
-      "index": 41,
+      "index": 47,
       "timestamp": "04:48",
-      "start_s": 288.51,
-      "end_s": 294.25,
+      "start_s": 288.0,
+      "end_s": 292.2,
       "speaker": "Speaker",
-      "text_preview": "Seeing a few sunfills in a garden at home, they're pretty noticeable. But I like the rose",
-      "pause_before_s": 1.66,
+      "text_preview": "Seeing her few sunflowers in a garden at home, they're pretty noticeable.",
+      "pause_before_s": 1.64,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1835,7 +2073,7 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(1.66)",
+          "symbol": "(1.64)",
           "phenomenon": "Significant pause (1.5–5s)",
           "clinical_note": "Emotional processing or topic gravity",
           "certainty": 0.85
@@ -1846,7 +2084,40 @@
         {
           "type": "appropriate_recall_pause",
           "symbol": "<recall-pause>",
-          "note": "Natural 1.7s pause before recall — genuine processing",
+          "note": "Natural 1.6s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 48,
+      "timestamp": "04:53",
+      "start_s": 293.24,
+      "end_s": 298.6,
+      "speaker": "Speaker",
+      "text_preview": "But unlike the roads or the high drainers, which are planted with intent to show off with the stage,",
+      "pause_before_s": 1.04,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.0)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.0s pause before recall — genuine processing",
           "certainty": 0.4
         }
       ],
@@ -1854,20 +2125,20 @@
         {
           "phenotype": "ASD",
           "type": "awkward_pause",
-          "note": "Non-grammatical pause (1.7s)",
-          "tei": "<pause dur=\"1.7s\" type=\"awkward\"/>",
+          "note": "Non-grammatical pause (1.0s)",
+          "tei": "<pause dur=\"1.0s\" type=\"awkward\"/>",
           "certainty": 0.35
         }
       ],
       "certainty": 0.65
     },
     {
-      "index": 42,
-      "timestamp": "04:54",
-      "start_s": 294.25,
-      "end_s": 299.83,
+      "index": 49,
+      "timestamp": "04:58",
+      "start_s": 298.6,
+      "end_s": 301.3,
       "speaker": "Speaker",
-      "text_preview": "all her high drainers, which I've planted with intent to show off with a stage. The sun",
+      "text_preview": "the sunflowers are full of noise, a bit of fun.",
       "pause_before_s": 0.0,
       "intensity": 5,
       "emoji": "😐",
@@ -1888,18 +2159,18 @@
       "certainty": 0.65
     },
     {
-      "index": 43,
-      "timestamp": "04:59",
-      "start_s": 299.83,
-      "end_s": 310.33,
+      "index": 50,
+      "timestamp": "05:03",
+      "start_s": 303.48,
+      "end_s": 307.5,
       "speaker": "Speaker",
-      "text_preview": "flowers are full of more is a bit of fun. I have you ever seen sunfills, a scene that I've",
-      "pause_before_s": 0.0,
+      "text_preview": "Have you ever seen a field of sunflowers, though?",
+      "pause_before_s": 2.18,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
       "has_raised_voice": false,
-      "has_question": false,
+      "has_question": true,
       "jefferson_markers": [
         {
           "symbol": "word::",
@@ -1908,25 +2179,71 @@
           "certainty": 0.6
         },
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
+          "symbol": "(2.18)",
+          "phenomenon": "Significant pause (1.5–5s)",
+          "clinical_note": "Emotional processing or topic gravity",
+          "certainty": 0.85
+        },
+        {
+          "symbol": "?",
+          "phenomenon": "Question / uncertainty",
+          "clinical_note": "Seeking information or expressing doubt",
+          "certainty": 0.95
         }
       ],
       "deception_markers": [],
-      "veracity_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 2.2s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 44,
-      "timestamp": "05:10",
-      "start_s": 310.33,
-      "end_s": 318.57,
+      "index": 51,
+      "timestamp": "05:08",
+      "start_s": 308.68,
+      "end_s": 309.88,
       "speaker": "Speaker",
-      "text_preview": "noticed. If that's not the perfect metaphor, then I don't know what it is.",
-      "pause_before_s": 0.0,
+      "text_preview": "It's a sign that I'll forget.",
+      "pause_before_s": 1.18,
+      "intensity": 5,
+      "emoji": "😐",
+      "affect_label": "Neutral",
+      "has_raised_voice": false,
+      "has_question": false,
+      "jefferson_markers": [
+        {
+          "symbol": "(1.2)",
+          "phenomenon": "Timed pause",
+          "clinical_note": "Processing, hesitation, or topic shift",
+          "certainty": 0.88
+        }
+      ],
+      "deception_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.2s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
+      "clinical_markers": [],
+      "certainty": 0.65
+    },
+    {
+      "index": 52,
+      "timestamp": "05:11",
+      "start_s": 311.78,
+      "end_s": 316.42,
+      "speaker": "Speaker",
+      "text_preview": "If that is not the perfect metaphor, then I don't know what is.",
+      "pause_before_s": 1.9,
       "intensity": 4,
       "emoji": "🤔",
       "affect_label": "Uncertain",
@@ -1934,10 +2251,10 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "[",
-          "phenomenon": "Possible overlap (simultaneous speech)",
-          "clinical_note": "Competition for turn, or supportive co-construction",
-          "certainty": 0.4
+          "symbol": "(1.90)",
+          "phenomenon": "Significant pause (1.5–5s)",
+          "clinical_note": "Emotional processing or topic gravity",
+          "certainty": 0.85
         }
       ],
       "deception_markers": [],
@@ -1947,19 +2264,25 @@
           "symbol": "<temporal>",
           "note": "Temporal sequencing — structured recall",
           "certainty": 0.55
+        },
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 1.9s pause before recall — genuine processing",
+          "certainty": 0.4
         }
       ],
       "clinical_markers": [],
       "certainty": 0.65
     },
     {
-      "index": 45,
+      "index": 53,
       "timestamp": "05:18",
-      "start_s": 318.97,
-      "end_s": 320.13,
+      "start_s": 318.6,
+      "end_s": 320.04,
       "speaker": "Speaker",
-      "text_preview": "Thank you. Bye.",
-      "pause_before_s": 0.4,
+      "text_preview": "Okay, bye.",
+      "pause_before_s": 2.18,
       "intensity": 5,
       "emoji": "😐",
       "affect_label": "Neutral",
@@ -1967,74 +2290,65 @@
       "has_question": false,
       "jefferson_markers": [
         {
-          "symbol": "(0.4)",
-          "phenomenon": "Timed pause",
-          "clinical_note": "Processing, hesitation, or topic shift",
-          "certainty": 0.88
+          "symbol": "(2.18)",
+          "phenomenon": "Significant pause (1.5–5s)",
+          "clinical_note": "Emotional processing or topic gravity",
+          "certainty": 0.85
         }
       ],
       "deception_markers": [],
-      "veracity_markers": [],
+      "veracity_markers": [
+        {
+          "type": "appropriate_recall_pause",
+          "symbol": "<recall-pause>",
+          "note": "Natural 2.2s pause before recall — genuine processing",
+          "certainty": 0.4
+        }
+      ],
       "clinical_markers": [],
       "certainty": 0.65
     }
   ],
   "deception_indicators": [
     {
-      "segment_index": 4,
-      "timestamp": "00:32",
-      "type": "stalling_repetition",
-      "symbol": "<rep>a bit of</rep>",
-      "note": "Phrase 'a bit of' repeated — possible stalling",
-      "certainty": 0.45
-    },
-    {
-      "segment_index": 16,
-      "timestamp": "02:01",
+      "segment_index": 15,
+      "timestamp": "02:03",
       "type": "spontaneous_correction",
       "symbol": "<corrsp>",
       "note": "Word corrected via dash (e.g. 'went–came')",
       "certainty": 0.5
     },
     {
-      "segment_index": 17,
-      "timestamp": "02:06",
+      "segment_index": 16,
+      "timestamp": "02:11",
       "type": "evasion",
       "symbol": "<evade>",
       "note": "Topic avoidance / deflection",
       "certainty": 0.4
     },
     {
-      "segment_index": 23,
-      "timestamp": "02:52",
+      "segment_index": 34,
+      "timestamp": "03:44",
       "type": "spontaneous_correction",
       "symbol": "<corrsp>",
       "note": "Word corrected via dash (e.g. 'went–came')",
       "certainty": 0.5
     },
     {
-      "segment_index": 28,
-      "timestamp": "03:22",
+      "segment_index": 43,
+      "timestamp": "04:20",
       "type": "spontaneous_correction",
       "symbol": "<corrsp>",
-      "note": "Word corrected via dash (e.g. 'went–came')",
+      "note": "Word replaced with alternative",
       "certainty": 0.5
     },
     {
-      "segment_index": 31,
-      "timestamp": "03:41",
-      "type": "spontaneous_correction",
-      "symbol": "<corrsp>",
-      "note": "Word corrected via dash (e.g. 'went–came')",
-      "certainty": 0.5
-    },
-    {
-      "segment_index": 36,
-      "timestamp": "04:12",
-      "type": "spontaneous_correction",
-      "symbol": "<corrsp>",
-      "note": "Word corrected via dash (e.g. 'went–came')",
-      "certainty": 0.5
+      "segment_index": 46,
+      "timestamp": "04:37",
+      "type": "evasion",
+      "symbol": "<evade>",
+      "note": "Topic avoidance / deflection",
+      "certainty": 0.4
     }
   ],
   "veracity_indicators": [
@@ -2047,7 +2361,15 @@
       "certainty": 0.55
     },
     {
-      "segment_index": 3,
+      "segment_index": 1,
+      "timestamp": "00:19",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 2,
       "timestamp": "00:27",
       "type": "contextual_embedding",
       "symbol": "<context>",
@@ -2055,7 +2377,7 @@
       "certainty": 0.55
     },
     {
-      "segment_index": 3,
+      "segment_index": 2,
       "timestamp": "00:27",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
@@ -2063,7 +2385,15 @@
       "certainty": 0.4
     },
     {
-      "segment_index": 5,
+      "segment_index": 3,
+      "timestamp": "00:39",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 4,
       "timestamp": "00:42",
       "type": "qualified_certainty",
       "symbol": "<veracious>",
@@ -2071,7 +2401,7 @@
       "certainty": 0.65
     },
     {
-      "segment_index": 5,
+      "segment_index": 4,
       "timestamp": "00:42",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
@@ -2079,63 +2409,47 @@
       "certainty": 0.4
     },
     {
-      "segment_index": 7,
-      "timestamp": "01:00",
+      "segment_index": 5,
+      "timestamp": "00:51",
       "type": "contextual_embedding",
       "symbol": "<context>",
       "note": "Spatial embedding — genuine memory",
       "certainty": 0.55
     },
     {
-      "segment_index": 7,
-      "timestamp": "01:00",
+      "segment_index": 6,
+      "timestamp": "01:05",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 2.7s pause before recall — genuine processing",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 7,
+      "timestamp": "01:14",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.0s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
       "segment_index": 8,
-      "timestamp": "01:06",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.3s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 9,
-      "timestamp": "01:14",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.9s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 10,
-      "timestamp": "01:21",
+      "timestamp": "01:20",
       "type": "temporal_sequencing",
       "symbol": "<temporal>",
       "note": "Temporal sequencing — structured recall",
       "certainty": 0.55
     },
     {
-      "segment_index": 10,
-      "timestamp": "01:21",
+      "segment_index": 8,
+      "timestamp": "01:20",
       "type": "cognitive_complexity",
       "symbol": "<cog-complex>",
       "note": "Cognitive complexity — weighing alternatives",
       "certainty": 0.5
     },
     {
-      "segment_index": 10,
-      "timestamp": "01:21",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 2.9s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 11,
+      "segment_index": 9,
       "timestamp": "01:31",
       "type": "contextual_embedding",
       "symbol": "<context>",
@@ -2143,96 +2457,152 @@
       "certainty": 0.55
     },
     {
-      "segment_index": 11,
+      "segment_index": 9,
       "timestamp": "01:31",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.7s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 12,
-      "timestamp": "01:37",
-      "type": "contextual_embedding",
-      "symbol": "<context>",
-      "note": "Spatial embedding — genuine memory",
-      "certainty": 0.55
-    },
-    {
-      "segment_index": 12,
-      "timestamp": "01:37",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 0.6s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 13,
-      "timestamp": "01:42",
-      "type": "temporal_sequencing",
-      "symbol": "<temporal>",
-      "note": "Temporal sequencing — structured recall",
-      "certainty": 0.55
-    },
-    {
-      "segment_index": 13,
-      "timestamp": "01:42",
-      "type": "temporal_sequencing",
-      "symbol": "<temporal>",
-      "note": "Temporal relation — genuine memory structure",
-      "certainty": 0.55
-    },
-    {
-      "segment_index": 14,
-      "timestamp": "01:48",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
       "note": "Natural 1.1s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
-      "segment_index": 16,
-      "timestamp": "02:01",
+      "segment_index": 10,
+      "timestamp": "01:37",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 10,
+      "timestamp": "01:37",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 0.8s pause before recall — genuine processing",
+      "note": "Natural 0.7s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
-      "segment_index": 18,
-      "timestamp": "02:15",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 0.6s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 20,
-      "timestamp": "02:34",
+      "segment_index": 11,
+      "timestamp": "01:44",
       "type": "temporal_sequencing",
       "symbol": "<temporal>",
       "note": "Temporal relation — genuine memory structure",
       "certainty": 0.55
     },
     {
-      "segment_index": 22,
-      "timestamp": "02:46",
+      "segment_index": 11,
+      "timestamp": "01:44",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 1.8s pause before recall — genuine processing",
+      "note": "Natural 0.7s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
-      "segment_index": 25,
-      "timestamp": "03:04",
+      "segment_index": 12,
+      "timestamp": "01:47",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 1.8s pause before recall — genuine processing",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 13,
+      "timestamp": "01:51",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 14,
+      "timestamp": "01:56",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 15,
+      "timestamp": "02:03",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 16,
+      "timestamp": "02:11",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.4s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 18,
+      "timestamp": "02:16",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 19,
+      "timestamp": "02:26",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 20,
+      "timestamp": "02:29",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 21,
+      "timestamp": "02:33",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 21,
+      "timestamp": "02:33",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 22,
+      "timestamp": "02:42",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 23,
+      "timestamp": "02:46",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 24,
+      "timestamp": "02:50",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
       "segment_index": 26,
-      "timestamp": "03:09",
+      "timestamp": "02:56",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
       "note": "Natural 0.7s pause before recall — genuine processing",
@@ -2240,14 +2610,38 @@
     },
     {
       "segment_index": 27,
-      "timestamp": "03:14",
+      "timestamp": "03:03",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 28,
+      "timestamp": "03:09",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 29,
+      "timestamp": "03:17",
       "type": "contextual_embedding",
       "symbol": "<context>",
       "note": "Spatial embedding — genuine memory",
       "certainty": 0.55
     },
     {
-      "segment_index": 28,
+      "segment_index": 29,
+      "timestamp": "03:17",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 30,
       "timestamp": "03:22",
       "type": "cognitive_complexity",
       "symbol": "<cog-complex>",
@@ -2255,7 +2649,7 @@
       "certainty": 0.5
     },
     {
-      "segment_index": 28,
+      "segment_index": 30,
       "timestamp": "03:22",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
@@ -2263,156 +2657,219 @@
       "certainty": 0.4
     },
     {
-      "segment_index": 29,
+      "segment_index": 31,
       "timestamp": "03:29",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 1.3s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 30,
-      "timestamp": "03:36",
-      "type": "contextual_embedding",
-      "symbol": "<context>",
-      "note": "Spatial embedding — genuine memory",
-      "certainty": 0.55
-    },
-    {
-      "segment_index": 30,
-      "timestamp": "03:36",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.5s pause before recall — genuine processing",
+      "note": "Natural 1.4s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
       "segment_index": 32,
-      "timestamp": "03:48",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 0.7s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 35,
-      "timestamp": "04:06",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.1s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 36,
-      "timestamp": "04:12",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.5s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 37,
-      "timestamp": "04:19",
-      "type": "appropriate_recall_pause",
-      "symbol": "<recall-pause>",
-      "note": "Natural 1.3s pause before recall — genuine processing",
-      "certainty": 0.4
-    },
-    {
-      "segment_index": 38,
-      "timestamp": "04:29",
-      "type": "temporal_sequencing",
-      "symbol": "<temporal>",
-      "note": "Temporal sequencing — structured recall",
-      "certainty": 0.55
-    },
-    {
-      "segment_index": 38,
-      "timestamp": "04:29",
-      "type": "temporal_sequencing",
-      "symbol": "<temporal>",
-      "note": "Temporal relation — genuine memory structure",
-      "certainty": 0.55
-    },
-    {
-      "segment_index": 38,
-      "timestamp": "04:29",
+      "timestamp": "03:36",
       "type": "contextual_embedding",
       "symbol": "<context>",
       "note": "Spatial embedding — genuine memory",
       "certainty": 0.55
     },
     {
-      "segment_index": 38,
-      "timestamp": "04:29",
+      "segment_index": 32,
+      "timestamp": "03:36",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 1.1s pause before recall — genuine processing",
+      "note": "Natural 1.4s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
-      "segment_index": 39,
-      "timestamp": "04:38",
-      "type": "temporal_sequencing",
-      "symbol": "<temporal>",
-      "note": "Temporal relation — genuine memory structure",
-      "certainty": 0.55
+      "segment_index": 33,
+      "timestamp": "03:39",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
     },
     {
-      "segment_index": 39,
-      "timestamp": "04:38",
+      "segment_index": 34,
+      "timestamp": "03:44",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 35,
+      "timestamp": "03:48",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 36,
+      "timestamp": "03:50",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 37,
+      "timestamp": "03:55",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 38,
+      "timestamp": "03:58",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 40,
+      "timestamp": "04:06",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 41,
+      "timestamp": "04:09",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
       "note": "Natural 1.2s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
-      "segment_index": 40,
-      "timestamp": "04:42",
+      "segment_index": 42,
+      "timestamp": "04:12",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 1.5s pause before recall — genuine processing",
+      "note": "Natural 1.2s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
-      "segment_index": 41,
-      "timestamp": "04:48",
+      "segment_index": 43,
+      "timestamp": "04:20",
       "type": "appropriate_recall_pause",
       "symbol": "<recall-pause>",
-      "note": "Natural 1.7s pause before recall — genuine processing",
+      "note": "Natural 1.6s pause before recall — genuine processing",
       "certainty": 0.4
     },
     {
       "segment_index": 44,
-      "timestamp": "05:10",
+      "timestamp": "04:31",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 45,
+      "timestamp": "04:33",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 45,
+      "timestamp": "04:33",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 46,
+      "timestamp": "04:37",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 46,
+      "timestamp": "04:37",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 47,
+      "timestamp": "04:48",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 48,
+      "timestamp": "04:53",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 50,
+      "timestamp": "05:03",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 51,
+      "timestamp": "05:08",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 52,
+      "timestamp": "05:11",
       "type": "temporal_sequencing",
       "symbol": "<temporal>",
       "note": "Temporal sequencing — structured recall",
       "certainty": 0.55
+    },
+    {
+      "segment_index": 52,
+      "timestamp": "05:11",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 53,
+      "timestamp": "05:18",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.2s pause before recall — genuine processing",
+      "certainty": 0.4
     }
   ],
   "clinical_markers": [
     {
-      "segment_index": 3,
-      "timestamp": "00:27",
-      "phenotype": "ASD",
-      "type": "awkward_pause",
-      "note": "Non-grammatical pause (1.7s)",
-      "tei": "<pause dur=\"1.7s\" type=\"awkward\"/>",
-      "certainty": 0.35
+      "segment_index": 9,
+      "timestamp": "01:31",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
     },
     {
-      "segment_index": 14,
-      "timestamp": "01:48",
-      "phenotype": "ASD",
-      "type": "awkward_pause",
-      "note": "Non-grammatical pause (1.1s)",
-      "tei": "<pause dur=\"1.1s\" type=\"awkward\"/>",
-      "certainty": 0.35
-    },
-    {
-      "segment_index": 17,
-      "timestamp": "02:06",
+      "segment_index": 16,
+      "timestamp": "02:11",
       "phenotype": "ADHD",
       "type": "meta_correction",
       "note": "Self-correction back to topic",
@@ -2421,7 +2878,16 @@
     },
     {
       "segment_index": 27,
-      "timestamp": "03:14",
+      "timestamp": "03:03",
+      "phenotype": "ASD",
+      "type": "awkward_pause",
+      "note": "Non-grammatical pause (1.5s)",
+      "tei": "<pause dur=\"1.5s\" type=\"awkward\"/>",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 29,
+      "timestamp": "03:17",
       "phenotype": "ADHD",
       "type": "meta_correction",
       "note": "Self-correction back to topic",
@@ -2429,7 +2895,7 @@
       "certainty": 0.45
     },
     {
-      "segment_index": 28,
+      "segment_index": 30,
       "timestamp": "03:22",
       "phenotype": "ASD",
       "type": "awkward_pause",
@@ -2438,37 +2904,19 @@
       "certainty": 0.35
     },
     {
-      "segment_index": 30,
-      "timestamp": "03:36",
+      "segment_index": 48,
+      "timestamp": "04:53",
       "phenotype": "ASD",
       "type": "awkward_pause",
-      "note": "Non-grammatical pause (1.5s)",
-      "tei": "<pause dur=\"1.5s\" type=\"awkward\"/>",
-      "certainty": 0.35
-    },
-    {
-      "segment_index": 37,
-      "timestamp": "04:19",
-      "phenotype": "ASD",
-      "type": "awkward_pause",
-      "note": "Non-grammatical pause (1.3s)",
-      "tei": "<pause dur=\"1.3s\" type=\"awkward\"/>",
-      "certainty": 0.35
-    },
-    {
-      "segment_index": 41,
-      "timestamp": "04:48",
-      "phenotype": "ASD",
-      "type": "awkward_pause",
-      "note": "Non-grammatical pause (1.7s)",
-      "tei": "<pause dur=\"1.7s\" type=\"awkward\"/>",
+      "note": "Non-grammatical pause (1.0s)",
+      "tei": "<pause dur=\"1.0s\" type=\"awkward\"/>",
       "certainty": 0.35
     }
   ],
   "summary": {
-    "total_deception_markers": 7,
-    "total_veracity_markers": 44,
-    "total_clinical_markers": 8,
+    "total_deception_markers": 5,
+    "total_veracity_markers": 63,
+    "total_clinical_markers": 6,
     "freeze_events_count": 0,
     "significant_pauses_count": 11,
     "jefferson_enabled": true,
