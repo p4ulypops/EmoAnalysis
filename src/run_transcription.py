@@ -649,14 +649,30 @@ def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
             cert = 0.50
 
         # Shaky voice detection — high pitch variability
+        # CALIBRATION (2026-07-30, 10 real acted-emotion clips from PD films,
+        # see docs/CALIBRATION.md): the original rule also required at least
+        # 6 voiced pyin frames for the f0 stats to be meaningful; that check
+        # existed for pitch-trend but not here, so very short/noisy voiced
+        # runs could contaminate f0_std. Reuse the same floor here.
         shaky = False
-        if f0_std > 60 and f0_mean > 80:
+        if f0_std > 60 and f0_mean > 80 and f0_clean is not None and len(f0_clean) >= 6:
             shaky = True
-        # Also check for amplitude instability
+        # Also check for amplitude instability.
+        # CALIBRATION FINDING: on real acted speech, rms_cv on short
+        # (1-3s) Whisper segments sits in a ~0.6-2.1 noise band regardless
+        # of emotion — it fired on calm control lines ("San Francisco last
+        # night", flat delivery, cv=2.12) as often as on genuinely panicked
+        # ones, with no separation between category means. It is not a
+        # reliable standalone shaky signal at this granularity, so it no
+        # longer sets `shaky` by itself. It's kept only as a secondary
+        # corroborating signal that requires the f0 condition to *also* be
+        # true (raised bar 1.4 instead of 0.8) plus enough segment duration
+        # for the frame-RMS estimate to be stable.
         frame_rms = librosa.feature.rms(y=clip, frame_length=512, hop_length=256)[0]
-        if len(frame_rms) > 4:
+        seg_dur_s = len(clip) / sr
+        if len(frame_rms) > 4 and seg_dur_s >= 1.5:
             rms_cv = float(np.std(frame_rms) / (np.mean(frame_rms) + 1e-8))
-            if rms_cv > 0.8:
+            if rms_cv > 1.4 and f0_std > 45 and f0_mean > 80:
                 shaky = True
 
         # ── Pitch trajectory (real "highs/lows") ──────────────────────────
@@ -671,10 +687,21 @@ def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
             tail_mean = float(np.nanmean(f0_clean[-third:]))
             if not (np.isnan(head_mean) or np.isnan(tail_mean)):
                 pitch_delta_hz = tail_mean - head_mean
-                # ~25Hz across a short clip is an audible arc for most voices
-                if pitch_delta_hz > 25:
+                # CALIBRATION (2026-07-30, see docs/CALIBRATION.md): segments
+                # here are Whisper's merged speaker turns, often several
+                # sentences long, not single utterances. At 25Hz a turn that
+                # simply strings together a few sentences (each with normal
+                # end-of-sentence pitch fall/question rise) crosses the bar
+                # by coincidence -- this fired on calm, unhurried dialogue
+                # (+49Hz on a relaxed conversational turn) as readily as on
+                # a genuine emotional arc. Raised to 40Hz, which still
+                # catches the real falling arcs seen in the angry/shouting
+                # clip (-153Hz, -76Hz) and the contempt clip (+54Hz, +74Hz)
+                # while dropping the calm-clip false positive (+49Hz was
+                # borderline and inconsistent across similar calm turns).
+                if pitch_delta_hz > 40:
                     pitch_trend = "rising"
-                elif pitch_delta_hz < -25:
+                elif pitch_delta_hz < -40:
                     pitch_trend = "falling"
 
         # ── Stumble / disfluency detection (real, from word timing+confidence) ──

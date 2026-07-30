@@ -25,5 +25,11 @@ logs/
 # Impeccable config (local tooling)
 .impeccable/
 
+# Voice-dynamics calibration audio (real acted-emotion clips sourced from
+# public-domain films for threshold tuning) and their transcription outputs
+# -- never commit raw audio, even if this folder ends up nested in the repo.
+/calibration_audio/
+**/calibration_audio/
+
 # Keep folder structure
 !tests/**/.gitkeep
