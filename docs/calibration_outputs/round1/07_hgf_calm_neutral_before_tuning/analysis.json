@@ -1,0 +1,218 @@
+{
+  "deception_indicators": [],
+  "veracity_indicators": [
+    {
+      "segment_index": 2,
+      "timestamp": "00:11",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "00:16",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 4,
+      "timestamp": "00:21",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 5,
+      "timestamp": "00:26",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    }
+  ],
+  "clinical_markers": [],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:00",
+      "speaker": "",
+      "rms_energy": 0.0187,
+      "rms_ratio_to_global": 1.066,
+      "peak_amplitude": 0.1092,
+      "f0_mean_hz": 96.0,
+      "f0_std_hz": 33.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.66,
+      "acoustic_tags": [
+        {
+          "symbol": "↑↑word",
+          "phenomenon": "Rising pitch arc (measured)",
+          "note": "+49Hz across segment — alarm/excitement/question-like lift",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word 'worried.' + 0.72s gap",
+          "certainty": 0.45
+        },
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word 'No,' + 0.38s gap",
+          "certainty": 0.45
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "timestamp": "00:05",
+      "speaker": "",
+      "rms_energy": 0.0198,
+      "rms_ratio_to_global": 1.127,
+      "peak_amplitude": 0.1189,
+      "f0_mean_hz": 68.2,
+      "f0_std_hz": 4.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.41
+    },
+    {
+      "index": 2,
+      "timestamp": "00:11",
+      "speaker": "",
+      "rms_energy": 0.0124,
+      "rms_ratio_to_global": 0.709,
+      "peak_amplitude": 0.0908,
+      "f0_mean_hz": 61.2,
+      "f0_std_hz": 2.3,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.56,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "jefferson": "°word°",
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "timestamp": "00:16",
+      "speaker": "",
+      "rms_energy": 0.0171,
+      "rms_ratio_to_global": 0.974,
+      "peak_amplitude": 0.1114,
+      "f0_mean_hz": 83.5,
+      "f0_std_hz": 15.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.38
+    },
+    {
+      "index": 4,
+      "timestamp": "00:21",
+      "speaker": "",
+      "rms_energy": 0.0192,
+      "rms_ratio_to_global": 1.091,
+      "peak_amplitude": 0.1335,
+      "f0_mean_hz": 89.4,
+      "f0_std_hz": 17.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.54,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "timestamp": "00:26",
+      "speaker": "",
+      "rms_energy": 0.0203,
+      "rms_ratio_to_global": 1.154,
+      "peak_amplitude": 0.1639,
+      "f0_mean_hz": 86.8,
+      "f0_std_hz": 29.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.44
+    }
+  ],
+  "jefferson_summary": {
+    "word::": {
+      "count": 3,
+      "phenomenon": "Prolonged sound"
+    },
+    "(0.5)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(2.78)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "#word#": {
+      "count": 2,
+      "phenomenon": "Creaky voice / vocal fry"
+    },
+    "(1.52)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.2)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "(2.22)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 0,
+    "total_veracity_markers": 4,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 3,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 75,
+    "estimated_tokens": 56,
+    "estimated_process_seconds": 30,
+    "estimated_process_minutes": 0.5,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

@@ -7,6 +7,14 @@ flat, unemotional TTS audio, so it was unknown whether they held up on
 genuine vocal delivery (shouting, crying, panic, contempt, comedic banter,
 etc.).
 
+**Real tool output evidence:** this document summarizes results as tables;
+the actual generated `transcript.md`/`omni.md`/`analysis.json` files for
+every clip referenced below (13 in total, including the 3 follow-up-pass
+clips) are committed at
+[`docs/calibration_outputs/round1/`](calibration_outputs/round1/README.md)
+— open that directory to verify any claim in this document against real
+tool output rather than this summary alone.
+
 ## Method
 
 10 short (10–30s) dialogue clips were extracted with `ffmpeg` (via HTTP
@@ -381,5 +389,12 @@ expectations), not a new finding about the voice-dynamics code itself.
 
 Clip manifest with exact timestamps: `calibration_audio/clip_manifest.json`
 (not committed — local/untracked per `.gitignore`, since it references raw
-audio paths). All 10 `.wav` files and pipeline outputs live under
-`calibration_audio/` outside this repo and are excluded from git.
+audio paths). All `.wav` files and full local pipeline outputs live under
+`calibration_audio/` outside this repo and are excluded from git. The
+generated `transcript.md`/`omni.md`/`analysis.json` for every clip **are**
+committed, at [`docs/calibration_outputs/round1/`](calibration_outputs/round1/README.md).
+
+## See also
+
+- [`docs/calibration_outputs/round1/`](calibration_outputs/round1/README.md) — real committed tool output for every clip in this document.
+- [`docs/CALIBRATION_ROUND2.md`](CALIBRATION_ROUND2.md) — round 2 calibration against longer, real-world clips with independently-documented ground truth (public inquiries, fact-checked hearings, court rulings), rather than acted-film performances.

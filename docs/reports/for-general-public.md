@@ -18,6 +18,10 @@ detects a change in how something was said — not just what was said. The
 idea is to help a busy professional quickly spot the parts of a recording
 worth a closer listen, rather than replacing their own judgement.
 
+If you'd like to see the actual output the tool produced during testing,
+rather than just this summary, it's committed at
+[`docs/calibration_outputs/round1/`](../calibration_outputs/round1/README.md).
+
 ## Why we tested it
 
 The rules the tool uses to decide "this sounds shaky" or "this sounds loud"

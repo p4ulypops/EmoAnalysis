@@ -5,7 +5,11 @@ Audience: developers maintaining `analyze_voice_dynamics()` in
 of `docs/CALIBRATION.md` — read that document for the full clip manifest,
 per-clip tag tables, and archive.org source citations. Nothing here
 contradicts it; this is the same evidence, organized for someone about to
-touch the code.
+touch the code. The real generated `transcript.md`/`omni.md`/`analysis.json`
+for every clip are committed at
+[`docs/calibration_outputs/round1/`](../calibration_outputs/round1/README.md)
+— open that directory to check any tag claim below against actual tool
+output.
 
 ## TL;DR
 

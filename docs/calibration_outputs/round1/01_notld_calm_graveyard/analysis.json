@@ -1,0 +1,57 @@
+{
+  "deception_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    }
+  ],
+  "veracity_indicators": [],
+  "clinical_markers": [],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:00",
+      "speaker": "",
+      "rms_energy": 0.0316,
+      "rms_ratio_to_global": 0.999,
+      "peak_amplitude": 0.5458,
+      "f0_mean_hz": 77.7,
+      "f0_std_hz": 29.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 0.91
+    }
+  ],
+  "jefferson_summary": {
+    "word::": {
+      "count": 1,
+      "phenomenon": "Prolonged sound"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 1,
+    "total_veracity_markers": 0,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 0,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 54,
+    "estimated_tokens": 40,
+    "estimated_process_seconds": 22,
+    "estimated_process_minutes": 0.4,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "deception_indicators": [],
+  "veracity_indicators": [],
+  "clinical_markers": [],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:14",
+      "speaker": "",
+      "rms_energy": 0.0651,
+      "rms_ratio_to_global": 0.903,
+      "peak_amplitude": 0.3074,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 0.71
+    }
+  ],
+  "jefferson_summary": {
+    "(00:14.600)": {
+      "count": 1,
+      "phenomenon": "Extended freeze (>10s)"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 0,
+    "total_veracity_markers": 0,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 1,
+    "significant_pauses_count": 0,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 50,
+    "estimated_tokens": 37,
+    "estimated_process_seconds": 20,
+    "estimated_process_minutes": 0.3,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

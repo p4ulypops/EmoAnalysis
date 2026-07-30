@@ -1,0 +1,107 @@
+{
+  "deception_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    }
+  ],
+  "veracity_indicators": [],
+  "clinical_markers": [],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:00",
+      "speaker": "",
+      "rms_energy": 0.0499,
+      "rms_ratio_to_global": 0.905,
+      "peak_amplitude": 0.4884,
+      "f0_mean_hz": 87.1,
+      "f0_std_hz": 49.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.4,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "timestamp": "00:11",
+      "speaker": "",
+      "rms_energy": 0.0634,
+      "rms_ratio_to_global": 1.15,
+      "peak_amplitude": 0.4264,
+      "f0_mean_hz": 114.7,
+      "f0_std_hz": 54.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.23,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "timestamp": "00:18",
+      "speaker": "",
+      "rms_energy": 0.0581,
+      "rms_ratio_to_global": 1.054,
+      "peak_amplitude": 0.3545,
+      "f0_mean_hz": 79.6,
+      "f0_std_hz": 25.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.86
+    }
+  ],
+  "jefferson_summary": {
+    "(0.5)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 1,
+    "total_veracity_markers": 0,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 0,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 54,
+    "estimated_tokens": 40,
+    "estimated_process_seconds": 22,
+    "estimated_process_minutes": 0.4,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

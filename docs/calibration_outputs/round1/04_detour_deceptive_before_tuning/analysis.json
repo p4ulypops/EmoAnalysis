@@ -1,0 +1,73 @@
+{
+  "deception_indicators": [],
+  "veracity_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    }
+  ],
+  "clinical_markers": [],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:00",
+      "speaker": "",
+      "rms_energy": 0.0311,
+      "rms_ratio_to_global": 1.011,
+      "peak_amplitude": 0.2267,
+      "f0_mean_hz": 116.3,
+      "f0_std_hz": 28.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.46
+    }
+  ],
+  "jefferson_summary": {
+    "word::": {
+      "count": 1,
+      "phenomenon": "Prolonged sound"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 0,
+    "total_veracity_markers": 3,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 0,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 62,
+    "estimated_tokens": 46,
+    "estimated_process_seconds": 25,
+    "estimated_process_minutes": 0.4,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

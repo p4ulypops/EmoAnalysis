@@ -1,0 +1,125 @@
+{
+  "deception_indicators": [],
+  "veracity_indicators": [],
+  "clinical_markers": [],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:04",
+      "speaker": "",
+      "rms_energy": 0.0501,
+      "rms_ratio_to_global": 1.012,
+      "peak_amplitude": 0.3408,
+      "f0_mean_hz": 88.3,
+      "f0_std_hz": 7.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.82,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "timestamp": "00:11",
+      "speaker": "",
+      "rms_energy": 0.0533,
+      "rms_ratio_to_global": 1.077,
+      "peak_amplitude": 0.3185,
+      "f0_mean_hz": 87.8,
+      "f0_std_hz": 11.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.09,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "timestamp": "00:21",
+      "speaker": "",
+      "rms_energy": 0.0635,
+      "rms_ratio_to_global": 1.284,
+      "peak_amplitude": 0.3157,
+      "f0_mean_hz": 90.1,
+      "f0_std_hz": 2.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.13,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    }
+  ],
+  "jefferson_summary": {
+    "word::": {
+      "count": 2,
+      "phenomenon": "Prolonged sound"
+    },
+    "(4.18)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(4.58)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "?": {
+      "count": 1,
+      "phenomenon": "Question / uncertainty"
+    },
+    "(4.52)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 0,
+    "total_veracity_markers": 0,
+    "total_clinical_markers": 0,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 3,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 65,
+    "estimated_tokens": 48,
+    "estimated_process_seconds": 26,
+    "estimated_process_minutes": 0.4,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

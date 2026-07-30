@@ -11,7 +11,11 @@ structured validation exercise against real acted speech. It is not a
 technical manual (see `docs/reports/for-engineers.md` for that) or a
 simplified explainer (see `docs/reports/for-general-public.md`); it sits
 between the two, using accurate paralinguistic terminology while explaining
-the underlying audio-engineering concepts in plain language.
+the underlying audio-engineering concepts in plain language. The real
+generated transcripts and analysis files behind this validation are
+committed at
+[`docs/calibration_outputs/round1/`](../calibration_outputs/round1/README.md),
+if you want to see the actual tool output rather than a summary of it.
 
 ## What the tool actually measures
 

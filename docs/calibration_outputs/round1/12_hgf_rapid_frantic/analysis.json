@@ -1,0 +1,75 @@
+{
+  "deception_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (5 clauses, 31 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    }
+  ],
+  "veracity_indicators": [],
+  "clinical_markers": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    }
+  ],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:00",
+      "speaker": "",
+      "rms_energy": 0.0167,
+      "rms_ratio_to_global": 1.127,
+      "peak_amplitude": 0.1194,
+      "f0_mean_hz": 253.3,
+      "f0_std_hz": 54.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.89
+    }
+  ],
+  "jefferson_summary": {
+    "word::": {
+      "count": 1,
+      "phenomenon": "Prolonged sound"
+    },
+    "↓↓word": {
+      "count": 1,
+      "phenomenon": "Extreme pitch drop"
+    },
+    "(0.5)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 1,
+    "total_veracity_markers": 0,
+    "total_clinical_markers": 1,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 0,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 62,
+    "estimated_tokens": 46,
+    "estimated_process_seconds": 25,
+    "estimated_process_minutes": 0.4,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}
