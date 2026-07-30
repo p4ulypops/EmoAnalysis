@@ -31,5 +31,11 @@ logs/
 /calibration_audio/
 **/calibration_audio/
 
+# Round 2 calibration audio (real testimony/argument recordings sourced
+# from public inquiries, archive.org, and courts.gov for threshold/agreement
+# validation) -- never commit raw audio here either.
+/calibration_audio_r2/
+**/calibration_audio_r2/
+
 # Keep folder structure
 !tests/**/.gitkeep

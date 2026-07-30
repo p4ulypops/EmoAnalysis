@@ -139,3 +139,38 @@ Full technical detail, exact thresholds, and the complete per-clip
 evidence table are in [`docs/CALIBRATION.md`](../CALIBRATION.md) in this
 repository, including citations to every source recording used
 (archive.org).
+
+## Round 2 addendum: tested against real documented outcomes, not just acted speech
+
+A follow-up pass ([`docs/CALIBRATION_ROUND2.md`](../CALIBRATION_ROUND2.md))
+checked the tool's deception/veracity language tags against 6 real
+recordings of testimony/argument (public inquiries and court hearings)
+where an independent, published finding already exists — a public inquiry
+report, a court ruling, or a fact-checker's verdict — rather than an acted
+performance. This is the closer test to how the tool might actually be used
+in a professional context.
+
+**The result reinforces, with a concrete real-world example, the caution
+already given above: these tags should never be read as a lie-detector
+verdict.** In one recording (a Congressional hearing exchange, fact-checked
+by PolitiFact), the tool's one relevant "deception" tag landed on the
+speaker who was independently confirmed to be telling the truth, not on the
+speaker who had presented the misleading claim. In two others (Supreme
+Court oral arguments), the tool tagged fluent, well-prepared legal argument
+as "high cognitive load" language in the same way it would flag genuine
+hesitant, evasive speech — because it cannot yet tell the difference
+between someone speaking from a prepared script and someone struggling to
+recall something under pressure.
+
+In two of the six recordings (Post Office Horizon Inquiry and Grenfell
+Tower Inquiry witnesses), the tool's tags did line up with the substance of
+an independently published finding about that witness's credibility — but
+even there, the tags only flag a pattern of speech (hesitation, qualified
+memory, self-correction); they do not and cannot independently confirm that
+the person was lying. A published inquiry finding was still required to
+establish that.
+
+**Bottom line for clinical/safeguarding use, unchanged and now reinforced:**
+treat every tag as "worth a second listen," never as a standalone finding,
+and never as a substitute for a qualified assessment or the wider evidence
+available in a real case.

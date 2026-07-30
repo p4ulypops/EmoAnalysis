@@ -177,3 +177,35 @@ clip 05's quiet+freeze) unchanged.
 See `docs/CALIBRATION.md` for the full before/after tag table with every
 segment, and its "Known limitations" section (as amended, if applicable)
 for the latest status of each item above.
+
+## Round 2 addendum: real-world testimony vs. documented ground truth
+
+A second calibration pass ([`docs/CALIBRATION_ROUND2.md`](../CALIBRATION_ROUND2.md))
+tested 6 real recordings (public inquiry/court/hearing audio, up to ~30 min
+each) against independently-published, documented findings, rather than
+acted-clip impressions. Result for engineers: **2 of 6 agree, 3 of 6
+disagree, 1 of 6 silent** — see the full agreement table and per-clip
+reasoning in that document. The two systematic disagreement patterns worth
+knowing before touching this code:
+
+- **`<cog-load>` ("complex sentence... high cognitive load for spontaneous
+  speech") fires heavily on prepared appellate advocacy** (both SCOTUS
+  oral-argument clips), which is fluent and rehearsed, not spontaneous. The
+  heuristic's own docstring already scopes it to spontaneous speech; round
+  2 is the first concrete evidence the mismatch actually fires in a
+  real, non-toy input. If this code is touched, consider gating
+  `<cog-load>` behind a genre/context flag (prepared statement vs.
+  cross-examination) rather than changing its sentence-length thresholds,
+  which would just overfit to two argument transcripts.
+- **Deception tags are speaker- and truth-blind by design** (surface
+  linguistic pattern only) — round 2 produced a concrete case
+  (`chaffetz_richards`) where the one `<corrsp>` tag in the relevant
+  exchange lands on the speaker later shown by an independent fact-check to
+  be telling the truth, not on the speaker making the debunked claim. No
+  code change is proposed for this — it's a correct illustration of an
+  existing, already-documented caveat — but it's worth keeping as a
+  concrete regression/example case if this heuristic is ever reworked.
+
+No threshold or code changes were made as a result of round 2; see that
+document's "Threshold changes" section for why (documentation/interpretation
+issue, not a numeric-threshold issue).

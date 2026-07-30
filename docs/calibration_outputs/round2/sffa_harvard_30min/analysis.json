@@ -1,0 +1,5079 @@
+{
+  "deception_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 1,
+      "timestamp": "00:29",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (7 clauses, 84 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 2,
+      "timestamp": "01:02",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (5 clauses, 87 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "01:30",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (6 clauses, 53 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 19,
+      "timestamp": "04:59",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 23,
+      "timestamp": "05:54",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 24,
+      "timestamp": "06:01",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 26,
+      "timestamp": "06:38",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (7 clauses, 63 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 27,
+      "timestamp": "07:00",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 27,
+      "timestamp": "07:00",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (5 clauses, 62 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 29,
+      "timestamp": "07:34",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 40,
+      "timestamp": "08:50",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 50,
+      "timestamp": "10:16",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 56,
+      "timestamp": "11:06",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 59,
+      "timestamp": "11:18",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 60,
+      "timestamp": "11:27",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 61,
+      "timestamp": "11:31",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 62,
+      "timestamp": "11:37",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 63,
+      "timestamp": "11:39",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 65,
+      "timestamp": "11:52",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 66,
+      "timestamp": "11:56",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 66,
+      "timestamp": "11:56",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 66,
+      "timestamp": "11:56",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 66,
+      "timestamp": "11:56",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (5 clauses, 30 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 67,
+      "timestamp": "12:07",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 68,
+      "timestamp": "12:13",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 70,
+      "timestamp": "12:21",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 71,
+      "timestamp": "12:28",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 72,
+      "timestamp": "12:33",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 75,
+      "timestamp": "12:53",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 78,
+      "timestamp": "13:19",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 80,
+      "timestamp": "13:33",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 82,
+      "timestamp": "13:51",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 82,
+      "timestamp": "13:51",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 84,
+      "timestamp": "14:10",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 86,
+      "timestamp": "14:38",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 89,
+      "timestamp": "15:03",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 91,
+      "timestamp": "15:20",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 95,
+      "timestamp": "15:50",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 96,
+      "timestamp": "15:56",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 99,
+      "timestamp": "16:17",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 111,
+      "timestamp": "17:20",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 114,
+      "timestamp": "17:43",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 124,
+      "timestamp": "18:58",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 124,
+      "timestamp": "18:58",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 128,
+      "timestamp": "19:36",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 131,
+      "timestamp": "20:03",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 133,
+      "timestamp": "20:14",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 134,
+      "timestamp": "20:27",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 137,
+      "timestamp": "20:55",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 138,
+      "timestamp": "20:58",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 141,
+      "timestamp": "21:18",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 141,
+      "timestamp": "21:18",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 141,
+      "timestamp": "21:18",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (6 clauses, 40 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 142,
+      "timestamp": "21:35",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 143,
+      "timestamp": "21:48",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 143,
+      "timestamp": "21:48",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (6 clauses, 56 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 147,
+      "timestamp": "22:42",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 147,
+      "timestamp": "22:42",
+      "type": "stalling_repetition",
+      "symbol": "<rep n=\"7\">that</rep>",
+      "note": "Word 'that' repeated 7 times — stalling for time",
+      "certainty": 0.6
+    },
+    {
+      "segment_index": 147,
+      "timestamp": "22:42",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 152,
+      "timestamp": "23:40",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 153,
+      "timestamp": "23:55",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 155,
+      "timestamp": "24:09",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 157,
+      "timestamp": "24:34",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 157,
+      "timestamp": "24:34",
+      "type": "stalling_repetition",
+      "symbol": "<rep>on and</rep>",
+      "note": "Phrase 'on and' repeated — possible stalling",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 157,
+      "timestamp": "24:34",
+      "type": "stalling_repetition",
+      "symbol": "<rep>tried and</rep>",
+      "note": "Phrase 'tried and' repeated — possible stalling",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 159,
+      "timestamp": "24:54",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 160,
+      "timestamp": "25:03",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 162,
+      "timestamp": "25:23",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 165,
+      "timestamp": "26:05",
+      "type": "false_start",
+      "symbol": "<fs>",
+      "note": "Hedged statement then corrected",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 165,
+      "timestamp": "26:05",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 165,
+      "timestamp": "26:05",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 168,
+      "timestamp": "26:45",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 171,
+      "timestamp": "27:15",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 171,
+      "timestamp": "27:15",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 172,
+      "timestamp": "27:25",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 174,
+      "timestamp": "27:45",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 175,
+      "timestamp": "27:52",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 176,
+      "timestamp": "27:56",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word replaced with alternative",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 176,
+      "timestamp": "27:56",
+      "type": "cognitive_load",
+      "symbol": "<cog-load>",
+      "note": "Complex sentence (6 clauses, 31 words) — high cognitive load for spontaneous speech",
+      "certainty": 0.35
+    },
+    {
+      "segment_index": 180,
+      "timestamp": "28:25",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 185,
+      "timestamp": "29:05",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 186,
+      "timestamp": "29:15",
+      "type": "spontaneous_correction",
+      "symbol": "<corrsp>",
+      "note": "Word corrected via dash (e.g. 'went–came')",
+      "certainty": 0.5
+    },
+    {
+      "segment_index": 188,
+      "timestamp": "29:25",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 191,
+      "timestamp": "29:43",
+      "type": "memory_disclaimer",
+      "symbol": "<lack-mem>",
+      "note": "Qualified memory — weakening commitment to statement",
+      "certainty": 0.55
+    }
+  ],
+  "veracity_indicators": [
+    {
+      "segment_index": 0,
+      "timestamp": "00:00",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 1,
+      "timestamp": "00:29",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 2,
+      "timestamp": "01:02",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 2,
+      "timestamp": "01:02",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 3.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "01:30",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 3,
+      "timestamp": "01:30",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 5,
+      "timestamp": "02:04",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 5,
+      "timestamp": "02:04",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 6,
+      "timestamp": "02:16",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 7,
+      "timestamp": "02:24",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 8,
+      "timestamp": "02:34",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 9,
+      "timestamp": "02:48",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 10,
+      "timestamp": "03:06",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 12,
+      "timestamp": "03:30",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 16,
+      "timestamp": "04:33",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 21,
+      "timestamp": "05:37",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 24,
+      "timestamp": "06:01",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 25,
+      "timestamp": "06:18",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 28,
+      "timestamp": "07:19",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 29,
+      "timestamp": "07:34",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 30,
+      "timestamp": "07:47",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 31,
+      "timestamp": "08:03",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 33,
+      "timestamp": "08:18",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 39,
+      "timestamp": "08:45",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 44,
+      "timestamp": "09:33",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 44,
+      "timestamp": "09:33",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.4s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 45,
+      "timestamp": "09:47",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 46,
+      "timestamp": "09:49",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 47,
+      "timestamp": "10:04",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 49,
+      "timestamp": "10:12",
+      "type": "qualified_certainty",
+      "symbol": "<veracious>",
+      "note": "First-person sensory recall — direct experience",
+      "certainty": 0.65
+    },
+    {
+      "segment_index": 54,
+      "timestamp": "10:57",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 54,
+      "timestamp": "10:57",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 56,
+      "timestamp": "11:06",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 58,
+      "timestamp": "11:11",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 59,
+      "timestamp": "11:18",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 62,
+      "timestamp": "11:37",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 63,
+      "timestamp": "11:39",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 66,
+      "timestamp": "11:56",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 2.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 70,
+      "timestamp": "12:21",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 71,
+      "timestamp": "12:28",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 72,
+      "timestamp": "12:33",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 73,
+      "timestamp": "12:44",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 74,
+      "timestamp": "12:48",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 74,
+      "timestamp": "12:48",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 74,
+      "timestamp": "12:48",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.1s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 75,
+      "timestamp": "12:53",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal relation — genuine memory structure",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 75,
+      "timestamp": "12:53",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 76,
+      "timestamp": "13:05",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 76,
+      "timestamp": "13:05",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 78,
+      "timestamp": "13:19",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 79,
+      "timestamp": "13:28",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 79,
+      "timestamp": "13:28",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 80,
+      "timestamp": "13:33",
+      "type": "sensory_detail",
+      "symbol": "<sensory-recall>",
+      "note": "Sensory adjectives — experiential recall",
+      "certainty": 0.6
+    },
+    {
+      "segment_index": 82,
+      "timestamp": "13:51",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 83,
+      "timestamp": "14:00",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 85,
+      "timestamp": "14:25",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 85,
+      "timestamp": "14:25",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 86,
+      "timestamp": "14:38",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 90,
+      "timestamp": "15:15",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.3s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 91,
+      "timestamp": "15:20",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 91,
+      "timestamp": "15:20",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.4s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 94,
+      "timestamp": "15:44",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 97,
+      "timestamp": "15:58",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 99,
+      "timestamp": "16:17",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 104,
+      "timestamp": "16:38",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 107,
+      "timestamp": "16:56",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 108,
+      "timestamp": "17:03",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 109,
+      "timestamp": "17:11",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 110,
+      "timestamp": "17:15",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 111,
+      "timestamp": "17:20",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 114,
+      "timestamp": "17:43",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 118,
+      "timestamp": "18:05",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 118,
+      "timestamp": "18:05",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 119,
+      "timestamp": "18:10",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 119,
+      "timestamp": "18:10",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 122,
+      "timestamp": "18:41",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 122,
+      "timestamp": "18:41",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 124,
+      "timestamp": "18:58",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 125,
+      "timestamp": "19:10",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 127,
+      "timestamp": "19:27",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 130,
+      "timestamp": "19:54",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 131,
+      "timestamp": "20:03",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 133,
+      "timestamp": "20:14",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 135,
+      "timestamp": "20:41",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 136,
+      "timestamp": "20:46",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 137,
+      "timestamp": "20:55",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 139,
+      "timestamp": "21:08",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 140,
+      "timestamp": "21:14",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 141,
+      "timestamp": "21:18",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 142,
+      "timestamp": "21:35",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 143,
+      "timestamp": "21:48",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 145,
+      "timestamp": "22:27",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 152,
+      "timestamp": "23:40",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 152,
+      "timestamp": "23:40",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 158,
+      "timestamp": "24:52",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 159,
+      "timestamp": "24:54",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 160,
+      "timestamp": "25:03",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 162,
+      "timestamp": "25:23",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 170,
+      "timestamp": "27:10",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 173,
+      "timestamp": "27:36",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.8s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 176,
+      "timestamp": "27:56",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.2s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 178,
+      "timestamp": "28:16",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.5s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 179,
+      "timestamp": "28:19",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 179,
+      "timestamp": "28:19",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 180,
+      "timestamp": "28:25",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 182,
+      "timestamp": "28:49",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 183,
+      "timestamp": "28:51",
+      "type": "temporal_sequencing",
+      "symbol": "<temporal>",
+      "note": "Temporal sequencing — structured recall",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 184,
+      "timestamp": "29:02",
+      "type": "contextual_embedding",
+      "symbol": "<context>",
+      "note": "Spatial embedding — genuine memory",
+      "certainty": 0.55
+    },
+    {
+      "segment_index": 187,
+      "timestamp": "29:19",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.9s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 188,
+      "timestamp": "29:25",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 191,
+      "timestamp": "29:43",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.6s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 192,
+      "timestamp": "29:52",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 1.0s pause before recall — genuine processing",
+      "certainty": 0.4
+    },
+    {
+      "segment_index": 193,
+      "timestamp": "29:58",
+      "type": "appropriate_recall_pause",
+      "symbol": "<recall-pause>",
+      "note": "Natural 0.7s pause before recall — genuine processing",
+      "certainty": 0.4
+    }
+  ],
+  "clinical_markers": [
+    {
+      "segment_index": 5,
+      "timestamp": "02:04",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 6,
+      "timestamp": "02:16",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 7,
+      "timestamp": "02:24",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 8,
+      "timestamp": "02:34",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 9,
+      "timestamp": "02:48",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 10,
+      "timestamp": "03:06",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 11,
+      "timestamp": "03:18",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 16,
+      "timestamp": "04:33",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 17,
+      "timestamp": "04:43",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 19,
+      "timestamp": "04:59",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 29,
+      "timestamp": "07:34",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 31,
+      "timestamp": "08:03",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 41,
+      "timestamp": "08:58",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 49,
+      "timestamp": "10:12",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 58,
+      "timestamp": "11:11",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 59,
+      "timestamp": "11:18",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 80,
+      "timestamp": "13:33",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 84,
+      "timestamp": "14:10",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 85,
+      "timestamp": "14:25",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 86,
+      "timestamp": "14:38",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 91,
+      "timestamp": "15:20",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 93,
+      "timestamp": "15:36",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 100,
+      "timestamp": "16:19",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 112,
+      "timestamp": "17:30",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 138,
+      "timestamp": "20:58",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 141,
+      "timestamp": "21:18",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 143,
+      "timestamp": "21:48",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 145,
+      "timestamp": "22:27",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 147,
+      "timestamp": "22:42",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 155,
+      "timestamp": "24:09",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 162,
+      "timestamp": "25:23",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 172,
+      "timestamp": "27:25",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 173,
+      "timestamp": "27:36",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 174,
+      "timestamp": "27:45",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 175,
+      "timestamp": "27:52",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 176,
+      "timestamp": "27:56",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    },
+    {
+      "segment_index": 181,
+      "timestamp": "28:38",
+      "phenotype": "PTSD",
+      "type": "repetition",
+      "note": "PTSD: Repetitive narrative fragments",
+      "tei": "<ptsd-frag type=\"repetition\">",
+      "certainty": 0.45
+    }
+  ],
+  "voice_dynamics": [
+    {
+      "index": 0,
+      "timestamp": "00:00",
+      "speaker": "",
+      "rms_energy": 0.1609,
+      "rms_ratio_to_global": 1.317,
+      "peak_amplitude": 1.3885,
+      "f0_mean_hz": 77.5,
+      "f0_std_hz": 10.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.79
+    },
+    {
+      "index": 1,
+      "timestamp": "00:29",
+      "speaker": "",
+      "rms_energy": 0.1307,
+      "rms_ratio_to_global": 1.07,
+      "peak_amplitude": 1.3661,
+      "f0_mean_hz": 65.3,
+      "f0_std_hz": 6.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.83
+    },
+    {
+      "index": 2,
+      "timestamp": "01:02",
+      "speaker": "",
+      "rms_energy": 0.1349,
+      "rms_ratio_to_global": 1.104,
+      "peak_amplitude": 1.3898,
+      "f0_mean_hz": 67.0,
+      "f0_std_hz": 5.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.22,
+      "acoustic_tags": [
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word 'Second,' + 1.1s gap",
+          "certainty": 0.45
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "timestamp": "01:30",
+      "speaker": "",
+      "rms_energy": 0.141,
+      "rms_ratio_to_global": 1.155,
+      "peak_amplitude": 1.3914,
+      "f0_mean_hz": 64.6,
+      "f0_std_hz": 5.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.7
+    },
+    {
+      "index": 4,
+      "timestamp": "01:50",
+      "speaker": "",
+      "rms_energy": 0.1332,
+      "rms_ratio_to_global": 1.09,
+      "peak_amplitude": 1.36,
+      "f0_mean_hz": 62.3,
+      "f0_std_hz": 2.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.19
+    },
+    {
+      "index": 5,
+      "timestamp": "02:04",
+      "speaker": "",
+      "rms_energy": 0.1541,
+      "rms_ratio_to_global": 1.262,
+      "peak_amplitude": 1.2908,
+      "f0_mean_hz": 76.9,
+      "f0_std_hz": 16.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.2
+    },
+    {
+      "index": 6,
+      "timestamp": "02:16",
+      "speaker": "",
+      "rms_energy": 0.1299,
+      "rms_ratio_to_global": 1.063,
+      "peak_amplitude": 1.3763,
+      "f0_mean_hz": 64.0,
+      "f0_std_hz": 1.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.61,
+      "acoustic_tags": [
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word 'Absolutely.' + 0.44s gap",
+          "certainty": 0.45
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "timestamp": "02:24",
+      "speaker": "",
+      "rms_energy": 0.1316,
+      "rms_ratio_to_global": 1.077,
+      "peak_amplitude": 1.3461,
+      "f0_mean_hz": 60.5,
+      "f0_std_hz": 0.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.07
+    },
+    {
+      "index": 8,
+      "timestamp": "02:34",
+      "speaker": "",
+      "rms_energy": 0.1288,
+      "rms_ratio_to_global": 1.054,
+      "peak_amplitude": 1.3035,
+      "f0_mean_hz": 63.8,
+      "f0_std_hz": 3.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.85
+    },
+    {
+      "index": 9,
+      "timestamp": "02:48",
+      "speaker": "",
+      "rms_energy": 0.1466,
+      "rms_ratio_to_global": 1.201,
+      "peak_amplitude": 1.3035,
+      "f0_mean_hz": 79.2,
+      "f0_std_hz": 19.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.98
+    },
+    {
+      "index": 10,
+      "timestamp": "03:06",
+      "speaker": "",
+      "rms_energy": 0.1316,
+      "rms_ratio_to_global": 1.078,
+      "peak_amplitude": 1.3305,
+      "f0_mean_hz": 64.3,
+      "f0_std_hz": 6.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.51
+    },
+    {
+      "index": 11,
+      "timestamp": "03:18",
+      "speaker": "",
+      "rms_energy": 0.1306,
+      "rms_ratio_to_global": 1.069,
+      "peak_amplitude": 1.376,
+      "f0_mean_hz": 65.1,
+      "f0_std_hz": 5.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.98
+    },
+    {
+      "index": 12,
+      "timestamp": "03:30",
+      "speaker": "",
+      "rms_energy": 0.14,
+      "rms_ratio_to_global": 1.146,
+      "peak_amplitude": 1.3994,
+      "f0_mean_hz": 67.1,
+      "f0_std_hz": 6.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.97
+    },
+    {
+      "index": 13,
+      "timestamp": "03:43",
+      "speaker": "",
+      "rms_energy": 0.1116,
+      "rms_ratio_to_global": 0.914,
+      "peak_amplitude": 1.3405,
+      "f0_mean_hz": 70.9,
+      "f0_std_hz": 13.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.24
+    },
+    {
+      "index": 14,
+      "timestamp": "04:06",
+      "speaker": "",
+      "rms_energy": 0.0801,
+      "rms_ratio_to_global": 0.656,
+      "peak_amplitude": 0.9674,
+      "f0_mean_hz": 80.7,
+      "f0_std_hz": 14.7,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.45,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 15,
+      "timestamp": "04:25",
+      "speaker": "",
+      "rms_energy": 0.1077,
+      "rms_ratio_to_global": 0.882,
+      "peak_amplitude": 1.3644,
+      "f0_mean_hz": 74.2,
+      "f0_std_hz": 17.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.15
+    },
+    {
+      "index": 16,
+      "timestamp": "04:33",
+      "speaker": "",
+      "rms_energy": 0.116,
+      "rms_ratio_to_global": 0.949,
+      "peak_amplitude": 1.3936,
+      "f0_mean_hz": 62.4,
+      "f0_std_hz": 3.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.02
+    },
+    {
+      "index": 17,
+      "timestamp": "04:43",
+      "speaker": "",
+      "rms_energy": 0.129,
+      "rms_ratio_to_global": 1.056,
+      "peak_amplitude": 1.3896,
+      "f0_mean_hz": 65.7,
+      "f0_std_hz": 6.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.71
+    },
+    {
+      "index": 18,
+      "timestamp": "04:57",
+      "speaker": "",
+      "rms_energy": 0.1614,
+      "rms_ratio_to_global": 1.321,
+      "peak_amplitude": 1.1052,
+      "f0_mean_hz": 72.1,
+      "f0_std_hz": 6.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 6.19
+    },
+    {
+      "index": 19,
+      "timestamp": "04:59",
+      "speaker": "",
+      "rms_energy": 0.1244,
+      "rms_ratio_to_global": 1.018,
+      "peak_amplitude": 0.9767,
+      "f0_mean_hz": 77.0,
+      "f0_std_hz": 20.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.16
+    },
+    {
+      "index": 20,
+      "timestamp": "05:17",
+      "speaker": "",
+      "rms_energy": 0.1411,
+      "rms_ratio_to_global": 1.156,
+      "peak_amplitude": 1.0689,
+      "f0_mean_hz": 74.4,
+      "f0_std_hz": 19.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.9
+    },
+    {
+      "index": 21,
+      "timestamp": "05:37",
+      "speaker": "",
+      "rms_energy": 0.1057,
+      "rms_ratio_to_global": 0.865,
+      "peak_amplitude": 1.385,
+      "f0_mean_hz": 64.6,
+      "f0_std_hz": 2.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.05
+    },
+    {
+      "index": 22,
+      "timestamp": "05:53",
+      "speaker": "",
+      "rms_energy": 0.1217,
+      "rms_ratio_to_global": 0.996,
+      "peak_amplitude": 0.9933,
+      "f0_mean_hz": 119.9,
+      "f0_std_hz": 0.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 7.69
+    },
+    {
+      "index": 23,
+      "timestamp": "05:54",
+      "speaker": "",
+      "rms_energy": 0.1091,
+      "rms_ratio_to_global": 0.893,
+      "peak_amplitude": 1.3991,
+      "f0_mean_hz": 71.4,
+      "f0_std_hz": 6.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.54
+    },
+    {
+      "index": 24,
+      "timestamp": "06:01",
+      "speaker": "",
+      "rms_energy": 0.1195,
+      "rms_ratio_to_global": 0.979,
+      "peak_amplitude": 1.3129,
+      "f0_mean_hz": 75.8,
+      "f0_std_hz": 12.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.41
+    },
+    {
+      "index": 25,
+      "timestamp": "06:18",
+      "speaker": "",
+      "rms_energy": 0.1322,
+      "rms_ratio_to_global": 1.083,
+      "peak_amplitude": 1.4112,
+      "f0_mean_hz": 76.0,
+      "f0_std_hz": 12.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.3
+    },
+    {
+      "index": 26,
+      "timestamp": "06:38",
+      "speaker": "",
+      "rms_energy": 0.1082,
+      "rms_ratio_to_global": 0.886,
+      "peak_amplitude": 1.4061,
+      "f0_mean_hz": 73.2,
+      "f0_std_hz": 8.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.9
+    },
+    {
+      "index": 27,
+      "timestamp": "07:00",
+      "speaker": "",
+      "rms_energy": 0.1136,
+      "rms_ratio_to_global": 0.93,
+      "peak_amplitude": 1.3,
+      "f0_mean_hz": 178.0,
+      "f0_std_hz": 126.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.29,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        },
+        {
+          "symbol": "↑↑word",
+          "phenomenon": "Rising pitch arc (measured)",
+          "note": "+282Hz across segment — alarm/excitement/question-like lift",
+          "certainty": 0.6
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "timestamp": "07:19",
+      "speaker": "",
+      "rms_energy": 0.1383,
+      "rms_ratio_to_global": 1.132,
+      "peak_amplitude": 1.3874,
+      "f0_mean_hz": 74.5,
+      "f0_std_hz": 11.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.61
+    },
+    {
+      "index": 29,
+      "timestamp": "07:34",
+      "speaker": "",
+      "rms_energy": 0.1537,
+      "rms_ratio_to_global": 1.258,
+      "peak_amplitude": 1.3845,
+      "f0_mean_hz": 80.6,
+      "f0_std_hz": 16.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.64
+    },
+    {
+      "index": 30,
+      "timestamp": "07:47",
+      "speaker": "",
+      "rms_energy": 0.1284,
+      "rms_ratio_to_global": 1.051,
+      "peak_amplitude": 1.3954,
+      "f0_mean_hz": 76.4,
+      "f0_std_hz": 13.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.85
+    },
+    {
+      "index": 31,
+      "timestamp": "08:03",
+      "speaker": "",
+      "rms_energy": 0.1078,
+      "rms_ratio_to_global": 0.883,
+      "peak_amplitude": 1.3453,
+      "f0_mean_hz": 82.7,
+      "f0_std_hz": 15.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.42,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "timestamp": "08:14",
+      "speaker": "",
+      "rms_energy": 0.1315,
+      "rms_ratio_to_global": 1.077,
+      "peak_amplitude": 1.3898,
+      "f0_mean_hz": 84.3,
+      "f0_std_hz": 9.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.98
+    },
+    {
+      "index": 33,
+      "timestamp": "08:18",
+      "speaker": "",
+      "rms_energy": 0.1206,
+      "rms_ratio_to_global": 0.987,
+      "peak_amplitude": 1.3502,
+      "f0_mean_hz": 62.9,
+      "f0_std_hz": 2.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.35
+    },
+    {
+      "index": 34,
+      "timestamp": "08:24",
+      "speaker": "",
+      "rms_energy": 0.1575,
+      "rms_ratio_to_global": 1.289,
+      "peak_amplitude": 1.4096,
+      "f0_mean_hz": 86.1,
+      "f0_std_hz": 23.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.85
+    },
+    {
+      "index": 35,
+      "timestamp": "08:30",
+      "speaker": "",
+      "rms_energy": 0.2564,
+      "rms_ratio_to_global": 2.099,
+      "peak_amplitude": 1.0774,
+      "f0_mean_hz": 95.6,
+      "f0_std_hz": 0.3,
+      "voice_level": "raised_voice",
+      "voice_label": "Raised voice / loud",
+      "certainty": 0.75,
+      "speaking_rate_wps": 8.33,
+      "jefferson": "WORD (CAPS)",
+      "acoustic_tags": [
+        {
+          "symbol": "WORD",
+          "phenomenon": "Raised voice (measured)",
+          "note": "RMS 2.1x baseline",
+          "certainty": 0.75
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "timestamp": "08:30",
+      "speaker": "",
+      "rms_energy": 0.1176,
+      "rms_ratio_to_global": 0.963,
+      "peak_amplitude": 1.0489,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.12
+    },
+    {
+      "index": 37,
+      "timestamp": "08:32",
+      "speaker": "",
+      "rms_energy": 0.1221,
+      "rms_ratio_to_global": 1.0,
+      "peak_amplitude": 1.349,
+      "f0_mean_hz": 62.3,
+      "f0_std_hz": 3.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.55
+    },
+    {
+      "index": 38,
+      "timestamp": "08:38",
+      "speaker": "",
+      "rms_energy": 0.1084,
+      "rms_ratio_to_global": 0.887,
+      "peak_amplitude": 0.8613,
+      "f0_mean_hz": 88.7,
+      "f0_std_hz": 14.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.77
+    },
+    {
+      "index": 39,
+      "timestamp": "08:45",
+      "speaker": "",
+      "rms_energy": 0.1366,
+      "rms_ratio_to_global": 1.118,
+      "peak_amplitude": 1.1053,
+      "f0_mean_hz": 63.7,
+      "f0_std_hz": 2.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.13
+    },
+    {
+      "index": 40,
+      "timestamp": "08:50",
+      "speaker": "",
+      "rms_energy": 0.1173,
+      "rms_ratio_to_global": 0.96,
+      "peak_amplitude": 1.0964,
+      "f0_mean_hz": 80.2,
+      "f0_std_hz": 16.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.06
+    },
+    {
+      "index": 41,
+      "timestamp": "08:58",
+      "speaker": "",
+      "rms_energy": 0.1192,
+      "rms_ratio_to_global": 0.976,
+      "peak_amplitude": 1.3905,
+      "f0_mean_hz": 80.1,
+      "f0_std_hz": 15.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.98,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "timestamp": "09:10",
+      "speaker": "",
+      "rms_energy": 0.1411,
+      "rms_ratio_to_global": 1.155,
+      "peak_amplitude": 1.3852,
+      "f0_mean_hz": 77.2,
+      "f0_std_hz": 11.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.97
+    },
+    {
+      "index": 43,
+      "timestamp": "09:20",
+      "speaker": "",
+      "rms_energy": 0.1189,
+      "rms_ratio_to_global": 0.973,
+      "peak_amplitude": 1.3873,
+      "f0_mean_hz": 73.4,
+      "f0_std_hz": 14.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.39
+    },
+    {
+      "index": 44,
+      "timestamp": "09:33",
+      "speaker": "",
+      "rms_energy": 0.1122,
+      "rms_ratio_to_global": 0.919,
+      "peak_amplitude": 1.1434,
+      "f0_mean_hz": 65.3,
+      "f0_std_hz": 4.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.76
+    },
+    {
+      "index": 45,
+      "timestamp": "09:47",
+      "speaker": "",
+      "rms_energy": 0.1683,
+      "rms_ratio_to_global": 1.378,
+      "peak_amplitude": 1.3296,
+      "f0_mean_hz": 77.5,
+      "f0_std_hz": 12.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.37
+    },
+    {
+      "index": 46,
+      "timestamp": "09:49",
+      "speaker": "",
+      "rms_energy": 0.1013,
+      "rms_ratio_to_global": 0.83,
+      "peak_amplitude": 1.1034,
+      "f0_mean_hz": 75.8,
+      "f0_std_hz": 12.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.16
+    },
+    {
+      "index": 47,
+      "timestamp": "10:04",
+      "speaker": "",
+      "rms_energy": 0.0998,
+      "rms_ratio_to_global": 0.817,
+      "peak_amplitude": 1.1205,
+      "f0_mean_hz": 66.5,
+      "f0_std_hz": 4.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.53
+    },
+    {
+      "index": 48,
+      "timestamp": "10:09",
+      "speaker": "",
+      "rms_energy": 0.0961,
+      "rms_ratio_to_global": 0.787,
+      "peak_amplitude": 1.2005,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.26,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 49,
+      "timestamp": "10:12",
+      "speaker": "",
+      "rms_energy": 0.1069,
+      "rms_ratio_to_global": 0.875,
+      "peak_amplitude": 1.0457,
+      "f0_mean_hz": 69.6,
+      "f0_std_hz": 9.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.49
+    },
+    {
+      "index": 50,
+      "timestamp": "10:16",
+      "speaker": "",
+      "rms_energy": 0.1106,
+      "rms_ratio_to_global": 0.905,
+      "peak_amplitude": 1.3756,
+      "f0_mean_hz": 67.8,
+      "f0_std_hz": 8.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.91
+    },
+    {
+      "index": 51,
+      "timestamp": "10:33",
+      "speaker": "",
+      "rms_energy": 0.0973,
+      "rms_ratio_to_global": 0.796,
+      "peak_amplitude": 1.1787,
+      "f0_mean_hz": 60.7,
+      "f0_std_hz": 0.7,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 4.12,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 52,
+      "timestamp": "10:40",
+      "speaker": "",
+      "rms_energy": 0.1257,
+      "rms_ratio_to_global": 1.029,
+      "peak_amplitude": 1.2575,
+      "f0_mean_hz": 71.8,
+      "f0_std_hz": 10.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.04
+    },
+    {
+      "index": 53,
+      "timestamp": "10:45",
+      "speaker": "",
+      "rms_energy": 0.0834,
+      "rms_ratio_to_global": 0.682,
+      "peak_amplitude": 1.176,
+      "f0_mean_hz": 69.4,
+      "f0_std_hz": 6.7,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.28,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 54,
+      "timestamp": "10:57",
+      "speaker": "",
+      "rms_energy": 0.1259,
+      "rms_ratio_to_global": 1.031,
+      "peak_amplitude": 1.3272,
+      "f0_mean_hz": 75.4,
+      "f0_std_hz": 5.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.63
+    },
+    {
+      "index": 55,
+      "timestamp": "11:03",
+      "speaker": "",
+      "rms_energy": 0.1089,
+      "rms_ratio_to_global": 0.892,
+      "peak_amplitude": 1.1425,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.41
+    },
+    {
+      "index": 56,
+      "timestamp": "11:06",
+      "speaker": "",
+      "rms_energy": 0.1136,
+      "rms_ratio_to_global": 0.93,
+      "peak_amplitude": 1.1547,
+      "f0_mean_hz": 64.0,
+      "f0_std_hz": 3.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.61
+    },
+    {
+      "index": 57,
+      "timestamp": "11:07",
+      "speaker": "",
+      "rms_energy": 0.119,
+      "rms_ratio_to_global": 0.974,
+      "peak_amplitude": 0.9845,
+      "f0_mean_hz": 64.7,
+      "f0_std_hz": 4.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.57
+    },
+    {
+      "index": 58,
+      "timestamp": "11:11",
+      "speaker": "",
+      "rms_energy": 0.1144,
+      "rms_ratio_to_global": 0.937,
+      "peak_amplitude": 1.0231,
+      "f0_mean_hz": 65.1,
+      "f0_std_hz": 5.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.07
+    },
+    {
+      "index": 59,
+      "timestamp": "11:18",
+      "speaker": "",
+      "rms_energy": 0.1143,
+      "rms_ratio_to_global": 0.936,
+      "peak_amplitude": 1.3879,
+      "f0_mean_hz": 79.8,
+      "f0_std_hz": 19.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.76
+    },
+    {
+      "index": 60,
+      "timestamp": "11:27",
+      "speaker": "",
+      "rms_energy": 0.1318,
+      "rms_ratio_to_global": 1.079,
+      "peak_amplitude": 1.1176,
+      "f0_mean_hz": 65.6,
+      "f0_std_hz": 2.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 5.16
+    },
+    {
+      "index": 61,
+      "timestamp": "11:31",
+      "speaker": "",
+      "rms_energy": 0.1417,
+      "rms_ratio_to_global": 1.16,
+      "peak_amplitude": 1.4126,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.5
+    },
+    {
+      "index": 62,
+      "timestamp": "11:37",
+      "speaker": "",
+      "rms_energy": 0.0971,
+      "rms_ratio_to_global": 0.795,
+      "peak_amplitude": 1.1147,
+      "f0_mean_hz": 329.7,
+      "f0_std_hz": 24.6,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.57,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 63,
+      "timestamp": "11:39",
+      "speaker": "",
+      "rms_energy": 0.0987,
+      "rms_ratio_to_global": 0.808,
+      "peak_amplitude": 1.3469,
+      "f0_mean_hz": 73.2,
+      "f0_std_hz": 9.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.15
+    },
+    {
+      "index": 64,
+      "timestamp": "11:46",
+      "speaker": "",
+      "rms_energy": 0.109,
+      "rms_ratio_to_global": 0.892,
+      "peak_amplitude": 1.0289,
+      "f0_mean_hz": 155.8,
+      "f0_std_hz": 105.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.86,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        },
+        {
+          "symbol": "↑↑word",
+          "phenomenon": "Rising pitch arc (measured)",
+          "note": "+212Hz across segment — alarm/excitement/question-like lift",
+          "certainty": 0.6
+        }
+      ]
+    },
+    {
+      "index": 65,
+      "timestamp": "11:52",
+      "speaker": "",
+      "rms_energy": 0.1731,
+      "rms_ratio_to_global": 1.417,
+      "peak_amplitude": 1.4032,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.17
+    },
+    {
+      "index": 66,
+      "timestamp": "11:56",
+      "speaker": "",
+      "rms_energy": 0.1008,
+      "rms_ratio_to_global": 0.825,
+      "peak_amplitude": 1.3854,
+      "f0_mean_hz": 88.9,
+      "f0_std_hz": 17.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.73
+    },
+    {
+      "index": 67,
+      "timestamp": "12:07",
+      "speaker": "",
+      "rms_energy": 0.0926,
+      "rms_ratio_to_global": 0.758,
+      "peak_amplitude": 1.3438,
+      "f0_mean_hz": 61.8,
+      "f0_std_hz": 2.2,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.29,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 68,
+      "timestamp": "12:13",
+      "speaker": "",
+      "rms_energy": 0.0739,
+      "rms_ratio_to_global": 0.605,
+      "peak_amplitude": 1.2448,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.71,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 69,
+      "timestamp": "12:20",
+      "speaker": "",
+      "rms_energy": 0.1735,
+      "rms_ratio_to_global": 1.421,
+      "peak_amplitude": 1.1445,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 6.25
+    },
+    {
+      "index": 70,
+      "timestamp": "12:21",
+      "speaker": "",
+      "rms_energy": 0.1003,
+      "rms_ratio_to_global": 0.821,
+      "peak_amplitude": 0.9417,
+      "f0_mean_hz": 321.8,
+      "f0_std_hz": 17.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.68
+    },
+    {
+      "index": 71,
+      "timestamp": "12:28",
+      "speaker": "",
+      "rms_energy": 0.0818,
+      "rms_ratio_to_global": 0.669,
+      "peak_amplitude": 1.0114,
+      "f0_mean_hz": 61.6,
+      "f0_std_hz": 1.8,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.53,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 72,
+      "timestamp": "12:33",
+      "speaker": "",
+      "rms_energy": 0.0975,
+      "rms_ratio_to_global": 0.798,
+      "peak_amplitude": 1.2125,
+      "f0_mean_hz": 91.3,
+      "f0_std_hz": 17.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.79,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 73,
+      "timestamp": "12:44",
+      "speaker": "",
+      "rms_energy": 0.1101,
+      "rms_ratio_to_global": 0.901,
+      "peak_amplitude": 0.8976,
+      "f0_mean_hz": 64.4,
+      "f0_std_hz": 4.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.99
+    },
+    {
+      "index": 74,
+      "timestamp": "12:48",
+      "speaker": "",
+      "rms_energy": 0.1078,
+      "rms_ratio_to_global": 0.882,
+      "peak_amplitude": 1.3391,
+      "f0_mean_hz": 102.2,
+      "f0_std_hz": 2.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.47
+    },
+    {
+      "index": 75,
+      "timestamp": "12:53",
+      "speaker": "",
+      "rms_energy": 0.1013,
+      "rms_ratio_to_global": 0.83,
+      "peak_amplitude": 1.2184,
+      "f0_mean_hz": 65.5,
+      "f0_std_hz": 5.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.08
+    },
+    {
+      "index": 76,
+      "timestamp": "13:05",
+      "speaker": "",
+      "rms_energy": 0.1087,
+      "rms_ratio_to_global": 0.89,
+      "peak_amplitude": 1.2088,
+      "f0_mean_hz": 66.2,
+      "f0_std_hz": 6.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.99
+    },
+    {
+      "index": 77,
+      "timestamp": "13:14",
+      "speaker": "",
+      "rms_energy": 0.1069,
+      "rms_ratio_to_global": 0.875,
+      "peak_amplitude": 1.228,
+      "f0_mean_hz": 62.2,
+      "f0_std_hz": 2.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.75
+    },
+    {
+      "index": 78,
+      "timestamp": "13:19",
+      "speaker": "",
+      "rms_energy": 0.1099,
+      "rms_ratio_to_global": 0.9,
+      "peak_amplitude": 1.3325,
+      "f0_mean_hz": 61.5,
+      "f0_std_hz": 2.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.53
+    },
+    {
+      "index": 79,
+      "timestamp": "13:28",
+      "speaker": "",
+      "rms_energy": 0.1307,
+      "rms_ratio_to_global": 1.07,
+      "peak_amplitude": 1.1266,
+      "f0_mean_hz": 73.4,
+      "f0_std_hz": 16.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.0
+    },
+    {
+      "index": 80,
+      "timestamp": "13:33",
+      "speaker": "",
+      "rms_energy": 0.1113,
+      "rms_ratio_to_global": 0.912,
+      "peak_amplitude": 1.1027,
+      "f0_mean_hz": 326.1,
+      "f0_std_hz": 2.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.08
+    },
+    {
+      "index": 81,
+      "timestamp": "13:40",
+      "speaker": "",
+      "rms_energy": 0.1251,
+      "rms_ratio_to_global": 1.024,
+      "peak_amplitude": 1.3721,
+      "f0_mean_hz": 71.8,
+      "f0_std_hz": 15.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.37
+    },
+    {
+      "index": 82,
+      "timestamp": "13:51",
+      "speaker": "",
+      "rms_energy": 0.1108,
+      "rms_ratio_to_global": 0.907,
+      "peak_amplitude": 1.2788,
+      "f0_mean_hz": 63.0,
+      "f0_std_hz": 2.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.41
+    },
+    {
+      "index": 83,
+      "timestamp": "14:00",
+      "speaker": "",
+      "rms_energy": 0.1071,
+      "rms_ratio_to_global": 0.877,
+      "peak_amplitude": 1.3177,
+      "f0_mean_hz": 65.6,
+      "f0_std_hz": 4.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.28
+    },
+    {
+      "index": 84,
+      "timestamp": "14:10",
+      "speaker": "",
+      "rms_energy": 0.0962,
+      "rms_ratio_to_global": 0.788,
+      "peak_amplitude": 1.3801,
+      "f0_mean_hz": 68.2,
+      "f0_std_hz": 1.4,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.65,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 85,
+      "timestamp": "14:25",
+      "speaker": "",
+      "rms_energy": 0.0966,
+      "rms_ratio_to_global": 0.791,
+      "peak_amplitude": 1.2657,
+      "f0_mean_hz": 96.8,
+      "f0_std_hz": 30.6,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.95,
+      "jefferson": "°word°",
+      "acoustic_tags": [
+        {
+          "symbol": "↑↑word",
+          "phenomenon": "Rising pitch arc (measured)",
+          "note": "+62Hz across segment — alarm/excitement/question-like lift",
+          "certainty": 0.6
+        }
+      ]
+    },
+    {
+      "index": 86,
+      "timestamp": "14:38",
+      "speaker": "",
+      "rms_energy": 0.0947,
+      "rms_ratio_to_global": 0.775,
+      "peak_amplitude": 1.2734,
+      "f0_mean_hz": 332.4,
+      "f0_std_hz": 18.6,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.99,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 87,
+      "timestamp": "14:50",
+      "speaker": "",
+      "rms_energy": 0.1091,
+      "rms_ratio_to_global": 0.893,
+      "peak_amplitude": 1.3808,
+      "f0_mean_hz": 62.5,
+      "f0_std_hz": 3.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.7
+    },
+    {
+      "index": 88,
+      "timestamp": "15:00",
+      "speaker": "",
+      "rms_energy": 0.1097,
+      "rms_ratio_to_global": 0.898,
+      "peak_amplitude": 1.1381,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.53
+    },
+    {
+      "index": 89,
+      "timestamp": "15:03",
+      "speaker": "",
+      "rms_energy": 0.1434,
+      "rms_ratio_to_global": 1.174,
+      "peak_amplitude": 1.2841,
+      "f0_mean_hz": 74.7,
+      "f0_std_hz": 12.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.45
+    },
+    {
+      "index": 90,
+      "timestamp": "15:15",
+      "speaker": "",
+      "rms_energy": 0.182,
+      "rms_ratio_to_global": 1.49,
+      "peak_amplitude": 1.3952,
+      "f0_mean_hz": 76.8,
+      "f0_std_hz": 16.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.28
+    },
+    {
+      "index": 91,
+      "timestamp": "15:20",
+      "speaker": "",
+      "rms_energy": 0.1305,
+      "rms_ratio_to_global": 1.068,
+      "peak_amplitude": 1.3895,
+      "f0_mean_hz": 72.7,
+      "f0_std_hz": 9.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.69,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "timestamp": "15:34",
+      "speaker": "",
+      "rms_energy": 0.124,
+      "rms_ratio_to_global": 1.015,
+      "peak_amplitude": 1.1596,
+      "f0_mean_hz": 62.5,
+      "f0_std_hz": 2.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.09
+    },
+    {
+      "index": 93,
+      "timestamp": "15:36",
+      "speaker": "",
+      "rms_energy": 0.1409,
+      "rms_ratio_to_global": 1.153,
+      "peak_amplitude": 1.1312,
+      "f0_mean_hz": 76.9,
+      "f0_std_hz": 18.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.08
+    },
+    {
+      "index": 94,
+      "timestamp": "15:44",
+      "speaker": "",
+      "rms_energy": 0.1525,
+      "rms_ratio_to_global": 1.249,
+      "peak_amplitude": 1.3876,
+      "f0_mean_hz": 93.4,
+      "f0_std_hz": 13.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.42
+    },
+    {
+      "index": 95,
+      "timestamp": "15:50",
+      "speaker": "",
+      "rms_energy": 0.143,
+      "rms_ratio_to_global": 1.171,
+      "peak_amplitude": 1.3927,
+      "f0_mean_hz": 74.0,
+      "f0_std_hz": 18.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.39,
+      "acoustic_tags": [
+        {
+          "symbol": "↑↑word",
+          "phenomenon": "Rising pitch arc (measured)",
+          "note": "+41Hz across segment — alarm/excitement/question-like lift",
+          "certainty": 0.6
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "timestamp": "15:56",
+      "speaker": "",
+      "rms_energy": 0.0879,
+      "rms_ratio_to_global": 0.72,
+      "peak_amplitude": 0.681,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 4.71,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 97,
+      "timestamp": "15:58",
+      "speaker": "",
+      "rms_energy": 0.1405,
+      "rms_ratio_to_global": 1.15,
+      "peak_amplitude": 1.3933,
+      "f0_mean_hz": 79.2,
+      "f0_std_hz": 15.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.4
+    },
+    {
+      "index": 98,
+      "timestamp": "16:08",
+      "speaker": "",
+      "rms_energy": 0.1148,
+      "rms_ratio_to_global": 0.94,
+      "peak_amplitude": 1.0441,
+      "f0_mean_hz": 69.2,
+      "f0_std_hz": 9.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.25
+    },
+    {
+      "index": 99,
+      "timestamp": "16:17",
+      "speaker": "",
+      "rms_energy": 0.1475,
+      "rms_ratio_to_global": 1.208,
+      "peak_amplitude": 1.108,
+      "f0_mean_hz": 336.3,
+      "f0_std_hz": 2.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.2
+    },
+    {
+      "index": 100,
+      "timestamp": "16:19",
+      "speaker": "",
+      "rms_energy": 0.1203,
+      "rms_ratio_to_global": 0.985,
+      "peak_amplitude": 1.2274,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.25
+    },
+    {
+      "index": 101,
+      "timestamp": "16:25",
+      "speaker": "",
+      "rms_energy": 0.1259,
+      "rms_ratio_to_global": 1.031,
+      "peak_amplitude": 1.205,
+      "f0_mean_hz": 61.1,
+      "f0_std_hz": 0.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.26
+    },
+    {
+      "index": 102,
+      "timestamp": "16:29",
+      "speaker": "",
+      "rms_energy": 0.1085,
+      "rms_ratio_to_global": 0.888,
+      "peak_amplitude": 1.2958,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.75
+    },
+    {
+      "index": 103,
+      "timestamp": "16:34",
+      "speaker": "",
+      "rms_energy": 0.0758,
+      "rms_ratio_to_global": 0.62,
+      "peak_amplitude": 0.8871,
+      "f0_mean_hz": 71.3,
+      "f0_std_hz": 15.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.45,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 104,
+      "timestamp": "16:38",
+      "speaker": "",
+      "rms_energy": 0.1337,
+      "rms_ratio_to_global": 1.094,
+      "peak_amplitude": 1.3419,
+      "f0_mean_hz": 335.6,
+      "f0_std_hz": 17.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.66
+    },
+    {
+      "index": 105,
+      "timestamp": "16:45",
+      "speaker": "",
+      "rms_energy": 0.1102,
+      "rms_ratio_to_global": 0.902,
+      "peak_amplitude": 1.3017,
+      "f0_mean_hz": 62.8,
+      "f0_std_hz": 1.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 6.02
+    },
+    {
+      "index": 106,
+      "timestamp": "16:48",
+      "speaker": "",
+      "rms_energy": 0.1399,
+      "rms_ratio_to_global": 1.145,
+      "peak_amplitude": 1.3904,
+      "f0_mean_hz": 74.2,
+      "f0_std_hz": 12.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.48
+    },
+    {
+      "index": 107,
+      "timestamp": "16:56",
+      "speaker": "",
+      "rms_energy": 0.1609,
+      "rms_ratio_to_global": 1.317,
+      "peak_amplitude": 1.3923,
+      "f0_mean_hz": 73.0,
+      "f0_std_hz": 9.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.44
+    },
+    {
+      "index": 108,
+      "timestamp": "17:03",
+      "speaker": "",
+      "rms_energy": 0.1532,
+      "rms_ratio_to_global": 1.254,
+      "peak_amplitude": 1.1995,
+      "f0_mean_hz": 74.3,
+      "f0_std_hz": 8.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.71
+    },
+    {
+      "index": 109,
+      "timestamp": "17:11",
+      "speaker": "",
+      "rms_energy": 0.1509,
+      "rms_ratio_to_global": 1.236,
+      "peak_amplitude": 1.1335,
+      "f0_mean_hz": 81.3,
+      "f0_std_hz": 14.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.29
+    },
+    {
+      "index": 110,
+      "timestamp": "17:15",
+      "speaker": "",
+      "rms_energy": 0.1255,
+      "rms_ratio_to_global": 1.027,
+      "peak_amplitude": 1.3898,
+      "f0_mean_hz": 80.1,
+      "f0_std_hz": 20.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.26
+    },
+    {
+      "index": 111,
+      "timestamp": "17:20",
+      "speaker": "",
+      "rms_energy": 0.126,
+      "rms_ratio_to_global": 1.032,
+      "peak_amplitude": 1.3898,
+      "f0_mean_hz": 64.6,
+      "f0_std_hz": 4.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.3
+    },
+    {
+      "index": 112,
+      "timestamp": "17:30",
+      "speaker": "",
+      "rms_energy": 0.0967,
+      "rms_ratio_to_global": 0.792,
+      "peak_amplitude": 1.3837,
+      "f0_mean_hz": 81.1,
+      "f0_std_hz": 14.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.24,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 113,
+      "timestamp": "17:35",
+      "speaker": "",
+      "rms_energy": 0.11,
+      "rms_ratio_to_global": 0.9,
+      "peak_amplitude": 1.1487,
+      "f0_mean_hz": 66.1,
+      "f0_std_hz": 5.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.12
+    },
+    {
+      "index": 114,
+      "timestamp": "17:43",
+      "speaker": "",
+      "rms_energy": 0.1232,
+      "rms_ratio_to_global": 1.008,
+      "peak_amplitude": 1.3002,
+      "f0_mean_hz": 63.4,
+      "f0_std_hz": 2.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.05
+    },
+    {
+      "index": 115,
+      "timestamp": "17:54",
+      "speaker": "",
+      "rms_energy": 0.1253,
+      "rms_ratio_to_global": 1.026,
+      "peak_amplitude": 1.3645,
+      "f0_mean_hz": 62.3,
+      "f0_std_hz": 2.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.12
+    },
+    {
+      "index": 116,
+      "timestamp": "18:01",
+      "speaker": "",
+      "rms_energy": 0.1404,
+      "rms_ratio_to_global": 1.15,
+      "peak_amplitude": 1.0649,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.45
+    },
+    {
+      "index": 117,
+      "timestamp": "18:04",
+      "speaker": "",
+      "rms_energy": 0.1886,
+      "rms_ratio_to_global": 1.544,
+      "peak_amplitude": 1.3973,
+      "f0_mean_hz": 82.3,
+      "f0_std_hz": 11.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.85
+    },
+    {
+      "index": 118,
+      "timestamp": "18:05",
+      "speaker": "",
+      "rms_energy": 0.1315,
+      "rms_ratio_to_global": 1.077,
+      "peak_amplitude": 1.3414,
+      "f0_mean_hz": 67.1,
+      "f0_std_hz": 6.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.69
+    },
+    {
+      "index": 119,
+      "timestamp": "18:10",
+      "speaker": "",
+      "rms_energy": 0.1274,
+      "rms_ratio_to_global": 1.043,
+      "peak_amplitude": 1.3404,
+      "f0_mean_hz": 68.4,
+      "f0_std_hz": 3.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.81,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 120,
+      "timestamp": "18:24",
+      "speaker": "",
+      "rms_energy": 0.094,
+      "rms_ratio_to_global": 0.77,
+      "peak_amplitude": 0.9652,
+      "f0_mean_hz": 66.6,
+      "f0_std_hz": 5.3,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.79,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 121,
+      "timestamp": "18:31",
+      "speaker": "",
+      "rms_energy": 0.1036,
+      "rms_ratio_to_global": 0.848,
+      "peak_amplitude": 1.3115,
+      "f0_mean_hz": 60.8,
+      "f0_std_hz": 1.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.15
+    },
+    {
+      "index": 122,
+      "timestamp": "18:41",
+      "speaker": "",
+      "rms_energy": 0.1222,
+      "rms_ratio_to_global": 1.0,
+      "peak_amplitude": 1.3312,
+      "f0_mean_hz": 71.9,
+      "f0_std_hz": 14.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.56
+    },
+    {
+      "index": 123,
+      "timestamp": "18:46",
+      "speaker": "",
+      "rms_energy": 0.0966,
+      "rms_ratio_to_global": 0.791,
+      "peak_amplitude": 1.0435,
+      "f0_mean_hz": 60.3,
+      "f0_std_hz": 1.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 1.74,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 124,
+      "timestamp": "18:58",
+      "speaker": "",
+      "rms_energy": 0.1345,
+      "rms_ratio_to_global": 1.101,
+      "peak_amplitude": 1.3169,
+      "f0_mean_hz": 64.0,
+      "f0_std_hz": 3.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.9
+    },
+    {
+      "index": 125,
+      "timestamp": "19:10",
+      "speaker": "",
+      "rms_energy": 0.1222,
+      "rms_ratio_to_global": 1.0,
+      "peak_amplitude": 1.1756,
+      "f0_mean_hz": 62.5,
+      "f0_std_hz": 2.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.21
+    },
+    {
+      "index": 126,
+      "timestamp": "19:17",
+      "speaker": "",
+      "rms_energy": 0.1264,
+      "rms_ratio_to_global": 1.035,
+      "peak_amplitude": 1.1518,
+      "f0_mean_hz": 74.4,
+      "f0_std_hz": 12.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.04
+    },
+    {
+      "index": 127,
+      "timestamp": "19:27",
+      "speaker": "",
+      "rms_energy": 0.1264,
+      "rms_ratio_to_global": 1.035,
+      "peak_amplitude": 1.1687,
+      "f0_mean_hz": 78.2,
+      "f0_std_hz": 15.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.99
+    },
+    {
+      "index": 128,
+      "timestamp": "19:36",
+      "speaker": "",
+      "rms_energy": 0.1065,
+      "rms_ratio_to_global": 0.872,
+      "peak_amplitude": 1.2152,
+      "f0_mean_hz": 62.0,
+      "f0_std_hz": 1.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.5
+    },
+    {
+      "index": 129,
+      "timestamp": "19:42",
+      "speaker": "",
+      "rms_energy": 0.1822,
+      "rms_ratio_to_global": 1.492,
+      "peak_amplitude": 1.3926,
+      "f0_mean_hz": 81.4,
+      "f0_std_hz": 18.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.78
+    },
+    {
+      "index": 130,
+      "timestamp": "19:54",
+      "speaker": "",
+      "rms_energy": 0.1425,
+      "rms_ratio_to_global": 1.167,
+      "peak_amplitude": 1.0638,
+      "f0_mean_hz": 68.4,
+      "f0_std_hz": 14.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.85
+    },
+    {
+      "index": 131,
+      "timestamp": "20:03",
+      "speaker": "",
+      "rms_energy": 0.1757,
+      "rms_ratio_to_global": 1.438,
+      "peak_amplitude": 1.0456,
+      "f0_mean_hz": 76.8,
+      "f0_std_hz": 15.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.03
+    },
+    {
+      "index": 132,
+      "timestamp": "20:06",
+      "speaker": "",
+      "rms_energy": 0.1184,
+      "rms_ratio_to_global": 0.97,
+      "peak_amplitude": 1.202,
+      "f0_mean_hz": 64.9,
+      "f0_std_hz": 3.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.84
+    },
+    {
+      "index": 133,
+      "timestamp": "20:14",
+      "speaker": "",
+      "rms_energy": 0.1131,
+      "rms_ratio_to_global": 0.926,
+      "peak_amplitude": 1.3762,
+      "f0_mean_hz": 73.7,
+      "f0_std_hz": 19.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.35,
+      "acoustic_tags": [
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word 'to,' + 1.2s gap",
+          "certainty": 0.45
+        }
+      ]
+    },
+    {
+      "index": 134,
+      "timestamp": "20:27",
+      "speaker": "",
+      "rms_energy": 0.1364,
+      "rms_ratio_to_global": 1.116,
+      "peak_amplitude": 1.0179,
+      "f0_mean_hz": 84.3,
+      "f0_std_hz": 19.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 1.72
+    },
+    {
+      "index": 135,
+      "timestamp": "20:41",
+      "speaker": "",
+      "rms_energy": 0.1893,
+      "rms_ratio_to_global": 1.55,
+      "peak_amplitude": 1.3764,
+      "f0_mean_hz": 77.8,
+      "f0_std_hz": 20.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.49
+    },
+    {
+      "index": 136,
+      "timestamp": "20:46",
+      "speaker": "",
+      "rms_energy": 0.1155,
+      "rms_ratio_to_global": 0.945,
+      "peak_amplitude": 1.3773,
+      "f0_mean_hz": 62.6,
+      "f0_std_hz": 3.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.48
+    },
+    {
+      "index": 137,
+      "timestamp": "20:55",
+      "speaker": "",
+      "rms_energy": 0.1007,
+      "rms_ratio_to_global": 0.825,
+      "peak_amplitude": 1.2392,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.18
+    },
+    {
+      "index": 138,
+      "timestamp": "20:58",
+      "speaker": "",
+      "rms_energy": 0.1788,
+      "rms_ratio_to_global": 1.464,
+      "peak_amplitude": 1.0588,
+      "f0_mean_hz": 95.9,
+      "f0_std_hz": 18.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.59,
+      "acoustic_tags": [
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word '%?' + 0.44s gap",
+          "certainty": 0.45
+        }
+      ]
+    },
+    {
+      "index": 139,
+      "timestamp": "21:08",
+      "speaker": "",
+      "rms_energy": 0.1329,
+      "rms_ratio_to_global": 1.088,
+      "peak_amplitude": 1.1957,
+      "f0_mean_hz": 77.0,
+      "f0_std_hz": 12.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.01
+    },
+    {
+      "index": 140,
+      "timestamp": "21:14",
+      "speaker": "",
+      "rms_energy": 0.1602,
+      "rms_ratio_to_global": 1.311,
+      "peak_amplitude": 1.2637,
+      "f0_mean_hz": 72.0,
+      "f0_std_hz": 11.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.43
+    },
+    {
+      "index": 141,
+      "timestamp": "21:18",
+      "speaker": "",
+      "rms_energy": 0.1355,
+      "rms_ratio_to_global": 1.109,
+      "peak_amplitude": 1.1423,
+      "f0_mean_hz": 80.0,
+      "f0_std_hz": 20.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.34
+    },
+    {
+      "index": 142,
+      "timestamp": "21:35",
+      "speaker": "",
+      "rms_energy": 0.1668,
+      "rms_ratio_to_global": 1.365,
+      "peak_amplitude": 1.3709,
+      "f0_mean_hz": 119.5,
+      "f0_std_hz": 67.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.19,
+      "shaky_voice": true,
+      "shaky_label": "Shaky/crying voice — pitch or amplitude instability",
+      "shaky_certainty": 0.65,
+      "acoustic_tags": [
+        {
+          "symbol": "~word~",
+          "phenomenon": "Shaky/unstable voice (measured)",
+          "note": "Pitch or amplitude instability in audio",
+          "certainty": 0.65
+        }
+      ]
+    },
+    {
+      "index": 143,
+      "timestamp": "21:48",
+      "speaker": "",
+      "rms_energy": 0.1289,
+      "rms_ratio_to_global": 1.055,
+      "peak_amplitude": 0.857,
+      "f0_mean_hz": 80.6,
+      "f0_std_hz": 22.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.21
+    },
+    {
+      "index": 144,
+      "timestamp": "22:13",
+      "speaker": "",
+      "rms_energy": 0.1102,
+      "rms_ratio_to_global": 0.902,
+      "peak_amplitude": 0.6969,
+      "f0_mean_hz": 78.0,
+      "f0_std_hz": 17.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.94
+    },
+    {
+      "index": 145,
+      "timestamp": "22:27",
+      "speaker": "",
+      "rms_energy": 0.0966,
+      "rms_ratio_to_global": 0.791,
+      "peak_amplitude": 1.329,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.71,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 146,
+      "timestamp": "22:32",
+      "speaker": "",
+      "rms_energy": 0.1482,
+      "rms_ratio_to_global": 1.213,
+      "peak_amplitude": 1.0054,
+      "f0_mean_hz": 84.0,
+      "f0_std_hz": 19.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.13
+    },
+    {
+      "index": 147,
+      "timestamp": "22:42",
+      "speaker": "",
+      "rms_energy": 0.1192,
+      "rms_ratio_to_global": 0.976,
+      "peak_amplitude": 1.2097,
+      "f0_mean_hz": 79.5,
+      "f0_std_hz": 20.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.7,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        },
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 148,
+      "timestamp": "22:54",
+      "speaker": "",
+      "rms_energy": 0.1533,
+      "rms_ratio_to_global": 1.255,
+      "peak_amplitude": 1.3815,
+      "f0_mean_hz": 96.6,
+      "f0_std_hz": 26.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.34
+    },
+    {
+      "index": 149,
+      "timestamp": "23:06",
+      "speaker": "",
+      "rms_energy": 0.1458,
+      "rms_ratio_to_global": 1.194,
+      "peak_amplitude": 1.0711,
+      "f0_mean_hz": 87.8,
+      "f0_std_hz": 29.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.18
+    },
+    {
+      "index": 150,
+      "timestamp": "23:15",
+      "speaker": "",
+      "rms_energy": 0.159,
+      "rms_ratio_to_global": 1.302,
+      "peak_amplitude": 1.0324,
+      "f0_mean_hz": 96.9,
+      "f0_std_hz": 21.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.96,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'That's' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 151,
+      "timestamp": "23:28",
+      "speaker": "",
+      "rms_energy": 0.1432,
+      "rms_ratio_to_global": 1.172,
+      "peak_amplitude": 0.8977,
+      "f0_mean_hz": 81.8,
+      "f0_std_hz": 18.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.34,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'there,' repeated within 0.16s",
+          "certainty": 0.55
+        },
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'there,' repeated within 0.32s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 152,
+      "timestamp": "23:40",
+      "speaker": "",
+      "rms_energy": 0.1222,
+      "rms_ratio_to_global": 1.0,
+      "peak_amplitude": 1.3572,
+      "f0_mean_hz": 64.0,
+      "f0_std_hz": 3.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.45
+    },
+    {
+      "index": 153,
+      "timestamp": "23:55",
+      "speaker": "",
+      "rms_energy": 0.117,
+      "rms_ratio_to_global": 0.958,
+      "peak_amplitude": 1.1662,
+      "f0_mean_hz": 95.0,
+      "f0_std_hz": 25.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.49,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'our,' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 154,
+      "timestamp": "24:04",
+      "speaker": "",
+      "rms_energy": 0.1506,
+      "rms_ratio_to_global": 1.233,
+      "peak_amplitude": 1.1894,
+      "f0_mean_hz": 79.4,
+      "f0_std_hz": 17.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.11
+    },
+    {
+      "index": 155,
+      "timestamp": "24:09",
+      "speaker": "",
+      "rms_energy": 0.1564,
+      "rms_ratio_to_global": 1.28,
+      "peak_amplitude": 0.9783,
+      "f0_mean_hz": 83.7,
+      "f0_std_hz": 25.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.76,
+      "acoustic_tags": [
+        {
+          "symbol": "↓↓word",
+          "phenomenon": "Falling pitch arc (measured)",
+          "note": "-43Hz across segment — resignation/flatness/trailing off",
+          "certainty": 0.6
+        },
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'the,' repeated within 0.0s",
+          "certainty": 0.55
+        },
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'the,' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 156,
+      "timestamp": "24:18",
+      "speaker": "",
+      "rms_energy": 0.1562,
+      "rms_ratio_to_global": 1.278,
+      "peak_amplitude": 1.0142,
+      "f0_mean_hz": 74.4,
+      "f0_std_hz": 12.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.11
+    },
+    {
+      "index": 157,
+      "timestamp": "24:34",
+      "speaker": "",
+      "rms_energy": 0.1612,
+      "rms_ratio_to_global": 1.32,
+      "peak_amplitude": 0.9889,
+      "f0_mean_hz": 86.5,
+      "f0_std_hz": 17.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.21
+    },
+    {
+      "index": 158,
+      "timestamp": "24:52",
+      "speaker": "",
+      "rms_energy": 0.2219,
+      "rms_ratio_to_global": 1.816,
+      "peak_amplitude": 0.8263,
+      "f0_mean_hz": 113.5,
+      "f0_std_hz": 14.5,
+      "voice_level": "raised_voice",
+      "voice_label": "Raised voice / loud",
+      "certainty": 0.75,
+      "speaking_rate_wps": 3.91,
+      "jefferson": "WORD (CAPS)",
+      "acoustic_tags": [
+        {
+          "symbol": "WORD",
+          "phenomenon": "Raised voice (measured)",
+          "note": "RMS 1.8x baseline",
+          "certainty": 0.75
+        }
+      ]
+    },
+    {
+      "index": 159,
+      "timestamp": "24:54",
+      "speaker": "",
+      "rms_energy": 0.1383,
+      "rms_ratio_to_global": 1.132,
+      "peak_amplitude": 1.1345,
+      "f0_mean_hz": 62.4,
+      "f0_std_hz": 2.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.78
+    },
+    {
+      "index": 160,
+      "timestamp": "25:03",
+      "speaker": "",
+      "rms_energy": 0.1438,
+      "rms_ratio_to_global": 1.177,
+      "peak_amplitude": 1.3892,
+      "f0_mean_hz": 69.6,
+      "f0_std_hz": 12.7,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.47
+    },
+    {
+      "index": 161,
+      "timestamp": "25:17",
+      "speaker": "",
+      "rms_energy": 0.1438,
+      "rms_ratio_to_global": 1.177,
+      "peak_amplitude": 1.2455,
+      "f0_mean_hz": 70.8,
+      "f0_std_hz": 10.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.1
+    },
+    {
+      "index": 162,
+      "timestamp": "25:23",
+      "speaker": "",
+      "rms_energy": 0.0891,
+      "rms_ratio_to_global": 0.73,
+      "peak_amplitude": 1.3388,
+      "f0_mean_hz": 90.6,
+      "f0_std_hz": 24.6,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.34,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 163,
+      "timestamp": "25:47",
+      "speaker": "",
+      "rms_energy": 0.1042,
+      "rms_ratio_to_global": 0.853,
+      "peak_amplitude": 1.3597,
+      "f0_mean_hz": 108.9,
+      "f0_std_hz": 16.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.89
+    },
+    {
+      "index": 164,
+      "timestamp": "26:00",
+      "speaker": "",
+      "rms_energy": 0.0748,
+      "rms_ratio_to_global": 0.612,
+      "peak_amplitude": 1.0892,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.95,
+      "jefferson": "°word°",
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'What,' repeated within 0.18s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 165,
+      "timestamp": "26:05",
+      "speaker": "",
+      "rms_energy": 0.0905,
+      "rms_ratio_to_global": 0.741,
+      "peak_amplitude": 1.2648,
+      "f0_mean_hz": 75.2,
+      "f0_std_hz": 11.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 4.02,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 166,
+      "timestamp": "26:15",
+      "speaker": "",
+      "rms_energy": 0.0906,
+      "rms_ratio_to_global": 0.742,
+      "peak_amplitude": 1.3791,
+      "f0_mean_hz": 93.6,
+      "f0_std_hz": 23.2,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.1,
+      "jefferson": "°word°",
+      "acoustic_tags": [
+        {
+          "symbol": "↑↑word",
+          "phenomenon": "Rising pitch arc (measured)",
+          "note": "+49Hz across segment — alarm/excitement/question-like lift",
+          "certainty": 0.6
+        }
+      ]
+    },
+    {
+      "index": 167,
+      "timestamp": "26:35",
+      "speaker": "",
+      "rms_energy": 0.0751,
+      "rms_ratio_to_global": 0.615,
+      "peak_amplitude": 1.2394,
+      "f0_mean_hz": 88.1,
+      "f0_std_hz": 7.5,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.93,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 168,
+      "timestamp": "26:45",
+      "speaker": "",
+      "rms_energy": 0.113,
+      "rms_ratio_to_global": 0.925,
+      "peak_amplitude": 1.3972,
+      "f0_mean_hz": 66.8,
+      "f0_std_hz": 4.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.68
+    },
+    {
+      "index": 169,
+      "timestamp": "26:57",
+      "speaker": "",
+      "rms_energy": 0.1045,
+      "rms_ratio_to_global": 0.855,
+      "peak_amplitude": 1.3135,
+      "f0_mean_hz": 77.5,
+      "f0_std_hz": 14.3,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.71
+    },
+    {
+      "index": 170,
+      "timestamp": "27:10",
+      "speaker": "",
+      "rms_energy": 0.1412,
+      "rms_ratio_to_global": 1.156,
+      "peak_amplitude": 1.1394,
+      "f0_mean_hz": 74.7,
+      "f0_std_hz": 12.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.22
+    },
+    {
+      "index": 171,
+      "timestamp": "27:15",
+      "speaker": "",
+      "rms_energy": 0.1111,
+      "rms_ratio_to_global": 0.91,
+      "peak_amplitude": 1.3726,
+      "f0_mean_hz": 76.9,
+      "f0_std_hz": 20.5,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.83
+    },
+    {
+      "index": 172,
+      "timestamp": "27:25",
+      "speaker": "",
+      "rms_energy": 0.0724,
+      "rms_ratio_to_global": 0.592,
+      "peak_amplitude": 1.2879,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.33,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 173,
+      "timestamp": "27:36",
+      "speaker": "",
+      "rms_energy": 0.0923,
+      "rms_ratio_to_global": 0.756,
+      "peak_amplitude": 1.2166,
+      "f0_mean_hz": 93.6,
+      "f0_std_hz": 22.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.18,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 174,
+      "timestamp": "27:45",
+      "speaker": "",
+      "rms_energy": 0.0993,
+      "rms_ratio_to_global": 0.813,
+      "peak_amplitude": 1.4032,
+      "f0_mean_hz": 355.2,
+      "f0_std_hz": 9.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.24
+    },
+    {
+      "index": 175,
+      "timestamp": "27:52",
+      "speaker": "",
+      "rms_energy": 0.1283,
+      "rms_ratio_to_global": 1.05,
+      "peak_amplitude": 1.1034,
+      "f0_mean_hz": 63.9,
+      "f0_std_hz": 2.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 5.03
+    },
+    {
+      "index": 176,
+      "timestamp": "27:56",
+      "speaker": "",
+      "rms_energy": 0.0955,
+      "rms_ratio_to_global": 0.782,
+      "peak_amplitude": 1.362,
+      "f0_mean_hz": 76.6,
+      "f0_std_hz": 20.0,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.48,
+      "jefferson": "°word°",
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'No,' repeated within 0.04s",
+          "certainty": 0.55
+        },
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'no,' repeated within 0.04s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 177,
+      "timestamp": "28:09",
+      "speaker": "",
+      "rms_energy": 0.0996,
+      "rms_ratio_to_global": 0.815,
+      "peak_amplitude": 1.4004,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.5
+    },
+    {
+      "index": 178,
+      "timestamp": "28:16",
+      "speaker": "",
+      "rms_energy": 0.1277,
+      "rms_ratio_to_global": 1.046,
+      "peak_amplitude": 1.3873,
+      "f0_mean_hz": 106.7,
+      "f0_std_hz": 2.0,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.67
+    },
+    {
+      "index": 179,
+      "timestamp": "28:19",
+      "speaker": "",
+      "rms_energy": 0.1001,
+      "rms_ratio_to_global": 0.819,
+      "peak_amplitude": 1.378,
+      "f0_mean_hz": 321.4,
+      "f0_std_hz": 7.2,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.69
+    },
+    {
+      "index": 180,
+      "timestamp": "28:25",
+      "speaker": "",
+      "rms_energy": 0.0979,
+      "rms_ratio_to_global": 0.802,
+      "peak_amplitude": 1.0716,
+      "f0_mean_hz": 93.4,
+      "f0_std_hz": 3.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.1
+    },
+    {
+      "index": 181,
+      "timestamp": "28:38",
+      "speaker": "",
+      "rms_energy": 0.1194,
+      "rms_ratio_to_global": 0.978,
+      "peak_amplitude": 1.3226,
+      "f0_mean_hz": 61.3,
+      "f0_std_hz": 1.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.37,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'Berkeley,' repeated within 0.52s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 182,
+      "timestamp": "28:49",
+      "speaker": "",
+      "rms_energy": 0.1202,
+      "rms_ratio_to_global": 0.984,
+      "peak_amplitude": 1.1148,
+      "f0_mean_hz": 63.7,
+      "f0_std_hz": 0.6,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.21
+    },
+    {
+      "index": 183,
+      "timestamp": "28:51",
+      "speaker": "",
+      "rms_energy": 0.0897,
+      "rms_ratio_to_global": 0.735,
+      "peak_amplitude": 1.2356,
+      "f0_mean_hz": 91.9,
+      "f0_std_hz": 11.7,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.43,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 184,
+      "timestamp": "29:02",
+      "speaker": "",
+      "rms_energy": 0.0904,
+      "rms_ratio_to_global": 0.74,
+      "peak_amplitude": 0.8173,
+      "f0_mean_hz": null,
+      "f0_std_hz": null,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 5.79,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 185,
+      "timestamp": "29:05",
+      "speaker": "",
+      "rms_energy": 0.1081,
+      "rms_ratio_to_global": 0.885,
+      "peak_amplitude": 1.3913,
+      "f0_mean_hz": 62.3,
+      "f0_std_hz": 1.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.2
+    },
+    {
+      "index": 186,
+      "timestamp": "29:15",
+      "speaker": "",
+      "rms_energy": 0.0945,
+      "rms_ratio_to_global": 0.773,
+      "peak_amplitude": 0.9117,
+      "f0_mean_hz": 71.5,
+      "f0_std_hz": 1.8,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 3.01,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 187,
+      "timestamp": "29:19",
+      "speaker": "",
+      "rms_energy": 0.0895,
+      "rms_ratio_to_global": 0.733,
+      "peak_amplitude": 0.9064,
+      "f0_mean_hz": 61.7,
+      "f0_std_hz": 1.5,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 4.13,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 188,
+      "timestamp": "29:25",
+      "speaker": "",
+      "rms_energy": 0.1118,
+      "rms_ratio_to_global": 0.915,
+      "peak_amplitude": 0.8288,
+      "f0_mean_hz": 76.4,
+      "f0_std_hz": 15.8,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 5.06
+    },
+    {
+      "index": 189,
+      "timestamp": "29:27",
+      "speaker": "",
+      "rms_energy": 0.1014,
+      "rms_ratio_to_global": 0.83,
+      "peak_amplitude": 1.0757,
+      "f0_mean_hz": 104.6,
+      "f0_std_hz": 5.4,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 4.91
+    },
+    {
+      "index": 190,
+      "timestamp": "29:29",
+      "speaker": "",
+      "rms_energy": 0.0991,
+      "rms_ratio_to_global": 0.811,
+      "peak_amplitude": 1.232,
+      "f0_mean_hz": 64.0,
+      "f0_std_hz": 5.9,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 2.94,
+      "acoustic_tags": [
+        {
+          "symbol": "word-word",
+          "phenomenon": "Repetition / restart (measured)",
+          "note": "'that' repeated within 0.0s",
+          "certainty": 0.55
+        }
+      ]
+    },
+    {
+      "index": 191,
+      "timestamp": "29:43",
+      "speaker": "",
+      "rms_energy": 0.0953,
+      "rms_ratio_to_global": 0.78,
+      "peak_amplitude": 1.3791,
+      "f0_mean_hz": 319.0,
+      "f0_std_hz": 8.8,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.89,
+      "jefferson": "°word°"
+    },
+    {
+      "index": 192,
+      "timestamp": "29:52",
+      "speaker": "",
+      "rms_energy": 0.0965,
+      "rms_ratio_to_global": 0.79,
+      "peak_amplitude": 0.9137,
+      "f0_mean_hz": 76.7,
+      "f0_std_hz": 17.8,
+      "voice_level": "quiet",
+      "voice_label": "Quiet speech",
+      "certainty": 0.7,
+      "speaking_rate_wps": 2.44,
+      "jefferson": "°word°",
+      "acoustic_tags": [
+        {
+          "symbol": "word-",
+          "phenomenon": "Stumble / broken word (measured)",
+          "note": "Low-confidence word 'Councillor,' + 0.68s gap",
+          "certainty": 0.45
+        }
+      ]
+    },
+    {
+      "index": 193,
+      "timestamp": "29:58",
+      "speaker": "",
+      "rms_energy": 0.1538,
+      "rms_ratio_to_global": 1.259,
+      "peak_amplitude": 1.3848,
+      "f0_mean_hz": 94.2,
+      "f0_std_hz": 11.1,
+      "voice_level": "normal",
+      "voice_label": "Normal volume",
+      "certainty": 0.8,
+      "speaking_rate_wps": 3.7
+    }
+  ],
+  "jefferson_summary": {
+    "word::": {
+      "count": 80,
+      "phenomenon": "Prolonged sound"
+    },
+    "?": {
+      "count": 32,
+      "phenomenon": "Question / uncertainty"
+    },
+    "(2.98)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.76)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(0.6)": {
+      "count": 13,
+      "phenomenon": "Timed pause"
+    },
+    "(1.78)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(0.9)": {
+      "count": 10,
+      "phenomenon": "Timed pause"
+    },
+    "(0.5)": {
+      "count": 15,
+      "phenomenon": "Timed pause"
+    },
+    "°word°": {
+      "count": 4,
+      "phenomenon": "Hedging / minimising"
+    },
+    "(0.4)": {
+      "count": 12,
+      "phenomenon": "Timed pause"
+    },
+    "(0.3)": {
+      "count": 14,
+      "phenomenon": "Timed pause"
+    },
+    "#word#": {
+      "count": 1,
+      "phenomenon": "Creaky voice / vocal fry"
+    },
+    "(0.2)": {
+      "count": 8,
+      "phenomenon": "Timed pause"
+    },
+    "[": {
+      "count": 4,
+      "phenomenon": "Possible overlap (simultaneous speech)"
+    },
+    "(0.7)": {
+      "count": 10,
+      "phenomenon": "Timed pause"
+    },
+    "(0.8)": {
+      "count": 5,
+      "phenomenon": "Timed pause"
+    },
+    "(1.4)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "=": {
+      "count": 4,
+      "phenomenon": "Latching (no gap between turns)"
+    },
+    "(.)": {
+      "count": 14,
+      "phenomenon": "Micropause (0.08–0.2s)"
+    },
+    "(1.3)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "(2.48)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.1)": {
+      "count": 1,
+      "phenomenon": "Timed pause"
+    },
+    "↑↑word": {
+      "count": 4,
+      "phenomenon": "Extreme pitch spike (exclamation)"
+    },
+    "(1.2)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "(1.0)": {
+      "count": 3,
+      "phenomenon": "Timed pause"
+    },
+    "(1.52)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "(1.5)": {
+      "count": 2,
+      "phenomenon": "Timed pause"
+    },
+    "↓↓word": {
+      "count": 1,
+      "phenomenon": "Extreme pitch drop"
+    },
+    "(1.92)": {
+      "count": 1,
+      "phenomenon": "Significant pause (1.5–5s)"
+    },
+    "hhh": {
+      "count": 1,
+      "phenomenon": "Exhalation"
+    }
+  },
+  "summary": {
+    "total_deception_markers": 85,
+    "total_veracity_markers": 113,
+    "total_clinical_markers": 37,
+    "freeze_events_count": 0,
+    "significant_pauses_count": 6,
+    "jefferson_enabled": true,
+    "deception_enabled": true,
+    "veracity_enabled": true,
+    "clinical_enabled": true,
+    "emotional_enabled": true
+  },
+  "cost_estimate": {
+    "estimated_words": 4499,
+    "estimated_tokens": 3374,
+    "estimated_process_seconds": 1799,
+    "estimated_process_minutes": 30.0,
+    "model": "base",
+    "cost_usd": 0.0,
+    "note": "Local Whisper — no API cost. For cloud LLM annotation pass, ~$0.01-0.05 per transcript."
+  }
+}

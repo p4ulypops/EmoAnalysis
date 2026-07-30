@@ -102,3 +102,25 @@ and currently unresolved, not hidden.
 Full technical detail and the complete list of test clips and their exact
 sources are available in this project's `docs/CALIBRATION.md` file, for
 anyone who wants to check our working.
+
+## Round 2: what happens with real recordings instead of film clips?
+
+We ran a second, tougher test. Instead of acted film scenes, we used 6 real
+recordings, up to about 30 minutes each, of actual public testimony and
+court arguments — the kind of thing this tool is meant to help with. And
+instead of judging the results ourselves, we checked them against things
+that independent, named authorities have already published: a public
+inquiry's official findings, a court's ruling, or a professional
+fact-checker's verdict on a specific claim. Full write-up:
+[`docs/CALIBRATION_ROUND2.md`](../CALIBRATION_ROUND2.md).
+
+The honest result: **the tool's tags matched the documented, independent
+findings in 2 of the 6 recordings, didn't match in 3, and one recording
+didn't reach the relevant moment at all.** That's a more mixed result than
+the first round of testing, and we're reporting it plainly rather than
+softening it. The clearest lesson: the tool tends to mis-flag confident,
+well-rehearsed speech (like a lawyer's prepared argument) as "suspicious,"
+and in one case its one relevant flag landed on the person later shown to
+be telling the truth, not the person making the misleading claim. This
+matters for anyone using the tool: **its tags are a prompt to look more
+closely, never a verdict on whether someone is being honest.**
