@@ -221,6 +221,162 @@ and more period-audio samples.
    dependency upgrade could shift segment lengths and warrant re-checking
    these thresholds.
 
+## Follow-up investigation (2026-07-30, same day, second pass)
+
+After the initial calibration above, four of the open limitations were
+re-investigated with additional real-audio evidence to see whether any
+were now addressable. Three more clips were sourced (same archive.org
+public-domain-film method) specifically to stress-test the stumble
+detector, and a wider-context extraction was pulled around clip 03 to
+test a windowed-loudness-baseline idea for `raised_voice`. The standard
+from the original pass was kept: no threshold or code change without
+direct evidence it helps, and no forced fix if the evidence says otherwise.
+
+**Result: no code changes were made in this follow-up pass.** All four
+items were investigated and are either confirmed structural (not
+threshold-fixable) or unsupported by the evidence gathered. Details below.
+
+### Extra clips sourced for this pass
+
+| ID | Film | Source | Start | Dur | Purpose | Outcome |
+|----|------|--------|-------|-----|---------|---------|
+| `11_notld_barbra_breathless` | Night of the Living Dead (1968) | [archive.org/details/night_of_the_living_dead_dvd](https://archive.org/details/night_of_the_living_dead_dvd) | 6:35 | 20s | Genuine panicked/breathless screaming, for stumble/repetition testing | Whisper failed to transcribe the repeated non-lexical "No!" screaming as usable words (mostly treated as noise/silence) — no stumble data obtainable from this clip; itself a documented finding (see below) |
+| `12_hgf_rapid_frantic` | His Girl Friday (1940) | [archive.org/details/his_girl_friday](https://archive.org/details/his_girl_friday) | 41:40 | 25s | A second, independent fast-dialogue scene for stumble testing | Only one usable merged turn came out of transcription; no new low-confidence-word stumble triggers observed here |
+| `13_reefer_nervous` | Reefer Madness (1936) | [archive.org/details/reefer-madness-1936-inter-pathe-films](https://archive.org/details/reefer-madness-1936-inter-pathe-films) | 25:00 | 25s | Dealer-negotiation dialogue, moderate pace, period audio | Produced one new stumble trigger (`'bad.'`, prob 0.33) plus 2 rising-pitch tags and 1 shaky flag on what is actually calm, businesslike delivery — see stumble section below |
+
+A fourth wider-context clip (`03_wide_context`, 3 minutes of audio
+surrounding the original anger scene, same Detour source) was pulled to
+test the `raised_voice` windowing idea; it is a superset of an already-
+cited timestamp range and is not a new emotion category.
+
+### C.1 revisited — `raised_voice` blind spot: still not fixable, and now better understood
+
+Tested whether a wider loudness-reference window (surrounding audio
+rather than just the 25s clip itself) would give clip 03 the internal
+contrast it needs. Result: **the film does contain quieter passages
+nearby** (a near-silent moment ~20s after the scene, RMS ratio 0.20 vs.
+the 3-minute window's own mean) — so in principle more context does add
+dynamic range. However, running the actual production pipeline
+end-to-end on this longer 3-minute clip showed **zero** `raised_voice`
+flags, not more: Whisper's own turn-merging combines the one genuinely
+loud utterance ("Where it is, you're drunk" — measured at up to 2.08x a
+local per-Whisper-segment baseline) together with quieter neighbouring
+words into a single longer speaker turn, and the loud moment gets diluted
+by averaging before `analyze_voice_dynamics()` ever sees it. So the
+bottleneck is not really the RMS-normalization window at all — it is
+**segment/turn granularity**: a real fix would mean analyzing loudness at
+a finer, sub-turn (near word-level) granularity, which is a materially
+larger design change than a threshold or windowing tweak, and was not
+attempted here since it would touch the segmentation contract the rest of
+the pipeline (Jefferson markers, deception/clinical markers, transcript
+rendering) all depend on. **No code change made.** This is now understood
+more precisely than in the original pass (originally attributed purely to
+per-file normalization; now also implicates turn-merging granularity) but
+remains an open, documented limitation.
+
+### C.2 revisited — no positive "surprise" signature: evidence argues against a simple fix
+
+Tested the hypothesis that a short-window loudness/pitch onset detector
+(a sudden jump right after a pause) could catch a surprise/shock reaction,
+using the D.O.A. clip's actual reveal line ("I was.", following a 4.6s
+pause). The reveal line does show a genuine 13x RMS jump versus the
+immediately preceding silence — but two pieces of evidence rule out a
+simple onset detector as a viable fix:
+
+1. **The same "quiet-then-loud after a pause" pattern occurs on ordinary,
+   non-surprising dialogue** in this test set, at equal or larger
+   magnitudes: 7.3x on a calm graveyard conversation, 4.1x on a fear-panic
+   line, and 13.6x — larger than the surprise clip itself — on a line from
+   the controlled contempt courtroom scene. A pause before someone's next
+   line is a universal feature of ordinary turn-taking, not a surprise
+   marker.
+2. **The reveal line itself is not loud in absolute terms** — only 1.31x
+   the clip's own global RMS, i.e. unremarkable relative to the rest of
+   the scene's normal dialogue volume. Its "surprise" quality comes from
+   dramatic pacing and silence beforehand (a screenwriting/editing choice),
+   not a measurable acoustic spike in the line itself.
+
+Given a naive onset detector would fire on ordinary conversational pauses
+as readily as on genuine surprise, and the one surprise example available
+doesn't even show an absolute loudness anomaly, there is no evidence base
+to build this feature on. **No code change made.** This remains an
+honest, undetected gap rather than a false-tagging problem — the tool says
+nothing about surprise, rather than saying something wrong.
+
+### C.3 revisited — stumble/repetition detector: evidence strengthened, conclusion unchanged
+
+Three additional clips were sourced specifically to stress-test this
+detector (table above). Yield was low: clip 11's screamed dialogue wasn't
+transcribed into usable words by Whisper at all (a new, separate finding —
+see limitations below); clip 12 produced only one long merged turn with no
+new low-confidence-word triggers; clip 13 produced exactly one new trigger
+(`'bad.'`, probability 0.33, 0.58s gap). Inspecting clip 13's full word-
+level confidence trace showed the same pattern as the original pass: **old,
+degraded period audio produces pervasively low Whisper word-confidence
+(several words scoring 0.06–0.33) independent of any real stumbling** — the
+transcribed text itself ("I'm just going to sell a rotten gin right for the
+dough") is visibly garbled, consistent with a transcription-quality
+artifact rather than the actor stumbling. This is now a 3rd data point
+reinforcing the original caution rather than new counter-evidence, and it
+still isn't enough (3 real trigger events total, all explainable either
+way) to justify moving the `probability<0.45` / 0.35–1.5s gap thresholds
+in either direction. **No code change made.**
+
+### C.4 revisited — should `acoustic_tags` corroborate/conflict with deception/clinical markers?
+
+The architecture would support this cleanly: `analyze_voice_dynamics()`
+already runs before `build_emotions()` in `run_transcription.py`, and both
+are indexed by the same segment number, so cross-referencing would not
+require changing either detector's own logic. However, checking actual
+co-occurrences across all 13 clips found only ~10 segments total where a
+text-based deception/veracity/clinical marker and a non-"normal" acoustic
+tag land on the same segment, and **every one of them is either "both
+present" or "text marker with an acoustically normal segment" — none show
+a genuine conflict** (e.g. text suggesting composure while acoustics show
+genuine instability, or vice versa) that a corroboration/conflict feature
+could meaningfully flag. Most text-based co-occurrences are benign
+veracity patterns (`appropriate_recall_pause`, `contextual_embedding`),
+not high-stakes deception markers, further limiting what such a feature
+could responsibly claim. Building a "corroborating vs. conflicting
+evidence" indicator on this sample would not be backed by an observed
+pattern — it would be speculative labelling dressed up as a validated
+feature, which is a particular risk for a tool that may be used in
+safeguarding-adjacent contexts. **No code change made.** If revisited
+later, this would need a substantially larger and more diverse evidence
+base, ideally with genuine cases of acoustic/text disagreement, before
+being implemented.
+
+### New limitation surfaced by this pass
+
+7. **Screamed/non-lexical panic vocalisations are poorly transcribed by
+   Whisper**, which starves every text-dependent detector (stumble,
+   repetition, Jefferson markers, deception/clinical markers) of usable
+   input for exactly the kind of acute-distress audio a clinical user is
+   most likely to care about. `analyze_voice_dynamics()`'s RMS/pitch
+   measurements are computed directly from the audio and are unaffected,
+   but nothing downstream that depends on Whisper's word output currently
+   compensates for this. Observed directly on clip 11 (Barbra's repeated
+   screamed "No!" in Night of the Living Dead), where a 20-second scene of
+   unambiguous panic produced only one short recognized phrase and an
+   "Extended freeze (>10s)" marker, with no acoustic tags either (the
+   scene was short and loud throughout, the same per-file-normalization
+   issue as item 1 above).
+
+### Reproducibility caveat observed during regression re-testing
+
+While re-running the original 10 clips end-to-end to confirm no regressions
+from this pass (none were expected, since no code changed), clip 10
+(`10_reefer_sadness_panic`) produced a different Whisper transcription on
+each of 3 runs ("Thanks." / "I think...." / "Wrap!" for the same audio
+moment) with correspondingly different segment boundaries. This is
+Whisper decoding nondeterminism on ambiguous/quiet audio, not a defect in
+`analyze_voice_dynamics()` — the underlying acoustic measurement is
+deterministic from the waveform and correctly classified the segment as
+`raised_voice` in 2 of the 3 runs; the third run's Whisper boundary
+happened to isolate a quieter word instead. Noted here as an observed
+property of the pipeline as a whole (relevant to reproducibility
+expectations), not a new finding about the voice-dynamics code itself.
+
 ## Reproducing this calibration
 
 Clip manifest with exact timestamps: `calibration_audio/clip_manifest.json`
