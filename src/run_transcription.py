@@ -600,7 +600,7 @@ def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
     global_rms = float(np.sqrt(np.mean(y ** 2)))
 
     dynamics = []
-    for seg in segments:
+    for seg_index, seg in enumerate(segments):
         start = int(seg.get("start", 0) * sr)
         end = int(seg.get("end", 0) * sr)
         clip = y[start:end]
@@ -613,6 +613,7 @@ def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
         # Pitch via pyin
         f0_mean = 0.0
         f0_std = 0.0
+        f0_clean = None
         try:
             f0, voiced, _ = librosa.pyin(clip, fmin=60, fmax=400,
                                           frame_length=2048)
@@ -658,13 +659,51 @@ def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
             if rms_cv > 0.8:
                 shaky = True
 
+        # ── Pitch trajectory (real "highs/lows") ──────────────────────────
+        # Compare mean f0 of the first third vs. last third of the segment's
+        # voiced frames to detect a genuine rising or falling intonation arc,
+        # rather than guessing from wording. Needs enough voiced signal.
+        pitch_trend = None
+        pitch_delta_hz = 0.0
+        if f0_clean is not None and len(f0_clean) >= 6:
+            third = max(2, len(f0_clean) // 3)
+            head_mean = float(np.nanmean(f0_clean[:third]))
+            tail_mean = float(np.nanmean(f0_clean[-third:]))
+            if not (np.isnan(head_mean) or np.isnan(tail_mean)):
+                pitch_delta_hz = tail_mean - head_mean
+                # ~25Hz across a short clip is an audible arc for most voices
+                if pitch_delta_hz > 25:
+                    pitch_trend = "rising"
+                elif pitch_delta_hz < -25:
+                    pitch_trend = "falling"
+
+        # ── Stumble / disfluency detection (real, from word timing+confidence) ──
+        # Uses Whisper's per-word timestamps and acoustic confidence
+        # (not text pattern matching): abnormal micro-gaps between words in
+        # otherwise continuous speech, low-confidence (garbled) words, or an
+        # immediately repeated word — the acoustic signature of a stumble.
+        stumble_hits = []
+        words = seg.get("words") or []
+        for wi in range(len(words) - 1):
+            w_cur = words[wi]
+            w_next = words[wi + 1]
+            gap = max(0.0, w_next.get("start", 0) - w_cur.get("end", 0))
+            low_conf = w_cur.get("probability", 1.0) is not None and w_cur.get("probability", 1.0) < 0.45
+            repeated = (w_cur.get("word", "").strip().lower().rstrip(".,!?")
+                        == w_next.get("word", "").strip().lower().rstrip(".,!?")
+                        and w_cur.get("word", "").strip())
+            if repeated and gap < 0.6:
+                stumble_hits.append({"word": w_cur.get("word", "").strip(), "kind": "repeat", "gap_s": round(gap, 2)})
+            elif 0.35 <= gap < 1.5 and low_conf:
+                stumble_hits.append({"word": w_cur.get("word", "").strip(), "kind": "broken", "gap_s": round(gap, 2)})
+
         # Speaking rate
         word_count = len(seg.get("text", "").split())
         seg_duration = seg.get("end", 0) - seg.get("start", 0)
         rate = word_count / seg_duration if seg_duration > 0 else 0
 
         entry = {
-            "index": seg.get("index", 0),
+            "index": seg_index,
             "timestamp": fmt_ms(seg.get("start", 0)),
             "speaker": seg.get("speaker", ""),
             "rms_energy": round(rms, 4),
@@ -692,9 +731,44 @@ def analyze_voice_dynamics(segments: list, audio_path: Path) -> list:
         elif level == "sub_vocal":
             entry["jefferson"] = "((murmured))"
 
+        # ── Build acoustic_tags: real, audio-measured markers in the same
+        # {symbol, phenomenon, certainty} shape as detect_jefferson_markers(),
+        # so they can be merged straight into the transcript text and read
+        # by a later text-only pass (e.g. deception/veracity reasoning)
+        # without that pass needing audio access itself. ──
+        acoustic_tags = []
+        if level == "raised_voice":
+            acoustic_tags.append({"symbol": "WORD", "phenomenon": "Raised voice (measured)",
+                                   "note": f"RMS {rms_ratio:.1f}x baseline", "certainty": cert})
+        elif level in ("whisper", "sub_vocal"):
+            acoustic_tags.append({"symbol": "°word°", "phenomenon": f"{label} (measured)",
+                                   "note": f"RMS {rms_ratio:.2f}x baseline", "certainty": cert})
+        if shaky:
+            acoustic_tags.append({"symbol": "~word~", "phenomenon": "Shaky/unstable voice (measured)",
+                                   "note": "Pitch or amplitude instability in audio", "certainty": 0.65})
+        if pitch_trend == "rising":
+            acoustic_tags.append({"symbol": "↑↑word", "phenomenon": "Rising pitch arc (measured)",
+                                   "note": f"+{pitch_delta_hz:.0f}Hz across segment — alarm/excitement/question-like lift",
+                                   "certainty": 0.60})
+        elif pitch_trend == "falling":
+            acoustic_tags.append({"symbol": "↓↓word", "phenomenon": "Falling pitch arc (measured)",
+                                   "note": f"{pitch_delta_hz:.0f}Hz across segment — resignation/flatness/trailing off",
+                                   "certainty": 0.60})
+        for hit in stumble_hits[:3]:
+            if hit["kind"] == "repeat":
+                acoustic_tags.append({"symbol": "word-word", "phenomenon": "Repetition / restart (measured)",
+                                       "note": f"'{hit['word']}' repeated within {hit['gap_s']}s", "certainty": 0.55})
+            else:
+                acoustic_tags.append({"symbol": "word-", "phenomenon": "Stumble / broken word (measured)",
+                                       "note": f"Low-confidence word '{hit['word']}' + {hit['gap_s']}s gap", "certainty": 0.45})
+
+        if acoustic_tags:
+            entry["acoustic_tags"] = acoustic_tags
+
         dynamics.append(entry)
 
     return dynamics
+
 
 
 # ─── Clinical Markers ─────────────────────────────────────────────────────────
@@ -1507,6 +1581,8 @@ def build_transcript_md(segments: list, emotions_data: dict,
         "> `[C:0.00–1.00]` certainty — below 0.70 is ⚠️ verify",
         "> Jefferson markers shown inline: WORD=shout, °word°=whisper, ~word~=shaky, #word#=creaky",
         "> word::=prolonged, ↑↑=pitch spike, ↓↓=pitch drop, >word<=fast, <word>=slow",
+        "> 📝 JEFFERSON = inferred from wording. 🎙️ ACOUSTIC = measured directly from the audio",
+        "> (real pitch/volume/timing via librosa) — word-=stumble/broken word, word-word=repetition",
         "> Deception: <fs>=false start, <corrsp>=correction, <rep>=repetition, <lack-mem>=memory lapse",
         "> Veracity: <veracious>=certainty, <sensory-recall>=sensory, <temporal>=sequencing",
         "",
@@ -1581,6 +1657,11 @@ def build_transcript_md(segments: list, emotions_data: dict,
         if jf_markers:
             jf_summary = ", ".join(f"{m['symbol']} ({m['phenomenon']})" for m in jf_markers[:5])
             annotations.append(f"  📝 JEFFERSON: {jf_summary}")
+
+        acoustic_tags = vd.get("acoustic_tags", [])
+        if acoustic_tags:
+            ac_summary = ", ".join(f"{a['symbol']} ({a['phenomenon']}) [C:{a.get('certainty', 0.5):.2f}]" for a in acoustic_tags[:5])
+            annotations.append(f"  🎙️ ACOUSTIC: {ac_summary}")
 
         if annotations:
             for a in annotations:
@@ -2096,6 +2177,10 @@ def build_omni_md(segments: list, emotions_data: dict, things: dict,
         if jf_list:
             jf_summary = ", ".join(f"{m['symbol']} ({m['phenomenon']})" for m in jf_list[:5])
             lines.append(f"  📝 JEFFERSON: {jf_summary}")
+        ac_list = vd.get("acoustic_tags", [])
+        if ac_list:
+            ac_summary = ", ".join(f"{a['symbol']} ({a['phenomenon']}) [C:{a.get('certainty', 0.5):.2f}]" for a in ac_list[:5])
+            lines.append(f"  🎙️ ACOUSTIC: {ac_summary}")
 
         prev_end = end
 
